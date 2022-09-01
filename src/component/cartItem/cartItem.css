@@ -1,0 +1,256 @@
+/* *{
+    padding: 0;
+    margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+}
+body{
+    padding: 0;
+    margin: 0;
+} */
+.cartItemView{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+
+
+.cartItem{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.cartItemHolder{
+    width: 100%;
+    height: 100%;
+    padding: 4px;
+    margin: 5px 10px;
+    margin-bottom: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    border-radius: 2px;
+    place-items: center;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid gray;
+}
+
+a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cartItem_img{
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    background-color: transparent;
+    object-fit: contain;
+}
+
+.cartItem_img img{
+    height: fill;
+    width: fill;
+    object-fit: contain;
+    background-color: transparent;
+    background: transparent;
+    scale: 1;
+}
+.cartItem_brand{
+    font-size: 12px;
+    color: black;
+    font-weight: lighter;
+}
+.cartItem_name{
+    text-decoration: none;
+    color: black;
+    font-size: 12px;
+}
+
+.cartItem_name:hover{
+    color: rgb(33, 161, 247);
+}
+.cartItem_price{
+    font-size: 12px;
+    color: rgb(11, 190, 26);
+    font-weight: normal;
+}
+.cartItem_select{
+    padding: 4px 6px;
+    cursor: pointer;
+    border-radius: 3px;
+    background: transparent;
+    border:none;
+    outline: none;
+    transform: 0;
+    font-size: 12px;
+    
+
+
+}
+.cartItem_select:hover{
+    transform: scale(1.1);
+    transition: all ease 0.4s;
+    background-color: white;
+}
+.cartItem_delete_btn{
+    padding: 10px 17px;
+    color: red;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+.cartItem_delete_btn svg{
+    font-size: 18px;
+}
+.cartItem_delete_btn:hover, 
+.cartItem_delete_btn:active
+.cartItem_delete_btn:focus
+{
+    color: rgb(253, 86, 86);
+    font-weight: bolder;
+    transform: scale(1.2);
+    
+}
+
+
+/* media query for responsiveness */
+
+@media(max-width:910px){
+
+    .cartItemHolder{
+       
+        padding: 2px;
+        margin: 4px 10px;
+        
+    }
+
+
+    .cartItem_img{
+        width: 50px;
+        height: 50px;
+    }
+
+        
+    .cartItem_brand{
+        font-size: 10px;
+        
+
+    }
+    .cartItem_name{
+       font-size: 10px;
+    }
+
+   
+    .cartItem_price{
+        font-size: 10px;
+      
+    }
+    .cartItem_select{
+        font-size: 10px;
+    }
+    
+    .cartItem_delete_btn svg{
+        font-size: 18px;
+    }
+
+
+
+}
+
+
+@media(max-width:560px){
+    .cartItemHolder{
+       
+        padding: 1px;
+        margin: 4px 10px;
+        
+    }
+    .cartItem_img{
+        width: 40px;
+        height: 40px;
+    }
+
+        
+    .cartItem_brand{
+        font-size: 8px;
+        
+
+    }
+    .cartItem_name{
+       font-size: 8px;
+    }
+
+   
+    .cartItem_price{
+        font-size: 9px;
+      
+    }
+    .cartItem_select{
+        font-size: 8px;
+    }
+    
+    .cartItem_delete_btn svg{
+        font-size: 16px;
+    }
+    
+
+
+}
+
+@media(max-width: 370px){
+    .cartItemHolder{
+       
+        padding: 1px;
+        margin: 4px 10px;
+        
+    }
+    .cartItem_img{
+        width: 30px;
+        height: 30px;
+    }
+
+        
+    .cartItem_brand{
+        font-size: 6px;
+        
+
+    }
+    .cartItem_name{
+       font-size: 6px;
+    }
+
+   
+    .cartItem_price{
+        font-size: 7px;
+      
+    }
+    .cartItem_select{
+        font-size: 6px;
+    }
+    
+    .cartItem_delete_btn svg{
+        font-size: 14px;
+    }
+    
+}
+
+/* @media(max-width: 600px){
+    .cartItem_name{
+        font-size: 0.6rem;
+    }
+    .cartItem_select,
+    .cartItem_delete_btn{
+        padding: 5px 8px;
+    }
+    .cartItem_price{
+        font-size: 0.6rem;
+    }
+} */

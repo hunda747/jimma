@@ -1,0 +1,141 @@
+/* body{
+  padding: 0;
+  margin: 0;
+} */
+
+
+.MuiPaper-root.MuiAppBar-root.MuiAppBar-positionFixed.MuiAppBar-colorPrimary{
+  color: white;
+  background-color: #ffc209;
+}
+
+.MuiTypography-root.MuiTypography-h6.MuiTypography-noWrap{
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: right;
+  color: white;
+  justify-content: right;
+  font-size: 24px;
+  font-weight: bold;
+  font-family: cursive;
+}
+
+.imgHolder{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: fill;
+}
+.imgHolder span{
+  font-size: 16px;
+  padding: 0;
+  margin: 0px 6px;
+  color: orange;
+  font-weight: bold;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  
+}
+
+.admin_logo_img{
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.MuiTypography-root.MuiTypography-h6.MuiTypography-noWrap {
+  height: 50px;
+}
+
+
+.Admin_profileInfoHolder{
+  display: flex;
+  width: 30%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+}
+.Admin_profileInfWrapper{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
+.Admin_profileIconHolder{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: right;
+  margin-right: 4px;
+}
+.Admin_profileIconHolder svg{
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  font-size: 35px;
+  color: rgb(24, 109, 201);
+  padding: 0;
+  margin:0;
+  margin-right: 3px;
+  cursor: pointer;
+}
+.Admin_profileInfo{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  flex: 2;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 0px;
+  margin-left: 0px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.Admin_profileInfo p{
+  padding: 0;
+  margin: 0;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 13px;
+}
+.Admin_profileInfo span{
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: lighter;
+}
+
+
+.logoutButtonHolder{
+  display: flex;
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: right;
+}
+.logoutButtonHolder svg{
+  font-size: 25px;
+  color: red;
+  font-weight: bolder;
+  cursor: pointer;
+  transform: 0;
+}
+.logoutButtonHolder svg:hover{
+  color: rgb(238, 47, 47);
+  transform: scale(1.1);
+  transition: all ease-in 0.1s;
+}

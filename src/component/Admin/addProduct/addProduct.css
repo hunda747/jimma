@@ -1,0 +1,413 @@
+body{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.form_wrapper .title{
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.add_product{
+    width: 100%;   
+    height: 80vh; 
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+.add_product_wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+   
+}
+.information{
+    display: flex;
+    width: 100%;
+    height: 90%;
+    padding: 0;
+    margin: 0;
+ 
+}
+.form_side{
+    display: flex;
+    flex: 1.4;
+    width: 100%;
+    height: 100%;
+    justify-content: left;
+    
+}
+.image_side{
+    display: flex;
+    flex: 1;
+    border: none;
+}
+
+
+.form_wrapper{
+    display:flex;
+    flex-direction:column;  
+    width: 90%;
+    height: fit-content;
+    padding: 5px;
+    margin: auto;
+}
+
+
+.form_wrapper .item {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.form_wrapper .item .row{
+    margin-top: 15px;
+}
+
+.pricerow{
+    display: flex;
+    justify-content: space-between;
+}
+
+.form_wrapper input{
+    display: flex;
+    width: 100%;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.111);
+    border-radius: 2px;
+    padding: 6px;
+    margin-top: 5px;
+    font-size: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: lighter;
+}
+
+.dialog_category input{
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.111);
+    border-radius: 2px;
+    padding: 6px;
+    margin-top: 5px;
+    font-size: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: lighter;
+}
+
+.product_detail_input{
+    display: flex;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.111);
+    border-radius: 2px;
+    margin-top: 5px;
+    font-size: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: lighter;
+    padding: 6px;
+
+
+}
+
+.image_side_wrapper{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    
+}
+
+.image_side_wrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+}
+
+
+.upload_img{
+    display: flex;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload_info{
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    width: 80%;
+    height: 100%;
+    justify-content: center;
+    padding: 3px;
+    margin: 0;
+   
+}
+
+.pName, .pBrand,.pCategory,.pPrice,.pAmount{
+    display: flex;
+    width: 100%;
+    height: 35px;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 1px;
+
+}
+.product_brand_select.ant-select.ant-select-single.ant-select-show-arrow,
+.ant-select.product_category_select{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+.ant-select-selector{
+    width: 100%;
+    height: 100%;
+}
+.pDetail{
+    width: 100%;
+    height: fit-content;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 4px;
+}
+
+.buttonHolder{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: right;
+    padding: inherit;
+    margin: inherit;
+  
+}
+
+.add_product_btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    margin: 15px 6px;
+    font-size: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgb(20, 187, 20);
+    color: white;
+    border: none;
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.111);
+    font-weight: lighter;
+    cursor: pointer;
+    
+
+}
+
+.add_product_cancel_btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 4px;
+    margin: 15px 6px;
+    font-size: 12px;
+    font-weight: lighter;
+    background-color: rgba(152, 152, 152, 0.23);
+    color: black;
+    border: none;
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.111);
+    cursor: pointer;
+    
+}
+
+.aboutProduct_holder,
+.productPricing_holder,
+.productInventory_holder{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    padding: 0;
+    margin: 0;
+    
+}
+
+.productPricingCalculator_holder,
+.productMedia_holder,
+.productBrand_holder{
+    background-color: white;
+    padding: 1rem;
+    margin: 10px 0;
+}
+
+.productPricingCalculator_container{
+    padding: 1rem;
+}
+
+.productPricingCalculator_holder{
+    padding: 1rem;
+}
+
+.aboutProduct_container,
+.productInventory_holder,
+.productPricing_container{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 1rem;
+    margin: 10px 0;
+}
+
+.aboutProduct_container p,
+.productPricing_container p,
+.productInventory_container p,
+.productBrand_container p{
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    align-items: center;
+    padding: 3px;
+    margin: 2px 0px;
+    font-size: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: lighter;
+}
+
+.aboutProduct_container input textarea{
+    font-size: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: normal;
+    color: black;
+    border: 1px solid black;
+}
+
+.productPricing_holder h3,
+.productInventory_holder h3,
+.productBrand_holder h3,
+.productMedia_holder h3{
+    font-size: 13px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 100;
+    padding: 2px;
+    margin-top: 5px;
+
+}
+
+.productBrand_container{
+    width: 50%;
+    float: left;
+    padding-right: 1rem;
+}
+
+.productBrand_container .select{
+    display: flex;
+}
+.productBrand_container .select .selectButton{
+    padding: 0 10px;
+}
+
+.productPricingCalculator_holder{
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    justify-content: space-between;
+}
+.productPricingCalculator_container{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    
+}
+.productPricingCalculator_container p{
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    align-items: center;
+    padding: 3px;
+    margin: 2px 0px;
+    font-size: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: lighter;
+}
+
+.productPricingCalculator_container span{
+    font-size: 13px;
+    font-weight: 200;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
+.productMedia_container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    object-fit: contain;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content:center;
+}
+
+.productMediaImage_container{
+    display: flex;
+    width: 90%;
+    height: 400px;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    justify-content: center;    
+}
+
+.productMedia_container img{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    object-fit: contain;
+
+}
+
+.imagePreviewHolder{
+    display: flex;
+    width: 50%;
+    height: 80%;
+    margin: 0;
+    padding: 0;
+    object-fit: contain;
+    align-items: center;
+    justify-content: center;
+}
+
+@media(max-width:550px){
+    .productPricingCalculator_holder{
+        display: flex;
+        flex-direction: column;
+        justify-content: right;
+        width: 100%;
+        height: fit-content;
+        padding: 0;
+        margin: 0;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .productPricing_container{
+        padding: 0;
+        align-items: left;
+    }
+    .productBrand_holder{
+        display: flex;
+        flex-direction: column;
+    }
+    .productBrand_container{
+
+    }
+}

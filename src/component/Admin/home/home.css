@@ -1,0 +1,218 @@
+
+body{
+  padding: 0;
+  margin: 0;
+}
+
+
+.dashboardChartHolder{
+  width: 100%;
+  height: fit-content;
+  padding: 0;
+  margin: 0;
+}
+.chartWrapper{
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.chartWrapper h2{
+  width: 100%;
+  display: flex;
+  height: 40px;
+  background-color: #d3cba830;
+  font-size: 17px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: lighter;
+  padding: 4px;
+  margin: 4px 0px;
+  align-items: center;
+}
+
+.todaysCharts,
+.webStatus,
+.aboutProducts,
+.orderInfo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  padding: 4px;
+  margin: 0;
+}
+
+
+
+
+.lineGraphHolder{
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  width:  100%;
+  height: 350px;
+}
+.lineGraphHolder p{
+  padding: 0;
+  margin-top: 10px;
+  width: 100%;
+  font-size: 15px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: orange;
+  font-weight: normal;
+}
+
+.total_sale_container{
+  flex: 1;
+  width: 100%;
+  padding: 4px;
+  margin: 0;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.recharts-wrapper , .recharts-wrapper svg{
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+
+.orders_container{
+  display: flex;
+  width: fit-content;
+  padding: 4px;
+  margin: 0;
+  
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+
+}
+.apexcharts-apexcharts-xaxis-texts-g text{
+  font-size: 9px;
+  color: red;
+}
+
+.chart {
+  padding: 0;
+  margin: 0px 6px;
+  width: 320px;
+  height: 100%;
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+}
+
+.charts {
+  display: flex;
+  width:100%;
+  height: fit-content; 
+  padding: 0;
+  margin: 0;
+}
+
+
+
+.conversion_rate_holder{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+.cr_title{
+  display: flex;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  justify-content: space-between;
+}
+.cr_title_content,
+.unit_sell_title,
+.product_price_sold_title{
+  display: flex;
+  font-size: 15px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
+  color: orange;
+  font-weight: normal;
+  padding: 5px;
+  margin: 5px;
+}
+.cr_title_more{
+  font: 12px;
+  font-weight: lighter;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding: 5px;
+  margin: 5px;
+  color: blue;
+  cursor: pointer;
+}
+
+.price_conversion_rate{
+  display: flex;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.price_conversion_rate p{
+  padding: 5px;
+  margin: 5px;
+  font-size: 25px;
+  font-weight: lighter;
+  font-family: cursive;
+  color: rgb(57, 38, 2);
+}
+
+.cart_cr,
+.checkout_cr,
+.purchase_cr{
+  display: flex;
+  padding: 0;
+  margin: 0;
+  width: 90%;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid gray;
+  
+}
+.purchase_cr{
+  border: none;
+}
+.cart_cr_title,
+.checkout_cr_title,
+.purchase_cr_title{ 
+  font-size: 13px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: normal;
+  padding: 5px;
+  margin: 5px;
+}
+.cart_cr_content,
+.checkout_cr_content,
+.purchase_cr_content{
+  font-size: 14px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: normal;
+  padding: 5px;
+  margin: 5px;
+}
+
+.MuiTableCell-root.MuiTableCell-body.MuiTableCell-alignLeft.MuiTableCell-sizeMedium.product_name.css-1ex1afd-MuiTableCell-root,
+.MuiTableCell-root.MuiTableCell-body.MuiTableCell-alignRight.MuiTableCell-sizeMedium.total_sold.css-177gid-MuiTableCell-root,
+.MuiTableCell-root.MuiTableCell-body.MuiTableCell-alignLeft.MuiTableCell-sizeMedium.css-1ex1afd-MuiTableCell-root,
+.MuiTableCell-root.MuiTableCell-body.MuiTableCell-alignRight.MuiTableCell-sizeMedium.css-177gid-MuiTableCell-root{
+  border: none;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 12px;
+ 
+}
+
+

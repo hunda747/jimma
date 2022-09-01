@@ -1,0 +1,102 @@
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.employeeCard{
+    display: flex;
+    width: 100%;
+    height: 40px;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 6px;
+    align-items: center;
+    justify-content: center;
+}
+
+.EC_wrapper{
+    display: flex;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px 2px rgba(94,94,94,0.21);
+    -webkit-box-shadow: 2px 2px 5px 2px rgba(94,94,94,0.21);
+    -moz-box-shadow: 2px 2px 5px 2px rgba(94,94,94,0.21);
+    cursor: pointer;
+
+
+}
+.EC_wrapper:hover{
+    background-color: rgba(184, 239, 184, 0.718);
+}
+
+.emp_name_holder,
+.emp_email_holder,
+.emp_accessKey_holder,
+.emp_status_holder{
+    display: flex;   
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    height: fit-content;
+ 
+}
+
+.emp_name_holder{
+    flex: 1;
+}
+.emp_email_holder{
+    flex: 1.1;
+}
+.emp_accessKey_holder{
+    flex: 1.2;
+}
+.emp_status_holder{
+    flex: 1;
+    
+}
+
+
+
+.emp_name_holder p,
+.emp_email_holder p,
+.emp_accessKey_holder p,
+.emp_status_holder p{
+   font-size: 12px;
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   font-weight: lighter;
+       
+}
+
+.emp_status_holder p{
+    background-color: gray;
+    padding: 4px;
+    border: none;
+    border-radius: 3px;
+    color: white;
+}
+
+
+.dialog_email,
+.dialog_access_key,
+.dialog_date,
+.dialog_status{
+    font-size: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: lighter;
+    color: black;
+    padding: 4px;
+    margin: 5px auto;
+}
+
+.MuiDialog-paperWidthSm {
+    width: 458px;
+}

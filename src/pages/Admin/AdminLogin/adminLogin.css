@@ -1,0 +1,286 @@
+/* *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    padding: 0;
+    margin: 0;
+
+} */
+
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
+
+.errmsg {
+    background-color: rgb(214, 38, 68);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+.warnInfo{
+    background-color: rgb(231, 197, 4);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.successFul{
+    background-color: rgb(0, 250, 112);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: rgb(247, 247, 247);
+    font-weight: bold;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.adminLogin{
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-image: url(https://www.motillo.se/Media/2ltjvksq/ga4.jpg);
+    /* background-image: url(https://blog.cloudflare.com/content/images/2020/12/image1-19.png); */
+}
+
+.adminLoginWrapper{
+    display: flex;
+    width: 90%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    justify-content: right;
+    align-items: center;
+    
+}
+.adminLoginWrapper p {
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+}
+
+.al_container{
+    display: flex;
+    width: 30%;
+    height: fit-content;
+    /* border: 1px solid black; */
+    background: rgb(103, 111, 234);
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+}
+.al_container_wrapper{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    
+}
+
+.al_header{
+    display: flex;
+    width: 100%;
+    flex:0.6;
+    align-items: center;
+    justify-content: center;
+}
+
+.al_header h4{
+    font-size: 24px;
+    padding: 0;
+    margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bolder;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-top: 8px;
+}
+
+.ant-row.ant-form-item {
+    width: 100%;    
+}
+
+
+
+.al_body{
+    display: flex;
+    flex-direction: column;
+    width: 100% ;
+    flex: 2;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    margin: 5px auto;
+}
+
+
+#normal_login,#normal_signup{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 80%;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.ant-input-affix-wrapper > input.ant-input {
+    padding: 0;
+    border: none;
+    outline: none;
+    font-size: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: lighter;
+
+}
+.ant-input-prefix svg{
+    font-size: 17px;
+}
+
+@media(max-width:845px){
+    .adminLoginWrapper{
+        display: flex;
+        width: 90%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    .al_container{
+        display: flex;
+        width: 50%;
+        height: fit-content;
+        /* border: 1px solid black; */
+        background: rgb(103, 111, 234);
+        border-radius: 4px;
+        align-items: center;
+        justify-content: center;
+    }
+    .al_header h4{
+        font-size: 22px;
+      
+    }
+    .ant-input-prefix svg{
+        font-size: 15px;
+    }
+}
+
+@media(max-width:515px){
+    
+    .al_container{
+        display: flex;
+        width: 70%;
+       ;
+    }
+    .al_header h4{
+        font-size: 20px;
+      
+    }
+    .ant-input-prefix svg{
+        font-size: 13px;
+    }
+    .ant-input-affix-wrapper > input.ant-input {
+        font-size: 11px;      
+    }
+}
+
+
+
+
+
+/* .al_email_container,
+.al_password_container,
+.al_username_container,
+.al_confirm_email_container,
+.al_confirm_password_container,
+.al_signup_key_token_container{
+    width: 100%;
+    height: 60px;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.al_email_container input ,
+.al_password_container input,
+.al_username_container input,
+.al_confirm_password_container input,
+.al_confirm_email_container input,
+.al_signup_key_token_container input {
+    width: 70%;
+    height: 80%;
+    border: none;
+    border-radius: 3px;
+    font-size: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 5px;
+    margin: 0;
+    cursor: pointer;
+    transform: 0;
+
+}
+.al_email_container input:hover ,
+.al_password_container input:hover,
+.al_username_container input:hover,
+.al_confirm_password_container input:hover,
+.al_confirm_email_container input:hover,
+.al_signup_key_token_container input:hover{
+   border-color: orange;
+   font-size: 12.4px;
+   transform: scale(1.008);
+   transition: all ease-out 0.2s;
+
+}
+.al_email_container input:active ,
+.al_password_container input:active{
+   border-color: orange;   
+
+}
+
+
+.al_footer{
+    display: flex;
+    width: 100%;
+    align-items: top;
+    justify-content: center;
+    flex: 1;
+    
+} */
+.MuiButtonBase-root.MuiButton-root.MuiButton-text.al_login_btn{
+    background-color: rgb(243, 168, 6);
+    color: white;
+    font-size: 14px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}

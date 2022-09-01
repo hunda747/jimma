@@ -1,0 +1,36 @@
+
+.restaurants{
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  /* justify-content: center; */
+}
+
+.restaurants .restaurant{
+  width: 380px;
+  height: 480px;
+  position: relative;
+  margin: 0 35px 35px 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.restaurants .restaurant h3{
+  margin: 8px 0;
+  padding: 0 20px;  
+}
+.restaurants .restaurant p{
+  padding: 0 20px;  
+}
+
+.restaurants .restaurant .status{  
+  background-color: rgb(240, 240, 240);
+  width: 100%;
+  margin-top: 5px;
+  position: absolute;
+  bottom: 0;
+  /* top: 0; */
+}
+.restaurants .restaurant .status .open{
+  padding: 10px;
+  
+}  

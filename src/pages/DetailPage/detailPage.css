@@ -1,0 +1,78 @@
+.detail{
+  position: relative;
+  top: 90px;
+}
+
+.detail .container{
+  padding: 20px;
+  max-width: 1300px;
+  margin: auto;
+}
+
+.detail .image{
+  padding: 0;
+  margin: 0;
+  height: 260px;
+}
+
+.image img{
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  /* size: cover; */
+  object-fit: cover;
+  overflow: hidden;
+  background-blend-mode: darken;
+}
+
+
+.detail .container .information .moreInfo{
+  display: flex;
+  max-width: 900px;
+}
+
+.detail .container .information .moreInfo .disc{
+  width: 60%;
+  margin-right: 30px;
+  border-right: 1px solid rgb(161, 161, 161);
+}
+
+
+.detail .container .menu{
+  max-width: 1300px;
+  margin: auto;
+}
+
+.detail .container .menu .menu_container{
+  display: flex;
+}
+
+.detail .container .displayMenu{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  width: 75%;
+}
+
+.detail .container .menu_container .cart{
+  width: 25%;
+  padding: 24px 10px;
+}
+.detail .container .menu_container .cart h1{
+  text-align: center;
+  padding-bottom: 3px;
+  border-bottom: 1px solid rgb(161, 161, 161);
+}
+.detail .container .menu_container .cart .product{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgb(219, 219, 219);
+}
+
+@media(max-width: 700px){  
+  .detail .container .displayMenu{
+    display: flex;
+    flex-direction: column;
+  }
+
+}

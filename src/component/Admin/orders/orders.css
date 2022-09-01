@@ -1,0 +1,41 @@
+body{
+    padding: 0;
+    margin: 0;
+
+}
+
+.MuiTableHead-root {
+    display: table-header-group;
+    background: #55d7238c;
+    
+}
+.MuiTableCell-root.MuiTableCell-head{
+    font-size: 12px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
+    font-weight: bold;
+}
+
+.orderPageContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.orderTable_holder{
+    padding: 0;
+    display: flex;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+
+    
+}
+.makeStyles-root-10{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
