@@ -39,7 +39,10 @@ export const cartReducer = (state = {cartItems: []}, action)=>{
 			state.cartItems[objIndex].qtyCounter = change.qtyCounter;
 			console.log(state.cartItems[objIndex]);
 			console.log(state.cartItems);
-			return state;
+			return {
+				...state,
+				cartItems: [...state.cartItems]
+			};
 		case actionType.REMOVE_FROM_CART:
 			// if the action is to remove the item from the cart then filter through the array and map the item and remove it
 			return{

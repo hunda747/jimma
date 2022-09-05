@@ -3,10 +3,13 @@ import './home.css'
 
 import photo from '../../assets/photo/bj5.jpg';
 import photoBg from '../../assets/photo/bj5Edit.jpg';
+import hero from '../../assets/photo/bj5Edit.jpg';
 
 import {Favorite, SearchIcon} from '@material-ui/icons';
 import {Link} from 'react-router-dom';
 import Navbar from '../../component/Navbar/navbar';
+import Footer from '../../component/Footer/footer';
+import Star from '../../component/displayStar';
 
 import {Twitter, Instagram, Facebook, LinkedIn, AccountCircle, LocationOn, List, ShoppingCart} from '@material-ui/icons';
 
@@ -29,83 +32,34 @@ export default function Home() {
 
   console.log(restaurants);
 
-  const handleLogout = () => {
-    removeCookie('fname', { path: '/' });
-    removeCookie('lname', { path: '/' });
-    removeCookie('phoneNo', { path: '/' });
-    removeCookie('uid', { path: '/' });
-    window.location.reload(false);
-  }
+    const handleLogout = () => {
+      removeCookie('fname', { path: '/' });
+      removeCookie('lname', { path: '/' });
+      removeCookie('phoneNo', { path: '/' });
+      removeCookie('uid', { path: '/' });
+      window.location.reload(false);
+    }
 
   return(
     <>
       <div className='wrapper'>
 
-        {/* <div className="navbar_main">
-          <div className="container">
-            <div className="navbar">
-              <div className="logo">
-                <a href="/">
-                  <img src={logo} alt="logo" height={'100px'}/>
-                  Jimma Delivery
-                </a>
-              </div>
-              <div className="menu">
-                <div className="icons">
-                  <ShoppingCart fontSize="large"/>
-                  <Favorite  fontSize="large"/>
-                </div>
-                {cookies?.uid ? 
-                  <>
-                    <div className="btn">
-                      {cookies.fname}
-                    </div>
-                    <div className="btn" onClick={handleLogout}>
-                        Logout
-                    </div>
-                  </>
-                : 
-                 <>
-                  <div className="btn">
-                    <Link to='/login'>
-                      Sign In
-                    </Link>
-                  </div>
-                  <div className="btn">
-                    <Link to='/register'>
-                      Sign Up
-                    </Link>
-                  </div>
-                 </>
-                }
-              </div>
-            </div>
-          </div>
-        </div> */}
         <Navbar />
 
         <header className='showcase'>
-          <div className='container'>
-            {/* <div className='showcase_main'>
-              <h1>Want Outstanding Grades</h1>
-              <p>Start improving your grades today with our solved topical past paper question</p>
-              <div className="buttons">
-                <Link to={`/login/false`}>
-                  <a className='btn_primary' href="/login">Register</a>
-                </Link>
-                <Link to={`/question`}>
-                  <a className='btn_primary' href="/question">Free Quesions</a>
-                </Link>
-              </div>
-            </div> */}
+          <div className='containerdd'>
             <div className="hero">
               {/* <h1>Get food from your favorite restaurants in Jimma delivered to your home or office.</h1> */}
               <h1>Order food to your home or office.</h1>
+              <p>Best cook and best delivery at your service </p>
               <div className="searchBar">
                 <input class="search__input" type="text" placeholder="Search" />
                 <button className='btn_search'>OOO</button>
               </div>
-              <p><a href="/">Sign In</a> for your recent addresses</p>
+              <p><a href="/login">Sign In</a> for your recent addresses</p>
+            </div>
+            <div className="heroImg">
+              <img src={hero} alt="hero" />
             </div>
           </div>
         </header>
@@ -120,9 +74,14 @@ export default function Home() {
                   return(
                     <div className="restaurant">
                       <Link to={`/detail/${restaurant._id}`}>
-                        <img src={restaurant.img} width='100%' height='280px' alt="img " />
-                        <h3>{restaurant.name}</h3>
-                        <p>{restaurant.description}</p>
+                        <img src={restaurant.img} width='100%' height='180px' alt="img " />
+                        <div className="resInfo">
+                          <h3>{restaurant.name}</h3>
+                          <div className="rating">
+                            <p> <Star rating={restaurant.rating}/></p>
+                          </div>
+                          <p>{restaurant.description}</p>
+                        </div>
                         <div className="status">
                           <p className='open'>open</p>
                         </div>
@@ -139,7 +98,7 @@ export default function Home() {
 
         <div className="info">
           <div className="container">
-            <h1>How it works</h1>
+            <h1>How it works</h1> 
             <div className="items">
               <div className="item">
                 <LocationOn fontSize="large"/>
@@ -160,19 +119,7 @@ export default function Home() {
           </div>
         </div>
 
-        <footer>
-          <div className="container">
-            <div className="copy">
-              Copywright 
-            </div>
-            <div className="icons">
-              <Twitter />
-              <Facebook />
-              <Instagram />  
-              <LinkedIn />
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </>
   )

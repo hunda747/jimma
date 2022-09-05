@@ -52,7 +52,7 @@ import ProductList from '../../../component/Admin/productList/productList';
 import Orders from '../../../component/Admin/orders/orders';
 import AddRestaurant from '../../../component/Admin/AddRestaurant/addRestaurant';
 import Hiring from '../../../component/Admin/Hiring/hiring'
-
+import AddOrder from '../../../component/Admin/AddOrder/addOrder'
 
 import { Button } from '@material-ui/core'
 //material ui menu navigation drawer things
@@ -150,7 +150,6 @@ export default function PM_Dashboard() {
     const error = false;
     // console.log(user);
 
-
     //material ui menu navigation
     const classes = useStyles();
     const theme = useTheme();
@@ -167,7 +166,6 @@ export default function PM_Dashboard() {
     //track index of the components clicked
     const [compCounter , setCompCounter] = useState(0);
     
-
     const handleLogout = (e) => {
       e.preventDefault();
       removeCookie('ADemail', {path: '/'});
@@ -247,7 +245,7 @@ export default function PM_Dashboard() {
         </div>
         <Divider />
         <List>
-          {['Dashboard', 'Restuarant List', 'Add Restuarant', 'Users', 'Order List', 'Hiring', 'Profile'].map((text, index) => (
+          {['Dashboard', 'Restuarant List', 'Add Restuarant', 'Users','Add Order', 'Order List', 'Hiring', 'Profile'].map((text, index) => (
             <>
             <ListItem button  onClick={()=>{
               setCompCounter(index)
@@ -259,8 +257,9 @@ export default function PM_Dashboard() {
                   index === 3 ? <FavoriteBorderOutlinedIcon/> : 
                   index === 4 ? <GroupOutlinedIcon/> :
                   index === 5 ? <ListAltOutlined/> :
-                  index === 6 ? <TrackChangesIcon/> :
-                  index === 7 ? <AccountCircleIcon />:
+                  index === 6 ? <ListAltOutlined/> :
+                  index === 7 ? <TrackChangesIcon/> :
+                  index === 8 ? <AccountCircleIcon />:
                    ""
                              }
               </ListItemIcon>
@@ -283,9 +282,10 @@ export default function PM_Dashboard() {
             compCounter === 1 ? <RestaurantList onMorePage={setCompCounter}/> : 
             compCounter === 2 ? <AddRestaurant onMorePage={setCompCounter}/> : 
             compCounter === 3 ? <UsersList/>:
-            compCounter === 4 ? <Orders />: 
-            compCounter === 5 ? <Hiring />:
-            compCounter === 6 ? <Profile userName={"hunda"}  email={"hunda@gmail.com"} role={"admin"} signUpDate={"2022-05-29"} />:
+            compCounter === 4 ? <AddOrder />: 
+            compCounter === 5 ? <Orders />: 
+            compCounter === 6 ? <Hiring />:
+            compCounter === 7 ? <Profile userName={"hunda"}  email={"hunda@gmail.com"} role={"admin"} signUpDate={"2022-05-29"} />:
             compCounter === 10 ? <ProductList /> :  
             "others"   
           }

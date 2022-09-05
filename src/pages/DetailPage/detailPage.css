@@ -1,7 +1,7 @@
-.detail{
+/* .detail{
   position: relative;
   top: 90px;
-}
+} */
 
 .detail .container{
   padding: 20px;
@@ -26,14 +26,33 @@
 }
 
 
+.detail .container .information {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail .container .information .rating{
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  margin: 5px 0;
+}
+
 .detail .container .information .moreInfo{
   display: flex;
-  max-width: 900px;
+  max-width: 1000px;
+  padding: 5px;
+}
+
+.detail .container .information .moreInfo .name{
+
 }
 
 .detail .container .information .moreInfo .disc{
   width: 60%;
-  margin-right: 30px;
+  margin-right: 50px;
+  padding-right: 35px;
   border-right: 1px solid rgb(161, 161, 161);
 }
 
@@ -48,15 +67,21 @@
 }
 
 .detail .container .displayMenu{
-  display: grid;
-  grid-template-columns: auto auto auto;
-  width: 75%;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 40px;
 }
 
-.detail .container .menu_container .cart{
-  width: 25%;
+.detail .container .menu_container .cartView{
+  width: 30%;
+}
+/* .detail .container .menu_container .cart{
+  width: 30%;
   padding: 24px 10px;
 }
+
 .detail .container .menu_container .cart h1{
   text-align: center;
   padding-bottom: 3px;
@@ -68,6 +93,19 @@
   padding: 10px 0;
   border-bottom: 1px solid rgb(219, 219, 219);
 }
+
+.detail .container .menu_container .cart .product .name{
+  width: 60%;
+}
+.detail .container .menu_container .cart .product .price{
+  width: 20%;
+}
+
+.detail .container .menu_container .cart .product .qty, .detail .container .menu_container .cart .product .action{
+  width: 10%;
+} */
+
+
 
 @media(max-width: 700px){  
   .detail .container .displayMenu{

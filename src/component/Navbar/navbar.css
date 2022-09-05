@@ -5,7 +5,7 @@
   z-index: 100;
   background-color: white;
   width: 100%;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
 }
 
 .navbar{
@@ -28,6 +28,25 @@
 
 .navbar .menu .icons{
   margin-right: 15px;
+}
+.navbar .menu .icons .cartIconHolder {
+  display: flex;
+  justify-content: center;
+  vertical-align: center;
+  /* align-items: center; */
+  height: 100%;
+  transform: scale(1.2);
+  transition: all ease 0.3s;
+  padding: 5px 8px;
+}
+
+.navbar .menu .icons .cartIconHolder span{
+  padding: 1px;
+  top: 0;
+  /* color: rgb(255, 204, 0); */
+  object-fit: contain;
+  font-size: 13px;
+  font-weight: bold;
 }
 
 .navbar .menu .btn{

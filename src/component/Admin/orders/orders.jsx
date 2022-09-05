@@ -178,6 +178,8 @@ export default function Orders() {
                             status = {val.status}
                             address = {val.address}
                             orders = {val.orders}
+                            longitude = {val.longitude}
+                            latitude = {val.latitude}
                             admin = {true}
                             />
                           )

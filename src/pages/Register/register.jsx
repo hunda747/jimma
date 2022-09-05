@@ -28,8 +28,8 @@ import { message } from 'antd';
 
 export default function Register() {
 	const history = useNavigate();
-	// const heroku = 'https://pazion.herokuapp.com';
-	const localhost = 'http://localhost:5000/';
+	const heroku = 'https://jimma-e-comm.herokuapp.com/';
+	const localhost = 'https://jimma-e-comm.herokuapp.com/';
 	const [cookies, setCookie] = useCookies(['user']);
 	
 	// const dispatch = useDispatch();

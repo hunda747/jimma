@@ -46,19 +46,20 @@ export default function Checkout() {
   })
 
   const [viewPort , setViewPort] = useState({
-    latitude:9.022875,
-    longitude: 38.752261,
-    zoom:11,
+    latitude:7.6746,
+    longitude: 36.8406,
+    zoom:14,
     width: '100vw',
     height: '100vh'
   })
 
   const [marker,setMarker] = useState({
-    latitude: 9.022875,
-    longitude: 38.752261
+    latitude: 7.6746,
+    longitude: 36.8406
   });
   
   const [phoneNumber , setPhoneNumber] = useState('');
+  const [deliveryPrice , setDeliveryPrice] = useState(35);
 
   let printIt = (data) => {
     console.log(data);
@@ -189,7 +190,6 @@ export default function Checkout() {
   }
 
 
-
   const qtyChangeHandler = (id,qty) =>{
     dispatch(changeToCart(id,qty))
   }
@@ -213,10 +213,6 @@ export default function Checkout() {
     <div className='checkout_main'>
       <NavBar/>
         <div className='checkout'>
-          <div className='checkoutPath'>
-            <p className='pathContent'>
-              Home     /       Shopping Cart    / Checkout</p>
-          </div>
           <div className="checkoutTitleHolder">
             <h3>Checkout</h3>
           </div>
@@ -228,7 +224,8 @@ export default function Checkout() {
             </div>
             <div className="stepOneContainer">
               <div className="mapHolder">
-                <ReactMapGL {...viewPort} 
+                <ReactMapGL 
+                  {...viewPort} 
                   mapboxAccessToken="pk.eyJ1IjoiZGFuaGdiIiwiYSI6ImNsMXVnNDIxbzAwMmYzcXBiMXB0ZWVjcWMifQ.nC63RhWneFhiZ4k4XJim9A" 
                   onMove={(viewPort)=> { setViewPort(viewPort)}}
                   mapStyle="mapbox://styles/mapbox/streets-v11"
@@ -242,45 +239,44 @@ export default function Checkout() {
                   handleLocation()
                     }}
                 >
-                
-                  <Marker latitude={marker.latitude} longitude={marker.longitude} />
-
+                  {/* <Marker latitude={marker.latitude} longitude={marker.longitude} /> */}
                 </ReactMapGL>   
-            
-            </div>
-            <div className="stepOneInfo">
-              <div className="infoHolder">
-                <div className="lngLat">
-                  <div className="latHolder"> <Input prefix="Lat" value={marker.latitude}  disabled /></div>
-                  <div className="lngHolder"><Input prefix="Lng" value={marker.longitude} disabled /></div>
-                </div>
+              </div>
+              <div className="stepOneInfo">
+                <div className="infoHolder">
+                  {/* <div className="lngLat">
+                    <div className="latHolder"> <Input prefix="Lat" value={marker.latitude}  disabled /></div>
+                    <div className="lngHolder"><Input prefix="Lng" value={marker.longitude} disabled /></div>
+                  </div> */}
 
-                <div className="locationName">
-                  <Input prefix={<LocationOnIcon />} placeholder={selectedLocation.formatted} 
-                  // <Input prefix={<LocationOnIcon />} placeholder={selectedLocation.city + "  -  " + selectedLocation.county + "  -  " + selectedLocation.suburb +  "  -  " + selectedLocation.road} 
-                  value={mapLocation} 
-                  disabled  />
-    
-                </div>
+                  <div className="locationName">
+                    <input prefix={<LocationOnIcon />} placeholder={selectedLocation.formatted} 
+                    value={mapLocation} 
+                    disabled  />
+      
+                  </div>
 
-                <div className="phoneNumber">
-                  <Input type="number" 
-                    placeholder='09########'
-                    value={phoneNumber}
-                    className='phone_number_input'
-                    onChange={(e)=> setPhoneNumber(e.target.value) } 
-                    />
+                  <div className="phoneNumber">
+                    <input type="text" 
+                      placeholder='09########'
+                      value={phoneNumber}
+                      className='phone_number_input'
+                      onChange={(e)=> setPhoneNumber(e.target.value) } 
+                      />
+                  </div>
                 </div>
               </div>
-            </div>
           </div>
-
+          <br />
+          <br />
           <div className="stepTitle">
             <p>Step 2 - Confirm Shopping Cart</p>
           </div>
           <div className="cartConfirm">
-            {cartItems.length === 0?(
-              <p className='cartEmpty'>  Your Cart Is Empty:  <span> <SentimentVeryDissatisfiedIcon /></span>  </p>
+            {cartItems.length === 0? (
+              <p className='cartEmpty'>  
+                Your Cart Is Empty:  <span> <SentimentVeryDissatisfiedIcon /></span>  
+              </p>
               ): cartItems.map((item)=>
                 <CartItem 
                   item={item} 
@@ -292,7 +288,7 @@ export default function Checkout() {
           
             <div className="checkoutInfo" >
               <div className="checkoutInfoWrapper">
-                <div className="infoBox">
+                {/* <div className="infoBox">
                   <div className="selectedItems">
                     <div className="tag">
                       <p>Selected Items:</p> 
@@ -310,7 +306,21 @@ export default function Checkout() {
                         <p className='totalPriceNumber'>${getTotalProductPrice().toFixed(2)} </p>
                       </div>
                   </div> 
-                </div>
+                </div> */}
+                <table align='right'>
+                  <tr>
+                    <td>Price:</td>
+                    <td>{getTotalProductPrice()} Birr</td>
+                  </tr>
+                  <tr>
+                    <td>Delivery price:</td>
+                    <td>{deliveryPrice} Birr</td>
+                  </tr>
+                  <tr className="bold">
+                    <td>Total: </td>
+                    <td>{getTotalProductPrice() + deliveryPrice} Birr</td>
+                  </tr>
+                </table>
               </div>
             </div>
           </div>
@@ -341,7 +351,7 @@ export default function Checkout() {
           </div>
 
           <div className="confirmOrder">
-            <Button onClick={handleConfirm} type="primary" contained> Order </Button>
+            <button className='btn_order' onClick={handleConfirm}> Order </button>
           </div>
 
         </div>

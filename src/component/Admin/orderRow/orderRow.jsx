@@ -32,9 +32,23 @@ import { addToCart }  from '../../../redux/actions/cartActions';
 // import { returnProduct } from '../../../redux/actions/productActions';
 const steps = ['Processing', 'Shipped', 'Delivered'];
 
+import ReactMapGL , {Marker} from 'react-map-gl';
 
 export default function Row(props) {
   const steps = ['Processing', 'Shipped', props?.status === 'cancel' ? 'Canceled' :'Delivered'];
+
+  const [viewPort , setViewPort] = useState({
+    latitude: props.latitude,
+    longitude: props.longitude,
+    zoom:14,
+    width: '100vw',
+    height: '100vh'
+  })
+
+  const [marker,setMarker] = useState({
+    latitude: props.latitude,
+    longitude: props.longitude
+  });
   // const { row } = props;
   const [open, setOpen] = React.useState(false);
   const navigator = useNavigate();
@@ -165,10 +179,20 @@ export default function Row(props) {
                     <p>Shiping Address</p>
                     <h2>{props.address}</h2>
                   </div>
-                  <div className='infoItem'>
+                  {/* <div className='infoItem'>
                     <p>Payment Info</p>
                     <h2>Cash on delivey</h2>
-                  </div>
+                  </div> */}
+                </div>
+                <div className="mapHolder">
+                  <ReactMapGL 
+                    {...viewPort} 
+                    mapboxAccessToken="pk.eyJ1IjoiZGFuaGdiIiwiYSI6ImNsMXVnNDIxbzAwMmYzcXBiMXB0ZWVjcWMifQ.nC63RhWneFhiZ4k4XJim9A" 
+                    onMove={(viewPort)=> { setViewPort(viewPort)}}
+                    mapStyle="mapbox://styles/mapbox/streets-v11"
+                  >
+                    <Marker latitude={marker.latitude} longitude={marker.longitude} />
+                  </ReactMapGL> 
                 </div>
 
                 <div className='itemsInfo'>

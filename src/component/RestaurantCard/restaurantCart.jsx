@@ -14,18 +14,18 @@ export default function RestaurantList(props) {
   }
 
   return (
-    <div className="restaurant">
-      <div onClick={() => {
+    <div className="restaurant" 
+      onClick={() => {
         handleClick();
         props.changePage(10)}
       }>
-        <img src={props.img} width='100%' height='280px' alt="img " />
+        <img src={props.img} width='50px' height='50px' alt="img " />
         <h3>{props.name}</h3>
-        <p>{props.description}</p>
-        <div className="status">
+        {/* <p>{props.description}</p> */}
+        {/* <div className=""> */}
           <p className='open'>open</p>
-        </div>
+        {/* </div> */}
+        <button>edit</button>
       </div>
-    </div>
   )
 }

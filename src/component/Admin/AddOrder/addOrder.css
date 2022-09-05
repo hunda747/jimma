@@ -1,0 +1,62 @@
+.add_order{
+
+}
+
+.add_order .form_side .tops{
+  display: flex;
+  gap: 15px;
+}
+
+.add_order .form_side .tops h3{
+  font-size: 25px;
+}
+
+.add_order .orders .menu .rest_list, 
+.add_order .orders .menu .food_list{
+  padding: 20px;
+  background-color: antiquewhite;
+  margin: 5px;
+}
+
+.add_order .orders .menu .rest_list .rest_select{
+  width: 100%;
+  /* display: none; */
+}
+
+/* cart */
+.add_order .orders .cart_main{
+  width: 100%;
+  padding: 24px 10px;
+}
+
+/* .add_order .orders .cart h1{
+  text-align: center;
+  padding-bottom: 3px;
+  border-bottom: 1px solid rgb(161, 161, 161);
+}
+.add_order .orders .cart .product{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid rgb(219, 219, 219);
+}
+
+.add_order .orders .cart .product .name{
+  width: 60%;
+}
+.add_order .orders .cart .product .price{
+  width: 20%;
+}
+
+.add_order .orders .cart .product .qty, .add_order .orders .cart .product .action{
+  width: 10%;
+} */
+
+.add_order .orders .address{
+  padding: 10px;
+  background-color: aquamarine;
+}
+.add_order .orders .address input{
+  padding: 8px;
+  width: 100%;
+}

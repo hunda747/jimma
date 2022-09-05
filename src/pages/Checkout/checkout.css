@@ -4,15 +4,16 @@
 .checkout_main {
     padding: 0;
     margin: 0;
-    font-size: 12px;
+    /* font-size: 12px; */
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .checkout {
     display: flex;
     flex-direction: column;
-    padding: 0;
-    margin: 0;
+    padding: 10px;
+    margin: auto;
+    max-width: 1300px;
 }
 
 .checkout .checkoutPath{
@@ -67,7 +68,7 @@
     
 }
 .checkout .stepOneContainer{
-    display: flex;
+    /* display: flex; */
     padding: 5px;
     margin: 5px 15px;
    
@@ -75,13 +76,14 @@
 
 .checkout .mapHolder{
     display: flex;
-    flex: 1.3;
+    flex: 1.6;
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 350px;
-    
+    /* height: 100vh; */
+    height: 500px;
 }
+
 .checkout .stepOneInfo{
     display: flex;
     flex: 1;
@@ -126,10 +128,16 @@
     border-radius: 4px;
 }
 
-.checkout .confirmOrder button{
+.checkout .confirmOrder {
+    display: flex;
+    justify-content: right  ;
+    align-items: right;
+}
+
+.checkout .confirmOrder .btn_order{
     display: flex;
     height: 35px;
-    padding: 5px;
+    padding: 5px 10px;
     margin: 5px 15px;
     align-items: center;
     justify-content: right;
@@ -138,6 +146,13 @@
     font-size: 23px;
     font-weight: bold;
 }
+
+.checkout .payment_methods{
+    background-color: rgb(238, 238, 238);
+    padding: 15px 30px;
+    width: 100%;
+}
+
 @media(max-width: 700px){
     .stepTitle p{
         font-size: 11px;

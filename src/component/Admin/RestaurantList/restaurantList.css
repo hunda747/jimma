@@ -6,31 +6,21 @@
   /* justify-content: center; */
 }
 
-.restaurants .restaurant{
-  width: 380px;
-  height: 480px;
-  position: relative;
+.restaurant{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  /* height: 480px; */
+  /* position: relative; */
   margin: 0 35px 35px 0px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-bottom: 2px solid rgb(240, 240, 240);
 }
 
-.restaurants .restaurant h3{
+.restaurant h3{
   margin: 8px 0;
   padding: 0 20px;  
 }
-.restaurants .restaurant p{
+.restaurant p{
   padding: 0 20px;  
+  align-items: center;
 }
-
-.restaurants .restaurant .status{  
-  background-color: rgb(240, 240, 240);
-  width: 100%;
-  margin-top: 5px;
-  position: absolute;
-  bottom: 0;
-  /* top: 0; */
-}
-.restaurants .restaurant .status .open{
-  padding: 10px;
-  
-}  

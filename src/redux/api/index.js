@@ -4,8 +4,8 @@ import { getOrdersInprogress } from '../actions/orderActions';
 // axios.defaults.withCredentials = true;
 axios.create({ withCredentials: true, })
 
-// const heroku = 'https://e-comm-react-node.herokuapp.com/'; 
-const localhost = 'http://localhost:5000/';
+// const localhost = 'http://localhost:5000/';
+const localhost = 'https://jimma-e-comm.herokuapp.com/';
 
 // user
 const addUserByPhone = localhost + "api/addUserByPhone";

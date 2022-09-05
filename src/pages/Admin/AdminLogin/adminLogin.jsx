@@ -29,7 +29,7 @@ import { useContext } from "react";
 import { useCookies } from 'react-cookie'; 
 
 export default function AdminLogin() {
-
+		const localhost = 'https://jimma-e-comm.herokuapp.com/';
 		const dispatch = useDispatch()
 		// const { setAuth } = useContext(AuthContext);
 		const navigate = useNavigate();
@@ -78,7 +78,7 @@ export default function AdminLogin() {
 			const password = values.password_log;    
 			console.log(username+ password + "from admin login")     
     	try {
-				const response = await axios.post('http://localhost:5000/api/getAdmin	', 
+				const response = await axios.post(localhost + 'api/getAdmin	', 
 					{
 						username: username,
 						password: password
@@ -180,7 +180,7 @@ export default function AdminLogin() {
 				}else if (regVal.password.length < 6){
 					setErrMsg("Password must be more than 6 characters")
 				}else{
-					const response = await axios.post('http://localhost:5000/api/addAdminAccount',{
+					const response = await axios.post(localhost + 'api/addAdminAccount',{
 						userName: regVal.userName,
 						fname: regVal.fname,
 						lname: regVal.lname,

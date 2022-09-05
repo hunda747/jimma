@@ -28,6 +28,12 @@ td {
   font-size: 40px;
 }
 
+.mapHolder{
+  padding: 20px;
+  height: 400px;
+  overflow: hidden;
+}
+
 .middleInfo{
   display: flex;
   justify-content: space-between;

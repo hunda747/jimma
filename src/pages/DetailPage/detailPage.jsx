@@ -10,12 +10,14 @@ import {Link} from 'react-router-dom';
 import Navbar from '../../component/Navbar/navbar';
 import DisplayStars from '../../component/displayStar';
 import FoodCard from '../../component/FoodCard/foodCard';
+import CartView from '../../component/CartView/cartView';
 
 import { useParams } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getRestaurantById } from '../../redux/actions/restaurantAction';
 import { getFoodsByRestaurant } from '../../redux/actions/foodAction';
+import { removeFromCart} from '../../redux/actions/cartActions'
 
 import { useCookies } from 'react-cookie';
 import Footer from '../../component/Footer/footer';
@@ -42,6 +44,10 @@ export default function DetailView() {
       restaurant = rest
   });
 
+  const handleDelete = (e) => {
+    console.log(e);
+    // dispatch(removeFromCart(_id))
+  }
   // console.log(foods);
 
   return(
@@ -49,12 +55,14 @@ export default function DetailView() {
       <Navbar />
       <div className="detail">
         <div className="image"> 
-          <img src={photo} alt="image" />
+          <img src={restaurant.img} alt="image" />
         </div>
         <div className="container">
           <div className="information">
             <h1>{restaurant.name}</h1>
-            <DisplayStars rating={4}/>
+            <div className="rating">
+              <p><DisplayStars rating={4}/></p>
+            </div>
             <div className="moreInfo">
               <div className="disc">
                 <p>{restaurant.description}</p>
@@ -66,11 +74,10 @@ export default function DetailView() {
             </div>
           </div>
           <div className="menu">
-            {/* <h2>Menu</h2> */}
+            <h2>Menu</h2>
             <div className="menu_container">
               <div className="displayMenu">
                 {foods?.map((food) => {
-                  console.log('inside food');
                   return(
                     <div className="menuItem">
                       <FoodCard 
@@ -86,21 +93,27 @@ export default function DetailView() {
                 })}
                 
               </div>
-              <div className="cart">
+              <div className="cartView">
+                <CartView />
+              </div>
+              {/* <div className="cart">
                 <h1><ShoppingCart fontSize='medium'/> Cart</h1>
                 {
                   cartItems?.map((cart) => {
                     return(
                     <div className="product">
                       <p className="name">{cart.food_name}</p>
-                      <p className="name">{cart.qtyCounter}</p>
-                      <p className="name">{cart.price} Birr</p>
-                      <p><Delete /></p>
+                      <p className="qty">{cart.qtyCounter}</p>
+                      <p className="price">{cart.price} Birr</p>
+                      <div className='action'  onClick={() => {
+                        console.log(cart.id);
+                        dispatch(removeFromCart(cart.id))
+                      }} ><Delete color='red'/></div>
                     </div>
                     )
                   })
                 }
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
