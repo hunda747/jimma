@@ -1,8 +1,7 @@
 import React from 'react'
 import './productList.css'
 
-
-import { Table , Switch , message,Button} from 'antd';
+import { Switch , message,Button} from 'antd';
 
 import {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,15 +13,54 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 
+import { Form, Input, InputNumber, Popconfirm, Table, Typography } from 'antd';
+import { Drawer, Col, Row, Space } from 'antd';
 
+// import { Drawer } from 'antd';
+import 'antd/dist/antd.css';
 import {MenuItem, Select} from '@material-ui/core';
-import { Drawer, Form, Col, Row, Input,  DatePicker, Space } from 'antd';
+
 import axios from 'axios';
 // import { getCagegory, createCategory } from '../../../redux/actions/categoryActions';
 import { getFoodsByRestaurant } from '../../../redux/actions/foodAction';
 
 
 // const { Option } = Select;
+
+const EditableCell = ({
+  editing,
+  dataIndex,
+  title,
+  inputType,
+  record,
+  index,
+  children,
+  ...restProps
+}) => {
+  const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
+  return (
+    <td {...restProps}>
+      {editing ? (
+        <Form.Item
+          name={dataIndex}
+          style={{
+            margin: 0,
+          }}
+          rules={[
+            {
+              required: true,
+              message: `Please Input ${title}!`,
+            },
+          ]}
+        >
+          {inputNode}
+        </Form.Item>
+      ) : (
+        children
+      )}
+    </td>
+  );
+};
 
 export default function ProductList() {
 
@@ -37,170 +75,173 @@ export default function ProductList() {
     // dispatch(getFoodsByRestaurant());
   }, [])
 
-  const food = useSelector((state) => state.food.food);
-
-  useEffect(()=>{
-    // const fetchProducts = async ()=>{
-    //   const res = await axios.get(`http://localhost:5000/api/getAllProducts?sq=${searchInput.toLowerCase()}`);
-    //   setProducts(res.data);
-    // }
-
-    // fetchProducts()
-  }, [searchInput])
-
-  const getActive = async()=>{
-    // setCategory(1);
-    // const res = await axios.get('http://localhost:5000/api/getActiveProducts');
-    // setProducts(res.data);
-  }
-
-  const getAll = async ()=>{
-    // setCategory(0);
-    // const res = await axios.get(`http://localhost:5000/api/getAllProducts?sq=${searchInput.toLowerCase()}`);
-    // setProducts(res.data)
-  }
-  const getDiactive = async ()=>{
-    // setCategory(2);
-    // const res = await axios.get('http://localhost:5000/api/getDiactiveProducts');
-    // setProducts(res.data)
-  }
-
-    // rowSelection objects indicates the need for row selection
+  // rowSelection objects indicates the need for row selection
   const rowSelection = {
-    onChange: (selectedRowKeys, selectedRows) => {
-    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+      onChange: (selectedRowKeys, selectedRows) => {
+      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
 
-    },
-    onSelect: (record, selected, selectedRows ) => {
-    console.log(record, selected, selectedRows);
-  
-    console.log( selectedRows[0].id);
+      },
+      onSelect: (record, selected, selectedRows ) => {
+      console.log(record, selected, selectedRows);
     
-    },
-    onSelectAll: (selected, selectedRows, changeRows) => {
+      console.log( selectedRows[0].id);
+      
+      },
+      onSelectAll: (selected, selectedRows, changeRows) => {
     console.log(selected, selectedRows, changeRows);
-    },
-    getCheckboxProps: (record)=>{
-      //console.log(record)  
-    }  ,
-    selections: true,
-    hideSelectAll: true,
+      },
+      getCheckboxProps: (record)=>{
+        //console.log(record)  
+      }  ,
+      selections: true,
+      hideSelectAll: true,
   };
- 
+
   const [fixedTop, setFixedTop] = React.useState(false);
 
-   //handle delete
-  const DeleteProduct = (record) =>{
-    console.log(record.id)    
-    if(record.statusValue === 0){
-      message.error("Product Already Deleted")
-    }
-    else{
-      if(window.confirm("Are you sure you want to delete?")){
-        // dispatch(deleteProductById(record.id));
-        // setVisible(false);
-        // window.location.reload(true)
-        // message.success("Deleted Successfully");
-        // // dispatch(getAllProducts());
-      }
-    }
-  }
+  const food = useSelector((state) => state.food.food);
+  console.log(food);
+  
 
-  //state for sidedrawer edit
-  const [visible , setVisible] = useState(false)
-  //state = { visible: false };
+  const [form] = Form.useForm();
+  const [data, setData] = useState(food);
+  console.log(data);
+  const [editingKey, setEditingKey] = useState('');
 
-  const showDrawer = () => {
-    setVisible(!visible);
-    console.log("this is the status of the product " + editValues.status)
+  useEffect(()=>{
+    setData(food)
+  }, []);
+
+  const isEditing = (record) => record.key === editingKey;
+
+  const edit = (record) => {
+    form.setFieldsValue({
+      _id: '',
+      food_name:'',
+      description: '',
+      image: '',
+      type: '',
+      restaurant: '',
+      price: '',
+        ...record,
+    });
+    setEditingKey(record.key);
   };
 
-  const onClose = () => {
-    setVisible(false);
-  }
+  const cancel = () => {
+    setEditingKey('');
+  };
 
-  const [editValues ,setEditValues] = useState({
-    _id:'',
-    food_name:'',
-    description: '',
-    image: '',
-    type: '',
-    restaurant: '',
-    price: '',
-  })
-  // state for product list search bar
+  const save = async (key) => {
+    try {
+      console.log(key);
+      // const row = await form.validateFields();
+      // const newData = [...data];
+      // const index = newData.findIndex((item) => key === item.key);
 
-  const EditProduct = (record) =>{
-    setEditValues({ ...editValues,
-      _id: record._id,
-      food_name: record.food_name,
-      description:  record.description,
-      image:  record.image,
-      type:  record.type,
-      restaurant:  record.restaurant,
-      price:  record.price,
-    })
-  }
-
-  console.log("this are the edit values " + {...editValues})
-  console.log(editValues)
-
-  const handleEditChanges = () =>{
-    // console.log("handling edit changes");
-    // dispatch(editProduct(editValues))
-    // setVisible(false);
-    // window.location.reload(0)
-
-    if(editValues.status === 0){
-        message.warning("Product is still inactive");
+      // if (index > -1) {
+      //   const item = newData[index];
+      //   newData.splice(index, 1, { ...item, ...row });
+      //   setData(newData);
+      //   setEditingKey('');
+      // } else {
+      //   newData.push(row);
+      //   setData(newData);
+      //   setEditingKey('');
+      // }
+    } catch (errInfo) {
+      console.log('Validate Failed:', errInfo);
     }
-    
-    message.success("Product Updated");
-    // dispatch(getAllProducts());
-  }      
+  };
 
+  // food_name:'',
+  //   description: '',
+  //   image: '',
+  //   type: '',
+  //   restaurant: '',
+  //   price: '',
 
-  const [sortedInfo ,setSortedInfo] = useState()
- 
-  const handleChange = (pagination, filters, sorter) =>{
-    console.log('Various parameters', pagination, filters, sorter);
-    setSortedInfo(sorter)
-  }
+  // const columns = [
+  //   {
+  //     title: 'Food name',
+  //     dataIndex: 'food_name',
+  //     width: '25%',
+  //     editable: true,
+  //   },
+  //   {
+  //     title: 'Description',
+  //     dataIndex: 'description',
+  //     width: '40%',
+  //     editable: true,
+  //   },
+  //   {
+  //     title: 'Type',
+  //     dataIndex: 'type',
+  //     width: '15%',
+  //     editable: true,
+  //   },
+  //   {
+  //     title: 'operation',
+  //     dataIndex: 'operation',
+  //     render: (_, record) => {
+  //       const editable = isEditing(record);
+  //       return editable ? (
+  //         <span>
+  //           <Typography.Link
+  //             onClick={() => save(record.key)}
+  //             style={{
+  //               marginRight: 8,
+  //             }}
+  //           >
+  //             Save
+  //           </Typography.Link>
+  //           <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
+  //             <a>Cancel</a>
+  //           </Popconfirm>
+  //         </span>
+  //       ) : (
+  //         <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
+  //           Edit
+  //         </Typography.Link>
+  //       );
+  //     },
+  //   },
+  // ];
 
   const columns = [
     {
-      title: 'ID',
-      dataIndex: '_id',
-      key: '_id',
-      fixed: 'left',
-      width: 30
-    },
-    {
-      title: 'Name',
+      title: 'Food name',
       dataIndex: 'food_name',
       key: 'food_name',
-      width:110,       
+      fixed: 'left',
+      width: 150
     },
     {
-      title: 'Price',
-      dataIndex: 'price',
-      key: 'price',
-      width:70,
-      ellipsis: true,
-      sorter: (a, b) => a.price - b.price
+      title: 'Description',
+      dataIndex: 'description',
+      key: 'description',
+      width:210,       
     },
     {
-      title: 'Category',
+        title: 'Price',
+        dataIndex: 'price',
+        key: 'price',
+        width:70,
+        ellipsis: true,
+        sorter: (a, b) => a.price - b.price
+    },
+    {
+      title: 'Type',
       dataIndex:'type',
       key: 'type',
-      width:100
+      width:80
     },   
-    {
-        title:'Status',
-        dataIndex: 'status',
-        key: "status",
-        width:60,    
-    },
+    // {
+    //     title:'Status',
+    //     dataIndex: 'status',
+    //     key: "status",
+    //     width:60,          
+    // },
     {
       title: "Action",
       key: "deleteAndEdit",
@@ -221,55 +262,86 @@ export default function ProductList() {
         );
       },
     },
+    
+
   ];
 
-  const data = [];
+  //state for sidedrawer edit
+  const [visible , setVisible] = useState(false)
+  //state = { visible: false };
 
-  const handleCategoryChange = (event) => {
-    console.log(event.target.value);
-    const cate = event.target.value;
-    setSearchCategory(event.target.value);
-    console.log(cate)
-    console.log("inside category handler");
-    if(event.target.value === ''){
-      
-    }else{
-      const response =  axios.post('http://localhost:5000/api/getProductsByCategory', {category: cate});
-      setProducts(response.data);  
-    }
+  const showDrawer = () => {
+    setVisible(!visible);
+    console.log("this is the status of the product " + editValues.status)
   };
 
-  //  const keys =["productName", "productBrand", "productCategory","productPrice"];
-      
-  if(!food?.length){
-      
+  const onClose = () => {
+    setVisible(false);
   }
-  else{      
-    food.filter(
-      (food)=>food.food_name.toLowerCase().includes(searchInput)                              
-      
-    ).map((val,key)=>{
-      data.push({
-        key: val.id,
-        id: val.id,
-        category:val.productCategory,
-        detail: val.productDetail,
-        image: val.productImg,
-        name: val.productName,
-        brand: val.productBrand,
-        price: val.productPrice,
-        statusValue: val.status,
-        count_in_stock: val.countInStock,
-        status:  val.status === 0 ? <FiberManualRecordIcon style={{color:"#ff0000"}} /> : <FiberManualRecordIcon style={{color:"#19ff05"}} /> 
-      })
+
+  const [editValues ,setEditValues] = useState({
+    _id:'',
+    food_name:'',
+    description: '',
+    image: '',
+    type: '',
+    status: 1,
+    restaurant: '',
+    price: '',
+  })
+  // state for product list search bar
+
+  const EditProduct = (record) =>{
+   
+    setEditValues({ ...editValues,
+      id: record._id,
+      food_name: record.food_name,
+      image: record.image,
+      description: record.description,
+      type: record.type,
+      price: record.price,
+      status: record.statusValue 
     })
-  };
+
+  }
+
+  const handleEditChanges = () =>{
+    console.log("handling edit changes");
+    console.log(editValues);
+    // dispatch(editProduct(editValues))
+    setVisible(false);
+    window.location.reload(0)
+
+    if(editValues.status === 0){
+      message.warning("Product is still inactive");
+    }
+    
+    message.success("Product Updated");
+    // dispatch(getAllProducts());
+  }     
+
+  const mergedColumns = columns.map((col) => {
+    if (!col.editable) {
+      return col;
+    }
+
+    return {
+      ...col,
+      onCell: (record) => ({
+        record,
+        inputType: col.dataIndex === '_id' ? 'number' : 'text',
+        dataIndex: col.dataIndex,
+        title: col._id,
+        editing: isEditing(record),
+      }),
+    };
+  });
   
   console.log(searchInput);
   return (
     <>
     <div className="productListPageHolder">
-      <div className="searchBarContainer">
+      {/* <div className="searchBarContainer">
         <div className="sorter">
           <div className="active_only">
             <div className="active_only_wrapper">
@@ -284,7 +356,7 @@ export default function ProductList() {
               </div>
             </div>
           </div> 
-        </div> 
+        </div>
         <div className="productList_searchBarWrapper">
           <input type="text" 
             className='productList_searchBar' 
@@ -292,153 +364,152 @@ export default function ProductList() {
             onChange={e=>setSearchInput(e.target.value)}
             />
         </div>
-      </div>
+      </div> */}
 
-      <Table 
-      rowSelection={{ ...rowSelection }}
-      columns={columns}
-      dataSource={food}
-      scroll={{ x: 1000 }}
-      onChange={handleChange}
-      summary={pageData => (
-        <Table.Summary fixed={fixedTop ? 'top' : 'bottom'}>
-          <Table.Summary.Row >
-        
-            <Table.Summary.Cell   index={2} colSpan={18}>
+      <div className="table">
+        <Form form={form} component={false}>
+          {/* <Table
+            components={{
+              body: {
+                cell: EditableCell,
+              },
+            }}
+            bordered
+            dataSource={data}
+            columns={mergedColumns}
+            rowClassName="editable-row"
+            pagination={{
+              onChange: cancel,
+            }}
+          /> */}
+          <Table 
+            rowSelection={{ ...rowSelection }}
+            columns={columns}
+            dataSource={food}
+            scroll={{ x: 1000 }}
+            // onChange={handleChange}
+            summary={pageData => (
+              <Table.Summary fixed={fixedTop ? 'top' : 'bottom'}>
+                <Table.Summary.Row >
               
-            </Table.Summary.Cell>
-            <Table.Summary.Cell index={50}>
+                  <Table.Summary.Cell   index={2} colSpan={8}>
+                    
+                  </Table.Summary.Cell>
+                  <Table.Summary.Cell index={10}>
 
-            </Table.Summary.Cell>
-          </Table.Summary.Row>
-        </Table.Summary>
-      )}
-      // sticky
-      />
+                  </Table.Summary.Cell>
+                </Table.Summary.Row>
+              </Table.Summary>
+            )}
+            sticky
+            />
+        </Form>
+        <button onClick={showDrawer}>open</button>
+      </div>
+      
     </div>
 
+    <Drawer 
+    // title="Basic Drawer" placement="right" onClose={onClose} open={visible}
+      title="Edit Product"
+      width={720}
+      onClose={onClose}
+      visible={visible}
+      bodyStyle={{ paddingBottom: 80 , zIndex: '100'}}
+      extra={
+        <Space>
+          <Button onClick={onClose}>Cancel</Button>
+          <Button type="primary" onClick={()=> handleEditChanges()}  >
+            Submit
+          </Button>
+        </Space> }>
 
-    <Drawer
-    title="Edit Product"
-    width={720}
-    onClose={onClose}
-    visible={visible}
-    bodyStyle={{ paddingBottom: 80 , zIndex: '100'}}
-    extra={
-      <Space>
-        <Button onClick={onClose}>Cancel</Button>
-        <Button type="primary" onClick={()=> handleEditChanges()}  >
-          Submit
-        </Button>
-      </Space> }>
+    <Form layout="vertical" hideRequiredMark>
+    <Row gutter={20}>
+      </Row>
+      <Row gutter={16}>
 
-      <Form layout="vertical" hideRequiredMark>
-      <Row gutter={20}>
-        </Row>
-        <Row gutter={16}>
+        <Col span={12}>
 
-          <Col span={12}>
-              <div className='editProduct_imageHolder'>
-                <img src={editValues.image} onClick={()=> message.warning("Want To Change the image")} />
-              </div>
-          </Col>
-
-          <Col span={12}>
-            <Form.Item
-              name="product_status"
-              label="Product Status"
-              rules={[{ required:true , message: "Please Give Status for Product"}]}
-            >
-              <Switch checked={editValues.status === 1 ? true : false} onChange={()=> editValues.status === 1 ? setEditValues({...editValues , status: 0}) : setEditValues({...editValues, status: 1}) }  />
-
-            </Form.Item>
-            <Form.Item
-              name="product_name"
-              label="Product Name"
-              rules={[{ required: true, message: 'Please enter product Name' }]}
-            >
-              <Input value={editValues.food_name} onChange={(e)=> setEditValues({...editValues, name: e.target.value})}  placeholder={editValues.food_name} />
-            </Form.Item>
-
-            <Form.Item
-              name="category"
-              label="Category"
-              rules={[{ required: true, message: 'Please select a category' }]}
-            >
-
-              {/* <Select
-                value={editValues.category}
-                onChange={(e) => {
-                  setEditValues({ 
-                    ...editValues, 
-                      category: e.target.value
-                    } ) 
-                }}
-              
-                label="Category"
-                defaultValue={editValues.category}
-                labelId="demo-simple-select-label"                   
-                style={{width: '100%'}}>
-                {categories?.map((item) => {
-                  return(
-                  <MenuItem   style={{width: '100%' , justifyContent: 'left', marginLeft: "4px"}} value={item.ctgr_value}>{item.ctgr_title}</MenuItem>
-                )}) }
-              </Select>  */}
-            </Form.Item>
-
-
-            {/* <Form.Item
-              name="count_in_stock"
-              label="Amount In Stock"
-              rules={[{ required: true, message: 'Please enter count in stock' }]}
-            >
-              <Input prefix='#' min={0} type='number' placeholder={editValues.count_in_stock}   value={editValues.count_in_stock} onChange={(e)=> setEditValues({...editValues, count_in_stock: e.target.value})}   />
-            </Form.Item> */}
-            
-
-          </Col>
-
-        </Row>
-        <Row gutter={16}>
-          <Col span={12}>
-            
-          </Col>
-          <Col span={12}>
-          
-          </Col>
-        </Row>
-        <Row gutter={16}>
-          <Col span={12}>
           <Form.Item
-              name="price"
-              label="Price"
-              rules={[{ required: true, message: 'Please enter product price' }]}
-            >
-              <Input min={0} prefix="$" type='number' placeholder={editValues.price} value={editValues.price} onChange={(e)=> setEditValues({...editValues, price: e.target.value})}   />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            
-          </Col>
-        </Row>
-        <Row gutter={16}>
-          <Col span={24}>
-            <Form.Item
-              name="description"
-              label="Description"
-              rules={[
-                {
-                  required: true,
-                  message: 'please enter description',
-                },
-              ]}
-            >
-              <Input.TextArea rows={4} placeholder={editValues.detail}  value={editValues.detail} onChange={(e)=> setEditValues({...editValues, detail: e.target.value})}   />
-            </Form.Item>
-          </Col>
-        </Row>
-      </Form>
-    </Drawer>
+            name="product_status"
+            label="Product Type"
+            rules={[{ required:true , message: "Please Give Status for Product"}]}
+          >
+            <Switch checked={editValues.status === 1 ? true : false} onChange={()=> editValues.status === 1 ? setEditValues({...editValues , status: 0}) : setEditValues({...editValues, status: 1}) }  />
+
+          </Form.Item>
+          
+          <Form.Item
+            name="food_name"
+            label="Food Name"
+            rules={[{ required: true, message: 'Please enter food Name' }]}
+          >
+            <Input value={editValues.food_name} onChange={(e)=> setEditValues({...editValues, food_name: e.target.value})}  placeholder={editValues.food_name} />
+          </Form.Item>
+          <Form.Item
+            name="food_name"
+            label="Food Type"
+            rules={[{ required: true, message: 'Please enter food Type' }]}
+          >
+            <Input value={editValues.type} onChange={(e)=> setEditValues({...editValues, type: e.target.value})}  placeholder={editValues.type} />
+          </Form.Item>
+          
+
+          {/* <Form.Item
+            name="count_in_stock"
+            label="Amount In Stock"
+            rules={[{ required: true, message: 'Please enter count in stock' }]}
+          >
+            <Input prefix='#' min={0} type='number' placeholder={editValues.count_in_stock}   value={editValues.count_in_stock} onChange={(e)=> setEditValues({...editValues, count_in_stock: e.target.value})}   />
+          </Form.Item> */}
+          
+
+        </Col>
+
+      </Row>
+      <Row gutter={16}>
+        <Col span={12}>
+          
+        </Col>
+        <Col span={12}>
+        
+        </Col>
+      </Row>
+      <Row gutter={16}>
+        <Col span={12}>
+        <Form.Item
+            name="price"
+            label="Price"
+            rules={[{ required: true, message: 'Please enter product price' }]}
+          >
+            <Input min={0} prefix="$" type='number' placeholder={editValues.price} value={editValues.price} onChange={(e)=> setEditValues({...editValues, price: e.target.value})}   />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          
+        </Col>
+      </Row>
+      <Row gutter={16}>
+        <Col span={24}>
+          <Form.Item
+            name="description"
+            label="Description"
+            rules={[
+              {
+                required: true,
+                message: 'please enter description',
+              },
+            ]}
+          >
+            <Input.TextArea rows={4} placeholder={editValues.description}  value={editValues.            name="description"
+            } 
+            onChange={(e)=> setEditValues({...editValues, description: e.target.value})}   />
+          </Form.Item>
+        </Col>
+      </Row>
+    </Form>
+      </Drawer>
   </>     
   )
 }
@@ -446,6 +517,22 @@ export default function ProductList() {
 
 
 
+  //  //handle delete
+  //  const DeleteProduct = (record) =>{
+  //   console.log(record.id)    
+  //   if(record.statusValue === 0){
+  //     message.error("Product Already Deleted")
+  //   }
+  //   else{
+  //     if(window.confirm("Are you sure you want to delete?")){
+  //       // dispatch(deleteProductById(record.id));
+  //       // setVisible(false);
+  //       // window.location.reload(true)
+  //       // message.success("Deleted Successfully");
+  //       // // dispatch(getAllProducts());
+  //     }
+  //   }
+  // }
 
 
 

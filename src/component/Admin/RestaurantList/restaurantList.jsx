@@ -71,7 +71,7 @@ export default function RestuarantList({onMorePage}) {
   const EditRestaurant = (record) =>{
     setEditValues({ ...editValues,
       _id: record._id,
-      restaurant_name: record.restaurant_name,
+      restaurant_name: record.name,
       description:  record.description,
       rating:  record.rating,
       image:  record.image,
@@ -79,6 +79,7 @@ export default function RestuarantList({onMorePage}) {
       open_days:  record.open_days,
     })
   }
+
 
   const restaurants = useSelector(state => state.restaurant.restaurant);
 
@@ -105,7 +106,16 @@ export default function RestuarantList({onMorePage}) {
                     <p className='open'>open</p>
                   {/* </div> */}
                   <button onClick={() => {
-                    EditRestaurant(restaurant)
+                    setEditValues({ ...editValues,
+                      _id: restaurant._id,
+                      restaurant_name: restaurant.name,
+                      description:  restaurant.description,
+                      rating:  restaurant.rating,
+                      image:  restaurant.img,
+                      working_hour:  restaurant.working_hour,
+                      open_days:  restaurant.open_days,
+                    })
+                    console.log(editValues);
                     setVisible(true)}}>
                     edit
                   </button>
@@ -123,7 +133,7 @@ export default function RestuarantList({onMorePage}) {
       </div>
 
       <Drawer
-      title="Edit Product"
+      title="Edit Restaurant"
       width={720}
       onClose={onClose}
       visible={visible}
@@ -161,34 +171,24 @@ export default function RestuarantList({onMorePage}) {
                 label="Product Name"
                 rules={[{ required: true, message: 'Please enter product Name' }]}
               >
-                <Input value={editValues.food_name} onChange={(e)=> setEditValues({...editValues, name: e.target.value})}  placeholder={editValues.food_name} />
+                <Input value={editValues.name} onChange={(e)=> setEditValues({...editValues, name: e.target.value})}  placeholder={editValues.name} />
               </Form.Item>
-
               <Form.Item
-                name="category"
-                label="Category"
-                rules={[{ required: true, message: 'Please select a category' }]}
+                name="product_name"
+                label="Open days"
+                rules={[{ required: true, message: 'Please enter restaurant opening days' }]}
               >
-
-                {/* <Select
-                  value={editValues.category}
-                  onChange={(e) => {
-                    setEditValues({ 
-                      ...editValues, 
-                        category: e.target.value
-                      } ) 
-                  }}
-                
-                  label="Category"
-                  defaultValue={editValues.category}
-                  labelId="demo-simple-select-label"                   
-                  style={{width: '100%'}}>
-                  {categories?.map((item) => {
-                    return(
-                    <MenuItem   style={{width: '100%' , justifyContent: 'left', marginLeft: "4px"}} value={item.ctgr_value}>{item.ctgr_title}</MenuItem>
-                  )}) }
-                </Select>  */}
+                <Input value={editValues.open_days} onChange={(e)=> setEditValues({...editValues, open_days: e.target.value})}  placeholder={editValues.open_days} />
               </Form.Item>
+              <Form.Item
+                name="Working hours"
+                label="Open days"
+                rules={[{ required: true, message: 'Please enter restaurant working hours' }]}
+              >
+                <Input value={editValues.working_hour} onChange={(e)=> setEditValues({...editValues, working_hour: e.target.value})}  placeholder={editValues.working_hour} />
+              </Form.Item>
+
+              
             </Col>
 
           </Row>
