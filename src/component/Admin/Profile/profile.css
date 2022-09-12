@@ -49,7 +49,7 @@ body{
     align-items: center;
     justify-content: left;
     font-weight: bolder;
-    color: rgb(15, 153, 212);
+    /* color: rgb(15, 153, 212); */
 }
 .profileBodyContainer {
     padding: 5px;

@@ -64,3 +64,24 @@ export const createRestaurant = (name, description, rating, open_days, working_h
 	}
 }
 
+export const updateRestaurant = (name, description, rating, open_days, working_hour, img, id) => async (dispatch)=>{
+	console.log('in change reastuarant action');
+	try {
+		dispatch({
+			type: actionType.CREATE_RESTAURANT_REQUEST,
+		});
+		api.changeRestaurant(name, description, rating, open_days, working_hour, img, id);
+		dispatch({
+			type: actionType.CREATE_RESTAURANT_SUCCESS,    
+			// payload: data        
+		});			
+	} catch (error) {
+		dispatch({
+		type: actionType.CREATE_RESTAURANT_FAIL,
+		payload: 
+      error.response && error.response.data.message 
+      ?error.response.data.message:error.message,
+		});
+	}
+}
+

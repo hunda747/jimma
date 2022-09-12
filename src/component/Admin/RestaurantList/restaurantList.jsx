@@ -11,7 +11,7 @@ import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined'
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 
 import { useDispatch, useSelector, useSelectore } from 'react-redux'
-import { getAllRestaurants } from '../../../redux/actions/restaurantAction';
+import { getAllRestaurants, updateRestaurant } from '../../../redux/actions/restaurantAction';
 import { getFoodsByRestaurant } from '../../../redux/actions/foodAction';
 import {Link} from 'react-router-dom';
 import RestaurantList from '../../RestaurantCard/restaurantCart';
@@ -20,6 +20,8 @@ import RestaurantList from '../../RestaurantCard/restaurantCart';
 import { makeStyles } from '@material-ui/core/styles';
 
 import axios from 'axios'
+import { Add   } from '@material-ui/icons';
+import { CircularProgress } from '@mui/material';
 
 //for the input hider
 const useStyles = makeStyles((theme) => ({
@@ -56,6 +58,27 @@ export default function RestuarantList({onMorePage}) {
 
   const handleEditChanges = () => {
     console.log('edit');
+    console.log(editValues);
+    dispatch(updateRestaurant(editValues.restaurant_name, editValues.description, editValues.rating, editValues.open_days, editValues.working_hour, editValues.img, editValues._id));
+    setVisible(false);
+    onMorePage(1)
+    // window.location.reload(0)
+    setEditValues({ ...editValues,
+      _id:'',
+      restaurant_name:'',
+      description: '',
+      rating: 0,
+      image: '',
+      working_hour: '',
+      open_days: ''
+    });
+
+    if(editValues.status === 0){
+      message.warning("Product is still inactive");
+    }
+    
+    message.success("Restaurant Updated");
+    dispatch(getAllRestaurants());
   }
   
   const [editValues ,setEditValues] = useState({
@@ -80,7 +103,6 @@ export default function RestuarantList({onMorePage}) {
     })
   }
 
-
   const restaurants = useSelector(state => state.restaurant.restaurant);
 
   const handleClick = () => {
@@ -94,42 +116,72 @@ export default function RestuarantList({onMorePage}) {
         <div className="header">
           <h2>Restaurant List</h2>
         </div>
-        <div className="restaurants">
-          {
-            restaurants?.map((restaurant) => {
-              return(
-                <div className="restaurant">
-                  <img src={restaurant.img} width='50px' height='50px' alt="img " />
-                  <h3>{restaurant.name}</h3>
-                  {/* <p>{restaurant.description}</p> */}
-                  {/* <div className=""> */}
+        {
+        restaurants.length !== 0 ? 
+          <div className="restaurants">
+            <table className="restaurant_table">
+              <tr>
+                <th>image</th>
+                <th>name</th>
+                <th>status</th>
+                <th>edit</th>
+                <th>product</th>
+              </tr>
+            
+            {
+              restaurants?.map((restaurant) => {
+                return(
+                  // <div className="restaurant">
+                  <tr>
+                    <td>
+                    <img src={restaurant.img} width='50px' height='50px' alt="img " />
+                    </td>
+                    <td>
+                    <h3>{restaurant.name}</h3>
+                    </td>
+                    <td>
                     <p className='open'>open</p>
-                  {/* </div> */}
-                  <button onClick={() => {
-                    setEditValues({ ...editValues,
-                      _id: restaurant._id,
-                      restaurant_name: restaurant.name,
-                      description:  restaurant.description,
-                      rating:  restaurant.rating,
-                      image:  restaurant.img,
-                      working_hour:  restaurant.working_hour,
-                      open_days:  restaurant.open_days,
-                    })
-                    console.log(editValues);
-                    setVisible(true)}}>
-                    edit
-                  </button>
-                  <button onClick={() => {
-                    dispatch(getFoodsByRestaurant(restaurant._id));
-                    onMorePage(10)}}
-                    >
-                    products
-                  </button>
-                </div>
-              )
-            })
-          }
-        </div>
+                    </td>
+                    <td>
+                    <button onClick={() => {
+                      setEditValues({ ...editValues,
+                        _id: restaurant._id,
+                        restaurant_name: restaurant.name,
+                        description:  restaurant.description,
+                        rating:  restaurant.rating,
+                        image:  restaurant.img,
+                        working_hour:  restaurant.working_hour,
+                        open_days:  restaurant.open_days,
+                      })
+                      console.log(editValues);
+                      console.log(restaurant);
+                      setVisible(true)}}>
+                      edit
+                    </button></td>
+                    <td>
+                    <button onClick={() => {
+                      dispatch(getFoodsByRestaurant(restaurant._id));
+                      onMorePage(10)}}
+                      >
+                      products
+                    </button></td>
+                  </tr>
+                  // </div>
+                )
+              })
+            }
+            </table>
+            <div className='addButton' onClick={() => {
+                onMorePage(2);
+              }}>
+              <Add className='add' />
+            </div>
+          </div>
+        :
+          <div className='center'>
+            <CircularProgress />
+          </div>
+        }
       </div>
 
       <Drawer
@@ -171,10 +223,10 @@ export default function RestuarantList({onMorePage}) {
                 label="Product Name"
                 rules={[{ required: true, message: 'Please enter product Name' }]}
               >
-                <Input value={editValues.name} onChange={(e)=> setEditValues({...editValues, name: e.target.value})}  placeholder={editValues.name} />
+                <Input value={editValues.restaurant_name} onChange={(e)=> setEditValues({...editValues, restaurant_name: e.target.value})}  placeholder={editValues.restaurant_name} />
               </Form.Item>
               <Form.Item
-                name="product_name"
+                name="open_days"
                 label="Open days"
                 rules={[{ required: true, message: 'Please enter restaurant opening days' }]}
               >
@@ -203,11 +255,11 @@ export default function RestuarantList({onMorePage}) {
           <Row gutter={16}>
             <Col span={12}>
             <Form.Item
-                name="price"
-                label="Price"
-                rules={[{ required: true, message: 'Please enter product price' }]}
+                name="rating"
+                label="rating"
+                rules={[{ required: true, message: 'Please enter product rating' }]}
               >
-                <Input min={0} prefix="$" type='number' placeholder={editValues.price} value={editValues.price} onChange={(e)=> setEditValues({...editValues, price: e.target.value})}   />
+                <Input min={0} type='number' placeholder={editValues.rating} value={editValues.rating} onChange={(e)=> setEditValues({...editValues, rating: e.target.value})}   />
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -226,7 +278,9 @@ export default function RestuarantList({onMorePage}) {
                   },
                 ]}
               >
-                <Input.TextArea rows={4} placeholder={editValues.detail}  value={editValues.detail} onChange={(e)=> setEditValues({...editValues, detail: e.target.value})}   />
+                <Input.TextArea rows={4} placeholder={editValues.description}  
+                value={editValues.description} 
+                onChange={(e)=> setEditValues({...editValues, description : e.target.value})}   />
               </Form.Item>
             </Col>
           </Row>

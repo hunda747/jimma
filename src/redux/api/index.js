@@ -28,11 +28,14 @@ const changeStatusAccept = localhost + "api/changeStatusAccept";
 const addFood = localhost + "api/addFood";
 const getAllFoods = localhost + "api/getAllFoods";
 const getFoodsByRestaurant = localhost + "api/getFoodsByRestaurant";
+const updateFood = localhost + "api/updateFood";
+const searchFood = localhost + "api/searchFood";
 
 // Restaurant
 const getAllRestaurant = localhost + "api/getAllRestaurant";
 const getRestaurantById = localhost + "api/getRestaurantById";
 const addRestaurant = localhost + "api/addRestaurant";
+const updateRestaurant = localhost + "api/updateRestaurant";
 
 
 export const createUser = (fname,lname,phone, password) => {
@@ -54,9 +57,25 @@ export const createFood = (food_name,description,type,restaurant,price) => {
   })
 }
 
+export const changeFood = (food_name,description,type,id,price) => {
+  return axios.post(updateFood, {
+    food_name: food_name,
+    description: description,
+    type: type,
+    id: id,
+    price: price
+  })
+}
+
 export const createRestaurant = (name, description, rating, open_days, working_hour, img) => {
   return axios.post(addRestaurant, {
     name, description, rating, open_days, working_hour, img
+  })
+}
+
+export const changeRestaurant = (name, description, rating, open_days, working_hour, img, id) => {
+  return axios.post(updateRestaurant, {
+    name, description, rating, open_days, working_hour, img, id
   })
 }
 
@@ -113,6 +132,10 @@ export const fetchRestaurantById = (id) =>{
 
 export const fetchFoods = () =>{
   return axios.get(getAllFoods);
+}
+
+export const fetchFoodsBySearch = (food) =>{
+  return axios.post(searchFood, {food: food});
 }
 
 export const fetchFoodsByRestaurant = (restaurant) =>{

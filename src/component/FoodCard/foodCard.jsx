@@ -25,13 +25,15 @@ export default function DetailView(props) {
         <h3>{props.name}</h3>
         <p>{props.desc}</p>
       </div>
-      <div className="price">
-        <p>{props.price}</p>
-        <p>ETB</p>
-      </div>
-      <div className="add" onClick={handleAdd}>
-        <Add className='addIcon'/>
-        {/* <img src={add} height={'30px'} alt="ADD" /> */}
+      <div className="infos">
+        <div className="price">
+          <p>{props.price}</p>
+          <p>ETB</p>
+        </div>
+        <div className="add" onClick={handleAdd}>
+          <Add className='addIcon'/>
+          {/* <img src={add} height={'30px'} alt="ADD" /> */}
+        </div>
       </div>
     </div>
   )

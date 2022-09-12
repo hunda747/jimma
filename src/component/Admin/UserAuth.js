@@ -7,11 +7,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const UserAuth = ( ) => {
     const location = useLocation();
-    const user = useSelector((state) => state.getUser.user);
+    // const user = useSelector((state) => state.getUser.user);
     const [cookie, setCookie] = useCookies(['user']);
 
     return (
-        cookie?.access_token
+        cookie?.uid
         ? <Outlet />
         : <Navigate to="/login" state={{ from: location }} replace />
     );

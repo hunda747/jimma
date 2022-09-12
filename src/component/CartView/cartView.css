@@ -38,7 +38,15 @@
   width: 30%;
   display: flex;
   gap: 5px;
+  /* justify-content: center; */
   align-items: center;
+}
+.cart .product .qty p{
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  vertical-align: center;
 }
 
 .cart .total{

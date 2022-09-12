@@ -16,15 +16,13 @@ import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 import { Form, Input, InputNumber, Popconfirm, Table, Typography } from 'antd';
 import { Drawer, Col, Row, Space } from 'antd';
 
-// import { Drawer } from 'antd';
 import 'antd/dist/antd.css';
 import {MenuItem, Select} from '@material-ui/core';
 
 import axios from 'axios';
-// import { getCagegory, createCategory } from '../../../redux/actions/categoryActions';
-import { getFoodsByRestaurant } from '../../../redux/actions/foodAction';
-
-
+import { getFoodsByRestaurant, updateFood, createFood } from '../../../redux/actions/foodAction';
+import { Add } from '@material-ui/icons';
+import { CircularProgress } from '@mui/material';
 // const { Option } = Select;
 
 const EditableCell = ({
@@ -62,7 +60,7 @@ const EditableCell = ({
   );
 };
 
-export default function ProductList() {
+export default function ProductList({onMorePage}) {
 
   const dispatch = useDispatch();
 
@@ -268,22 +266,42 @@ export default function ProductList() {
 
   //state for sidedrawer edit
   const [visible , setVisible] = useState(false)
-  //state = { visible: false };
+  //state for sidedrawer edit
+  const [visibleAdd , setVisibleAdd] = useState(false)
+
 
   const showDrawer = () => {
     setVisible(!visible);
     console.log("this is the status of the product " + editValues.status)
   };
 
+  const showAddDrawer = () => {
+    setVisible(!visibleAdd);
+    console.log("this is the status of the product " + addValues.status)
+  };
+
   const onClose = () => {
     setVisible(false);
+  }
+
+  const onAddClose = () => {
+    setVisibleAdd(false);
   }
 
   const [editValues ,setEditValues] = useState({
     _id:'',
     food_name:'',
     description: '',
-    image: '',
+    type: '',
+    status: 1,
+    restaurant: '',
+    price: '',
+  })
+
+  const [addValues ,setAddValues] = useState({
+    _id:'',
+    food_name:'',
+    description: '',
     type: '',
     status: 1,
     restaurant: '',
@@ -291,12 +309,10 @@ export default function ProductList() {
   })
   // state for product list search bar
 
-  const EditProduct = (record) =>{
-   
+  const EditProduct = (record) =>{  
     setEditValues({ ...editValues,
       id: record._id,
       food_name: record.food_name,
-      image: record.image,
       description: record.description,
       type: record.type,
       price: record.price,
@@ -305,12 +321,30 @@ export default function ProductList() {
 
   }
 
+  const handleAddFood = () =>{
+    console.log("handling add values");
+    console.log(addValues);
+    dispatch(createFood(addValues.food_name,addValues.description,addValues.type,addValues.restaurant,addValues.price));
+    setVisibleAdd(false);
+    onMorePage(1)
+    // window.location.reload(0)
+
+    if(addValues.status === 0){
+      message.warning("Product is still inactive");
+    }else{
+      message.success("Product Updated");
+    }
+    
+    // dispatch(getAllProducts());
+  }
+
   const handleEditChanges = () =>{
     console.log("handling edit changes");
     console.log(editValues);
-    // dispatch(editProduct(editValues))
+    dispatch(updateFood(editValues.food_name, editValues.description, editValues.type, editValues.id, editValues.price));
     setVisible(false);
-    window.location.reload(0)
+    onMorePage(1)
+    // window.location.reload(0)
 
     if(editValues.status === 0){
       message.warning("Product is still inactive");
@@ -318,7 +352,7 @@ export default function ProductList() {
     
     message.success("Product Updated");
     // dispatch(getAllProducts());
-  }     
+  }
 
   const mergedColumns = columns.map((col) => {
     if (!col.editable) {
@@ -341,8 +375,8 @@ export default function ProductList() {
   return (
     <>
     <div className="productListPageHolder">
-      {/* <div className="searchBarContainer">
-        <div className="sorter">
+      <div className="searchBarContainer">
+        {/* <div className="sorter">
           <div className="active_only">
             <div className="active_only_wrapper">
               <div className="all_products" onClick={getAll}  style={category === 0 ? {backgroundColor:'orange', color:'white'}:{}}  >
@@ -356,6 +390,9 @@ export default function ProductList() {
               </div>
             </div>
           </div> 
+        </div> */}
+        <div>
+          <button onClick={() => {onMorePage(1  )}}>back</button>
         </div>
         <div className="productList_searchBarWrapper">
           <input type="text" 
@@ -364,50 +401,141 @@ export default function ProductList() {
             onChange={e=>setSearchInput(e.target.value)}
             />
         </div>
-      </div> */}
-
-      <div className="table">
-        <Form form={form} component={false}>
-          {/* <Table
-            components={{
-              body: {
-                cell: EditableCell,
-              },
-            }}
-            bordered
-            dataSource={data}
-            columns={mergedColumns}
-            rowClassName="editable-row"
-            pagination={{
-              onChange: cancel,
-            }}
-          /> */}
-          <Table 
-            rowSelection={{ ...rowSelection }}
-            columns={columns}
-            dataSource={food}
-            scroll={{ x: 1000 }}
-            // onChange={handleChange}
-            summary={pageData => (
-              <Table.Summary fixed={fixedTop ? 'top' : 'bottom'}>
-                <Table.Summary.Row >
-              
-                  <Table.Summary.Cell   index={2} colSpan={8}>
+      </div>
+        { 
+          food ?
+            <div className="table">
+              <Form form={form} component={false}>
+                <Table 
+                  rowSelection={{ ...rowSelection }}
+                  columns={columns}
+                  dataSource={food}
+                  scroll={{ x: 1000 }}
+                  // onChange={handleChange}
+                  summary={pageData => (
+                    <Table.Summary fixed={fixedTop ? 'top' : 'bottom'}>
+                      <Table.Summary.Row >
                     
-                  </Table.Summary.Cell>
-                  <Table.Summary.Cell index={10}>
+                        <Table.Summary.Cell   index={2} colSpan={8}>
+                          
+                        </Table.Summary.Cell>
+                        <Table.Summary.Cell index={10}>
 
-                  </Table.Summary.Cell>
-                </Table.Summary.Row>
-              </Table.Summary>
-            )}
-            sticky
-            />
-        </Form>
-        <button onClick={showDrawer}>open</button>
+                        </Table.Summary.Cell>
+                      </Table.Summary.Row>
+                    </Table.Summary>
+                  )}
+                  sticky
+                  />
+              </Form>
+            </div>
+          :
+            <div className='center'>
+              <CircularProgress />
+            </div>
+        }
+
+      <div className='addButton' onClick={() => {
+          setVisibleAdd(true);
+          setAddValues({...addValues, restaurant: food[0].restaurant})
+          console.log(food[0].restaurant);
+        }}>
+        <Add className='add' />
       </div>
       
     </div>
+
+    <Drawer 
+    // title="Basic Drawer" placement="right" onClose={onClose} open={visible}
+      title="Add Product"
+      width={720}
+      onClose={onAddClose}
+      visible={visibleAdd}
+      bodyStyle={{ paddingBottom: 80 , zIndex: '100'}}
+      extra={
+        <Space>
+          <Button onClick={onAddClose}>Cancel</Button>
+          <Button type="primary" onClick={()=> handleAddFood()}  >
+            Submit
+          </Button>
+        </Space> }>
+
+    <Form layout="vertical" hideRequiredMark>
+    <Row gutter={20}>
+      </Row>
+      <Row gutter={16}>
+
+        <Col span={12}>
+
+          <Form.Item
+            name="product_status"
+            label="Product Type"
+            rules={[{ required:true , message: "Please Give Status for Product"}]}
+          >
+            <Switch checked={addValues.status === 1 ? true : false} onChange={()=> addValues.status === 1 ? setAddValues({...addValues , status: 0}) : setAddValues({...addValues, status: 1}) }  />
+
+          </Form.Item>
+          
+          <Form.Item
+            name="food_name"
+            label="Food Name"
+            rules={[{ required: true, message: 'Please enter food Name' }]}
+          >
+            <Input value={addValues.food_name} onChange={(e)=> setAddValues({...addValues, food_name: e.target.value})}  placeholder={'food_name'} />
+          </Form.Item>
+          <Form.Item
+            name="food_type"
+            label="Food Type"
+            rules={[{ required: true, message: 'Please enter food Type' }]}
+          >
+            <Input value={addValues.type} onChange={(e)=> setAddValues({...addValues, type: e.target.value})}  placeholder={'type'} />
+          </Form.Item>
+
+        </Col>
+
+      </Row>
+      <Row gutter={16}>
+        <Col span={12}>
+          
+        </Col>
+        <Col span={12}>
+        
+        </Col>
+      </Row>
+      <Row gutter={16}>
+        <Col span={12}>
+          <Form.Item
+            name="price"
+            label="Price"
+            rules={[{ required: true, message: 'Please enter product price' }]}
+          >
+            <Input min={0} prefix="$" type='number' placeholder={"price"} value={addValues.price} onChange={(e)=> setAddValues({...addValues, price: e.target.value})}   />
+          </Form.Item>
+        </Col>
+        <Col span={12}>
+          
+        </Col>
+      </Row>
+      <Row gutter={16}>
+        <Col span={24}>
+          <Form.Item
+            name="description"
+            label="Description"
+            rules={[
+              {
+                required: true,
+                message: 'please enter description',
+              },
+            ]}
+          >
+            <Input.TextArea rows={4} 
+            placeholder={"description"}  value={addValues.description} 
+            onChange={(e)=> setAddValues({...addValues, description: e.target.value})}   />
+          </Form.Item>
+        </Col>
+      </Row>
+    </Form>
+      </Drawer>
 
     <Drawer 
     // title="Basic Drawer" placement="right" onClose={onClose} open={visible}
@@ -448,7 +576,7 @@ export default function ProductList() {
             <Input value={editValues.food_name} onChange={(e)=> setEditValues({...editValues, food_name: e.target.value})}  placeholder={editValues.food_name} />
           </Form.Item>
           <Form.Item
-            name="food_name"
+            name="food_type"
             label="Food Type"
             rules={[{ required: true, message: 'Please enter food Type' }]}
           >

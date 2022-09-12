@@ -209,7 +209,7 @@ export default function AddRestaurant({onMorePage}) {
 					<div className="form_wrapper">
 				<div className="tops">
       	  <Button onClick={() => {
-      	    onMorePage(0);
+      	    onMorePage(1);
       	  }}> <ArrowBack fontSize='large'/> </Button>
       	  <h3>Add Product</h3>
       	</div>

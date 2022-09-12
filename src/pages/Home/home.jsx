@@ -10,18 +10,22 @@ import {Link} from 'react-router-dom';
 import Navbar from '../../component/Navbar/navbar';
 import Footer from '../../component/Footer/footer';
 import Star from '../../component/displayStar';
+import RestaurantCardView from '../../component/RestaurantCardView/restaurantCardView';
 
-import {Twitter, Instagram, Facebook, LinkedIn, AccountCircle, LocationOn, List, ShoppingCart} from '@material-ui/icons';
+import {Twitter, Instagram, Facebook, LinkedIn, AccountCircle, LocationOn, List, ShoppingCart, Search} from '@material-ui/icons';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllRestaurants } from '../../redux/actions/restaurantAction';
+
+import { CircularProgress} from '@material-ui/core';
 
 import {useNavigate} from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 
 export default function Home() {
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
-
+  const [search, setSearch ] = useState('');
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -53,8 +57,17 @@ export default function Home() {
               <h1>Order food to your home or office.</h1>
               <p>Best cook and best delivery at your service </p>
               <div className="searchBar">
-                <input class="search__input" type="text" placeholder="Search" />
-                <button className='btn_search'>OOO</button>
+                <input 
+                class="search__input" 
+                type="text" 
+                value={search}
+                onChange={(e) => { setSearch(e.target.value) }}
+                placeholder="Search" />
+                {/* <button > */}
+                <div className='btn_search' onClick={() => {navigate(`/search/${search}`)}}>
+                  <Search style={{background: 'black', display: 'flex', justifyContent: 'center'}}/>
+                </div>
+                {/* </button> */}
               </div>
               <p><a href="/login">Sign In</a> for your recent addresses</p>
             </div>
@@ -66,32 +79,75 @@ export default function Home() {
 
         <div className='main_rest'>
           <div className="">
-            <h1>Featured Restaurants</h1>
 
-            <div className="restaurants">
+            {
+              restaurants.length !== 0 ?
+              <>
+                <h1>Featured Restaurants</h1>
+                  <ul className='cards'>
+                  {
+                    restaurants?.map((restaurant) => {
+                      return(
+                        <li class="cards_item">
+                            <div class="card">
+                              <Link to={`/detail/${restaurant._id}`}>
+                              <div class="card_image">
+                                <img src={restaurant.img} />
+                              </div>
+                              <div class="card_content">
+                                <h2 class="card_title">{restaurant.name}</h2>
+                                <p class="card_text">{restaurant.description}</p>
+                                {/* <button class="btn card_btn">Read More</button> */}
+                              </div>
+                                {/* <div className="status">
+                                  <p className='open'>open</p>
+                                </div> */}
+                              </Link>
+                            </div>
+                        </li>
+                      )}
+                    )
+                  }
+                  </ul>
+              </>
+              :
+                <div className='center'>
+                  <CircularProgress />
+                </div>
+            }
+
+            {/* <div className="restaurants">
               {
                 restaurants?.map((restaurant) => {
                   return(
-                    <div className="restaurant">
-                      <Link to={`/detail/${restaurant._id}`}>
-                        <img src={restaurant.img} width='100%' height='180px' alt="img " />
-                        <div className="resInfo">
-                          <h3>{restaurant.name}</h3>
-                          <div className="rating">
-                            <p> <Star rating={restaurant.rating}/></p>
-                          </div>
-                          <p>{restaurant.description}</p>
-                        </div>
-                        <div className="status">
-                          <p className='open'>open</p>
-                        </div>
-                      </Link>
-                    </div>
+
+                    // <div className="restaurant hover">
+                    //     <img src={restaurant.img} width='100%' height='180px' alt="img " />
+                    //     <div className="resInfo">
+                    //       <h3>{restaurant.name}</h3>
+                    //       <div className="rating">
+                    //         <p> <Star rating={restaurant.rating}/></p>
+                    //       </div>
+                    //       <p>{restaurant.description}</p>
+                    //     </div>
+                    //     <div className="status">
+                    //       <p className='open'>open</p>
+                    //     </div>
+                    //   </Link>
+                    // </div>
+
+                    // <RestaurantCardView 
+                    //   name = {restaurant.name}
+                    //   id = {restaurant._id}
+                    //   description = {restaurant.description}
+                    //   rating = {restaurant.rating}
+                    //   img = {restaurant.img} 
+                    // />
                   )
                 })
               }
               
-            </div>
+            </div> */}
 
           </div>
         </div>

@@ -19,6 +19,7 @@ import { getRestaurantById } from '../../redux/actions/restaurantAction';
 import { getFoodsByRestaurant } from '../../redux/actions/foodAction';
 import { removeFromCart} from '../../redux/actions/cartActions'
 
+import { CircularProgress} from '@material-ui/core';
 import { useCookies } from 'react-cookie';
 import Footer from '../../component/Footer/footer';
 
@@ -76,44 +77,53 @@ export default function DetailView() {
           <div className="menu">
             <h2>Menu</h2>
             <div className="menu_container">
-              <div className="displayMenu">
-                {foods?.map((food) => {
-                  return(
-                    <div className="menuItem">
-                      <FoodCard 
-                        key = {food._id}
-                        id = {food._id}
-                        name = {food.food_name}
-                        desc = {food.description}
-                        price = {food.price}
-                        type = {food.type}
-                        />
-                    </div>
-                  )
-                })}
+              {foods.length !== 0 ? 
+              <>
+                <div className="displayMenu">
+                  {foods?.map((food) => {
+                    return(
+                      <div className="menuItem">
+                        <FoodCard 
+                          key = {food._id}
+                          id = {food._id}
+                          name = {food.food_name}
+                          desc = {food.description}
+                          price = {food.price}
+                          type = {food.type}
+                          />
+                      </div>
+                    )
+                  })}
+                  
+                </div>
+                <div className="cartView">
+                  <CartView />
+                </div>
+                {/* <div className="cart">
+                  <h1><ShoppingCart fontSize='medium'/> Cart</h1>
+                  {
+                    cartItems?.map((cart) => {
+                      return(
+                      <div className="product">
+                        <p className="name">{cart.food_name}</p>
+                        <p className="qty">{cart.qtyCounter}</p>
+                        <p className="price">{cart.price} Birr</p>
+                        <div className='action'  onClick={() => {
+                          console.log(cart.id);
+                          dispatch(removeFromCart(cart.id))
+                        }} ><Delete color='red'/></div>
+                      </div>
+                      )
+                    })
+                  }
+                </div> */}
+              </>
+              : 
+              <div>
+                <CircularProgress style={{color: "black"}} />
                 
               </div>
-              <div className="cartView">
-                <CartView />
-              </div>
-              {/* <div className="cart">
-                <h1><ShoppingCart fontSize='medium'/> Cart</h1>
-                {
-                  cartItems?.map((cart) => {
-                    return(
-                    <div className="product">
-                      <p className="name">{cart.food_name}</p>
-                      <p className="qty">{cart.qtyCounter}</p>
-                      <p className="price">{cart.price} Birr</p>
-                      <div className='action'  onClick={() => {
-                        console.log(cart.id);
-                        dispatch(removeFromCart(cart.id))
-                      }} ><Delete color='red'/></div>
-                    </div>
-                    )
-                  })
-                }
-              </div> */}
+              }
             </div>
           </div>
         </div>

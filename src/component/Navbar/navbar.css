@@ -1,17 +1,25 @@
+a {
+  color: black;
+}
+
 
 .navbar_main{
   position: sticky;
   top: 0;
   z-index: 100;
   background-color: white;
+  color: black;
   width: 100%;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #FFE45E;
+  background-color: #FFE45E;
 }
 
 .navbar{
   display: flex;
   justify-content: space-between;
-  padding: 25px 45px;
+  padding: 10px 45px;
+  /* width: 1400px; */
+  margin: auto;
   /* height: 50px; */
 }
 
@@ -28,29 +36,64 @@
 
 .navbar .menu .icons{
   margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar .menu .icons .smaller{
+  transform: scale(0.91);
 }
 .navbar .menu .icons .cartIconHolder {
   display: flex;
   justify-content: center;
   vertical-align: center;
   /* align-items: center; */
-  height: 100%;
-  transform: scale(1.2);
-  transition: all ease 0.3s;
-  padding: 5px 8px;
+  /* height: 100%; */
+  
+  /* transition: all ease 0.9s; */
+  padding: 10px;
+  /* padding: 8px 8px; */
+  border-radius: 175px;
+  border: 2px solid rgb(147, 147, 147);
+  /* background-color: white; */
 }
+.navbar .menu .icons .accountIconHolder {
+  display: flex;
+  justify-content: center;
+  vertical-align: center;
+  /* align-items: center; */
+  /* height: 100%; */
+  
+  transition: all ease 0.3s;
+  transform: scale(1.2);
+  padding: 7px;
+  /* padding: 8px 8px; */
+  border-radius: 175px;
+  border: 2px solid rgb(147, 147, 147);
+  /* background-color: white; */
+}
+
+
+.navbar .menu .icons .cartIconHolder:hover, .navbar .menu .icons .accountIconHolder:hover {
+  transition: all ease 0.9s;
+  /* padding: 8px 8px; */
+  /* border-radius: 75px; */
+  background-color: black;
+}
+
 
 .navbar .menu .icons .cartIconHolder span{
   padding: 1px;
   top: 0;
   /* color: rgb(255, 204, 0); */
   object-fit: contain;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: bold;
 }
 
 .navbar .menu .btn{
   background-color: white;
+  color: black;
   padding: 5px 15px;
   margin: 0 5px;
   text-transform: uppercase;
@@ -70,4 +113,39 @@
     align-items: center;
     /* height: 50px; */
   }
+}
+
+/* CSS */
+.button-22 {
+  align-items: center;
+  appearance: button;
+  background-color: #0276FF;
+  border-radius: 8px;
+  border-style: none;
+  box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-family: "RM Neue",sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+  padding: 10px 21px;
+  text-align: center;
+  text-transform: none;
+  transition: color .13s ease-in-out,background .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-22:active {
+  background-color: #006AE8;
+}
+
+.button-22:hover {
+  background-color: #1C84FF;
 }

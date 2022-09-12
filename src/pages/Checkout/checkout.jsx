@@ -2,10 +2,11 @@ import React, {useRef, useState, useEffect} from 'react'
 import NavBar from '../../component/Navbar/navbar';
 import Footer from '../../component/Footer/footer';
 import './checkout.css'
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 import ReactMapGL , {Marker} from 'react-map-gl';
-// import {  Input, Button , message } from 'antd';
-import {  Input, Button  } from '@material-ui/core';
+import {  Input, Button , message } from 'antd';
+// import {  Input, Button  } from '@material-ui/core';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied'
 import { useSelector, useDispatch } from 'react-redux';
@@ -107,15 +108,14 @@ export default function Checkout() {
     console.log("In handle confirm")
     const date = new Date();
     console.log("this is the ordered phone number")
-    // console.log(phoneNumber)
+    console.log(phoneNumber)
 
-    // if(cartItems?.length !== 0){
-    if(1){
-      // if(phoneNumber === ''  || !/(\+\s*2\s*5\s*1\s*9\s*(([0-9]\s*){8}\s*))|(0\s*9\s*(([0-9]\s*){8}))/.test(phoneNumber) || phoneNumber.length !== 10 ){
-      if(0){
+    if(cartItems?.length !== 0){
+    // if(1){
+      if(phoneNumber === ''  || !/(\+\s*2\s*5\s*1\s*9\s*(([0-9]\s*){8}\s*))|(0\s*9\s*(([0-9]\s*){8}))/.test(phoneNumber) || phoneNumber.length !== 10 ){
         message.error("Phone Number Is Invalid")
       }else{
-        if(1){
+        if(cookies?.uid){
           let orderItems = [];
           cartItems.map((item)=>{
             const singleProduct = {
@@ -125,6 +125,7 @@ export default function Checkout() {
           orderItems.push(singleProduct);
           });
           console.log(orderItems);
+
           try{
             let costTotal = getTotalProductPrice();
             let no_item = getCartCount();
@@ -139,7 +140,9 @@ export default function Checkout() {
             console.log(costTotal); 
             console.log(no_item);
             dispatch(createOrders(
-              date, "63087c390e95be7180d3f744", getTotalProductPrice(), 
+              date, 
+              cookies?.uid, 
+              getTotalProductPrice(), 
               marker.latitude,
               marker.longitude, 
               phoneNumber, 
@@ -159,24 +162,7 @@ export default function Checkout() {
           console.log(phoneNumber)
           // dispatch(clearCart());
           message.success("Order Placed");
-  
-          let purchased = false;
-          let reachCheck = false;
-          // if (sessionStorage.getItem('purchased') === null) {
-          //   console.log('purchased found');
-          //   purchased = sessionStorage.getItem('purchased');
-          // }else{
-          //   console.log('purchased not found');
-          //   console.log(sessionStorage.getItem('purchased'));
-          //   purchased = false;
-          // }
-          // if (sessionStorage.getItem('user') === null) {
-          //   reachCheck = sessionStorage.getItem('reachedCheckout');
-          //   console.log('userr found');
-          // }else{
-          //   console.log('user not found');
-          //   reachCheck = false;
-          // }
+
           navigate('/');
         }
         else{
@@ -239,7 +225,7 @@ export default function Checkout() {
                   handleLocation()
                     }}
                 >
-                  {/* <Marker latitude={marker.latitude} longitude={marker.longitude} /> */}
+                  <Marker latitude={marker.latitude} longitude={marker.longitude}/>
                 </ReactMapGL>   
               </div>
               <div className="stepOneInfo">
@@ -250,13 +236,13 @@ export default function Checkout() {
                   </div> */}
 
                   <div className="locationName">
+                    <h3>Address</h3>
                     <input prefix={<LocationOnIcon />} placeholder={selectedLocation.formatted} 
                     value={mapLocation} 
                     disabled  />
-      
                   </div>
-
                   <div className="phoneNumber">
+                    <h3>Phone number:</h3>
                     <input type="text" 
                       placeholder='09########'
                       value={phoneNumber}
