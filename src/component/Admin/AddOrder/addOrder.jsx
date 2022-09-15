@@ -14,12 +14,12 @@ import {MenuItem, Select} from '@mui/material';
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 // import UseStorage from '../firebase/useStorage';
 
-import { ShoppingCart, Delete} from '@material-ui/icons';
+import { ShoppingCart, Delete, Search} from '@material-ui/icons';
 import {Link} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createOrders } from '../../../redux/actions/orderActions';
 import { getAllRestaurants } from '../../../redux/actions/restaurantAction';
-import { getFoodsByRestaurant } from '../../../redux/actions/foodAction';
+import { getFoodsByRestaurant, searchFood } from '../../../redux/actions/foodAction';
 import { clearCart } from '../../../redux/actions/cartActions';
 
 // import {CircularProgress, CircularProgressWithLabel} from '@mui/material';
@@ -30,7 +30,8 @@ export default function AddRestaurant({onMorePage}) {
 	const [restaurantData, setRestaurantData] = useState('');
 	const [addressData, setAddressData] = useState('');
 	const [phoneData, setPhoneData] = useState('');
-	
+  const [search, setSearch ] = useState('');
+
 	useEffect(() => {
 		dispatch(getAllRestaurants());
 	}, []);
@@ -131,6 +132,19 @@ export default function AddRestaurant({onMorePage}) {
         </div>
         <div className="orders">
           <div className="menu">
+            <div className="searchBar">
+              <input 
+              class="search__input" 
+              type="text" 
+              value={search}
+              onChange={(e) => { setSearch(e.target.value) }}
+              placeholder="Search" />
+              {/* <button > */}
+              <div className='btn_search' onClick={() => {dispatch(searchFood)}}>
+                <Search style={{background: 'black', display: 'flex', justifyContent: 'center'}}/>
+              </div>
+                {/* </button> */}
+              </div>
             <div className="rest_list">
               <h3>choose restaurant</h3>
               <div className="restaurants">

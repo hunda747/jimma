@@ -151,6 +151,28 @@ export const getOrdersById = (id) => async (dispatch)=>{
     }
 };
 
+
+export const changeOrderStatus = (id, status) => async (dispatch)=>{
+  try {
+      // dispatch({
+      //     // type: actionType.GET_ORDERS_BY_ID_REQUEST,
+      // });
+      const {data} = await api.changeOrderStatus(id, status);
+      
+      // dispatch({
+      //     type: actionType.GET_ORDERS_BY_ID_SUCCESS,
+      //     payload: data,
+      // });
+  } catch (error) {
+      dispatch({
+          type:actionType.GET_ORDERS_BY_ID_FAIL,
+          payload: 
+              error.response && error.response.data.message 
+              ?error.response.data.message:error.message,
+      });
+  }
+};
+
 // export const getCompleteOrdersByDate = (date) => async (dispatch)=>{
 //     try {
 //         dispatch({

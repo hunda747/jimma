@@ -30,8 +30,11 @@ import { useCookies } from 'react-cookie';
 
 export default function SearchPage() {
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  
   const {name} = useParams();
+  const [search, setSearch ] = useState(name);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   console.log(name);
   useEffect(() => {
     dispatch(searchFood(name));
@@ -53,24 +56,39 @@ export default function SearchPage() {
   return(
     <>
       <div className='wrapper'>
-
         <Navbar />
 
-        <header className='showcase'>
+        <header className='search'>
           <div className='containerdd'>
             <div className="hero">
               {/* <h1>Get food from your favorite restaurants in Jimma delivered to your home or office.</h1> */}
-              {/* <h1>Order food to your home or office.</h1> */}
-              <p>Best cook and best delivery at your service </p>
+              <h1>Order food to your home or office.</h1>
+              {/* <p>Best cook and best delivery at your service </p> */}
               <div className="searchBar">
-                <input class="search__input" type="text" placeholder="Search" />
+                <input 
+                class="search__input" 
+                type="text" 
+                value={search}
+                onChange={(e) => { setSearch(e.target.value) }}
+                placeholder="Search" />
                 {/* <button > */}
-                <div className='btn_search'>
-                  <Search style={{background: 'black', display: 'flex', justifyContent: 'center'}}/>
+                <div className='btn_search' onClick={() => {dispatch(searchFood(search))}}>
+                {/* <div className='btn_search' 
+                  onClick={() => {
+                    console.log(search);
+                    navigate(`/search/${search}`)
+                  }}> */}
+                  <Search />
+                  {/* <Search style={{background: 'black', display: 'flex', justifyContent: 'center'}}/> */}
                 </div>
                 {/* </button> */}
               </div>
-              <p><a href="/login">Sign In</a> for your recent addresses</p>
+              {
+                cookies?.uid ? 
+                  ""
+                : 
+                <p><a href="/login">Sign In</a> for your recent addresses</p>
+              }
             </div>
             {/* <div className="heroImg">
               <img src={hero} alt="hero" />
@@ -78,35 +96,38 @@ export default function SearchPage() {
           </div>
         </header>
 
-        <div className="menu_container">
-          {foods.length !== 0 ? 
-          <>
-            <div className="displayMenu">
-              {foods?.map((food) => {
-                return(
-                  <div className="menuItem">
-                    <FoodCard 
-                      key = {food._id}
-                      id = {food._id}
-                      name = {food.food_name}
-                      desc = {food.description}
-                      price = {food.price}
-                      type = {food.type}
-                      />
-                  </div>
-                )
-              })}
-              
+        <div className="menu_search">
+          <h2>Result</h2> 
+          <div className="menu_container">
+            {foods.length !== 0 ? 
+            <>
+              <div className="displayMenu">
+                {foods?.map((food) => {
+                  return(
+                    <div className="menuItem">
+                      <FoodCard 
+                        key = {food._id}
+                        id = {food._id}
+                        name = {food.food_name}
+                        desc = {food.description}
+                        price = {food.price}
+                        type = {food.type}
+                        />
+                    </div>
+                  )
+                })}
+                
+              </div>
+              <div className="cartView">
+                <CartView />
+              </div>
+            </>
+            : 
+            <div>
+              <CircularProgress style={{color: "black"}} />
             </div>
-            <div className="cartView">
-              <CartView />
-            </div>
-          </>
-          : 
-          <div>
-            <CircularProgress style={{color: "black"}} />
+            }
           </div>
-          }
         </div>
 
         <Footer />

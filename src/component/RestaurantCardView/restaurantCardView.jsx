@@ -16,7 +16,7 @@ export default function restaurantCardView(props) {
   }
 
   return (
-    // <div className="restaurant" 
+    // <div classNameName="restaurant" 
     //   onClick={() => {
     //     handleClick();
     //     props.changePage(10)}
@@ -24,32 +24,32 @@ export default function restaurantCardView(props) {
     //     <img src={props.img} width='50px' height='50px' alt="img " />
     //     <h3>{props.name}</h3>
     //     {/* <p>{props.description}</p> */}
-    //     {/* <div className=""> */}
-    //       <p className='open'>open</p>
+    //     {/* <div classNameName=""> */}
+    //       <p classNameName='open'>open</p>
     //     {/* </div> */}
     //     <button>edit</button>
     //   </div>
-    <div  class="column" 
+    <div  className="column" 
           onClick={() => {
            handleClick() }}>
-      <div class="post-module hover">
-        <div class="thumbnail">
+      <div className="post-module hover">
+        <div className="thumbnail">
             <img src={props.img}/>
         </div>
-        <div class="post-content">
-          <div class="category">Photos</div>
-          <h1 class="title">{props.name}</h1>
-          <p class="description">{props.description}</p>
-          {/* <div className="post-meta"> */}
+        <div className="post-content">
+          <div className="category">Photos</div>
+          <h1 className="title">{props.name}</h1>
+          <p className="description">{props.description}</p>
+          {/* <div classNameName="post-meta"> */}
             {/* <Rating rating={props.rating}/> */}
           {/* </div> */}
-          {/* <div class="post-meta">
-            <span class="timestamp">
-              <i class="fa fa-clock-o"></i> 
+          {/* <div className="post-meta">
+            <span className="timestamp">
+              <i className="fa fa-clock-o"></i> 
               6 mins ago
             </span>
-            <span class="comments">
-              <i class="fa fa-comments"></i>
+            <span className="comments">
+              <i className="fa fa-comments"></i>
               <a href="#"> 39 comments</a>
             </span>
           </div> */}

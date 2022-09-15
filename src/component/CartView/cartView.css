@@ -41,12 +41,17 @@
   /* justify-content: center; */
   align-items: center;
 }
-.cart .product .qty p{
+.cart .product .qty .number{
   align-items: center;
   text-align: center;
   display: flex;
   justify-content: center;
   vertical-align: center;
+}
+
+.cart .product .qty .icons{
+  display: flex;
+  justify-content: center;
 }
 
 .cart .total{

@@ -65,7 +65,8 @@ export default function Home() {
                 placeholder="Search" />
                 {/* <button > */}
                 <div className='btn_search' onClick={() => {navigate(`/search/${search}`)}}>
-                  <Search style={{background: 'black', display: 'flex', justifyContent: 'center'}}/>
+                  <Search />
+                  {/* <Search style={{background: 'black', display: 'flex', justifyContent: 'center'}}/> */}
                 </div>
                 {/* </button> */}
               </div>

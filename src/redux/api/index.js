@@ -93,6 +93,9 @@ export const createOrder = (date,userId,total,latitude ,longitude,contact,no_ite
   })
 }
 
+export const changeOrderStatus = (id, status) => {
+  return axios.post(changeStatus, {id: id, status: status})
+}
 
 export const fetchOrder = () =>{
   return axios.post(getOrders);

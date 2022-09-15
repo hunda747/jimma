@@ -57,7 +57,9 @@ export default function navbar() {
               <div className="icons">
                 <div className="cartIconHolder smaller">
                   <Link to='/checkout'>  
-                    <ShoppingCartSharp className='infosIcons' />   
+                    <ShoppingCartSharp 
+                    
+                    className='infosIcons' />   
                     <span>{getCartCount()}</span>
                   </Link>
                 </div>

@@ -35,13 +35,18 @@ export default function CartView() {
           return(
           <div className="product">
             <p className="name">{cart.food_name}</p>
+
             <div className="qty">
               <div onClick={() => {
                 dispatch(addToCart(cart.id))
               }}>
-                <Add fontSize='small'/>
+                <Add className='icons' fontSize='small'/>
               </div>
-              <p>{cart.qtyCounter}</p>
+
+              <div className="number">
+                {cart.qtyCounter}
+              </div>
+
               <div onClick={() => {
                 if(cart.qtyCounter === 1){
                   dispatch(removeFromCart(cart.id))
@@ -49,9 +54,10 @@ export default function CartView() {
                   dispatch(changeToCart(cart.id, (cart.qtyCounter - 1)))
                 }
               }}>
-                <Remove fontSize='small'/>
+                <Remove className='icons' fontSize='small'/>
               </div>
             </div>
+
             <p className="price">{cart.price} Birr</p>
           </div>
           )

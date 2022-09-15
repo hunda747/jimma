@@ -11,7 +11,7 @@ a {
   color: black;
   width: 100%;
   border-bottom: 1px solid #FFE45E;
-  background-color: #FFE45E;
+  /* background-color: #FFE45E; */
 }
 
 .navbar{
@@ -43,20 +43,17 @@ a {
 .navbar .menu .icons .smaller{
   transform: scale(0.91);
 }
+
 .navbar .menu .icons .cartIconHolder {
+  /* background-color: #F0C808; */
   display: flex;
   justify-content: center;
   vertical-align: center;
-  /* align-items: center; */
-  /* height: 100%; */
-  
-  /* transition: all ease 0.9s; */
   padding: 10px;
-  /* padding: 8px 8px; */
   border-radius: 175px;
-  border: 2px solid rgb(147, 147, 147);
-  /* background-color: white; */
+  /* border: 2px solid rgb(147, 147, 147); */
 }
+
 .navbar .menu .icons .accountIconHolder {
   display: flex;
   justify-content: center;

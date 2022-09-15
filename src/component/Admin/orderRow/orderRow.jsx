@@ -29,6 +29,7 @@ import {Check} from '@mui/icons-material';
 import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import { StepIconProps } from '@mui/material/StepIcon';
 import { addToCart }  from '../../../redux/actions/cartActions';
+import { changeOrderStatus, getOrdersPending, getOrdersComplete }  from '../../../redux/actions/orderActions';
 // import { returnProduct } from '../../../redux/actions/productActions';
 const steps = ['Processing', 'Shipped', 'Delivered'];
 
@@ -64,14 +65,24 @@ export default function Row(props) {
   // console.log(props)  
   
   const handleCancelOrder = () => {
-    // console.log(props.id);
-    // dispatch(changeOrderStatus(props.id, 'cancel'))
-    // props?.orderProducts.map((order)=> {
-    //   console.log(order.id , order.productQuantity)
-    //     // dispatch to increase the number of count in stock for the item ordered
-    //     dispatch(returnProduct(order.id , order.productQuantity))
-    //   }) 
-    window.location.reload(true);
+    console.log(props.id);
+    dispatch(changeOrderStatus(props.id, 'cancel'))
+    dispatch(getOrdersPending());
+    // window.location.reload(true);
+  } 
+  
+  const handleAcceptOrder = () => {
+    console.log(props.id);
+    dispatch(changeOrderStatus(props.id, 'inProgress'));
+    dispatch(getOrdersPending());
+    // window.location.reload(true);
+  } 
+  
+  const handleCompleteOrder = () => {
+    console.log(props.id);
+    dispatch(changeOrderStatus(props.id, 'complete'));
+    dispatch(getOrdersComplete());
+    // window.location.reload(true);
   } 
 
   const handleReorder = () => {
@@ -112,12 +123,14 @@ export default function Row(props) {
         <TableCell align="center">{props.total} Birr</TableCell>
         
         { props.status === 'pending' ? (
-          <TableCell align="center">
+          <TableCell align="right">
             <Button  onClick={handleCancelOrder} style={{border: '1px solid black'}}>Cancel</Button>
+            <Button  onClick={handleAcceptOrder} style={{border: '1px solid black'}}>Accept</Button>
           </TableCell>
         ): props.status === 'inProgress' ? (
-            <TableCell align="right">
-              <Label className='btn'>In progress</Label>
+          <TableCell align="right">
+              <Button  onClick={handleCompleteOrder} style={{border: '1px solid black'}}>Complete</Button>
+              {/* <Label className='btn'>In progress</Label> */}
             </TableCell>
         ): props.status === 'complete' ? (
             <TableCell align="right">

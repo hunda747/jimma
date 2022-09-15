@@ -58,7 +58,8 @@ ul{
 
 .showcase{
   /* background: rgba(207, 207, 207, 0.5) url('../../assets/photo/bj5Edit.jpg'); */
-  background-color: #FFE45E;
+  background-color: #f6d017f4;
+  /* background-color: #FFE45E; */
   /* background-image: url('../../asset/photo/bg2.jpg') ; */
   position: relative;
   /* top: 80px; */
@@ -449,6 +450,10 @@ footer .container{
     transition: all 250ms ease-in-out;
     backface-visibility: hidden;
     transform-style: preserve-3d;
+  }
+
+  .main_rest {
+    padding: 10px 15px;
   }
 
   .main_rest .restaurants .restaurant{

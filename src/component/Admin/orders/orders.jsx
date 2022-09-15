@@ -8,6 +8,7 @@ import { Box, Collapse, IconButton,
 import { useDispatch, useSelector } from 'react-redux';
 import { getOrdersInprogress, getOrdersPending, getOrders, getOrdersComplete } from '../../../redux/actions/orderActions';
 
+import { CircularProgress} from '@material-ui/core';
 
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -70,7 +71,7 @@ function a11yProps(index) {
 export default function Orders() {
 
   // const [orders , setOrders] = useState([]);
-
+  const [loader, setLoader] = React.useState(false);
   const dispatch = useDispatch();
 
   const handleChange = (event, newValue) => {
@@ -97,7 +98,15 @@ export default function Orders() {
     dispatch(getOrdersPending());
   },[])
 
+  
+
   const orders = useSelector((state) => state.order.orders);
+  // const load = useSelector((state) => state.order.loading);
+  // setLoader(load);
+
+  // useEffect(()=>{
+  //   setLoader(load);
+  // },[dispatch])
 
   const date = new Date();
   const [dateValue, setDateValue] = React.useState( date );
@@ -208,19 +217,40 @@ export default function Orders() {
                   </TableHead>
                   <TableBody>
                   {
-                      !orders?.length ? <div>empty</div> : (
+                      !orders?.length ?
+                        // loader ? 
+                        //   <CircularProgress />
+                        // : 
+                          <div>empty</div>
+                      : (
                         orders.map((val, key) => {
                           console.log(val);
                           return (
+                            // <Row 
+                            //   key = {val.orderId}   
+                            //   id = {val.orderId}
+                            //   fname = {val.fname}
+                            //   lname = {val.lname}
+                            //   contact = {val.contact === null ? val.contact : null} 
+                            //   total = {val.total}
+                            //   date = {val.date}
+                            //   status = {val.status}
+                            //   admin = {true}
+                            //   />
                             <Row 
-                              key = {val.orderId}   
-                              id = {val.orderId}
+                              key = {val._id}   
+                              id = {val._id}
                               fname = {val.fname}
                               lname = {val.lname}
-                              contact = {val.contact === null ? val.contact : null} 
+                              contact = {val.userId.contact} 
+                              user = {val.userId}
                               total = {val.total}
                               date = {val.date}
                               status = {val.status}
+                              address = {val.address}
+                              orders = {val.orders}
+                              longitude = {val.longitude}
+                              latitude = {val.latitude}
                               admin = {true}
                               />
                             )
@@ -268,15 +298,19 @@ export default function Orders() {
                           console.log(val);
                           return (
                             <Row 
-                              key = {val.orderId}   
-                              id = {val.orderId}
+                              key = {val._id}   
+                              id = {val._id}
                               fname = {val.fname}
                               lname = {val.lname}
-                              date = {val.date}
-                              address = {val.address}
-                              contact = {val.contact === null ? val.contact : null} 
+                              contact = {val.userId.contact} 
+                              user = {val.userId}
                               total = {val.total}
+                              date = {val.date}
                               status = {val.status}
+                              address = {val.address}
+                              orders = {val.orders}
+                              longitude = {val.longitude}
+                              latitude = {val.latitude}
                               admin = {true}
                               />
                             )
