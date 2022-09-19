@@ -111,13 +111,16 @@ export default function Row(props) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row">
-          {props.id}
-        </TableCell>
-
-        <TableCell align="right">{props.user.fname}</TableCell>
-        {/* <TableCell align="right">{props.user.lname}</TableCell> */}
         
+
+        <TableCell align="left">{props.user.fname} {props.user.lname}</TableCell>
+        {/* <TableCell align="right">{props.user.lname}</TableCell> */}
+        <TableCell component="th" scope="row">
+          {props.address}
+        </TableCell>
+        <TableCell component="th" scope="row">
+          {props.contact}
+        </TableCell>
 
         {/* <TableCell align="center">{props.date}</TableCell> */}
         <TableCell align="center">{props.total} Birr</TableCell>

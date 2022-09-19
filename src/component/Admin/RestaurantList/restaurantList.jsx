@@ -11,8 +11,8 @@ import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined'
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 
 import { useDispatch, useSelector, useSelectore } from 'react-redux'
-import { getAllRestaurants, updateRestaurant } from '../../../redux/actions/restaurantAction';
-import { getFoodsByRestaurant } from '../../../redux/actions/foodAction';
+import { getAllRestaurants, getRestaurants, updateRestaurant } from '../../../redux/actions/restaurantAction';
+import { getFoodsByRestaurant, getAllFoodsByRestaurant } from '../../../redux/actions/foodAction';
 import {Link} from 'react-router-dom';
 import RestaurantList from '../../RestaurantCard/restaurantCart';
 
@@ -53,13 +53,13 @@ export default function RestuarantList({onMorePage}) {
   }
 
   useEffect(() => {
-    dispatch(getAllRestaurants());
+    dispatch(getRestaurants());
   }, []);
 
   const handleEditChanges = () => {
     console.log('edit');
     console.log(editValues);
-    dispatch(updateRestaurant(editValues.restaurant_name, editValues.description, editValues.rating, editValues.open_days, editValues.working_hour, editValues.img, editValues._id));
+    dispatch(updateRestaurant(editValues.restaurant_name, editValues.description, editValues.rating, editValues.open_days, editValues.working_hour, editValues.img, editValues._id, editValues.status));
     setVisible(false);
     onMorePage(1)
     // window.location.reload(0)
@@ -70,7 +70,8 @@ export default function RestuarantList({onMorePage}) {
       rating: 0,
       image: '',
       working_hour: '',
-      open_days: ''
+      open_days: '',
+      status: false
     });
 
     if(editValues.status === 0){
@@ -89,6 +90,7 @@ export default function RestuarantList({onMorePage}) {
     image: '',
     working_hour: '',
     open_days: '',
+    status: false,
   })
 
   const EditRestaurant = (record) =>{
@@ -100,13 +102,14 @@ export default function RestuarantList({onMorePage}) {
       image:  record.image,
       working_hour:  record.working_hour,
       open_days:  record.open_days,
+      status: record.status
     })
   }
 
   const restaurants = useSelector(state => state.restaurant.restaurant);
 
   const handleClick = () => {
-    dispatch(getFoodsByRestaurant(props.id));
+    dispatch(getAllFoodsByRestaurant(props.id));
     onMorePage(10);
   }
 
@@ -152,6 +155,7 @@ export default function RestuarantList({onMorePage}) {
                         image:  restaurant.img,
                         working_hour:  restaurant.working_hour,
                         open_days:  restaurant.open_days,
+                        status: restaurant.status
                       })
                       console.log(editValues);
                       console.log(restaurant);
@@ -160,7 +164,7 @@ export default function RestuarantList({onMorePage}) {
                     </button></td>
                     <td>
                     <button onClick={() => {
-                      dispatch(getFoodsByRestaurant(restaurant._id));
+                      dispatch(getAllFoodsByRestaurant(restaurant._id));
                       onMorePage(10)}}
                       >
                       products
@@ -215,7 +219,7 @@ export default function RestuarantList({onMorePage}) {
                 label="Product Status"
                 rules={[{ required:true , message: "Please Give Status for Product"}]}
               >
-                <Switch checked={editValues.status === 1 ? true : false} onChange={()=> editValues.status === 1 ? setEditValues({...editValues , status: 0}) : setEditValues({...editValues, status: 1}) }  />
+                <Switch checked={editValues.status === true ? true : false} onChange={()=> editValues.status === true ? setEditValues({...editValues , status: false}) : setEditValues({...editValues, status: true}) }  />
 
               </Form.Item>
               <Form.Item

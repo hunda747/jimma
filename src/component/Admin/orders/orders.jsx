@@ -160,10 +160,10 @@ export default function Orders() {
                   <TableHead >
                     <TableRow>
                       <TableCell />
-                      <TableCell>Order Id</TableCell>
                       <TableCell>Name</TableCell>
+                      <TableCell>Address</TableCell>
                       {/* <TableCell>Date</TableCell> */}
-                      {/* <TableCell>Last name</TableCell> */}
+                      <TableCell>Phone number</TableCell>
                       <TableCell align="right">
                         Sub-Total</TableCell>
                       <TableCell align="right">Status</TableCell>
@@ -180,7 +180,7 @@ export default function Orders() {
                             id = {val._id}
                             fname = {val.fname}
                             lname = {val.lname}
-                            contact = {val.userId.contact} 
+                            contact = {val.contact} 
                             user = {val.userId}
                             total = {val.total}
                             date = {val.date}
@@ -206,9 +206,9 @@ export default function Orders() {
                   <TableHead >
                     <TableRow>
                       <TableCell />
-                      <TableCell>Order Id</TableCell>
-                      <TableCell>Date</TableCell>
-                      {/* <TableCell>Last name</TableCell> */}
+                      <TableCell>Name</TableCell>
+                      <TableCell>Address</TableCell>
+                      <TableCell>Phone number</TableCell>
                       <TableCell align="right">
                         Sub-Total</TableCell>
                       <TableCell align="right">Status</TableCell>
@@ -226,23 +226,12 @@ export default function Orders() {
                         orders.map((val, key) => {
                           console.log(val);
                           return (
-                            // <Row 
-                            //   key = {val.orderId}   
-                            //   id = {val.orderId}
-                            //   fname = {val.fname}
-                            //   lname = {val.lname}
-                            //   contact = {val.contact === null ? val.contact : null} 
-                            //   total = {val.total}
-                            //   date = {val.date}
-                            //   status = {val.status}
-                            //   admin = {true}
-                            //   />
                             <Row 
                               key = {val._id}   
                               id = {val._id}
                               fname = {val.fname}
                               lname = {val.lname}
-                              contact = {val.userId.contact} 
+                              contact = {val.contact} 
                               user = {val.userId}
                               total = {val.total}
                               date = {val.date}
@@ -282,9 +271,9 @@ export default function Orders() {
                   <TableHead >
                     <TableRow>
                       <TableCell />
-                      <TableCell>Order Id</TableCell>
-                      <TableCell>Date</TableCell>
-                      {/* <TableCell>Last name</TableCell> */}
+                      <TableCell>Name</TableCell>
+                      <TableCell>Address</TableCell>
+                      <TableCell>Phone number</TableCell>
                       <TableCell align="right">
                         Sub-Total</TableCell>
                       <TableCell align="right">Status</TableCell>
@@ -302,7 +291,7 @@ export default function Orders() {
                               id = {val._id}
                               fname = {val.fname}
                               lname = {val.lname}
-                              contact = {val.userId.contact} 
+                              contact = {val.contact} 
                               user = {val.userId}
                               total = {val.total}
                               date = {val.date}

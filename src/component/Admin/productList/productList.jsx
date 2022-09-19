@@ -293,7 +293,7 @@ export default function ProductList({onMorePage}) {
     food_name:'',
     description: '',
     type: '',
-    status: 1,
+    status: false,
     restaurant: '',
     price: '',
   })
@@ -303,22 +303,24 @@ export default function ProductList({onMorePage}) {
     food_name:'',
     description: '',
     type: '',
-    status: 1,
+    status: true,
     restaurant: '',
     price: '',
   })
+
   // state for product list search bar
 
   const EditProduct = (record) =>{  
+    console.log(record);
     setEditValues({ ...editValues,
       id: record._id,
       food_name: record.food_name,
       description: record.description,
       type: record.type,
       price: record.price,
-      status: record.statusValue 
+      status: record.status 
     })
-
+    console.log(editValues);
   }
 
   const handleAddFood = () =>{
@@ -341,7 +343,7 @@ export default function ProductList({onMorePage}) {
   const handleEditChanges = () =>{
     console.log("handling edit changes");
     console.log(editValues);
-    dispatch(updateFood(editValues.food_name, editValues.description, editValues.type, editValues.id, editValues.price));
+    dispatch(updateFood(editValues.food_name, editValues.description, editValues.type, editValues.id, editValues.price, editValues.status));
     setVisible(false);
     onMorePage(1)
     // window.location.reload(0)
@@ -354,22 +356,6 @@ export default function ProductList({onMorePage}) {
     // dispatch(getAllProducts());
   }
 
-  const mergedColumns = columns.map((col) => {
-    if (!col.editable) {
-      return col;
-    }
-
-    return {
-      ...col,
-      onCell: (record) => ({
-        record,
-        inputType: col.dataIndex === '_id' ? 'number' : 'text',
-        dataIndex: col.dataIndex,
-        title: col._id,
-        editing: isEditing(record),
-      }),
-    };
-  });
   
   console.log(searchInput);
   return (
@@ -472,7 +458,7 @@ export default function ProductList({onMorePage}) {
             label="Product Type"
             rules={[{ required:true , message: "Please Give Status for Product"}]}
           >
-            <Switch checked={addValues.status === 1 ? true : false} onChange={()=> addValues.status === 1 ? setAddValues({...addValues , status: 0}) : setAddValues({...addValues, status: 1}) }  />
+            <Switch checked={addValues.status === true ? true : false} onChange={()=> addValues.status === true ? setAddValues({...addValues , status: false}) : setAddValues({...addValues, status: true}) }  />
 
           </Form.Item>
           
@@ -564,7 +550,7 @@ export default function ProductList({onMorePage}) {
             label="Product Type"
             rules={[{ required:true , message: "Please Give Status for Product"}]}
           >
-            <Switch checked={editValues.status === 1 ? true : false} onChange={()=> editValues.status === 1 ? setEditValues({...editValues , status: 0}) : setEditValues({...editValues, status: 1}) }  />
+            <Switch checked={editValues.status === true ? true : false} onChange={()=> editValues.status === true ? setEditValues({...editValues , status: false}) : setEditValues({...editValues, status: true}) }  />
 
           </Form.Item>
           

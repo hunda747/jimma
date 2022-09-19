@@ -1,7 +1,8 @@
 import React from 'react';
-import './navbar.css'
+import './navbar2.css'
 
 import photo from '../../assets/photo/bj5.jpg';
+import logo from '../../assets/photo/tolo.png';
 
 import {Favorite, SearchIcon, ExitToApp, AccountCircle} from '@material-ui/icons';
 import {Link} from 'react-router-dom';
@@ -37,11 +38,73 @@ export default function navbar() {
           <div className="navbar">
             <div className="logo">
               <Link to={"/"}>
-                {/* <img src={logo} alt="logo" height={'100px'}/> */}
-                Jimma Delivery
+                <img src={logo} alt="logo" height={'50px'}/>
+                {/* <span> .</span> Jimma  */}
               </Link>
             </div>
-            <div className="menu">
+
+            <div className="menus">
+              <ul>
+                <li className='menu current'>Home</li>
+                <li className='menu'>Menu</li>
+                <li className='menu'>Services</li>
+                <li className='menu'>Shop</li>
+              </ul>
+            </div>
+
+            <div className="icons">
+              <div className="icon">
+                <div className="cartIconHolder smaller">
+                  <Link to='/checkout'>  
+                    <ShoppingCartSharp 
+                    style={{color: 'black'}}
+                    className='infosIcons' />   
+                    <span>{getCartCount()}</span>
+                  </Link>
+                </div>
+              </div>
+
+              
+              {cookies?.uid ? 
+                <div className="icon">
+                  <div className="accountIconHolder" onClick={handleLogout}>
+                    {/* <Link to='/login'> */}
+                      <AccountCircle />
+                      LOGOUT
+                    {/* </Link> */}
+                  </div>
+                </div>
+              :
+                <div className="icon">
+                  <Link to='/login'>
+                    <div className="accountIconHolder">
+                      {/* <AccountCircle /> */}
+                      LOGIN
+                    </div>
+                  </Link>
+                </div>
+              }
+            </div>
+
+          </div>
+        </div>
+      </div>
+      
+    </>
+  )
+};
+
+
+// {/* <div className="navbar_main">
+//         <div className="container">
+//           <div className="navbar">
+//             <div className="logo">
+//               <Link to={"/"}>
+//                 {/* <img src={logo} alt="logo" height={'100px'}/> */}
+//                 Jimma Delivery
+//               </Link>
+//             </div>
+//             <div className="menu"> */}
               {/* <div className="btn">
                 <Link to='/login'>
                   Login
@@ -54,7 +117,7 @@ export default function navbar() {
                   </div>
                 </Link>
               </div> */}
-              <div className="icons">
+              {/* <div className="icons">
                 <div className="cartIconHolder smaller">
                   <Link to='/checkout'>  
                     <ShoppingCartSharp 
@@ -63,7 +126,7 @@ export default function navbar() {
                     <span>{getCartCount()}</span>
                   </Link>
                 </div>
-              </div>
+              </div> */}
 
               {/* <div className="btn">
                 {cookies?.fname}
@@ -72,14 +135,14 @@ export default function navbar() {
                   <ExitToApp />
                 </button>
               </div> */}
-              {cookies?.uid ? 
+              {/* {cookies?.uid ? 
                 <div className="icons">
-                  <div className="accountIconHolder" onClick={handleLogout}>
+                  <div className="accountIconHolder" onClick={handleLogout}> */}
                     {/* <Link to='/login'> */}
-                      <AccountCircle />
-                      LOGOUT
+                      {/* <AccountCircle />
+                      LOGOUT */}
                     {/* </Link> */}
-                  </div>
+                  {/* </div>
                 </div>
               :
                 <div className="icons">
@@ -90,17 +153,14 @@ export default function navbar() {
                     </div>
                   </Link>
                 </div>
-              }
+              } */}
                 {/* <div className="btn">
                   <Link to='/register'>
                     Sign Up
                   </Link>
                 </div> */}
-              
+{/*               
             </div>
           </div>
         </div>
-      </div>
-    </>
-  )
-};
+      </div> */}

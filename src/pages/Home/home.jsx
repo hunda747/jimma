@@ -3,7 +3,8 @@ import './home.css'
 
 import photo from '../../assets/photo/bj5.jpg';
 import photoBg from '../../assets/photo/bj5Edit.jpg';
-import hero from '../../assets/photo/bj5Edit.jpg';
+// import hero from '../../assets/photo/bj5Edit.jpg';
+import hero from '../../assets/photo/fhero_img.png';
 
 import {Favorite, SearchIcon} from '@material-ui/icons';
 import {Link} from 'react-router-dom';
@@ -65,8 +66,7 @@ export default function Home() {
                 placeholder="Search" />
                 {/* <button > */}
                 <div className='btn_search' onClick={() => {navigate(`/search/${search}`)}}>
-                  <Search />
-                  {/* <Search style={{background: 'black', display: 'flex', justifyContent: 'center'}}/> */}
+                  <Search style={{background: 'black', display: 'flex', justifyContent: 'center'}}/>
                 </div>
                 {/* </button> */}
               </div>

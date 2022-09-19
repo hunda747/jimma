@@ -140,11 +140,14 @@ export default function AddRestaurant({onMorePage}) {
               onChange={(e) => { setSearch(e.target.value) }}
               placeholder="Search" />
               {/* <button > */}
-              <div className='btn_search' onClick={() => {dispatch(searchFood)}}>
+              <div className='btn_search' 
+              onClick={ () => {
+                console.log(search);
+                dispatch(searchFood(search))
+              }}>
                 <Search style={{background: 'black', display: 'flex', justifyContent: 'center'}}/>
               </div>
-                {/* </button> */}
-              </div>
+            </div>
             <div className="rest_list">
               <h3>choose restaurant</h3>
               <div className="restaurants">

@@ -173,7 +173,7 @@ export default function AddRestaurant({onMorePage}) {
 		}else if(fileList?.length){
 			console.log("this is the product data so far")
 			console.log(restaurantData)
-			dispatch(createRestaurant(restaurantData.name, restaurantData.description, restaurantData.rating, restaurantData.open_days, restaurantData.working_hour, restaurantData.productImg))
+			dispatch(createRestaurant(restaurantData.name, restaurantData.description, restaurantData.rating, restaurantData.open_days, restaurantData.working_hour, restaurantData.productImg, true))
 			// window.location.reload(true)
 			message.success("New Product Created")
 		}

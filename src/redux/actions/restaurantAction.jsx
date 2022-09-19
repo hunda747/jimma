@@ -23,6 +23,26 @@ export const getAllRestaurants = () => async(dispatch)=>{
 	}
 }
 
+export const getRestaurants = () => async(dispatch)=>{
+	try {
+		dispatch({
+			type: actionType.GET_ALL_RESTAURANTS_REQUEST,
+		})
+		const {data} = await api.fetchAllRestaurants();
+		dispatch({
+			type: actionType.GET_ALL_RESTAURANTS_SUCCESS,
+			payload: data
+		})
+	} catch (error) {
+    dispatch({
+      type: actionType.GET_ALL_RESTAURANTS_FAIL,
+      payload:
+        error.response && error.response.data.message 
+        ?error.response.data.message:error.message,
+    });
+	}
+}
+
 export const getRestaurantById = (id) => async(dispatch)=>{
 	try {
 		dispatch({
@@ -43,13 +63,13 @@ export const getRestaurantById = (id) => async(dispatch)=>{
 	}
 }
 
-export const createRestaurant = (name, description, rating, open_days, working_hour, img) => async (dispatch)=>{
+export const createRestaurant = (name, description, rating, open_days, working_hour, img, status) => async (dispatch)=>{
 	console.log('in create reastuarant action');
 	try {
 		dispatch({
 			type: actionType.CREATE_RESTAURANT_REQUEST,
 		});
-		api.createRestaurant(name, description, rating, open_days, working_hour, img);
+		api.createRestaurant(name, description, rating, open_days, working_hour, img, status);
 		dispatch({
 			type: actionType.CREATE_RESTAURANT_SUCCESS,    
 			// payload: data        
@@ -64,13 +84,13 @@ export const createRestaurant = (name, description, rating, open_days, working_h
 	}
 }
 
-export const updateRestaurant = (name, description, rating, open_days, working_hour, img, id) => async (dispatch)=>{
+export const updateRestaurant = (name, description, rating, open_days, working_hour, img, id, status) => async (dispatch)=>{
 	console.log('in change reastuarant action');
 	try {
 		dispatch({
 			type: actionType.CREATE_RESTAURANT_REQUEST,
 		});
-		api.changeRestaurant(name, description, rating, open_days, working_hour, img, id);
+		api.changeRestaurant(name, description, rating, open_days, working_hour, img, id, status);
 		dispatch({
 			type: actionType.CREATE_RESTAURANT_SUCCESS,    
 			// payload: data        

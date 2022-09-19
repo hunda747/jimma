@@ -4,8 +4,8 @@ import { getOrdersInprogress } from '../actions/orderActions';
 // axios.defaults.withCredentials = true;
 axios.create({ withCredentials: true, })
 
-// const localhost = 'http://localhost:5000/';
-const localhost = 'https://jimma-e-comm.herokuapp.com/';
+const localhost = 'http://localhost:5000/';
+// const localhost = 'https://jimma-e-comm.herokuapp.com/';
 
 // user
 const addUserByPhone = localhost + "api/addUserByPhone";
@@ -28,11 +28,13 @@ const changeStatusAccept = localhost + "api/changeStatusAccept";
 const addFood = localhost + "api/addFood";
 const getAllFoods = localhost + "api/getAllFoods";
 const getFoodsByRestaurant = localhost + "api/getFoodsByRestaurant";
+const getAllFoodsByRestaurant = localhost + "api/getAllFoodsByRestaurant";
 const updateFood = localhost + "api/updateFood";
 const searchFood = localhost + "api/searchFood";
 
 // Restaurant
 const getAllRestaurant = localhost + "api/getAllRestaurant";
+const getRestaurant = localhost + "api/getRestaurant";
 const getRestaurantById = localhost + "api/getRestaurantById";
 const addRestaurant = localhost + "api/addRestaurant";
 const updateRestaurant = localhost + "api/updateRestaurant";
@@ -57,25 +59,26 @@ export const createFood = (food_name,description,type,restaurant,price) => {
   })
 }
 
-export const changeFood = (food_name,description,type,id,price) => {
+export const changeFood = (food_name,description,type,id,price,status) => {
   return axios.post(updateFood, {
     food_name: food_name,
     description: description,
     type: type,
     id: id,
-    price: price
+    price: price,
+    status: status
   })
 }
 
-export const createRestaurant = (name, description, rating, open_days, working_hour, img) => {
+export const createRestaurant = (name, description, rating, open_days, working_hour, img, status) => {
   return axios.post(addRestaurant, {
-    name, description, rating, open_days, working_hour, img
+    name, description, rating, open_days, working_hour, img, status
   })
 }
 
-export const changeRestaurant = (name, description, rating, open_days, working_hour, img, id) => {
+export const changeRestaurant = (name, description, rating, open_days, working_hour, img, id, status) => {
   return axios.post(updateRestaurant, {
-    name, description, rating, open_days, working_hour, img, id
+    name, description, rating, open_days, working_hour, img, id, status
   })
 }
 
@@ -127,6 +130,10 @@ export const fetchRestaurants = () =>{
   return axios.get(getAllRestaurant);
 }
 
+export const fetchAllRestaurants = () =>{
+  return axios.get(getRestaurant);
+}
+
 export const fetchRestaurantById = (id) =>{
   return axios.post(getRestaurantById, {
     id: id
@@ -143,6 +150,12 @@ export const fetchFoodsBySearch = (food) =>{
 
 export const fetchFoodsByRestaurant = (restaurant) =>{
   return axios.post(getFoodsByRestaurant, {
+    restaurant: restaurant
+  });
+}
+
+export const fetchAllFoodsByRestaurant = (restaurant) =>{
+  return axios.post(getAllFoodsByRestaurant, {
     restaurant: restaurant
   });
 }

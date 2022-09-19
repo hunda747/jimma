@@ -18,7 +18,7 @@ a {
   display: flex;
   justify-content: space-between;
   padding: 10px 45px;
-  /* width: 1400px; */
+  width: 1200px;
   margin: auto;
   /* height: 50px; */
 }
@@ -26,9 +26,36 @@ a {
 .navbar .logo{
   font-family: 'EB Garamond','Aboreto', sans-serif;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 25px;
+  margin: auto 5px;
   color: black;
 }
+
+.navbar .menus{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: center;
+  margin: auto;
+}
+
+.navbar .menus ul{
+  margin: 0;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  vertical-align: center;
+}
+.navbar .menus ul li{
+  list-style: none;
+}
+
+.navbar .menus .current{
+  font-weight: bold;
+}
+
+
 
 .navbar .icons{
   display: flex;
@@ -51,6 +78,7 @@ a {
   vertical-align: center;
   padding: 10px;
   border-radius: 175px;
+  color: black
   /* border: 2px solid rgb(147, 147, 147); */
 }
 
@@ -58,31 +86,35 @@ a {
   display: flex;
   justify-content: center;
   vertical-align: center;
-  /* align-items: center; */
-  /* height: 100%; */
-  background-color: #FFE45E;
+  background-color: #f6d017f4;
   transition: all ease 0.3s;
   transform: scale(1.2);
-  padding: 7px;
-  /* padding: 8px 8px; */
-  border-radius: 175px;
-  border: 2px solid rgb(147, 147, 147);
-  /* background-color: white; */
+  font-size: 12px;
+  padding: 7px 13px;
+  border-radius: 15px;
+  color: black;
+  /* border: 2px solid rgb(147, 147, 147); */
 }
 
 
-.navbar .icons .icon .cartIconHolder:hover, .navbar .icons .icon .accountIconHolder:hover {
+.navbar .icons .icon .cartIconHolder:hover{
   transition: all ease 0.9s;
+  transform: scale(1.1);
+  /* background-color: #f9cf00f4; */
+}
+
+.navbar .icons .icon .accountIconHolder:hover {
+  transition: all ease 0.3s;
   /* padding: 8px 8px; */
   /* border-radius: 75px; */
-  background-color: black;
+  background-color: #ffea80f4;
 }
 
 
 .navbar .icons .icon .cartIconHolder span{
   padding: 1px;
   top: 0;
-  /* color: rgb(255, 204, 0); */
+  color: black;
   object-fit: contain;
   font-size: 12px;
   font-weight: bold;
@@ -133,7 +165,7 @@ a {
   padding: 10px 21px;
   text-align: center;
   text-transform: none;
-  transition: color .13s ease-in-out,background .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
+  /* transition: color .13s ease-in-out,background .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out; */
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;

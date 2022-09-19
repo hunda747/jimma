@@ -43,6 +43,26 @@ export const getFoodsByRestaurant = (restaurant) => async(dispatch)=>{
 	}
 }
 
+export const getAllFoodsByRestaurant = (restaurant) => async(dispatch)=>{
+	try {
+		dispatch({
+			type: actionType.GET_FOOD_REQUEST,
+		})
+		const {data} = await api.fetchAllFoodsByRestaurant(restaurant);
+		dispatch({
+			type: actionType.GET_FOOD_SUCCESS,
+			payload: data
+		})
+	} catch (error) {
+    dispatch({
+      type: actionType.GET_FOOD_FAIL,
+      payload: 
+        error.response && error.response.data.message 
+        ?error.response.data.message:error.message,
+    });
+	}
+}
+
 export const searchFood = (food) => async(dispatch)=>{
 	try {
 		dispatch({
@@ -83,16 +103,16 @@ export const createFood = (food_name,description,type,restaurant,price) => async
 	}
 }
 
-export const updateFood = (food_name,description,type,id,price) => async (dispatch)=>{
+export const updateFood = (food_name,description,type,id,price, status) => async (dispatch)=>{
 	try {
 		dispatch({
 			type: actionType.CREATE_FOOD_REQUEST,
 		});
-		api.changeFood(food_name,description,type,id, price);
+		api.changeFood(food_name,description,type,id, price, status);
 		dispatch({
 			type: actionType.CREATE_FOOD_SUCCESS,    
 			// payload: data        
-		});			
+		});
 	} catch (error) {
 		dispatch({
 		type: actionType.CREATE_FOOD_FAIL,
