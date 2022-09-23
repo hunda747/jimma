@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import './home.css'
 
+import Feature from '../../component/Feature/feature'
+
 import photo from '../../assets/photo/bj5.jpg';
 import photoBg from '../../assets/photo/bj5Edit.jpg';
 // import hero from '../../assets/photo/bj5Edit.jpg';
@@ -51,10 +53,11 @@ export default function Home() {
 
         <Navbar />
 
-        <header className='showcase'>
+        <Feature />
+
+        {/* <header className='showcase'>
           <div className='containerdd'>
             <div className="hero">
-              {/* <h1>Get food from your favorite restaurants in Jimma delivered to your home or office.</h1> */}
               <h1>Order food to your home or office.</h1>
               <p>Best cook and best delivery at your service </p>
               <div className="searchBar">
@@ -64,11 +67,11 @@ export default function Home() {
                 value={search}
                 onChange={(e) => { setSearch(e.target.value) }}
                 placeholder="Search" />
-                {/* <button > */}
+
                 <div className='btn_search' onClick={() => {navigate(`/search/${search}`)}}>
                   <Search style={{background: 'black', display: 'flex', justifyContent: 'center'}}/>
                 </div>
-                {/* </button> */}
+
               </div>
               <p><a href="/login">Sign In</a> for your recent addresses</p>
             </div>
@@ -76,7 +79,7 @@ export default function Home() {
               <img src={hero} alt="hero" />
             </div>
           </div>
-        </header>
+        </header> */}
 
         <div className='main_rest'>
           <div className="">
@@ -87,9 +90,9 @@ export default function Home() {
                 <h1>Featured Restaurants</h1>
                   <ul className='cards'>
                   {
-                    restaurants?.map((restaurant) => {
+                    restaurants?.map((restaurant, index) => {
                       return(
-                        <li class="cards_item">
+                        <li class="cards_item" key={index}>
                             <div class="card">
                               <Link to={`/detail/${restaurant._id}`}>
                               <div class="card_image">
@@ -153,7 +156,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="info">
+        {/* <div className="info">
           <div className="container">
             <h1>How it works</h1> 
             <div className="items">
@@ -174,7 +177,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <Footer />
       </div>

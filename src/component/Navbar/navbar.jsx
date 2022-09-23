@@ -51,6 +51,9 @@ export default function navbar() {
               </div>
 
               <nav className={`${classes.header__content__nav} ${menuOpen ? classes.isMenu : ''}`}>
+                  <div className={classes.header__content__nav__logo} >
+                      <img src={logo} alt="Logo"  style={{width:'60px', height: '60px', marginBottom: '5rem'}} />
+                  </div>
                   <ul>
                     <li>
                       <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Home</Link>

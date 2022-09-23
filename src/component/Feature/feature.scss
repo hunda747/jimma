@@ -1,0 +1,236 @@
+@import '../../styles/variables.scss';
+
+.slider{
+    top: 0;
+    width: 100%;
+    height: 350px;
+    object-fit: contain;
+    overflow: hidden;  
+    background-color: white;
+    transition: all ease 0.4s;
+
+    @include breakpoint(sm){
+        height: 400px;
+        transition: all ease 0.4s;
+    }
+    @include breakpoint(md){
+        height: 550px;
+        transition: all ease 0.4s;
+    }
+    @include breakpoint(lg){
+        height: 700px;
+        transition: all ease 0.4s;
+    }
+
+}
+
+
+
+
+.slide{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    width: 100%;
+    height: 100%;
+    padding: 0;   
+    opacity: 0;
+    transform: translateX(-50%);
+    transition: all ease 0.5s; 
+    object-fit: contain;
+    
+    
+    .imgHolder{
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+ 
+    }
+    
+
+
+    img{
+        position: relative;
+       width: 400px;
+       height: 100%;
+       float: right; 
+       transition:  all ease 0.4s;
+       
+
+       @include breakpoint(sm){
+            height: 400px;
+            transition:  all ease 0.4s;
+       }
+       @include breakpoint(md){
+            height: 600px;
+            width: 550px;
+            transition:  all ease 0.4s;
+       }
+       @include breakpoint(lg){
+            height: 700px;
+            width: 600px;
+            transition:  all ease 0.4s;
+       }
+    }
+}
+
+
+.content{
+    position: absolute;
+    left: 1rem;
+    opacity: 0;
+    width: 90%;
+    padding: 3rem;
+    animation: slideUp 1s ease .5s;
+    animation-fill-mode: forwards;
+    visibility: hidden;
+
+    div{
+        width: 90%;
+        padding: 3px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+        input{
+            display: flex;
+            flex: 4;
+            width: 100%;
+            height: 40px;
+            border: none;
+            padding: 5px;
+            background: linear-gradient(to right , rgba(255, 166, 0, 0.63) , white);
+            border-radius: 7px;
+            font-size: 12px;
+            font-family: $Poppins;
+            font-weight: 300;
+            color: white;
+        }
+        div{
+            flex: 1;
+            background-color: rgba(255, 166, 0, 0.63) ;
+            padding: 0.5rem;
+            margin: 0 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 7px;
+
+            svg{
+                color: white;
+                font-size: 25px;
+            }
+
+        }
+    }
+    
+    
+    @include breakpoint(sm){
+        width: 80%;
+        padding: 2rem;
+        left: 2rem ;
+    }
+    @include breakpoint(md){
+        width: 70%;
+    }
+    @include breakpoint(lg){
+        width: 50%;
+    }
+
+
+}
+
+@keyframes slideUp{
+    
+    0%{
+        visibility: visible;
+        top: 30rem;    
+
+    }
+    100%{
+        visibility: visible;
+        top: 3rem;  
+    
+        
+    }
+}
+
+.content h2{
+    font-size: 20px;    
+    padding: 0;
+    margin: 0;
+    color: $dark;
+    font-family: $Poppins;
+    font-weight: bold;
+
+    @include breakpoint(sm){
+        font-size: 25px;
+    }
+    @include breakpoint(md){
+        font-size: 35px;
+        margin-top: 6rem;
+    }
+    @include breakpoint(lg){
+        font-size: 40px;
+        margin-top: 8rem;
+    }
+
+  
+}
+.content h3{
+    font-size: 17px;
+    padding: 4px;
+    color: $dark;
+    font-family: $Poppins;
+    font-weight: 300;
+
+    @include breakpoint(sm){
+
+    }
+    @include breakpoint(md){
+
+    }
+    @include breakpoint(lg){
+
+    }
+
+}
+
+
+.content > * {
+    color: rgb(147, 86, 5);
+    background-color: transparent;
+
+}
+.current{
+    opacity: 1;
+    transform: translateX(0);
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    
+}
+.current .content{
+    opacity: 1;
+}
+
+.arrow {   
+    position: absolute;
+    z-index: 999;
+    cursor: pointer;
+    color: white;
+    top: 45%;
+}
+
+.arrow:hover{
+    color: gray;
+}
+.next{ 
+    right: 1rem;
+}
+.prev{  
+    left: 1rem;
+}
