@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './navbar2.css'
 
 import photo from '../../assets/photo/bj5.jpg';
@@ -12,9 +12,15 @@ import {Twitter, Instagram, Facebook, LinkedIn, LocationOn, List, ShoppingCart, 
 
 import { useCookies } from 'react-cookie';
 
+import classes from './navbar.module.scss'
+
+import {BiMenuAltRight} from 'react-icons/bi'
+import {AiOutlineClose} from 'react-icons/ai'
+import Button from '@material-ui/core/Button';
+
 export default function navbar() {
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
-  
+  const [menuOpen , setMenuOpen] = useState(false)
 
   const handleLogout = () => {
     removeCookie('fname', { path: '/' });
@@ -31,15 +37,63 @@ export default function navbar() {
     return cartItems.reduce((qtyCounter, item) => Number(item.qtyCounter) + qtyCounter , 0);
   }
 
+  const menuToggleHandler = ()=>{
+    setMenuOpen((e)=> !e) // set opposite to what is given
+  }
+
+
   return(
     <>
+      <header className={classes.header}>
+          <div className={classes.header__content}>
+              <div className={classes.header__content__logo}>
+                  <img src={logo} alt="Logo" />
+              </div>
+
+              <nav className={`${classes.header__content__nav} ${menuOpen ? classes.isMenu : ''}`}>
+                  <ul>
+                    <li>
+                      <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Home</Link>
+                    </li>
+                    <li>
+                      <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Menu</Link>
+                    </li>
+                    <li>
+                      <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Services</Link>
+                    </li>
+                    <li>
+                      <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Shop</Link>
+                    </li>
+
+                      <li>
+                        <Link  style={menuOpen? {color:'white' , marginTop: '10rem'}: {}} to='/checkout' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> <ShoppingCart/> <span>{getCartCount()}</span></Link>
+                    </li>
+                    <li> 
+                    <Button variant="outlined" color="secondary">
+                          Logout
+                    </Button>
+                    </li>                  
+                  </ul>
+
+              </nav>            
+
+              <div className={classes.header__content__toggle}>
+                {
+                  !menuOpen ?  <BiMenuAltRight onClick={menuToggleHandler} /> : <AiOutlineClose onClick={menuToggleHandler} />
+                }
+             </div>  
+
+          </div>
+      </header>
+
+{/* 
       <div className="navbar_main">
         <div className="container">
           <div className="navbar">
             <div className="logo">
               <Link to={"/"}>
                 <img src={logo} alt="logo" height={'50px'}/>
-                {/* <span> .</span> Jimma  */}
+               
               </Link>
             </div>
 
@@ -68,17 +122,17 @@ export default function navbar() {
               {cookies?.uid ? 
                 <div className="icon">
                   <div className="accountIconHolder" onClick={handleLogout}>
-                    {/* <Link to='/login'> */}
+             
                       <AccountCircle />
                       LOGOUT
-                    {/* </Link> */}
+                
                   </div>
                 </div>
               :
                 <div className="icon">
                   <Link to='/login'>
                     <div className="accountIconHolder">
-                      {/* <AccountCircle /> */}
+                    
                       LOGIN
                     </div>
                   </Link>
@@ -88,7 +142,7 @@ export default function navbar() {
 
           </div>
         </div>
-      </div>
+      </div> */}
       
     </>
   )
