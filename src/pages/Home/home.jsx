@@ -22,13 +22,13 @@ import { getAllRestaurants } from '../../redux/actions/restaurantAction';
 
 import { CircularProgress} from '@material-ui/core';
 
-import {useNavigate} from 'react-router-dom';
+
 import { useCookies } from 'react-cookie';
 
 export default function Home() {
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
-  const [search, setSearch ] = useState('');
-  const navigate = useNavigate();
+ 
+ 
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -55,31 +55,7 @@ export default function Home() {
 
         <Feature />
 
-        {/* <header className='showcase'>
-          <div className='containerdd'>
-            <div className="hero">
-              <h1>Order food to your home or office.</h1>
-              <p>Best cook and best delivery at your service </p>
-              <div className="searchBar">
-                <input 
-                class="search__input" 
-                type="text" 
-                value={search}
-                onChange={(e) => { setSearch(e.target.value) }}
-                placeholder="Search" />
 
-                <div className='btn_search' onClick={() => {navigate(`/search/${search}`)}}>
-                  <Search style={{background: 'black', display: 'flex', justifyContent: 'center'}}/>
-                </div>
-
-              </div>
-              <p><a href="/login">Sign In</a> for your recent addresses</p>
-            </div>
-            <div className="heroImg">
-              <img src={hero} alt="hero" />
-            </div>
-          </div>
-        </header> */}
 
         <div className='main_rest'>
           <div className="">

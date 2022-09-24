@@ -5,13 +5,13 @@ import {featureData} from '../Feature/featureData.jsx'
 import { Link } from 'react-router-dom';
 
 import SearchIcon from '@material-ui/icons/Search';
-
+import {useNavigate} from 'react-router-dom';
 
 export default function Feature() {
 
-  const [current, setCurrent] = useState(0)
-  
-
+  const [current, setCurrent] = useState(0)  
+  const [search, setSearch ] = useState('');
+  const navigate = useNavigate();
 
   const autoScroll = true;
 
@@ -62,11 +62,21 @@ export default function Feature() {
                                  <h3>{slide.info}</h3>      
 
                                  <div className="searchBarHolder">
-                                      <input type="text"  placeholder='Search'/>
-                                      <div className="searchBtnHolder">
-                                          <SearchIcon  />
-                                      </div>
+                                      <input 
+                                          type="text" 
+                                          className='searchInput active'  
+                                          placeholder='Search'
+                                          value={search}
+                                          onChange={(e) => { setSearch(e.target.value) }}
+                                          
+                                          
+                                          />                                     
+                                          <SearchIcon  
+                                             onClick={() => {navigate(`/search/${search}`)}}
+                                          />                                      
                                  </div>
+
+                                 <p><a href="/login">Sign In</a> for your recent addresses</p>
 
                             </div>
                           </div>
