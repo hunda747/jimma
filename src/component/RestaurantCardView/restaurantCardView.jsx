@@ -1,5 +1,7 @@
 import React from 'react';
-import './restaurantCardView.css';
+
+
+import './restaurantCardView.scss'
 
 import { useDispatch, useSelector } from 'react-redux';
 import {Link} from 'react-router-dom';
@@ -8,53 +10,65 @@ import { useNavigate } from 'react-router-dom';
 
 import Rating from '../../component/displayStar'
 
-export default function restaurantCardView(props) {
+export default function RestaurantCardView(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
   const handleClick = () => {
     navigate(`/detail/${props.id}`);
   }
 
   return (
-    // <div classNameName="restaurant" 
-    //   onClick={() => {
-    //     handleClick();
-    //     props.changePage(10)}
-    //   }>
-    //     <img src={props.img} width='50px' height='50px' alt="img " />
-    //     <h3>{props.name}</h3>
-    //     {/* <p>{props.description}</p> */}
-    //     {/* <div classNameName=""> */}
-    //       <p classNameName='open'>open</p>
-    //     {/* </div> */}
-    //     <button>edit</button>
+      <>
+        <div className='restCard'>
+            <div className="restCardWrapper">
+                <div className="restCardImageHolder">
+                  <img src="https://media.istockphoto.com/photos/pan-fried-duck-picture-id1081422898?k=20&m=1081422898&s=612x612&w=0&h=YkfQqtV3nN1gB_HaehyvjcTEye7w9FBPkG-PIKdDzPo=" alt="" />
+                 
+
+                <div className="restCardInfoHolder">
+                      <div className="restCardInfo">
+                            <div className="restCardInfoHeader">
+                                 <h1>Name</h1>
+                            </div>
+                            <div className="restCardInfoActions">
+                                <button>Locate</button>
+                                <button>View</button>
+                                <button>Share</button>
+                            </div>
+                            <div className="restCardInfoDesc">
+                                <p>Description info</p>
+                            </div>
+                      </div>
+                </div>
+
+                </div>
+                
+            </div>
+           
+        </div>
+
+      
+      
+      </>
+
+
+
+
+    // <div  className="column" 
+    //       onClick={() => {
+    //        handleClick() }}>
+    //   <div className="post-module hover">
+    //     <div className="thumbnail">
+    //         <img src={props.img}/>
+    //     </div>
+    //     <div className="post-content">
+    //       <div className="category">Photos</div>
+    //       <h1 className="title">{props.name}</h1>
+    //       <p className="description">{props.description}</p>
+     
+    //     </div>
     //   </div>
-    <div  className="column" 
-          onClick={() => {
-           handleClick() }}>
-      <div className="post-module hover">
-        <div className="thumbnail">
-            <img src={props.img}/>
-        </div>
-        <div className="post-content">
-          <div className="category">Photos</div>
-          <h1 className="title">{props.name}</h1>
-          <p className="description">{props.description}</p>
-          {/* <div classNameName="post-meta"> */}
-            {/* <Rating rating={props.rating}/> */}
-          {/* </div> */}
-          {/* <div className="post-meta">
-            <span className="timestamp">
-              <i className="fa fa-clock-o"></i> 
-              6 mins ago
-            </span>
-            <span className="comments">
-              <i className="fa fa-comments"></i>
-              <a href="#"> 39 comments</a>
-            </span>
-          </div> */}
-        </div>
-      </div>
-    </div>
+    // </div>
   )
 }

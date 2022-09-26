@@ -84,11 +84,10 @@
 }
 
 .checkout .mapHolder{
-    display: flex;
     flex: 1.3;
     margin: 0;
     padding: 0;
-    width: 70%;
+    width: 100%;
     /* height: 100vh; */
     height: 400px;
     overflow:visible;
@@ -96,7 +95,7 @@
 
 .checkout .stepOneInfo{
     display: flex;
-    width: 30%;
+    width: 100%;
     flex: 1;
     margin: 0;
     padding: 8px;
@@ -176,7 +175,7 @@
     }
     .stepOneContainer{
         display: none;
-        flex-direction: column;
+        flex-direction: row;
         /* height: 800px; */
     }
     .memberDiscount svg{
@@ -206,275 +205,17 @@
     
 }
 
-
-
-
-
-
-
-
-/* 
-
-
-
-
-
-*{
-    padding: 0;
-    margin: 0;
-}
-
-.checkout{
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
-}
-
-.checkoutPath{
-    padding: 0;
-    margin: 0;
-    width: 100%;
-
-}
-.pathContent{
-    padding: 5px;
-    color: rgb(163, 159, 159);
-    font-style: normal;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    margin: 10px 15px;
-    font-size: 15px;
-    font-weight: lighter;
-}
-.checkoutTitle{
-    padding: 0;
-    margin: 0;
-    width: 100%;
-}
-.titleContent{
-    padding: 5px;
-    color: rgb(0, 0, 0);
-    font-style: normal;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    margin: 10px 15px;
-    font-size: 35px;
-    font-weight: lighter;
-
-}
-
-
-
-
-.stepsWrapper{
-    display: flex;
-    flex-direction: column;
-    padding: 5px;
-    margin: 10px 15px;
-    justify-content: center;
-}
-
-.stepOne,
-.stepTwo,
-.stepThree,
-.stepFour,
-.stepFive{
-    width: 100%;
-    overflow: hidden;
-    font-weight: 500;
-
-}
-.collapsibleCheckbox{
-    display: none;
-}
-
-.stepOne label,
-.stepTwo label,
-.stepThree label,
-.stepFour label,
-.stepFive label{
-    position: relative;
-    font-weight: 600;
-    background: linear-gradient(to bottom , white , rgba(219, 218, 218, 0.671));
-    color: rgb(0, 0, 0);
-    border: 0.1px solid rgb(207, 203, 203);
-    display: flex;
-    margin-bottom: 10px;
-    cursor: pointer;
-    padding: 15px;
-    border-radius: 4px;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 1;
-}
-
-.stepOne label:after,
-.stepTwo label:after,
-.stepThree label:after,
-.stepFour label:after,
-.stepFive label:after{
-    content: "";
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    width: 18px;
-    height: 18px;
+@media(max-width: 375px){
+    .stepOneContainer{
     
-}
-.collapisble-content{
-    max-height: 1px;
-    overflow: hidden;
-    border-radius: 4px;
-    line-height: 1.4;
-    position: relative;
-    top: -100%;
-    opacity: 0.5;
-    transition: all 0.4s ease;
-}
-
-.stepOne input:checked ~ .collapisble-content,
-.stepTwo input:checked ~ .collapisble-content,
-.stepThree input:checked ~ .collapisble-content,
-.stepFour input:checked ~ .collapisble-content,
-.stepFive input:checked ~ .collapisble-content{
-    max-height: fit-content;
-    padding-bottom: 15px;
-    background:white;
-    opacity: 1;
-    top: 0;
-
-
-}
-
-
-.forms{
-    padding: 0;
-    display: flex;
-    width: 100%;
-}
-.new_customer_form{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-.newCustomerTitle,
-.returningCustomerTitle{
-    font-size: 30px;
-    font-weight: bold;
-    padding-bottom: 10px;
-}
-.new_customer_form p{
-    font-size: 12px;
-    font-weight: normal;
-    color: rgba(0, 0, 0, 0.596);
-    padding: 5px;
-    line-height: 2;
-}
-.new_customer_form_btn,
-.loginBtn
-{
-    width: fit-content;
-    padding-top: 10px;
-    margin: 20px 10px;
-
+        flex-direction: column;
+        height: 500px;
+    }
+    .stepOneInfo{
+        width: 100%;
+    }
 }
 
 
 
-.returning_customer_form{
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-}
 
-.returning_customer_form p{
-    font-size: 12px;
-    font-weight: normal;
-    color: rgba(0, 0, 0, 0.596);
-    padding: 5px;
-    line-height: 2;
-}
-.email_input,
-.password_input{
-    display: flex;
-    padding: 2px;
-    margin-left: 5px;
-    align-items: center;
-    border-radius: 1px;
-    border: 1px rgba(128, 128, 128, 0.486) solid;   
-    margin-bottom: 5px;
-}
-.email_input:hover, 
-.email_input:active,
-.password_input:hover,
-.password_input:active{
-    border: 2px lightblue solid;
-    border-radius: 1px;
-  
-}
-.step2ContentWrapper{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-}
-.formHolder{
-    padding: 0;
-    display: flex;
-    width: 100%;
-    margin: 0;
-}
-.personal{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    height: 100%;
-}
-.address{
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    height: 100%;
-}
-.personal h3{
-    font-size: 20px;
-    font-weight: 200;
-    padding-bottom: 10px;
-}
-.personalForm{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-
-}
-.personalForm h4{
-    font-size: 20px;
-    font-weight: 300;
-    margin: 10px 0px;
-    padding: 4px;
-}
-.personalForm input ,
-.addressForm input{
-    width: 90%;
-    padding: 4px;
-    margin: 2px 0px;
-    border: 0.3px solid rgba(0, 0, 0, 0.356);
-    border-radius: 3px;
-    cursor: pointer;
-}
-.personalForm input:hover,
-.addressForm input:hover{
-    border: 2px solid lightblue;
-}
-
-
-.address h3{
-    font-size: 20px;
-    font-weight: 200;
-    padding-bottom: 10px;
-}
-.btnHolder{
-    display: flex;
-    align-items: center;
-    justify-content: right;
-} */

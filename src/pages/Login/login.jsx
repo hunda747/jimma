@@ -1,5 +1,5 @@
 import React, {useState, useEffect , useRef} from 'react'
-import './login.css'
+import './login.scss'
 
 import imgage from './search.png';
 import { Link } from 'react-router-dom';
