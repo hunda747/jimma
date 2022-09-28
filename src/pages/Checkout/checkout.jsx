@@ -287,8 +287,7 @@ export default function Checkout() {
                 </div>
               </div>
           </div>
-          <br />
-          <br />
+        
           <div className="stepTitle">
             <p>Step 2 - Confirm Shopping Cart</p>
           </div>
