@@ -47,6 +47,11 @@ $restCardWidth: 345px;
         }
 
     }
+    @if $point == mdP {
+        @media (min-width: 920px){
+            @content
+        }
+    };
     @if $point == lg{
          // 1080px
          @media(min-width: 1080px){

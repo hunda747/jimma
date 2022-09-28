@@ -46,7 +46,7 @@ export default function navbar() {
               </div>
 
               <nav className={`${classes.header__content__nav} ${menuOpen ? classes.isMenu : ''}`}>
-                  <div className={classes.header__content__nav__logo} >
+                  <div className={classes.header__content__nav__logo}  style={menuOpen? {marginTop: '1rem'}:{}}>
                       <img src={logo} alt="Logo"  style={{width:'60px', height: '60px', marginBottom: '5rem'}} />
                   </div>
                   <ul>
@@ -63,27 +63,34 @@ export default function navbar() {
                       <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Shop</Link>
                     </li>
 
-                      <li>
-                        <Link  style={menuOpen? {color:'white' , marginTop: '10rem'}: {}} to='/checkout' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> <ShoppingCart/> <span>{getCartCount()}</span></Link>
-                    </li>
                     <li> 
                       {
                         cookies?.uid ? 
-                        <div className={classes.header__content__nav__logoutHolder} 
+                        <div className={classes.header__content__nav__controllers} 
+                            style={menuOpen? {marginTop:'9rem' , padding: '0', display: 'flex', flexDirection:'column'}: {}}
+                        >
+                              <>
+                              <Link  style={menuOpen? {color:'white' , marginTop: '10rem'}: {}} to='/checkout' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> <ShoppingCart/> <span>{getCartCount()}</span></Link>
+                              </>
+                              <div className={classes.header__content__nav__controllers__logoutHolder} 
                             style={menuOpen? {display:'flex', width: '100%' , justifyContent: 'space-between', alignItems:'center',}:{}}
                           >
+
                           <AccountCircleIcon style={menuOpen? {fontSize: '30px' , color: '#6464d5'}:{}} />
-                          <Button variant="outlined" color="secondary" onClick={handleLogout}>
-                            Logout
-                          </Button>
-                        </div>:
-                        <>
+                          <Button variant="contained" color="secondary" onClick={handleLogout}>
+                               Logout
+                            </Button>
+                         
+                        </div>
+                        </div>
+                      :
+                        <div className={classes.header__content__nav__controllers}>
                           <Link to='/login'>
                             <Button variant="contained" color="secondary">
                                Login
                             </Button>
                           </Link>
-                        </>
+                        </div>
                       }
                    
                     </li>                  

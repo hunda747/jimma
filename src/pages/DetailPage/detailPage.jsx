@@ -35,7 +35,8 @@ export default function DetailView() {
   }, []);
 
   const restaurants = useSelector(state => state.restaurant.restaurant);
-  const foods = useSelector(state => state.food.food);
+  const allFoods = useSelector(state => state.food);
+  const {loading , food , error} = allFoods
   const cart = useSelector(state => state.cart);
   const {cartItems} = cart;
  
@@ -53,6 +54,40 @@ export default function DetailView() {
 
   return(
     <>
+
+{
+        loading? 
+        <>
+             <div className='loader'>
+                 <div class="container">
+                    <svg width="100" height="100" viewBox="0 0 300 300">
+                      <defs>
+                        <linearGradient id="gradient-fill" gradientUnits="userSpaceOnUse" x1="0" y1="300" x2="300" y2="0">
+                          <stop offset="0%">
+                            <animate attributeName="stop-color" values="#00E06B;#CB0255;#00E06B" dur="5s" repeatCount="indefinite" />
+                          </stop>
+                          <stop offset="100%">
+                            <animate attributeName="stop-color" values="#04AFC8;#8904C5;#04AFC8" dur="8s" repeatCount="indefinite" />
+                          </stop>
+                        </linearGradient>
+                        <clipPath id="clip">
+                          <rect class="square s1" x="0" y="0" rx="12" ry="12" height="90" width="90"></rect>
+                          <rect class="square s2" x="100" y="0" rx="12" ry="12" height="90" width="90"></rect>
+                          <rect class="square s3" x="200" y="0" rx="12" ry="12" height="90" width="90"></rect>
+                          <rect class="square s4" x="0" y="100" rx="12" ry="12" height="90" width="90"></rect>
+                          <rect class="square s5" x="200" y="100" rx="12" ry="12" height="90" width="90"></rect>
+                          <rect class="square s6" x="0" y="200" rx="12" ry="12" height="90" width="90"></rect>
+                          <rect class="square s7" x="100" y="200" rx="12" ry="12" height="90" width="90"></rect>
+                        </clipPath>
+                      </defs>
+                      <rect class="gradient" clip-path="url('#clip')" height="300" width="300"></rect>
+                    </svg>
+                  </div>
+              </div>
+        </>: 
+        error? <>Server Error</>:
+        <></>
+      }
       <Navbar />
       <div className="detail">
         <div className="image"> 
@@ -77,10 +112,10 @@ export default function DetailView() {
           <div className="menu">
             <h2>Menu</h2>
             <div className="menu_container">
-              {foods.length !== 0 ? 
+              {food.length !== 0 ? 
               <>
                 <div className="displayMenu">
-                  {foods?.map((food) => {
+                  {food?.map((food , index) => {
                     return(
                       <div className="menuItem">
                         <FoodCard 
@@ -120,8 +155,7 @@ export default function DetailView() {
               </>
               : 
               <div>
-                <CircularProgress style={{color: "black"}} />
-                
+                <p>Not Available</p>                
               </div>
               }
             </div>
