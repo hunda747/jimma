@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './home.scss'
 
 import Feature from '../../component/Feature/feature'
-
+import InfinitScroll from '../../component/InfinitScroll/infinitScroll';
 import photo from '../../assets/photo/bj5.jpg';
 import photoBg from '../../assets/photo/bj5Edit.jpg';
 // import hero from '../../assets/photo/bj5Edit.jpg';
@@ -90,6 +90,11 @@ export default function Home() {
         <Navbar />
 
         <Feature />   
+        <br />
+
+        <div className="infinitScrollerContainer">
+            <InfinitScroll  />
+        </div>
 
         <div className='main_rest'>
           <div className="">
