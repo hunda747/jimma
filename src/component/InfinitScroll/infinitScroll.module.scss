@@ -20,27 +20,44 @@
 
         &__item1{
             display: flex;
-            width: 200%;
+            width: 300%;
             align-items: center;
             justify-content: space-between;
             animation: scroll 20s linear infinite;
             margin-left: 0rem;
+            transition: all ease 0.4s;
 
+
+            @include breakpoint(md){
+                width: 200%;
+                transition: all ease 0.4s;
+            }
             &:hover{
                 animation-play-state: paused;
             }
        
             
             div{
-                width: 250px;
-                height: 150px;
+                width: 170px;
+                height: 70px;
                 align-items: center;
                 justify-content: center;
                 display: flex;
-                margin: 0 1rem;
+                margin-right: 2rem;
                 background-color: rgb(226, 239, 45);
                 border: none;
                 border-radius: 5px;
+
+              
+                @include breakpoint(md){
+                    height: 100px;
+                    transition: all ease 0.4s;
+                }
+                @include breakpoint(lg){
+                    width: 250px;
+                    height: 120px;
+                    transition: all ease 0.4s;
+                }
             }
 
         }
@@ -52,8 +69,8 @@
         
 
             div{
-                width: 250px;
-                height: 150px;
+                width: 170px;
+                height: 70px;
                 align-items: center;
                 justify-content: center;
                 display: flex;
@@ -61,6 +78,16 @@
                 background-color: rgb(226, 239, 45);
                 border: none;
                 border-radius: 5px;
+
+                @include breakpoint(md){
+                    height: 100px;
+                    transition: all ease 0.4s;
+                }
+                @include breakpoint(lg){
+                    width: 250px;
+                    height: 120px;
+                    transition: all ease 0.4s;
+                }
             }
         }
     }
