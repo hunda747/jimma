@@ -1,0 +1,219 @@
+
+
+
+.checkout_main {
+    padding: 0;
+    margin: 0;
+    /* font-size: 12px; */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.checkout {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: auto;
+    max-width: 1300px;
+}
+
+.checkout .checkoutPath{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+
+}
+.checkout .pathContent{
+    padding: 5px;
+    color: rgb(163, 159, 159);
+    font-style: normal;
+    margin: 10px 15px;
+    font-size: 12px;
+    font-weight: lighter;
+}
+.checkout .checkoutTitleHolder{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+   
+}
+.checkout .checkoutTitleHolder h3{
+    padding: 5px;
+    color: rgb(0, 0, 0);
+    font-style: normal;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 10px 15px;
+    font-size: 25px;
+    font-weight: lighter;
+}
+.checkout .checkoutSteps {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    
+}
+.checkout .stepTitle{
+    display: flex;
+    height: 30px;
+    padding: 5px;
+    margin: 5px 15px;
+   
+}
+.checkout .stepTitle p{
+    font-size: 14px;
+    font-weight: bold;
+    color: rgba(208, 160, 5, 0.897);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+}
+.checkout .stepOneContainer{
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+    margin: 5px 15px;
+   
+}
+
+.mapboxgl-canvas {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.checkout .mapHolder{
+    flex: 1.3;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    /* height: 100vh; */
+    height: 400px;
+    overflow:visible;
+}
+
+.checkout .stepOneInfo{
+    display: flex;
+    width: 100%;
+    flex: 1;
+    margin: 0;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+}
+.checkout .infoHolder{
+    width: 100%;
+    height: 100%;
+    margin: 5px auto;
+    padding: 0 14px;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout .lngLat{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.latHolder input, .lngHolder input{
+    display: flex;
+    height: 50px;
+    padding: 5px 10px;
+    margin: 6px 6px;
+    border:none;
+    border-radius: 4px;
+}
+
+.locationName input ,.phoneNumber input{
+    display: flex;
+    height: 50px;
+    margin: 6px 6px;
+    padding: 8px;
+    width: 100%;
+    border:none;
+    border-radius: 4px;
+}
+
+.checkout .confirmOrder {
+    display: flex;
+    justify-content: right  ;
+    align-items: right;
+}
+
+.checkout .confirmOrder .btn_order{
+    display: flex;
+    height: 35px;
+    padding: 5px 10px;
+    margin: 5px 15px;
+    align-items: center;
+    justify-content: right;
+}
+.checkout .checkoutTitleHolder h3{
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.checkout .payment_methods{
+    background-color: rgb(238, 238, 238);
+    padding: 15px 30px;
+    width: 100%;
+}
+
+@media(max-width: 700px){
+    .stepTitle p{
+        font-size: 11px;
+    }
+
+    .checkoutTitleHolder h3{
+        font-size: 19px;
+    }
+    .stepOneContainer{
+        display: none;
+        flex-direction: row;
+        /* height: 800px; */
+    }
+    .memberDiscount svg{
+        font-size: 14px;
+    }
+    .contentTitle{
+        font-size: 13px;
+    }
+    .contentDetail{
+        font-size: 11px;
+    }
+    /* .stepOneInfo {
+        display: none;
+        height: 0px;
+        padding: 0;
+    }
+    .stepOneInfo .infoHolder{
+        display: none;
+    }
+    .checkout .stepOneContainer{
+        display: flex;
+        padding: 5px;
+        margin: 5px 15px;
+        height: 100%;
+       
+    } */
+    
+}
+
+@media(max-width: 375px){
+    .stepOneContainer{
+    
+        flex-direction: column;
+        height: 500px;
+    }
+    .stepOneInfo{
+        width: 100%;
+    }
+}
+
+

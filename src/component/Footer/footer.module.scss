@@ -1,0 +1,141 @@
+@import '../../styles/variables.scss';
+
+
+.footer{
+  background-color: rgb(255 219 0);
+  color: white;
+  position: relative;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+ 
+
+
+  &__container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    transition: all ease 0.4s;
+
+    @include breakpoint(sm){
+      transition: all ease 0.4s;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      align-items: center;
+      justify-content: center;
+      padding-left: 7rem;
+    }
+    @include breakpoint(md){
+      padding-left: 6rem;
+      transition: all ease 0.4s;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      justify-content: center;
+    }
+    @include breakpoint(lg){
+      display: flex;
+      flex-direction: row;
+    }
+
+
+    
+
+    &__needHelp, &__knowUs ,&__letsHelp , &__logoHolder{  
+      width: 50%;
+      margin-top: 1rem; 
+      transition: all ease 0.4s;
+      display: flex;
+      flex-direction: column;    
+      justify-content: center;
+
+
+      @include breakpoint(lg){
+         justify-content: center;
+      }
+
+      img{
+         width: 150px;
+         height: 150px;
+      }
+      h2{
+        margin-bottom: 2rem;
+        font-family: $Poppins;
+        font-weight: bolder;
+        color: white;
+      }
+      h1{
+        font-size: 19px;
+        font-family: $Poppins;
+        font-weight: 400; 
+        color: rgb(0, 0, 0);
+        transition: all ease 0.4s;  
+
+        @include breakpoint(sm){
+          font-size: 21px;
+          transition: all ease 0.4s;
+        }
+      }
+      p{
+        font-size: 12px;
+        font-family: $Poppins;
+        font-weight: 300;
+        padding: 0;
+        margin: 2px;
+        color: white;
+        transition: all ease 0.4s;
+        
+        @include breakpoint(sm){
+          font-size: 14px;
+          transition: all ease 0.4s;
+        }
+      }
+
+      @include breakpoint(sm){
+        width: 100%;
+        transition: all ease 0.4s;
+
+      }
+
+
+    
+
+    }
+
+
+
+  }
+
+
+  &__copyRight{
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid white;
+    margin-top: 2rem;
+    padding: 1rem;
+
+    p{
+      font-size: 12px;
+      font-family: $Poppins;
+      font-weight: 300;
+      color: white;
+    }
+  }
+
+
+
+
+
+
+
+
+}
+
