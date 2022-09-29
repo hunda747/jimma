@@ -1,22 +1,17 @@
-import React, {useState, useEffect} from 'react';
-import './navbar2.css'
-
-import photo from '../../assets/photo/bj5.jpg';
+import React, {useState} from 'react';
 import logo from '../../assets/photo/tolo.png';
-
-import {Favorite, SearchIcon, ExitToApp, AccountCircle} from '@material-ui/icons';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import {Link} from 'react-router-dom';
-
-import { useDispatch, useSelector } from 'react-redux';
-import {Twitter, Instagram, Facebook, LinkedIn, LocationOn, List, ShoppingCart, ShoppingCartSharp} from '@material-ui/icons';
-
+import {useSelector } from 'react-redux';
+import {ShoppingCart} from '@material-ui/icons';
 import { useCookies } from 'react-cookie';
-
 import classes from './navbar.module.scss'
-
 import {BiMenuAltRight} from 'react-icons/bi'
 import {AiOutlineClose} from 'react-icons/ai'
 import Button from '@material-ui/core/Button';
+
+
+
 
 export default function navbar() {
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
@@ -51,6 +46,9 @@ export default function navbar() {
               </div>
 
               <nav className={`${classes.header__content__nav} ${menuOpen ? classes.isMenu : ''}`}>
+                  <div className={classes.header__content__nav__logo}  style={menuOpen? {marginTop: '1rem'}:{}}>
+                      <img src={logo} alt="Logo"  style={{width:'60px', height: '60px', marginBottom: '5rem'}} />
+                  </div>
                   <ul>
                     <li>
                       <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Home</Link>
@@ -65,13 +63,36 @@ export default function navbar() {
                       <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Shop</Link>
                     </li>
 
-                      <li>
-                        <Link  style={menuOpen? {color:'white' , marginTop: '10rem'}: {}} to='/checkout' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> <ShoppingCart/> <span>{getCartCount()}</span></Link>
-                    </li>
                     <li> 
-                    <Button variant="outlined" color="secondary">
-                          Logout
-                    </Button>
+                      {
+                        cookies?.uid ? 
+                        <div className={classes.header__content__nav__controllers} 
+                            style={menuOpen? {marginTop:'9rem' , padding: '0', display: 'flex', flexDirection:'column'}: {}}
+                        >
+                              <>
+                              <Link  style={menuOpen? {color:'white' , marginTop: '10rem'}: {}} to='/checkout' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> <ShoppingCart/> <span>{getCartCount()}</span></Link>
+                              </>
+                              <div className={classes.header__content__nav__controllers__logoutHolder} 
+                            style={menuOpen? {display:'flex', width: '100%' , justifyContent: 'space-between', alignItems:'center',}:{}}
+                          >
+
+                          <AccountCircleIcon style={menuOpen? {fontSize: '30px' , color: '#6464d5'}:{}} />
+                          <Button variant="contained" color="secondary" onClick={handleLogout}>
+                               Logout
+                            </Button>
+                         
+                        </div>
+                        </div>
+                      :
+                        <div className={classes.header__content__nav__controllers}>
+                          <Link to='/login'>
+                            <Button variant="contained" color="secondary">
+                               Login
+                            </Button>
+                          </Link>
+                        </div>
+                      }
+                   
                     </li>                  
                   </ul>
 

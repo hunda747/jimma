@@ -14,7 +14,7 @@ import { useDispatch, useSelector, useSelectore } from 'react-redux'
 import { getAllRestaurants, getRestaurants, updateRestaurant } from '../../../redux/actions/restaurantAction';
 import { getFoodsByRestaurant, getAllFoodsByRestaurant } from '../../../redux/actions/foodAction';
 import {Link} from 'react-router-dom';
-import RestaurantList from '../../RestaurantCard/restaurantCart';
+// import RestaurantList from '../../RestaurantCard/restaurantCart';
 
 // for the input hider
 import { makeStyles } from '@material-ui/core/styles';

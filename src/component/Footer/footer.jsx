@@ -1,22 +1,48 @@
 import React from 'react';
-import './footer.css';
+import  classes from './footer.module.scss';
 
 import {Twitter, Instagram, Facebook, LinkedIn} from '@material-ui/icons';
 
 export default function Footer() {
   return (
-    <footer>
-      <div className="container">
-        <div className="copy">
-          Copywright 
+    <>
+      <footer className={classes.footer}>
+        <div className={classes.footer__container}>
+               <div className={classes.footer__container__logoHolder}>
+                    <img src="https://i.im.ge/2022/09/27/1NHrd1.tolo.jpg" alt="Logo" />
+                     <h2>TOLO DELIVERY</h2>
+                
+                </div>
+              <div className={classes.footer__container__needHelp}>
+                    <h1>Need Help</h1>
+                    <p>Call us +251921321231</p>
+
+                    <p>Email: tolo@jimaDelivery.com</p>
+                    <p><Twitter/> : @toloDelivery</p>
+                    <p><Instagram />: @toloJima_delivery</p>
+
+              </div>
+              <div className={classes.footer__container__knowUs}>
+                  <h1>Get to know us</h1>
+
+                  <p>About Us</p>
+                  <p>Blog</p>
+                  <p>Tolo Delivery</p>
+                  <p>Location</p>
+              </div>
+              <div className={classes.footer__container__letsHelp}>
+                    <h1>Lets Help You</h1>
+
+                    <p>Login</p>
+                    <p>SignUp</p>
+                    <p>Account Details</p>
+                    <p>Jima</p>
+              </div>
         </div>
-        <div className="icons">
-          <Twitter />
-          <Facebook />
-          <Instagram />  
-          <LinkedIn />
-        </div>
-      </div>
-    </footer>
+        <div className={classes.footer__copyRight}>
+            <p>Powerd by : DH software solutions</p>
+        </div>  
+      </footer>
+    </>
   )
 }
