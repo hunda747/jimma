@@ -12,6 +12,8 @@ import Dashboard from './pages/Admin/dashboard/dashboard'
 import AdminLogin from './pages/Admin/AdminLogin/adminLogin'
 import SearchPage from './pages/Search/search';
 
+import Account from './pages/Account/account';
+
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
@@ -30,6 +32,10 @@ function App() {
 
           <Route element={<UserAuth />}>
             <Route exact path='/checkout' element={<Checkout />} ></Route>
+          </Route>
+
+          <Route element={<UserAuth />}>
+            <Route exact path='/account' element={<Account />} ></Route>
           </Route>
 
           <Route exact path='/dashboard' element={<Dashboard />} ></Route>

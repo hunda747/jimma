@@ -1,0 +1,40 @@
+.bar {
+  display: flex;
+}
+
+.bar .menus{
+  width: 25%;
+  padding: 2rem;
+}
+
+.font-medium .text-gray-100{
+  display: flex;
+}
+.font-medium .text-gray-100 svg{
+  height: 50px;
+  margin: 10px;
+  color: white;
+}
+
+.font-medium .text-gray-100 .w-full{
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  color: white;
+}
+
+.font-medium .hidden .cursor-pointer{
+  padding: 10px;
+  background-color: rgb(236, 236, 236);
+}
+
+.font-medium .hidden .cursor-pointer:hover{
+  background-color: rgb(201, 201, 201);
+
+}
+
+.bar .view{
+  width: 75%;
+  padding: 2rem;
+}
