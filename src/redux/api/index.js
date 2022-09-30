@@ -4,8 +4,8 @@ import { getOrdersInprogress } from '../actions/orderActions';
 // axios.defaults.withCredentials = true;
 axios.create({ withCredentials: true, })
 
-// const localhost = 'http://localhost:5000/';
-const localhost = 'https://jimma-e-comm.herokuapp.com/';
+const localhost = 'http://localhost:5000/';
+// const localhost = 'https://jimma-e-comm.herokuapp.com/';
 
 // user
 const addUserByPhone = localhost + "api/addUserByPhone";
@@ -21,6 +21,7 @@ const getCompleteOrders = localhost + "api/getCompleteOrders";
 const getCompleteOrdersByDate = localhost + "api/getCompleteOrdersByDate";
 const getOrdersbyId = localhost + "api/getOrdersbyId";
 const changeStatus = localhost + "api/changeStatus";
+const getOrdersbyUser = localhost + "api/getOrdersbyUser";
 const changeStatusComplete = localhost + "api/changeStatusComplete";
 const changeStatusAccept = localhost + "api/changeStatusAccept";
 
@@ -98,6 +99,10 @@ export const createOrder = (date,userId,total,latitude ,longitude,contact,no_ite
 
 export const changeOrderStatus = (id, status) => {
   return axios.post(changeStatus, {id: id, status: status})
+}
+
+export const fetchOrdersbyUser = (id) => {
+  return axios.post(getOrdersbyUser, {id: id})
 }
 
 export const fetchOrder = () =>{

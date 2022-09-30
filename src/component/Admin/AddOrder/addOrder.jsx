@@ -58,8 +58,8 @@ export default function AddRestaurant({onMorePage}) {
 
   const handleSubmit = (e) => {
     console.log('order');
-    event.preventDefault();
-    event.stopPropagation();
+    e.preventDefault();
+    e.stopPropagation();
     console.log("In handle confirm")
     const date = new Date();
     console.log("this is the ordered phone number")

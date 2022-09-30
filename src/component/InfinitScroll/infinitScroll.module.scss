@@ -8,6 +8,10 @@
     justify-content: center;
     overflow: hidden;
 
+    img {
+        object-fit: cover;
+    }
+
     &__content{
         position: relative;
         width: 90%;
@@ -38,8 +42,8 @@
        
             
             div{
-                width: 170px;
-                height: 70px;
+                width: 190px;
+                height: 90px;
                 align-items: center;
                 justify-content: center;
                 display: flex;
@@ -54,8 +58,8 @@
                     transition: all ease 0.4s;
                 }
                 @include breakpoint(lg){
-                    width: 250px;
-                    height: 120px;
+                    width: 360px;
+                    height: 140px;
                     transition: all ease 0.4s;
                 }
             }
@@ -84,8 +88,8 @@
                     transition: all ease 0.4s;
                 }
                 @include breakpoint(lg){
-                    width: 250px;
-                    height: 120px;
+                    width: 360px;
+                    height: 140px;
                     transition: all ease 0.4s;
                 }
             }
