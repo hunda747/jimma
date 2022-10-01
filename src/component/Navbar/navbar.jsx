@@ -72,6 +72,8 @@ export default function navbar() {
                               <>
                               <Link  style={menuOpen? {color:'white' , marginTop: '10rem'}: {}} to='/checkout' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> <ShoppingCart/> <span>{getCartCount()}</span></Link>
                               </>
+                              
+
                               <div className={classes.header__content__nav__controllers__logoutHolder} 
                             style={menuOpen? {display:'flex', width: '100%' , justifyContent: 'space-between', alignItems:'center',}:{}}
                           >
@@ -85,7 +87,10 @@ export default function navbar() {
                         </div>
                       :
                         <div className={classes.header__content__nav__controllers}>
-                          <Link to='/login'>
+                           <>
+                              <Link  style={menuOpen? {color:'white' , marginTop: '10rem'}: {}} to='/checkout' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> <ShoppingCart/> <span>{getCartCount()}</span></Link>
+                              </>
+                          <Link to='/login'>                           
                             <Button variant="contained" color="secondary">
                                Login
                             </Button>
