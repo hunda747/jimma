@@ -1,6 +1,6 @@
 import React from 'react';
 import  classes from './footer.module.scss';
-
+import { Link } from 'react-router-dom';
 import {Twitter, Instagram, Facebook, LinkedIn} from '@material-ui/icons';
 
 export default function Footer() {
@@ -25,16 +25,29 @@ export default function Footer() {
               <div className={classes.footer__container__knowUs}>
                   <h1>Get to know us</h1>
 
+                  <Link to={'#'} >
                   <p>About Us</p>
+                  </Link>
+                  <Link to={'#'}>
                   <p>Blog</p>
+                  </Link>
+                  <Link to={'#'}>
                   <p>Tolo Delivery</p>
+                  </Link>              
+                  
+                  
                   <p>Location</p>
               </div>
               <div className={classes.footer__container__letsHelp}>
                     <h1>Lets Help You</h1>
 
-                    <p>Login</p>
-                    <p>SignUp</p>
+                    <Link to={'#'}>
+                      <p>Login</p>
+                    </Link>
+                    <Link to={'#'}>
+                      <p>SignUp</p>
+                    </Link>
+                    
                     <p>Account Details</p>
                     <p>Jima</p>
               </div>

@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-export default function navbar() {
+export default function Navbar() {
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const [menuOpen , setMenuOpen] = useState(false)
   const navigate = useNavigate();
@@ -58,7 +58,7 @@ export default function navbar() {
                       <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Shop</Link>
                     </li>
                     <li>
-                      <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> About Us</Link>
+                      <Link  style={menuOpen? {color:'white'}: {}} to='/about' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> About Us</Link>
                     </li>
                     <li>
                       <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Contact Us</Link>

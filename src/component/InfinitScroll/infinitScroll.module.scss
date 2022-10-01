@@ -43,7 +43,7 @@
             
             div{
                 width: 190px;
-                height: 90px;
+                height: 70px;
                 align-items: center;
                 justify-content: center;
                 display: flex;
@@ -51,6 +51,10 @@
                 background-color: rgb(226, 239, 45);
                 border: none;
                 border-radius: 5px;
+
+                @include breakpoint(sm){
+                    height: 90px;
+                }
 
               
                 @include breakpoint(md){
