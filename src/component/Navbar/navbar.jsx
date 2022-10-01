@@ -23,6 +23,7 @@ export default function navbar() {
     removeCookie('lname', { path: '/' });
     removeCookie('phoneNo', { path: '/' });
     removeCookie('uid', { path: '/' });
+    navigate('/');
     window.location.reload(false);
   }
 
@@ -42,7 +43,7 @@ export default function navbar() {
     <>
       <header className={classes.header}>
           <div className={classes.header__content}>
-              <div className={classes.header__content__logo}>
+              <div onClick={() => {navigate('/')}} className={classes.header__content__logo}>
                   <img src={logo} alt="Logo" />
               </div>
 

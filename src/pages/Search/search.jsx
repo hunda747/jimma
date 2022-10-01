@@ -35,7 +35,7 @@ export default function SearchPage() {
   const [search, setSearch ] = useState(name);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(name);
+
   useEffect(() => {
     dispatch(searchFood(name));
   }, []);
@@ -55,14 +55,12 @@ export default function SearchPage() {
     }
 
   return(
-    <>
-
-    
-{
+    <>   
+      {
         loading? 
         <>
-             <div className='loader'>
-                 <div class="container">
+              <div className='loader'>
+                  <div class="container">
                     <svg width="100" height="100" viewBox="0 0 300 300">
                       <defs>
                         <linearGradient id="gradient-fill" gradientUnits="userSpaceOnUse" x1="0" y1="300" x2="300" y2="0">
@@ -91,83 +89,79 @@ export default function SearchPage() {
         error? <>Server Error</>:
         <></>
       }
-      <div className='wrapper'>
-        <Navbar />
-
-        <header className='search'>
-          <div className='containerdd'>
-            <div className="hero">
-              {/* <h1>Get food from your favorite restaurants in Jimma delivered to your home or office.</h1> */}
-              <h1>Order food to your home or office.</h1>
-              {/* <p>Best cook and best delivery at your service </p> */}
-              <div className="searchBar">
-                <input 
-                class="search__input" 
-                type="text" 
-                value={search}
-                onChange={(e) => { setSearch(e.target.value) }}
-                placeholder="Search" />
-                {/* <button > */}
-                <div className='btn_search' onClick={() => {dispatch(searchFood(search))}}>
-                {/* <div className='btn_search' 
-                  onClick={() => {
-                    console.log(search);
-                    navigate(`/search/${search}`)
-                  }}> */}
-                  <Search />
-                  {/* <Search style={{background: 'black', display: 'flex', justifyContent: 'center'}}/> */}
+        <div className='wrapper'>
+          <Navbar />
+          <header className='search'>
+            <div className='containerdd'>
+              <div className="hero">
+                {/* <h1>Get food from your favorite restaurants in Jimma delivered to your home or office.</h1> */}
+                <h1>Order food to your home or office.</h1>
+                {/* <p>Best cook and best delivery at your service </p> */}
+                <div className="searchBar">
+                  <input 
+                  class="search__input" 
+                  type="text" 
+                  value={search}
+                  onChange={(e) => { setSearch(e.target.value) }}
+                  placeholder="Search" />
+                  {/* <button > */}
+                  <div className='btn_search' onClick={() => {dispatch(searchFood(search))}}>
+                  {/* <div className='btn_search' 
+                    onClick={() => {
+                      console.log(search);
+                      navigate(`/search/${search}`)
+                    }}> */}
+                    <Search />
+                    {/* <Search style={{background: 'black', display: 'flex', justifyContent: 'center'}}/> */}
+                  </div>
+                  {/* </button> */}
                 </div>
-                {/* </button> */}
+                {
+                  cookies?.uid ? 
+                    ""
+                  : 
+                  <p><a href="/login">Sign In</a> for your recent addresses</p>
+                }
               </div>
-              {
-                cookies?.uid ? 
-                  ""
-                : 
-                <p><a href="/login">Sign In</a> for your recent addresses</p>
+            </div>
+          </header>
+
+          <div className="menu_search">
+            <h2>Search Result</h2> 
+            <div className="menu_container">
+              {food.length !== 0 ? 
+              <>
+                <div className="displayMenu">
+                  {food?.map((food) => {
+                    return(
+                      <div className="menuItem">
+                        <FoodCard 
+                          key = {food._id}
+                          id = {food._id}
+                          name = {food.food_name}
+                          desc = {food.description}
+                          price = {food.price}
+                          type = {food.type}
+                          />
+                      </div>
+                    )
+                  })}
+                  
+                </div>
+                <div className="cartView">
+                  <CartView />
+                </div>
+              </>
+              : 
+              <div>
+                  <p>Not Available</p>
+              </div>
               }
             </div>
-            {/* <div className="heroImg">
-              <img src={hero} alt="hero" />
-            </div> */}
           </div>
-        </header>
 
-        <div className="menu_search">
-          <h2>Search Result</h2> 
-          <div className="menu_container">
-            {food.length !== 0 ? 
-            <>
-              <div className="displayMenu">
-                {food?.map((food) => {
-                  return(
-                    <div className="menuItem">
-                      <FoodCard 
-                        key = {food._id}
-                        id = {food._id}
-                        name = {food.food_name}
-                        desc = {food.description}
-                        price = {food.price}
-                        type = {food.type}
-                        />
-                    </div>
-                  )
-                })}
-                
-              </div>
-              <div className="cartView">
-                <CartView />
-              </div>
-            </>
-            : 
-            <div>
-                <p>Not Available</p>
-            </div>
-            }
-          </div>
+          <Footer />
         </div>
-
-        <Footer />
-      </div>
     </>
   )
 };
