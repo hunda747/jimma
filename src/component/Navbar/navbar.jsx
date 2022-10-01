@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import logo from '../../assets/photo/tolo.png';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import {Link} from 'react-router-dom';
+import {Link, Navigate} from 'react-router-dom';
 import {useSelector } from 'react-redux';
 import {ShoppingCart} from '@material-ui/icons';
 import { useCookies } from 'react-cookie';
@@ -9,13 +9,14 @@ import classes from './navbar.module.scss'
 import {BiMenuAltRight} from 'react-icons/bi'
 import {AiOutlineClose} from 'react-icons/ai'
 import Button from '@material-ui/core/Button';
-
+import { useNavigate } from 'react-router-dom';
 
 
 
 export default function navbar() {
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const [menuOpen , setMenuOpen] = useState(false)
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     removeCookie('fname', { path: '/' });
@@ -54,37 +55,36 @@ export default function navbar() {
                       <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Home</Link>
                     </li>
                     <li>
-                      <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Menu</Link>
-                    </li>
-                    <li>
-                      <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Services</Link>
-                    </li>
-                    <li>
                       <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Shop</Link>
+                    </li>
+                    <li>
+                      <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> About Us</Link>
+                    </li>
+                    <li>
+                      <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Contact Us</Link>
                     </li>
 
                     <li> 
+                      
                       {
                         cookies?.uid ? 
-                        <div className={classes.header__content__nav__controllers} 
-                            style={menuOpen? {marginTop:'9rem' , padding: '0', display: 'flex', flexDirection:'column'}: {}}
-                        >
-                              <>
+                          <div className={classes.header__content__nav__controllers} 
+                              style={menuOpen? {marginTop:'9rem' , padding: '0', display: 'flex', flexDirection:'column'}: {}}
+                          > 
+                            <>
                               <Link  style={menuOpen? {color:'white' , marginTop: '10rem'}: {}} to='/checkout' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> <ShoppingCart/> <span>{getCartCount()}</span></Link>
                               </>
                               
 
                               <div className={classes.header__content__nav__controllers__logoutHolder} 
                             style={menuOpen? {display:'flex', width: '100%' , justifyContent: 'space-between', alignItems:'center',}:{}}
-                          >
-
-                          <AccountCircleIcon style={menuOpen? {fontSize: '30px' , color: '#6464d5'}:{}} />
-                          <Button variant="contained" color="secondary" onClick={handleLogout}>
-                               Logout
-                            </Button>
-                         
-                        </div>
-                        </div>
+                            >
+                              <AccountCircleIcon style={menuOpen? {fontSize: '30px' , color: '#6464d5'}:{}} onClick={() => {navigate('/account')}}/>
+                              <Button variant="contained" color="secondary" onClick={handleLogout}>
+                                Logout
+                              </Button>
+                            </div>
+                          </div>
                       :
                         <div className={classes.header__content__nav__controllers}>
                            <>

@@ -282,29 +282,29 @@ export default function Orders() {
                   </TableHead>
                   <TableBody>
                   {
-                      !orders?.length ? <div>empty</div> : (
-                        orders.map((val, key) => {
-                          console.log(val);
-                          return (
-                            <Row 
-                              key = {val._id}   
-                              id = {val._id}
-                              fname = {val.fname}
-                              lname = {val.lname}
-                              contact = {val.contact} 
-                              user = {val.userId}
-                              total = {val.total}
-                              date = {val.date}
-                              status = {val.status}
-                              address = {val.address}
-                              orders = {val.orders}
-                              longitude = {val.longitude}
-                              latitude = {val.latitude}
-                              admin = {true}
-                              />
-                            )
-                        }
-                      ))
+                    !orders?.length ? <div>empty</div> : (
+                      orders.map((val, key) => {
+                        console.log(val);
+                        return (
+                          <Row 
+                            key = {val._id}   
+                            id = {val._id}
+                            fname = {val.fname}
+                            lname = {val.lname}
+                            contact = {val.contact} 
+                            user = {val.userId}
+                            total = {val.total}
+                            date = {val.date}
+                            status = {val.status}
+                            address = {val.address}
+                            orders = {val.orders}
+                            longitude = {val.longitude}
+                            latitude = {val.latitude}
+                            admin = {true}
+                            />
+                          )
+                      }
+                    ))
                   }
                   </TableBody>
                 </Table>
