@@ -61,7 +61,7 @@ export default function Navbar() {
                       <Link  style={menuOpen? {color:'white'}: {}} to='/about' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> About Us</Link>
                     </li>
                     <li>
-                      <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Contact Us</Link>
+                      <Link  style={menuOpen? {color:'white'}: {}} to='/contact' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Contact Us</Link>
                     </li>
 
                     <li> 
@@ -78,8 +78,11 @@ export default function Navbar() {
 
                               <div className={classes.header__content__nav__controllers__logoutHolder} 
                             style={menuOpen? {display:'flex', width: '100%' , justifyContent: 'space-between', alignItems:'center',}:{}}
-                            >
-                              <AccountCircleIcon style={menuOpen? {fontSize: '30px' , color: '#6464d5'}:{}} onClick={() => {navigate('/account')}}/>
+                            > 
+
+                             <>
+                             <AccountCircleIcon style={menuOpen? {cursor:'pointer',  fontSize: '30px' , color: '#6464d5'}:{}} onClick={() => {navigate('/account')}}/>
+                             </>
                               <Button variant="contained" color="secondary" onClick={handleLogout}>
                                 Logout
                               </Button>
