@@ -18,6 +18,8 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 
 import UserAuth from './component/Admin/UserAuth'
+import About from './pages/About/about';
+import Contact from './pages/Contact/contact';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route exact path='/search/:name' element={<SearchPage />} ></Route>
           <Route exact path='/login' element={<Login />} ></Route>
           <Route exact path='/Register' element={<Register />} ></Route>
+          <Route excat path='/about' element={<About/>} />
+          <Route exact path='/contact' element={<Contact/>}  />
 
           <Route element={<UserAuth />}>
             <Route exact path='/checkout' element={<Checkout />} ></Route>

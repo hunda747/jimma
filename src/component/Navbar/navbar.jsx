@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-export default function navbar() {
+export default function Navbar() {
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const [menuOpen , setMenuOpen] = useState(false)
   const navigate = useNavigate();
@@ -59,10 +59,10 @@ export default function navbar() {
                       <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Shop</Link>
                     </li>
                     <li>
-                      <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> About Us</Link>
+                      <Link  style={menuOpen? {color:'white'}: {}} to='/about' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> About Us</Link>
                     </li>
                     <li>
-                      <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Contact Us</Link>
+                      <Link  style={menuOpen? {color:'white'}: {}} to='/contact' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Contact Us</Link>
                     </li>
 
                     <li> 
@@ -72,13 +72,18 @@ export default function navbar() {
                           <div className={classes.header__content__nav__controllers} 
                               style={menuOpen? {marginTop:'9rem' , padding: '0', display: 'flex', flexDirection:'column'}: {}}
                           > 
-                            <div>
+                            <>
                               <Link  style={menuOpen? {color:'white' , marginTop: '10rem'}: {}} to='/checkout' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> <ShoppingCart/> <span>{getCartCount()}</span></Link>
-                            </div>
-                            <div className={classes.header__content__nav__controllers__logoutHolder} 
+                              </>
+                              
+
+                              <div className={classes.header__content__nav__controllers__logoutHolder} 
                             style={menuOpen? {display:'flex', width: '100%' , justifyContent: 'space-between', alignItems:'center',}:{}}
-                            >
-                              <AccountCircleIcon style={menuOpen? {fontSize: '30px' , color: '#6464d5'}:{}} onClick={() => {navigate('/account')}}/>
+                            > 
+
+                             <>
+                             <AccountCircleIcon style={menuOpen? {cursor:'pointer',  fontSize: '30px' , color: '#6464d5'}:{}} onClick={() => {navigate('/account')}}/>
+                             </>
                               <Button variant="contained" color="secondary" onClick={handleLogout}>
                                 Logout
                               </Button>
@@ -86,10 +91,10 @@ export default function navbar() {
                           </div>
                       :
                         <div className={classes.header__content__nav__controllers}>
-                          <div>
-                            <Link  style={menuOpen? {color:'white' , marginTop: '10rem'}: {}} to='/checkout' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> <ShoppingCart/> <span>{getCartCount()}</span></Link>
-                          </div>
-                          <Link to='/login'>
+                           <>
+                              <Link  style={menuOpen? {color:'white' , marginTop: '10rem'}: {}} to='/checkout' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> <ShoppingCart/> <span>{getCartCount()}</span></Link>
+                              </>
+                          <Link to='/login'>                           
                             <Button variant="contained" color="secondary">
                                Login
                             </Button>

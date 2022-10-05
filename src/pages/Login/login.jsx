@@ -29,10 +29,12 @@ import { message } from 'antd';
 
 export default function AdminLogin() {
 	const history = useNavigate();
+
 	const heroku = 'https://jimma-e-comm.herokuapp.com/';
 	// const heroku = 'http://localhost:5000/';
 	// const localhost = 'http://localhost:5000/';
 	const localhost = 'https://jimma-e-comm.herokuapp.com/';
+
 	const [cookies, setCookie] = useCookies(['user']);
 
 	
