@@ -36,17 +36,17 @@ const Sidebar = ({changeCounter , counter}) => {
             <div className={classes.sidebar__options}>
                 <div 
                     className={classes.sidebar__optopns__orders} 
-                    style={counter === 0? {background: 'linear-gradient(to top , rgba(62, 62, 205, 0.612) , rgb(135, 195, 228))', borderRadius: '3rem'} : {}}
+                    style={counter === 0? {background: 'orange', borderRadius: '0.5rem'} : {}}
                     onClick={(e) => changeCounter(0)}>Orders
                 </div>
                 <div 
                     className={classes.sidebar__options__accountDetail}
-                    style={counter === 1? {background: 'linear-gradient(to top , rgba(62, 62, 205, 0.612) , rgb(135, 195, 228))', borderRadius: '3rem'} : {}}
+                    style={counter === 1? {background: 'orange', borderRadius: '0.5rem'} : {}}
                     onClick={(e) => changeCounter(1)}>Account Detail
                 
                 </div>
                 <div className={classes.sidebar__options__logout} 
-                      style={{borderRadius:'3rem' , background: 'linear-gradient(to top, rgb(255 0 42 / 61%), rgb(255 0 0))' , color:'white'}}
+                      style={{borderRadius:'0.5rem' , background: 'linear-gradient(to top, rgb(255 0 42 / 61%), rgb(255 0 0))' , color:'white'}}
                      onClick={(e) => handleLogout()} >Logout</div>
               
 

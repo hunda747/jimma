@@ -47,9 +47,9 @@ export default function Navbar() {
               </div>
 
               <nav className={`${classes.header__content__nav} ${menuOpen ? classes.isMenu : ''}`}>
-                  <div className={classes.header__content__nav__logo}  style={menuOpen? {marginTop: '1rem'}:{}}>
+                  {/* <div className={classes.header__content__nav__logo}  style={menuOpen? {marginTop: '1rem'}:{}}>
                       <img src={logo} alt="Logo"  style={{width:'60px', height: '60px', marginBottom: '5rem'}} />
-                  </div>
+                  </div> */}
                   <ul>
                     <li>
                       <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Home</Link>
@@ -69,7 +69,7 @@ export default function Navbar() {
                       {
                         cookies?.uid ? 
                           <div className={classes.header__content__nav__controllers} 
-                              style={menuOpen? {marginTop:'9rem' , padding: '0', display: 'flex', flexDirection:'column'}: {}}
+                              
                           > 
                             <>
                               <Link  style={menuOpen? {color:'white' , marginTop: '10rem'}: {}} to='/checkout' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> <ShoppingCart/> <span>{getCartCount()}</span></Link>
@@ -77,11 +77,11 @@ export default function Navbar() {
                               
 
                               <div className={classes.header__content__nav__controllers__logoutHolder} 
-                            style={menuOpen? {display:'flex', width: '100%' , justifyContent: 'space-between', alignItems:'center',}:{}}
+                            style={menuOpen? {marginTop: '2rem', display:'flex', width: '100%' , justifyContent: 'space-between', alignItems:'center',}:{}}
                             > 
 
                              <>
-                             <AccountCircleIcon style={menuOpen? {cursor:'pointer',  fontSize: '30px' , color: '#6464d5'}:{}} onClick={() => {navigate('/account')}}/>
+                             <AccountCircleIcon style={menuOpen? {marginRight:'8px',cursor:'pointer',  fontSize: '30px' , color: '#6464d5'}:{}} onClick={() => {navigate('/account')}}/>
                              </>
                               <Button variant="contained" color="secondary" onClick={handleLogout}>
                                 Logout
