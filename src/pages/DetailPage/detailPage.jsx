@@ -54,8 +54,7 @@ export default function DetailView() {
 
   return(
     <>
-
-{
+      {
         loading? 
         <>
              <div className='loader'>
@@ -124,6 +123,7 @@ export default function DetailView() {
                           name = {food.food_name}
                           desc = {food.description}
                           price = {food.price}
+                          restaurant = {food.restaurant}
                           type = {food.type}
                           />
                       </div>

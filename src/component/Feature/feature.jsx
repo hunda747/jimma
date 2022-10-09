@@ -42,6 +42,14 @@ export default function Feature() {
      return ()=>  clearInterval(slideInterval)
   }, [current])  
 
+  const handleSearch = () => {
+    console.log('in search');
+    if(search === ''){
+      console.log('empty');
+    }else{
+      navigate(`/search/${search}`);
+    }
+  }
 
   return (
     <div className='slider' >
@@ -52,37 +60,35 @@ export default function Feature() {
             console.log(index)
             return(
               <div className='sliderImageContainer' key={index}>
-                  <div className={index === current ? 'slide current' : 'slide'}>
-                      {
-                        index === current && (
-                          <div className='imgHolder'>
-                            <img src={slide.image} alt={slide.heading} />
-                            <div className='content'>
-                                <h2>{slide.heading}</h2>  
-                                 <h3>{slide.info}</h3>      
+                <div className={index === current ? 'slide current' : 'slide'}>
+                  {
+                    index === current && (
+                      <div className='imgHolder'>
+                        <img src={slide.image} alt={slide.heading} />
+                        <div className='content'>
+                          <h2>{slide.heading}</h2>  
+                          <h3>{slide.info}</h3>      
 
-                                 <div className="searchBarHolder">
-                                      <input 
-                                          type="text" 
-                                          className='searchInput active'  
-                                          placeholder='Search'
-                                          value={search}
-                                          onChange={(e) => { setSearch(e.target.value) }}
-                                          
-                                          
-                                          />                                     
-                                          <SearchIcon  
-                                             onClick={() => {navigate(`/search/${search}`)}}
-                                          />                                      
-                                 </div>
-
-                                 <p><a href="/login">Sign In</a> for your recent addresses</p>
-
-                            </div>
+                          <div className="searchBarHolder">
+                            <input 
+                              type="text" 
+                              className='searchInput active'  
+                              placeholder='Search'
+                              value={search}
+                              onChange={(e) => { setSearch(e.target.value) }}    
+                              />      
+                                <SearchIcon  
+                                  onClick={() => handleSearch()}
+                                />            
                           </div>
-                        )
-                      }
-                  </div>
+
+                          <p><a href="/login">Sign In</a> for your recent addresses</p>
+
+                        </div>
+                      </div>
+                    )
+                  }
+                </div>
               </div>
             )
           })
