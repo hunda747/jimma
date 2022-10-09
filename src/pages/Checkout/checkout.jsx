@@ -231,7 +231,10 @@ export default function Checkout() {
         <></>
       }
     <div className='checkout_main'>
-      <NavBar/>
+      <div className="navbar_holder">
+            <NavBar />
+        </div>
+        
         <div className='checkout'>
           <div className="checkoutTitleHolder">
             <h3>Checkout</h3>

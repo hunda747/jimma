@@ -20,7 +20,10 @@ export default function Account() {
 
   return(
     <>
-      <Navbar />
+        <div className="navbar_holder">
+            <Navbar />
+        </div>
+        
       <div className={classes.account}>
             <Sidebar  changeCounter={passedFunction} counter={counter}/>
             <div className={classes.account__optionDetails}>
