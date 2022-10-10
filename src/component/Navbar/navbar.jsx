@@ -47,7 +47,11 @@ export default function Navbar() {
                   <img src={logo} alt="Logo" width='100px' height='100px'/>
               </div>
 
-              <nav className={`${classes.header__content__nav} ${menuOpen ? classes.isMenu : ''}`}>
+              <nav className={`${classes.header__content__nav} ${menuOpen ? classes.isMenu : ''}`}
+                 style={menuOpen? {boxShadow: '1px 12px 19px 0px rgba(0,0,0,0.75)',
+                 webkitBoxShadow: '1px 12px 19px 0px rgba(0,0,0,0.75)',
+                 mozBoxShadow: '1px 12px 19px 0px rgba(0,0,0,0.75)'}:{}}
+              >
                   {/* <div className={classes.header__content__nav__logo}  style={menuOpen? {marginTop: '1rem'}:{}}>
                       <img src={logo} alt="Logo"  style={{width:'60px', height: '60px', marginBottom: '5rem'}} />
                   </div> */}
@@ -250,3 +254,5 @@ export default function Navbar() {
           </div>
         </div>
       </div> */}
+
+
