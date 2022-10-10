@@ -36,12 +36,13 @@ const Sidebar = ({changeCounter , counter}) => {
             <div className={classes.sidebar__options}>
                 <div 
                     className={classes.sidebar__optopns__orders} 
-                    style={counter === 0? {background: 'orange', borderRadius: '0.5rem'} : {}}
+                    style={counter === 0? {backgroundColor: 'rgba(255, 166, 0, 0.36)',
+                       borderRadius: '0.5rem'} : {}}
                     onClick={(e) => changeCounter(0)}>Orders
                 </div>
                 <div 
                     className={classes.sidebar__options__accountDetail}
-                    style={counter === 1? {background: 'orange', borderRadius: '0.5rem'} : {}}
+                    style={counter === 1? {backgroundColor: 'rgba(255, 166, 0, 0.36)', borderRadius: '0.5rem'} : {}}
                     onClick={(e) => changeCounter(1)}>Account Detail
                 
                 </div>

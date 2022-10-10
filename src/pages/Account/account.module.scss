@@ -153,8 +153,10 @@
       height: fit-content;
       width: 90%;
       align-items: center;     
-      background-color: #064c7f;
-      border-radius: 1rem;
+      box-shadow: 5px 9px 17px -1px rgba(190,151,151,0.75);
+      -webkit-box-shadow: 5px 9px 17px -1px rgba(190,151,151,0.75);
+      -moz-box-shadow: 5px 9px 17px -1px rgba(190,151,151,0.75); 
+      border-radius: 3rem;
       transition: all ease .4s;
       @include breakpoint(md){
          width: 60%;
@@ -168,7 +170,7 @@
          svg{
           font-size: 74px;
           margin: 2px 0.6rem;
-          color: #f5f8fd;
+          color: #0946af;
          }
       }
       &__nameAphone{
@@ -183,7 +185,7 @@
             font-weight: 400;
             padding: 2px;
             margin: 3px;
-            color: white;
+            color: black;
           }
       }
 
@@ -196,7 +198,10 @@
     justify-content: center;
     border-radius: 0.5rem;
     margin-top: 1rem;
-    background-color: #064c7f;
+    box-shadow: 5px 9px 17px -1px rgba(190,151,151,0.75);
+-webkit-box-shadow: 5px 9px 17px -1px rgba(190,151,151,0.75);
+-moz-box-shadow: 5px 9px 17px -1px rgba(190,151,151,0.75);
+
     justify-content: space-around;
     margin-bottom: 3rem;
     transition: all ease 0.4s;
@@ -220,10 +225,10 @@
       font-size: 12px;
       font-family: $Poppins;
       font-weight: 400;
-      color: white;
+      color: black;
     }
     div:hover{
-       background-color: orange;
+       background-color: rgba(255, 166, 0, 0.36);
        cursor: pointer;
        border-radius: 0.5rem;
     }
