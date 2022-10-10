@@ -86,10 +86,14 @@ export default function Home() {
         <></>
       }
       <div className='wrapper'>
-
-        <Navbar />
-
-        <Feature />   
+        <div className="navbar_holder">
+            <Navbar />
+        </div>
+        
+     
+        <Feature /> 
+   
+         
         <br />
 
         <div className="infinitScrollerContainer">

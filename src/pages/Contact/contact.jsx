@@ -18,8 +18,10 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 export default function Contact() {
   return (
         <>
-            <Navbar/>
-
+             <div className="navbar_holder">
+                <Navbar />
+            </div>
+        
             <div className={classes.contact}>
                 <h1>Contact Us</h1>
                     <div className={classes.contact__info}>
