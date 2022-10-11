@@ -24,7 +24,10 @@ export default function About() {
 
 
     <>
-        <Navbar />  
+        <div className="navbar_holder">
+            <Navbar />
+        </div>
+        
 
         
         <div className="aboutpageContainer">

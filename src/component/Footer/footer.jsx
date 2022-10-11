@@ -25,11 +25,11 @@ export default function Footer() {
               <div className={classes.footer__container__knowUs}>
                   <h1>Get to know us</h1>
 
-                  <Link to={'#'} >
+                  <Link to={'/about'} >
                   <p>About Us</p>
                   </Link>
-                  <Link to={'#'}>
-                  <p>Blog</p>
+                  <Link to={'/contact'}>
+                  <p>Contact Us</p>
                   </Link>
                   <Link to={'#'}>
                   <p>Tolo Delivery</p>
@@ -41,14 +41,17 @@ export default function Footer() {
               <div className={classes.footer__container__letsHelp}>
                     <h1>Lets Help You</h1>
 
-                    <Link to={'#'}>
+                    <Link to={'/login'}>
                       <p>Login</p>
                     </Link>
-                    <Link to={'#'}>
+                    <Link to={'/register'}>
                       <p>SignUp</p>
                     </Link>
+                    <Link to={'/account'}>
+                      <p>Account Details</p>
+                    </Link>
                     
-                    <p>Account Details</p>
+                   
                     <p>Jima</p>
               </div>
         </div>
