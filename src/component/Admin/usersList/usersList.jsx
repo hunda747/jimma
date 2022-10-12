@@ -82,7 +82,7 @@ const useStyles = makeStyles({
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
-
+const localhost = 'https://jimma-e-comm.herokuapp.com/';
 export default function UsersList() {
   const dispatch = useDispatch()
   const datas = [
@@ -111,7 +111,7 @@ export default function UsersList() {
 
     useEffect(()=>{
       const fetchProducts = async ()=>{
-        const res = await axios.post('http://localhost:5000/api/getUsers');
+        const res = await axios.post(localhost + 'api/getUsers');
         console.log(res.data);
         setUsers(res.data);
       }
@@ -313,7 +313,7 @@ export default function UsersList() {
                     <TableCell align="right">{val.lname}</TableCell>
                     <TableCell align="right">{val.phone}</TableCell>
 
-                    <TableCell align="right">{val.dates}</TableCell>
+                    <TableCell align="right">{val.date.substr(3, 12)}</TableCell>
                     <TableCell align='center'>{ val.status === "active"? <p className='active_status'></p> : <p className="de-active_status"></p>}</TableCell>
                   </TableRow>
                   </>
