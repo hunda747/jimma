@@ -144,8 +144,101 @@
             display: grid;
             grid-template-columns: repeat(2,1fr);
         }
+        &__email{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
 
-        &__phone, &__email {
+            &__form{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+                justify-content: center;
+
+                form{
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    align-items: center;
+                    justify-content: center;
+
+                    input[type=text] , input[type=email] {
+                        height: 40px;
+                        width: 80%;
+                        margin: 4px;
+                        border: none;
+                        border: 1px solid black;
+                        border-radius: 3rem;
+                        padding-left: 1rem;
+                        font-size: 12px;
+                        font-family: $Poppins;
+                        font-weight: 300;
+                        transition: all ease .4s;
+    
+                        &:focus{
+                            outline: none;
+                            border: 2px dotted aqua;
+                        }
+    
+                        @include breakpoint(lg){
+                            width: 60%;
+                            transition: all ease .4s;
+                        }
+    
+                    }
+                    textarea{
+                        margin-top: 2px;
+                        width: 80%;
+                        height: 80px;
+                        padding-left: 1rem;
+                        border-radius: 3px;
+                        border: none;
+                        border: 1px solid black;
+                        outline: none;
+                        font-size: 12px;
+                        font-family: $Poppins;
+                        font-weight: 300;
+                        transition: all ease .4s;
+                        @include breakpoint(lg){
+                            width: 60%;
+                            transition: all ease .4s;
+                        }
+    
+                        
+                    }
+               
+                }
+                &__button{
+                    margin: 1rem;
+                    padding: 0.2rem 1rem;
+                    background: transparent;
+                    border-radius: 2rem;
+                    border: 1px solid black;
+                    cursor: pointer;
+
+                    &:hover{
+                        background-color: rgba(255, 166, 0, 0.519);
+                    }
+                    &:focus{
+                        outline: none;
+                    }
+
+                }
+
+                
+            }
+
+            h1{
+                font-size: 18px;
+                font-family: $Poppins;
+                font-weight: 400;
+
+            }
+        }
+        &__phone {
             display: flex;
             flex-direction: column;
             width: 100%;
