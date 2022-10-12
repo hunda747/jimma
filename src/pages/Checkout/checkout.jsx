@@ -231,7 +231,10 @@ export default function Checkout() {
         <></>
       }
     <div className='checkout_main'>
-      <NavBar/>
+      <div className="navbar_holder">
+            <NavBar />
+        </div>
+        
         <div className='checkout'>
           <div className="checkoutTitleHolder">
             <h3>Checkout</h3>
@@ -273,7 +276,8 @@ export default function Checkout() {
                     <h3>Address</h3>
                     <input prefix={<LocationOnIcon />} placeholder={selectedLocation.formatted} 
                     value={mapLocation} 
-                    disabled  />
+                    disabled 
+                    style={{border: '1px solid black'}} />
                   </div>
                   <div className="phoneNumber">
                     <h3>Phone number:</h3>
@@ -282,6 +286,7 @@ export default function Checkout() {
                       value={phoneNumber}
                       className='phone_number_input'
                       onChange={(e)=> setPhoneNumber(e.target.value) } 
+                      style={{border: '1px solid black'}}
                       />
                   </div>
                 </div>
@@ -290,6 +295,7 @@ export default function Checkout() {
         
           <div className="stepTitle">
             <p>Step 2 - Confirm Shopping Cart</p>
+            <br />
           </div>
           <div className="cartConfirm">
             {cartItems.length === 0? (
@@ -326,7 +332,7 @@ export default function Checkout() {
                       </div>
                   </div> 
                 </div> */}
-                <table align='right'>
+                <table className='totalInfoTable'  align='right'>
                   <tr>
                     <td>Price:</td>
                     <td>{getTotalProductPrice()} Birr</td>

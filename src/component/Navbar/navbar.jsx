@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-export default function navbar() {
+export default function Navbar() {
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   const [menuOpen , setMenuOpen] = useState(false)
   const navigate = useNavigate();
@@ -44,25 +44,29 @@ export default function navbar() {
       <header className={classes.header}>
           <div className={classes.header__content}>
               <div onClick={() => {navigate('/')}} className={classes.header__content__logo}>
-                  <img src={logo} alt="Logo" />
+                  <img src={logo} alt="Logo" width='100px' height='100px'/>
               </div>
 
-              <nav className={`${classes.header__content__nav} ${menuOpen ? classes.isMenu : ''}`}>
-                  <div className={classes.header__content__nav__logo}  style={menuOpen? {marginTop: '1rem'}:{}}>
+              <nav className={`${classes.header__content__nav} ${menuOpen ? classes.isMenu : ''}`}
+                 style={menuOpen? {boxShadow: '1px 12px 19px 0px rgba(0,0,0,0.75)',
+                 webkitBoxShadow: '1px 12px 19px 0px rgba(0,0,0,0.75)',
+                 mozBoxShadow: '1px 12px 19px 0px rgba(0,0,0,0.75)'}:{}}
+              >
+                  {/* <div className={classes.header__content__nav__logo}  style={menuOpen? {marginTop: '1rem'}:{}}>
                       <img src={logo} alt="Logo"  style={{width:'60px', height: '60px', marginBottom: '5rem'}} />
-                  </div>
+                  </div> */}
                   <ul>
                     <li>
-                      <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Home</Link>
+                      <Link  to='/'  onClick={()=> setMenuOpen(false)}> Home</Link>
                     </li>
                     <li>
-                      <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Shop</Link>
+                      <Link to='/' onClick={()=> setMenuOpen(false)}> Shop</Link>
                     </li>
                     <li>
-                      <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> About Us</Link>
+                      <Link to='/about' onClick={()=> setMenuOpen(false)}> About</Link>
                     </li>
                     <li>
-                      <Link  style={menuOpen? {color:'white'}: {}} to='/' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> Contact Us</Link>
+                      <Link to='/contact'  onClick={()=> setMenuOpen(false)}> Contact</Link>
                     </li>
 
                     <li> 
@@ -70,15 +74,21 @@ export default function navbar() {
                       {
                         cookies?.uid ? 
                           <div className={classes.header__content__nav__controllers} 
-                              style={menuOpen? {marginTop:'9rem' , padding: '0', display: 'flex', flexDirection:'column'}: {}}
+                            style={menuOpen? {width:'100%'}:{}}
+                              
                           > 
-                            <div>
-                              <Link  style={menuOpen? {color:'white' , marginTop: '10rem'}: {}} to='/checkout' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> <ShoppingCart/> <span>{getCartCount()}</span></Link>
-                            </div>
-                            <div className={classes.header__content__nav__controllers__logoutHolder} 
-                            style={menuOpen? {display:'flex', width: '100%' , justifyContent: 'space-between', alignItems:'center',}:{}}
-                            >
-                              <AccountCircleIcon style={menuOpen? {fontSize: '30px' , color: '#6464d5'}:{}} onClick={() => {navigate('/account')}}/>
+                            <>
+                              <Link style={menuOpen? {cursor:'pointer', width:'100%', display:'flex', justifyContent:'center', alignItems:'center'}:{width:'fit-content'}}  to='/checkout'  onClick={()=> setMenuOpen(false)}> <ShoppingCart/> <span>{getCartCount()}</span></Link>
+                              </>
+                              
+
+                              <div className={classes.header__content__nav__controllers__logoutHolder} 
+                            style={menuOpen? {marginTop: '1rem', display:'flex', width: '100%' , justifyContent: 'center', alignItems:'center',}:{}}
+                            > 
+
+                             <>
+                             <AccountCircleIcon style={menuOpen? {cursor:'pointer', marginRight:'0.5rem'  ,fontSize: '40px' , color: '#6464d5'}:{}} onClick={() => {navigate('/account')}}/>
+                             </>
                               <Button variant="contained" color="secondary" onClick={handleLogout}>
                                 Logout
                               </Button>
@@ -86,10 +96,11 @@ export default function navbar() {
                           </div>
                       :
                         <div className={classes.header__content__nav__controllers}>
-                          <div>
-                            <Link  style={menuOpen? {color:'white' , marginTop: '10rem'}: {}} to='/checkout' spy={true} smooth={true} offset={-100} duration={500} onClick={()=> setMenuOpen(false)}> <ShoppingCart/> <span>{getCartCount()}</span></Link>
-                          </div>
-                          <Link to='/login'>
+                           
+                               <>
+                              <Link style={menuOpen? {cursor:'pointer', width:'100%', display:'flex', justifyContent:'center', alignItems:'center'}:{width:'fit-content'}}  to='/checkout'  onClick={()=> setMenuOpen(false)}> <ShoppingCart/> <span>{getCartCount()}</span></Link>
+                              </>                              
+                          <Link to='/login' style={!menuOpen? {width:'fit-content'}:{}} >                           
                             <Button variant="contained" color="secondary">
                                Login
                             </Button>
@@ -243,3 +254,5 @@ export default function navbar() {
           </div>
         </div>
       </div> */}
+
+

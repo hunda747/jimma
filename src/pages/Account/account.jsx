@@ -1,11 +1,15 @@
 import React, {useRef, useState, useEffect} from 'react'
-import './account.css'
 
-import SlideBar from './Sidebar'
+
+import classes from './account.module.scss'
+
+
 import Navbar from '../../component/Navbar/navbar'
-import UserProfile from './UserProfile'
+import ProfileComponent from './UserProfile'
 import SettingUser from './SettingUser'
 import UserOrder from './userOrder'
+import Footer from '../../component/Footer/footer'
+import Sidebar from './Sidebar'
 
 export default function Account() {
   const [counter, setCounter] = useState(0);
@@ -16,27 +20,23 @@ export default function Account() {
 
   return(
     <>
-      <Navbar />
-      <div className="bar">
-        <div className="menus">
-          <SlideBar changeCounter={passedFunction}/>  
+        <div className="navbar_holder">
+            <Navbar />
         </div>
-        <div className="view">
-          {
-            counter === 0 ? 
-              <UserOrder />
-            : counter === 1 ?
-              <UserProfile />  
-            : counter === 2 ? 
-              "2"
-            : counter === 3 ? 
-              <SettingUser />
-            : counter === 4 ? 
-              "4" 
-            : ""
-          }
-        </div>
-      </div>
+        
+      <div className={classes.account}>
+            <Sidebar  changeCounter={passedFunction} counter={counter}/>
+            <div className={classes.account__optionDetails}>
+                {
+                counter === 0 ? 
+                  <UserOrder />
+                : counter === 1 ?
+                  <ProfileComponent />  
+                : ""
+              }
+            </div>
+      </div>    
+      <Footer/>
     </>
   )
 };

@@ -3,7 +3,6 @@
 
 
 
-
 .container{
   max-width: 1350px;
   margin: auto;
@@ -16,6 +15,14 @@ a{
 
 ul{
   list-style: none;
+}
+
+.navbar_holder{
+  top: 0;
+  width: 100%;
+  position: sticky;
+  z-index: 999;
+
 }
 
 

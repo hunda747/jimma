@@ -3,6 +3,7 @@
 
 .header{
     position: sticky;
+
     z-index: 999;
     background: linear-gradient(to right  , $bg , $light);
     width: 100%;  
@@ -38,6 +39,11 @@
         position: relative;
         z-index: 100;
 
+        // @include breakpoint(md){
+        //     display: flex;
+        //     justify-content: center;
+        // }
+
 
         &__logo{
             margin-left: 3rem;            
@@ -45,6 +51,13 @@
             height: 50px;
             object-fit: contain;
             text-decoration: none;
+            
+
+            @include breakpoint(md){
+                margin-left: 3rem;
+                
+                
+            }
            
            
             
@@ -54,32 +67,50 @@
             }
         }
         &__nav{
-            top: 0;
+            
+            top: $headerHeight;
             right:  100%;
             bottom: 0;
-            width: 50%;
-            height: 100vh;
+            width: 100%;
+            height: 280px;
             position: fixed;
             display: flex;
             flex-direction: column;
+           
             justify-content: center;
             align-items: center;
-            text-align: center;
-            background-color: rgba($primary, 0.9);
+            z-index: 999;
+         
+            background-color: white;
             backdrop-filter: blur(2px);
-            transform: translate(0);
+            transform: translateX(0);
             transition: 0.3s ease transform;           
 
 
             @include breakpoint(md){
+               
                 transform: none;
                 flex-direction: row;
+                align-items: center;
+                justify-content: center;
                 background: transparent;
-                width: auto;
-                height: 100%;
+                width: auto;                
                 position: static;
 
             &__controllers{
+                width: 100%;
+
+                a{
+                    @include breakpoint(md){
+                        width: fit-content;
+                        display: flex;
+                        margin: 0;
+                        padding: 0;
+                        width: 100%;
+                    }
+                }
+                
+
 
                 @include breakpoint(sm){
 
@@ -100,13 +131,20 @@
                     
                 }
                    
-
-                &__logoutHolder{  
                    
+
+                &__logoutHolder{                     
+                    margin-top: 1rem;
                     display: flex;
-                    align-items: center;
+                    width: 100%;
                     justify-content: center;
-                    margin-left: 1rem;
+                    align-items: center;
+                    align-content: center;
+                    justify-content: center;
+
+                    @include breakpoint(md){
+                        width: fit-content;
+                    }
 
                   
                                       
@@ -136,25 +174,53 @@
 
             }
             ul{
-                list-style: none;
-                display: flex;
+                
+                height: fit-content;
                 padding: 0;
+                margin: 0;
+                display: flex;
                 flex-direction: column;
-                margin-bottom: $spacing-lg;
+                align-content: center;
+                width: 100%;
+                align-items: center;
+              
 
                 @include breakpoint (md){
+                    width: 100%;
                     flex-direction: row;
                     align-items: center;
                     margin-bottom: 0;
                     margin-right: calc(0.5rem + #{$spacing-md});
                 }
                 li{
+                    margin-bottom: 0px;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    padding: 0;
                     font-size: 11px;
+                   
+
+
+                    @include breakpoint(md){
+                        // display: flex;
+                    }
+
                     &:not(:last-child){
-                        margin-bottom: $spacing-lg;
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-bottom: 1px solid black;
+                        
                         @include breakpoint(md){
                             margin-bottom: 0;
                             margin-right: $spacing-lg;
+                            border: none;
+                           
+                            
+                            
+                            
                         }
                     }
                     a{                    
@@ -163,18 +229,26 @@
                         padding: 0.75rem 1.25rem;
                         border-radius: $borderRadius;
                         transition: 0.3s ease all;
-                        margin: 0 0;
-                        font-size: 11px;
+                        font-size: 12px;
+                        color: black;
+                        width: 100%;                        
+                        align-items: center;
+                        display: flex;                      
+                        justify-content: center;   
 
                         @include breakpoint(md){
-                            font-size: 13px;
+                            font-size: 12px;
+                            
+                            
                         }
+                        
+                     
+                       
 
                         &:hover{
-                            background: rgba(rgb(41, 109, 134) ,0.1) ;
+                            background: rgba(rgb(170, 155, 17) ,0.1) ;
                         }
                         &:active{
-                            border-radius: calc(#{$borderRadius} + 6px);
                             background: linear-gradient(rgba(218, 214, 17, 0.1), rgba($light, 0.2));
                             
                          }
@@ -255,152 +329,3 @@
 
 
 
-
-// a {
-//   color: black;
-// }
-
-
-// .navbar_main{
-//   position: sticky;
-//   top: 0;
-//   z-index: 100;
-//   background-color: white;
-//   color: black;
-//   width: 100%;
-//   border-bottom: 1px solid #FFE45E;
-//   /* background-color: #FFE45E; */
-// }
-
-// .navbar{
-//   display: flex;
-//   justify-content: space-between;
-//   padding: 10px 45px;
-//   /* width: 1400px; */
-//   margin: auto;
-//   /* height: 50px; */
-// }
-
-// .navbar .logo{
-//   font-family: 'EB Garamond','Aboreto', sans-serif;
-//   font-weight: bold;
-//   font-size: 30px;
-//   color: black;
-// }
-
-// .navbar .icons{
-//   display: flex;
-// }
-
-// .navbar .icons .icon{
-//   margin-right: 15px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
-// .navbar .icons .icon .smaller{
-//   transform: scale(0.91);
-// }
-
-// .navbar .icons .icon .cartIconHolder {
-//   /* background-color: #F0C808; */
-//   display: flex;
-//   justify-content: center;
-//   vertical-align: center;
-//   padding: 10px;
-//   border-radius: 175px;
-//   /* border: 2px solid rgb(147, 147, 147); */
-// }
-
-// .navbar .icons .icon .accountIconHolder {
-//   display: flex;
-//   justify-content: center;
-//   vertical-align: center;
-//   /* align-items: center; */
-//   /* height: 100%; */
-//   background-color: #FFE45E;
-//   transition: all ease 0.3s;
-//   transform: scale(1.2);
-//   padding: 7px;
-//   /* padding: 8px 8px; */
-//   border-radius: 175px;
-//   border: 2px solid rgb(147, 147, 147);
-//   /* background-color: white; */
-// }
-
-
-// .navbar .icons .icon .cartIconHolder:hover, .navbar .icons .icon .accountIconHolder:hover {
-//   transition: all ease 0.9s;
-//   /* padding: 8px 8px; */
-//   /* border-radius: 75px; */
-//   background-color: black;
-// }
-
-
-// .navbar .icons .icon .cartIconHolder span{
-//   padding: 1px;
-//   top: 0;
-//   /* color: rgb(255, 204, 0); */
-//   object-fit: contain;
-//   font-size: 12px;
-//   font-weight: bold;
-// }
-
-// .navbar .icons .btn{
-//   background-color: white;
-//   color: black;
-//   padding: 5px 15px;
-//   margin: 0 5px;
-//   text-transform: uppercase;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   border: 3px solid black;
-//   border-radius: 5px;
-// }
-
-// @media(max-width: 700px){ 
-//   .navbar{
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     padding: 25px 45px;
-//     align-items: center;
-//     /* height: 50px; */
-//   }
-// }
-
-// /* CSS */
-// .button-22 {
-//   align-items: center;
-//   appearance: button;
-//   background-color: #0276FF;
-//   border-radius: 8px;
-//   border-style: none;
-//   box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
-//   box-sizing: border-box;
-//   color: #fff;
-//   cursor: pointer;
-//   display: flex;
-//   flex-direction: row;
-//   flex-shrink: 0;
-//   font-family: "RM Neue",sans-serif;
-//   font-size: 100%;
-//   line-height: 1.15;
-//   margin: 0;
-//   padding: 10px 21px;
-//   text-align: center;
-//   text-transform: none;
-//   transition: color .13s ease-in-out,background .13s ease-in-out,opacity .13s ease-in-out,box-shadow .13s ease-in-out;
-//   user-select: none;
-//   -webkit-user-select: none;
-//   touch-action: manipulation;
-// }
-
-// .button-22:active {
-//   background-color: #006AE8;
-// }
-
-// .button-22:hover {
-//   background-color: #1C84FF;
-// }
