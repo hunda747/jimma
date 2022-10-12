@@ -168,10 +168,24 @@
     font-weight: bold;
 }
 
-.checkout .payment_methods{
+// .checkout .cartEmpty{
+//     background-color: rgb(238, 238, 238);
+
+//     padding: 15px 30px;
+// }
+
+.checkout .payment,
+.checkout .cartEmpty{
     background-color: rgb(238, 238, 238);
     padding: 15px 30px;
+    color: black;
     width: 100%;
+    display: flex;
+    gap: 20px
+}
+.checkout .payment .memberDiscountInfo .contentTitle{
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .checkout .totalInfoTable{

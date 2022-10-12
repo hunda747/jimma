@@ -300,15 +300,35 @@ export default function Checkout() {
           <div className="cartConfirm">
             {cartItems.length === 0? (
               <p className='cartEmpty'>  
-                Your Cart Is Empty:  <span> <SentimentVeryDissatisfiedIcon /></span>  
+                <span> <SentimentVeryDissatisfiedIcon fontSize='large'/></span>  
+                Your Cart Is Empty:  
               </p>
-              ): cartItems.map((item)=>
-                <CartItem 
-                  item={item} 
-                  qtyChangeHandler={qtyChangeHandler} 
-                  removeFromCartHandler={removeFromCartHandler}    
-              /> 
-              )} 
+              )
+              : 
+              <>
+              { cartItems.map((item)=>
+                  <CartItem 
+                    item={item} 
+                    qtyChangeHandler={qtyChangeHandler} 
+                    removeFromCartHandler={removeFromCartHandler}    
+                  /> 
+                )}
+              <table className='totalInfoTable'  align='right'>
+                  <tr>
+                    <td>Price:</td>
+                    <td>{getTotalProductPrice()} Birr</td>
+                  </tr>
+                  <tr>
+                    <td>Delivery price:</td>
+                    <td>{deliveryPrice} Birr</td>
+                  </tr>
+                  <tr className="bold">
+                    <td>Total: </td>
+                    <td>{getTotalProductPrice() + deliveryPrice} Birr</td>
+                  </tr>
+                </table>
+                </>
+              } 
 
           
             <div className="checkoutInfo" >
@@ -332,20 +352,7 @@ export default function Checkout() {
                       </div>
                   </div> 
                 </div> */}
-                <table className='totalInfoTable'  align='right'>
-                  <tr>
-                    <td>Price:</td>
-                    <td>{getTotalProductPrice()} Birr</td>
-                  </tr>
-                  <tr>
-                    <td>Delivery price:</td>
-                    <td>{deliveryPrice} Birr</td>
-                  </tr>
-                  <tr className="bold">
-                    <td>Total: </td>
-                    <td>{getTotalProductPrice() + deliveryPrice} Birr</td>
-                  </tr>
-                </table>
+                
               </div>
             </div>
           </div>
@@ -355,25 +362,43 @@ export default function Checkout() {
             <p>Step 3 - Payment Methods</p>
           </div>
 
-          <div className="payment_methods">
-            <div className="featuredInfo">
-              <div className="featuredInfoWrapper">
-                <div className="content">
-                  <div className="contentWrapper" style={{justifyContent:"left"}}>                          
-                    <div className="memberDisountContent">
-                      <div className="memberDiscount">
-                          <MonetizationOnOutlined  className='contentIcon'/>
-                        <div className='memberDiscountInfo'>
-                            <p className='contentTitle'>Cash on Delivery</p>
-                            <p className='contentDetail'>Pay with cash after</p>
-                        </div>
-                      </div>
-                    </div>                 
-                  </div>
-                </div>
-              </div>
+          <div className="payment">
+            <div className="memberDiscount">
+              <MonetizationOnOutlined fontSize='large'      
+                className='contentIcon'/>
+            </div>
+            <div    
+              className='memberDiscountInfo'>
+                <p className='contentTitle'>
+                  Cash on Delivery
+                </p>
+                <p className='contentDetail'>
+                  Pay with cash after
+                </p>
             </div>
           </div>
+
+          {/* <div className="payment_methods">
+            <div className="featuredInfo">
+              <div className="content">
+                <div className="memberDisountContent">
+                  <div className="memberDiscount">
+                    <MonetizationOnOutlined       
+                      className='contentIcon'/>
+                  </div>
+                  <div    
+                    className='memberDiscountInfo'>
+                      <p className='contentTitle'>
+                        Cash on Delivery
+                      </p>
+                      <p className='contentDetail'>
+                        Pay with cash after
+                      </p>
+                  </div>
+                </div>  
+              </div>
+            </div>
+          </div> */}
 
           <div className="confirmOrder">
             <button className='btn_order' onClick={handleConfirm}> Order </button>

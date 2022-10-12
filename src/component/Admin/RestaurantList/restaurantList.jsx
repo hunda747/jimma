@@ -143,7 +143,7 @@ export default function RestuarantList({onMorePage}) {
                     <h3>{restaurant.name}</h3>
                     </td>
                     <td>
-                    <p className='open'>open</p>
+                    <p className='open'>{restaurant.status === false ? "Closed" : "Open"}</p>
                     </td>
                     <td>
                     <button onClick={() => {
@@ -159,13 +159,16 @@ export default function RestuarantList({onMorePage}) {
                       })
                       console.log(editValues);
                       console.log(restaurant);
-                      setVisible(true)}}>
+                      
+                      setVisible(true)}}
+                      className="btn_table">
                       edit
                     </button></td>
                     <td>
                     <button onClick={() => {
                       dispatch(getAllFoodsByRestaurant(restaurant._id));
                       onMorePage(10)}}
+                      className="btn_table"
                       >
                       products
                     </button></td>
