@@ -314,7 +314,8 @@ export default function UsersList() {
                     <TableCell align="right">{val.phone}</TableCell>
 
                     <TableCell align="right">{val.date.substr(3, 12)}</TableCell>
-                    <TableCell align='center'>{ val.status === "active"? <p className='active_status'></p> : <p className="de-active_status"></p>}</TableCell>
+                    <TableCell align='center'>{ val.status === "active" ? 
+                    <p className='active_status'></p> : <p className="de-active_status"></p>}</TableCell>
                   </TableRow>
                   </>
                 )

@@ -98,7 +98,8 @@ export default function ProductList({onMorePage}) {
   const [fixedTop, setFixedTop] = React.useState(false);
 
   const food = useSelector((state) => state.food.food);
-  console.log(food);
+  const foodLoad = useSelector((state) => state.food.loading);
+  console.log(foodLoad);
   
 
   const [form] = Form.useForm();
@@ -252,16 +253,14 @@ export default function ProductList({onMorePage}) {
             EditProduct(record)} 
           }
             style={{color: "gray" , fontWeight: "bolder", cursor: "pointer" }}  />
-          <DeleteOutlineOutlinedIcon onClick={() =>{
+          {/* <DeleteOutlineOutlinedIcon onClick={() =>{
             DeleteProduct(record)
-          }}  style={{color: "red" , fontWeight: "bolder", cursor: "pointer" , marginLeft:10}}  />
+          }}  style={{color: "red" , fontWeight: "bolder", cursor: "pointer" , marginLeft:10}}  /> */}
 
           </>
         );
       },
     },
-    
-
   ];
 
   //state for sidedrawer edit
@@ -309,7 +308,6 @@ export default function ProductList({onMorePage}) {
   })
 
   // state for product list search bar
-
   const EditProduct = (record) =>{  
     console.log(record);
     setEditValues({ ...editValues,
@@ -362,21 +360,6 @@ export default function ProductList({onMorePage}) {
     <>
     <div className="productListPageHolder">
       <div className="searchBarContainer">
-        {/* <div className="sorter">
-          <div className="active_only">
-            <div className="active_only_wrapper">
-              <div className="all_products" onClick={getAll}  style={category === 0 ? {backgroundColor:'orange', color:'white'}:{}}  >
-                <p>All</p>
-              </div>
-              <div className="active_products"  onClick={getActive}  style={category === 1 ? {backgroundColor:'orange', color:'white'}:{}}   >
-                <p>Active</p>
-              </div>
-              <div className="diactive_products" onClick={getDiactive}  style={category === 2 ? {backgroundColor:'orange', color:'white'}:{}}   >
-                <p>Diactive</p>
-              </div>
-            </div>
-          </div> 
-        </div> */}
         <div>
           <button onClick={() => {onMorePage(1  )}}>back</button>
         </div>
@@ -389,7 +372,7 @@ export default function ProductList({onMorePage}) {
         </div>
       </div>
         { 
-          food ?
+          !foodLoad ?
             <div className="table">
               <Form form={form} component={false}>
                 <Table 
@@ -447,19 +430,16 @@ export default function ProductList({onMorePage}) {
         </Space> }>
 
     <Form layout="vertical" hideRequiredMark>
-    <Row gutter={20}>
+      <Row gutter={20}>
       </Row>
       <Row gutter={16}>
-
         <Col span={12}>
-
           <Form.Item
             name="product_status"
             label="Product Type"
             rules={[{ required:true , message: "Please Give Status for Product"}]}
           >
             <Switch checked={addValues.status === true ? true : false} onChange={()=> addValues.status === true ? setAddValues({...addValues , status: false}) : setAddValues({...addValues, status: true}) }  />
-
           </Form.Item>
           
           <Form.Item
@@ -469,6 +449,7 @@ export default function ProductList({onMorePage}) {
           >
             <Input value={addValues.food_name} onChange={(e)=> setAddValues({...addValues, food_name: e.target.value})}  placeholder={'food_name'} />
           </Form.Item>
+
           <Form.Item
             name="food_type"
             label="Food Type"
@@ -476,16 +457,13 @@ export default function ProductList({onMorePage}) {
           >
             <Input value={addValues.type} onChange={(e)=> setAddValues({...addValues, type: e.target.value})}  placeholder={'type'} />
           </Form.Item>
-
         </Col>
-
       </Row>
+
       <Row gutter={16}>
         <Col span={12}>
-          
         </Col>
         <Col span={12}>
-        
         </Col>
       </Row>
       <Row gutter={16}>

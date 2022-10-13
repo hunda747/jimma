@@ -61,8 +61,7 @@ export default function RestuarantList({onMorePage}) {
     console.log(editValues);
     dispatch(updateRestaurant(editValues.restaurant_name, editValues.description, editValues.rating, editValues.open_days, editValues.working_hour, editValues.img, editValues._id, editValues.status));
     setVisible(false);
-    onMorePage(1)
-    // window.location.reload(0)
+    
     setEditValues({ ...editValues,
       _id:'',
       restaurant_name:'',
@@ -79,7 +78,9 @@ export default function RestuarantList({onMorePage}) {
     }
     
     message.success("Restaurant Updated");
-    dispatch(getAllRestaurants());
+    dispatch(getRestaurants());
+    // window.location.reload(0);
+    onMorePage(1);
   }
   
   const [editValues ,setEditValues] = useState({
@@ -230,14 +231,18 @@ export default function RestuarantList({onMorePage}) {
                 label="Product Name"
                 rules={[{ required: true, message: 'Please enter product Name' }]}
               >
-                <Input value={editValues.restaurant_name} onChange={(e)=> setEditValues({...editValues, restaurant_name: e.target.value})}  placeholder={editValues.restaurant_name} />
+                <Input value={editValues.restaurant_name} onChange={(e)=> setEditValues({...editValues, restaurant_name: e.target.value})}  
+                placeholder={editValues.restaurant_name} 
+                />
               </Form.Item>
               <Form.Item
                 name="open_days"
                 label="Open days"
                 rules={[{ required: true, message: 'Please enter restaurant opening days' }]}
               >
-                <Input value={editValues.open_days} onChange={(e)=> setEditValues({...editValues, open_days: e.target.value})}  placeholder={editValues.open_days} />
+                <Input value={editValues.open_days} 
+                onChange={(e)=> setEditValues({...editValues, open_days: e.target.value})}  
+                placeholder={editValues.open_days} />
               </Form.Item>
               <Form.Item
                 name="Working hours"

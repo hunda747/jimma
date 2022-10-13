@@ -22,15 +22,7 @@ import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-
 import {Stack, TextField} from '@material-ui/core';
-
-// import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-
-// import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-// import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-
 
 
 function TabPanel(props) {
@@ -101,6 +93,7 @@ export default function Orders() {
   
 
   const orders = useSelector((state) => state.order.orders);
+  const orderLoad = useSelector((state) => state.order.loading);
   // const load = useSelector((state) => state.order.loading);
   // setLoader(load);
 
@@ -155,6 +148,8 @@ export default function Orders() {
             </AppBar>
 
 						<TabPanel value={value} index={0}>
+            {
+              !orderLoad ? 
               <TableContainer component={Paper}>
                 <Table aria-label="collapsible table">
                   <TableHead >
@@ -192,15 +187,22 @@ export default function Orders() {
                             admin = {true}
                             />
                           )
-                      }
-                    ))
+                        }
+                    )) 
                   }
                   </TableBody>
                 </Table>
               </TableContainer>
+              : 
+                <div className="loaders">
+                  <CircularProgress />
+                </div>
+              }
 						</TabPanel>
 
-						<TabPanel value={value} index={1}>          
+						<TabPanel value={value} index={1}> 
+            {
+              !orderLoad ?          
               <TableContainer component={Paper}>
                 <Table aria-label="collapsible table">
                   <TableHead >
@@ -249,23 +251,16 @@ export default function Orders() {
                   </TableBody>
                 </Table>
               </TableContainer>
+            : 
+              <div className="loaders">
+                <CircularProgress />
+              </div>
+            }
 						</TabPanel>
 
 						<TabPanel value={value} index={2}>  
-              <div>
-                {/* <LocalizationProvider dateAdapter={AdapterDateFns}> */}
-                  {/* <Stack spacing={3}> */}
-                    {/* <MobileDatePicker
-                      label="Date mobile"
-                      inputFormat="MM/dd/yyyy"
-                      value={dateValue}
-                      onChange={handleChangeDate}
-                      renderInput={(params) => <TextField {...params} />}
-                    />
-                    <Button onClick={handleViewAll}>View All Orders</Button> */}
-                  {/* </Stack> */}
-                {/* </LocalizationProvider> */}
-              </div>          
+            {
+              !orderLoad ?          
               <TableContainer component={Paper}>
                 <Table aria-label="collapsible table">
                   <TableHead >
@@ -309,6 +304,11 @@ export default function Orders() {
                   </TableBody>
                 </Table>
               </TableContainer>
+              : 
+              <div className="loaders">
+                <CircularProgress />
+              </div>
+            }
 						</TabPanel>
                 
           </div>

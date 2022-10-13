@@ -8,11 +8,13 @@ import DetailPage from './pages/DetailPage/detailPage'
 import Checkout from './pages/Checkout/checkout'
 import Login from './pages/Login/login'
 import Register from './pages/Register/register';
-import Dashboard from './pages/Admin/dashboard/dashboard'
-import AdminLogin from './pages/Admin/AdminLogin/adminLogin'
+import Account from './pages/Account/account';
 import SearchPage from './pages/Search/search';
 
-import Account from './pages/Account/account';
+import Dashboard from './pages/Admin/dashboard/dashboard'
+import AdminLogin from './pages/Admin/AdminLogin/adminLogin'
+
+import Delivery_Dashboard from './pages/Delivery/DeliveryDash/deliveryDash'
 
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -42,6 +44,7 @@ function App() {
             <Route exact path='/account' element={<Account />} ></Route>
           </Route>
 
+          <Route exact path='/delivery' element={<Delivery_Dashboard />} ></Route>
           <Route exact path='/dashboard' element={<Dashboard />} ></Route>
           <Route exact path='/adminLogin' element={<AdminLogin />} ></Route>
           {/* <Route exact path='/login/:id' element={<Login />} ></Route> */}

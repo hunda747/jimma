@@ -1,7 +1,11 @@
 body{
     padding: 0;
     margin: 0;
+}
 
+.loaders{
+    display: flex;
+    justify-content: center;
 }
 
 .MuiTableHead-root {

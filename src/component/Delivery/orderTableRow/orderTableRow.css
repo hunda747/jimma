@@ -1,0 +1,237 @@
+.comRow{
+  background-color: rgb(175, 255, 175);
+}
+
+
+
+.canRow{
+  background-color: rgb(255, 184, 184);
+}
+
+.inProg .btn{
+  background-color: rgb(115, 241, 255);;
+}
+
+.mapDelivery{
+  padding: 1.5rem 0;
+}
+td {
+  padding: 0 15px;
+  font-size: 15px;
+}
+
+.ordersInfo{
+  padding: 2rem 1rem;
+}
+
+.topInfo{
+  font-size: 40px;
+}
+
+.middleInfo{
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+}
+
+.itemsInfo .totalInfo{
+  align-items: left;
+  text-align: right;
+  padding: 15px;
+}
+
+.MuiPaper-root.MuiAppBar-root.MuiAppBar-positionStatic.MuiAppBar-colorDefault.MuiPaper-elevation4{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin:0;
+}
+
+.MuiTab-wrapper{
+  font-size: 12px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+}
+
+.deliveryInProgressBtnHolder{
+  display: flex;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  justify-content: right;
+
+}
+
+
+.MuiButtonBase-root.MuiButton-root.MuiButton-text.deliveryComplete_btn{
+   width: 100%;
+   height: 100%;
+   align-items: center;
+   justify-content: right;
+}
+
+.MuiSvgIcon-root { 
+  font-size: 15px;
+ 
+}
+
+.penRow .btn {
+  background-color: #69ffc5;
+  border: none;
+  font-weight: bold;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.MuiTypography-root.MuiTypography-h6.MuiTypography-gutterBottom
+{
+  font-size: 15px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: lighter;
+  padding: 2px;
+  margin: 3px;
+}
+.detailInfoTitle{
+  display: inline;
+  font-size: 13px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+  padding: 2px;
+  margin: 3px;
+}
+.detailInfos{
+  display: inline;
+  font-size: 12px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: lighter;
+  padding: 2px;
+  margin: 3px;
+}
+
+@media(max-width: 700px){
+  .MuiTab-wrapper{
+    font-size: 11px;
+  }
+  .MuiTableCell-root.MuiTableCell-head{
+    font-size: 11px;
+  
+  }
+  .MuiTypography-root.MuiTypography-h6.MuiTypography-gutterBottom
+  {
+    font-size: 13px;
+
+  }
+  .detailInfoTitle{
+ 
+    font-size: 12px;
+
+  }
+  .detailInfos{
+    font-size: 11px;
+   
+  }
+  .penRow .btn {
+    font-size: 11px;
+   
+    
+  }
+  
+
+}
+
+@media(max-width: 600px){
+  .MuiTab-wrapper{
+    font-size: 10px;
+  }
+  .MuiTableCell-root.MuiTableCell-head{
+    font-size: 10px;
+  
+  }
+  .MuiTypography-root.MuiTypography-h6.MuiTypography-gutterBottom
+  {
+    font-size: 12px;
+
+  }
+  .detailInfoTitle{
+ 
+    font-size: 11px;
+
+  }
+  .detailInfos{
+    font-size: 10px;
+   
+  }
+  .penRow .btn {
+    font-size: 10px;
+    
+  }
+
+}
+
+
+@media(max-width: 450px){
+  .MuiTab-wrapper{
+    font-size: 9px;
+  }
+  .MuiTableCell-root.MuiTableCell-head{
+    font-size: 9px;
+  
+  }
+  .MuiTypography-root.MuiTypography-h6.MuiTypography-gutterBottom
+  {
+    font-size: 11px;
+
+  }
+  .detailInfoTitle{
+ 
+    font-size: 10px;
+
+  }
+  .detailInfos{
+    font-size: 9px;
+   
+  }
+  .penRow .btn {
+    font-size: 9px;
+    
+    
+  }
+
+}
+
+
+
+@media(max-width: 400px){
+  .MuiTab-wrapper{
+    font-size: 7px;
+  }
+  .MuiTableCell-root.MuiTableCell-head{
+    font-size: 7px;
+  
+  }
+  .MuiTypography-root.MuiTypography-h6.MuiTypography-gutterBottom
+  {
+    font-size: 9px;
+
+  }
+  .detailInfoTitle{
+ 
+    font-size: 8px;
+
+  }
+  .detailInfos{
+    font-size: 7px;
+   
+  }
+  .penRow .btn {
+    font-size: 7px;
+    
+    
+  }
+
+}

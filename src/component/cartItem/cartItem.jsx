@@ -59,7 +59,7 @@ export default function CartItem({
               </div>
 
               <div onClick={() => {
-                if(cart.qtyCounter === 1){
+                if(item.qtyCounter === 1){
                   dispatch(removeFromCart(item.id))
                 }else{
                   dispatch(changeToCart(item.id, (item.qtyCounter - 1)))
