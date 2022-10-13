@@ -6,9 +6,15 @@
 .cart h1{
   text-align: center;
   padding-bottom: 3px;
-  border-bottom: 3px solid rgb(161, 161, 161);
   font-weight: bold;
 }
+
+.cart .head{
+  display: flex;
+  justify-content: center;
+  border-bottom: 3px solid rgb(161, 161, 161);
+}
+
 .cart .product{
   display: flex;
   justify-content: space-between;

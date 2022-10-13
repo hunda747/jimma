@@ -20,10 +20,11 @@ import 'antd/dist/antd.css';
 import {MenuItem, Select} from '@material-ui/core';
 
 import axios from 'axios';
-import { getFoodsByRestaurant, updateFood, createFood } from '../../../redux/actions/foodAction';
+import { getFoodsByRestaurant,getAllFoodsByRestaurant , updateFood, createFood } from '../../../redux/actions/foodAction';
 import { Add } from '@material-ui/icons';
 import { CircularProgress } from '@mui/material';
 // const { Option } = Select;
+import { useCookies } from 'react-cookie';
 
 const EditableCell = ({
   editing,
@@ -63,14 +64,16 @@ const EditableCell = ({
 export default function ProductList({onMorePage}) {
 
   const dispatch = useDispatch();
-
   const [products ,setProducts] = useState([]);
   const [searchInput , setSearchInput] = useState('');
   const [searchCategory , setSearchCategory] = useState('');
   const [category , setCategory] = useState(0);
+  const [cookies, setCookie] = useCookies(['user']);
+  const restId = localStorage.getItem('restId');
+  console.log(restId);
 
   useEffect(() => {
-    // dispatch(getFoodsByRestaurant());
+    dispatch(getAllFoodsByRestaurant(restId));
   }, [])
 
   // rowSelection objects indicates the need for row selection
@@ -324,7 +327,7 @@ export default function ProductList({onMorePage}) {
   const handleAddFood = () =>{
     console.log("handling add values");
     console.log(addValues);
-    dispatch(createFood(addValues.food_name,addValues.description,addValues.type,addValues.restaurant,addValues.price));
+    dispatch(createFood(addValues.food_name,addValues.description,addValues.type,restId,addValues.price));
     setVisibleAdd(false);
     onMorePage(1)
     // window.location.reload(0)

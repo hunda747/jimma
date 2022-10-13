@@ -22,7 +22,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios'
 import { Add   } from '@material-ui/icons';
 import { CircularProgress } from '@mui/material';
-
+import { useCookies } from 'react-cookie';
 //for the input hider
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,8 +44,7 @@ export default function RestuarantList({onMorePage}) {
   const [addAccErr , setAddAccErr] = useState('');
 	const loading = false;
 	const error = false;
-
-  
+  const [cookies, setCookie] = useCookies(['user']);
   const [visible , setVisible] = useState(false)
 
   const onClose = () => {
@@ -167,8 +166,11 @@ export default function RestuarantList({onMorePage}) {
                     </button></td>
                     <td>
                     <button onClick={() => {
-                      dispatch(getAllFoodsByRestaurant(restaurant._id));
-                      onMorePage(10)}}
+                        // dispatch(getAllFoodsByRestaurant(restaurant._id));
+
+                        localStorage.setItem('restId', restaurant._id);
+                        onMorePage(10)
+                      }}
                       className="btn_table"
                       >
                       products

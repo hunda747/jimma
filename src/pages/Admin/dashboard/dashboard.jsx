@@ -286,7 +286,7 @@ export default function PM_Dashboard() {
             compCounter === 5 ? <Orders />: 
             compCounter === 6 ? <Hiring />:
             compCounter === 7 ? <Profile userName={"hunda"}  email={"hunda@gmail.com"} role={"admin"} signUpDate={"2022-05-29"} />:
-            compCounter === 10 ? <ProductList onMorePage={setCompCounter}/> :  
+            compCounter === 10 ? <ProductList onMorePage={setCompCounter} /> :  
             "others"   
           }
       </main>

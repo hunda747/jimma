@@ -4,7 +4,7 @@ import './cartView.css';
 import { ShoppingCart, Delete, Add, Remove} from '@material-ui/icons';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { removeFromCart, addToCart, changeToCart} from '../../redux/actions/cartActions'
+import { removeFromCart, addToCart, changeToCart, clearCart} from '../../redux/actions/cartActions'
 import { useNavigate } from 'react-router-dom';
 
 export default function CartView() {
@@ -29,7 +29,10 @@ export default function CartView() {
 
   return (
     <div className="cart">
-      <h1><ShoppingCart fontSize='medium'/> Cart</h1>
+      <div className="head">
+        <h1><ShoppingCart fontSize='medium'/> Cart</h1>
+        
+      </div>
       {
         cartItems?.map((cart) => {
           return(
@@ -89,9 +92,15 @@ export default function CartView() {
             <p>No item</p>
           </div>
       }
+      
       <div className="checkout">
         <button className="button-32" onClick={() => navigate('/checkout')}>
           Checkout
+        </button>
+      </div>
+      <div className="">
+        <button className="button-32" onClick={() => dispatch(clearCart())}>
+          clear cart
         </button>
       </div>
     </div>
