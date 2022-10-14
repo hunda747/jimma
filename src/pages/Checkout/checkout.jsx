@@ -16,7 +16,8 @@ import { addToCart, changeToCart, removeFromCart, clearCart } from '../../redux/
 // import { sellProduct } from '../../../redux/actions/productActions';
 import {LocalShippingOutlined,LocalPhoneOutlined,MonetizationOnOutlined,RedeemOutlined} from '@material-ui/icons';
 
-ReactMapGL.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
+import mapboxgl from 'mapbox-gl';
+mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 // import { clearCart } from '../../../redux/actions/cartActions';
 
 
