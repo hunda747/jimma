@@ -1,16 +1,26 @@
 import React, {useEffect} from "react";
 
-import { Box, Collapse, IconButton,
-  Table, TableBody, TableCell,
-   TableContainer, TableHead,
-    TableRow, Typography, Paper} from '@material-ui/core';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { getOrdersbyUser, getOrdersComplete } from '../../redux/actions/orderActions';
  
-import Row from './orderDetail';
-// import Row from '../../component/Admin/orderRow/orderRow';
+
+import classes from './account.module.scss'
 import { useCookies } from "react-cookie";
+
+
+//antd icon import
+import {ExclamationCircleOutlined } from '@ant-design/icons'
+//antd collapse imports
+
+import { Collapse } from 'antd';
+
+const { Panel } = Collapse;
+import Row from './orderDetail';
+
+
+
+
 
 export default function UserOrder(params) {
   const dispatch = useDispatch();
@@ -23,18 +33,61 @@ export default function UserOrder(params) {
   },[])
   
   const orders = useSelector((state) => state.order.orders);
+
+  console.log('order info from user order file ')
+  // orders.map((val, index)=> console.log(val))
   
   return (
+
     <>
-      <TableContainer component={Paper}>
+      <div className={classes.userOrderHolder}>
+
+          <Collapse accordion>
+              {
+                 !orders?.length ? <div>No Orders</div> : 
+                 (
+                  orders?.map((val , index)=>{
+                      return(
+                        <>
+                          <Panel header={`Order ID : ${val._id}`} key={index}>
+                              <Row 
+                                  key = {val._id}   
+                                  id = {val._id}
+                                  fname = {val.fname}
+                                  lname = {val.lname}
+                                  contact = {val.contact} 
+                                  user = {val.userId}
+                                  total = {val.total}
+                                  date = {val.date}
+                                  status = {val.status}
+                                  address = {val.address}
+                                  orders = {val.orders}
+                                  longitude = {val.longitude}
+                                  latitude = {val.latitude}
+                                  admin = {true}
+                                  />
+                          </Panel>
+                        </>
+                      )
+                  })
+                 )
+             
+              }
+        
+            </Collapse>
+      </div>
+      
+
+
+      {/* <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
           <TableHead >
             <TableRow>
               <TableCell />
-              {/* <TableCell>Name</TableCell> */}
+              
               <TableCell>Date</TableCell>
               <TableCell>Address</TableCell>
-              {/* <TableCell>Phone number</TableCell> */}
+            
               <TableCell align="right">
                 Sub-Total</TableCell>
               <TableCell align="right">Status</TableCell>
@@ -68,7 +121,7 @@ export default function UserOrder(params) {
           }
           </TableBody>
         </Table>
-      </TableContainer>
+      </TableContainer> */}
     </>
   )
 };
