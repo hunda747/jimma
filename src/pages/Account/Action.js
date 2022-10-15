@@ -1,9 +1,3 @@
-// import {
-//   getUserById,
-//   updatePersonalInformationFetch,
-//   getOrderByUser,
-//   updatePassword,
-// } from "./FetchApi";
 
 // import { useNavigate } from "react-router-dom";
 import axios from "axios";

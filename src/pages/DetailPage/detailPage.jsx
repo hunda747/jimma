@@ -87,7 +87,9 @@ export default function DetailView() {
         error? <>Server Error</>:
         <></>
       }
-      <Navbar />
+      <div className="navbar_holder">
+            <Navbar />
+        </div>
       <div className="detail">
         <div className="image"> 
           <img src={restaurant.img} alt="image" />
