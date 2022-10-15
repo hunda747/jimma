@@ -10,6 +10,7 @@ import {BiMenuAltRight} from 'react-icons/bi'
 import {AiOutlineClose} from 'react-icons/ai'
 import Button from '@material-ui/core/Button';
 import { useNavigate } from 'react-router-dom';
+import {MenuOutlined} from '@ant-design/icons'
 
 
 
@@ -114,8 +115,9 @@ export default function Navbar() {
               </nav>            
 
               <div className={classes.header__content__toggle}>
+              
                 {
-                  !menuOpen ?  <BiMenuAltRight onClick={menuToggleHandler} /> : <AiOutlineClose onClick={menuToggleHandler} />
+                  !menuOpen ?  <MenuOutlined   onClick={menuToggleHandler} /> : <AiOutlineClose onClick={menuToggleHandler} />
                 }
              </div>  
 

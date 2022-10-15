@@ -9,18 +9,15 @@ import classes from './account.module.scss'
 import { useCookies } from "react-cookie";
 
 
-//antd icon import
-import {ExclamationCircleOutlined } from '@ant-design/icons'
-//antd collapse imports
 
 import { Collapse } from 'antd';
 
 const { Panel } = Collapse;
 import Row from './orderDetail';
 
+import { Tag } from 'antd';
 
-
-
+import { Spin } from 'antd';
 
 export default function UserOrder(params) {
   const dispatch = useDispatch();
@@ -35,21 +32,32 @@ export default function UserOrder(params) {
   const orders = useSelector((state) => state.order.orders);
 
   console.log('order info from user order file ')
-  // orders.map((val, index)=> console.log(val))
+  
   
   return (
 
     <>
+      
       <div className={classes.userOrderHolder}>
+          <Tag color="aquamarine">Waiting</Tag>
+          <Tag color="lightcoral">Cancelled</Tag>
+          <Tag color="lightskyblue">Shipped</Tag>
+          <Tag color="green">Complete</Tag>
+        
 
-          <Collapse accordion>
+          <Collapse accordion={true} >
               {
-                 !orders?.length ? <div>No Orders</div> : 
+                 !orders?.length ? <div style={{width:'100%', display:'flex', alignItem:'center', justifyContent:'center', padding:'3rem'}}><Spin /></div> : 
                  (
                   orders?.map((val , index)=>{
                       return(
                         <>
-                          <Panel header={`Order ID : ${val._id}`} key={index}>
+                          <Panel 
+                            className={val.status === 'cancel'?  classes.userOrderHolder__collapser__cancelled :
+                                       val.status === 'pending'? classes.userOrderHolder__collapser__pending :
+                                       val.status === 'complete'? classes.userOrderHolder__collapser__complete :
+                                       val.status === 'inProgress'? classes.userOrderHolder__collapser__inProgress:''      }
+                              header={`Order ID : ${val._id}`} key={index} >
                               <Row 
                                   key = {val._id}   
                                   id = {val._id}
@@ -79,49 +87,7 @@ export default function UserOrder(params) {
       
 
 
-      {/* <TableContainer component={Paper}>
-        <Table aria-label="collapsible table">
-          <TableHead >
-            <TableRow>
-              <TableCell />
-              
-              <TableCell>Date</TableCell>
-              <TableCell>Address</TableCell>
-            
-              <TableCell align="right">
-                Sub-Total</TableCell>
-              <TableCell align="right">Status</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-          {
-            !orders?.length ? <div>No Orders</div> : (
-              orders.map((val, key) => {
-                console.log(val);
-                return (
-                  <Row 
-                    key = {val._id}   
-                    id = {val._id}
-                    fname = {val.fname}
-                    lname = {val.lname}
-                    contact = {val.contact} 
-                    user = {val.userId}
-                    total = {val.total}
-                    date = {val.date}
-                    status = {val.status}
-                    address = {val.address}
-                    orders = {val.orders}
-                    longitude = {val.longitude}
-                    latitude = {val.latitude}
-                    admin = {true}
-                    />
-                  )
-              }
-            ))
-          }
-          </TableBody>
-        </Table>
-      </TableContainer> */}
+    
     </>
   )
 };
