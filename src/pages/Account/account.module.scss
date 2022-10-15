@@ -242,7 +242,12 @@
 .userOrderHolder{
   width: 100%;
   margin-bottom: 3rem;
+  &__load{
+     display: flex;
+     justify-content: center;
+  }
 }
+
 
 .orderDetailHolder{
    width: 100%;
