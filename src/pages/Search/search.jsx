@@ -90,7 +90,9 @@ export default function SearchPage() {
         <></>
       }
         <div className='wrapper'>
-          <Navbar />
+          <div className="navbar_holder">
+              <Navbar />
+          </div>
           <header className='search'>
             <div className='containerdd'>
               <div className="hero">
