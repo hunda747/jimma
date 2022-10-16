@@ -106,7 +106,6 @@ export default function OrderDetail(props) {
   props.orders.map(val=> console.log(val._id.food_name))
   return (
         <>
-
           <div className={classes.orderDetailHolder}>
                 <div className={classes.orderDetailHolder__detailAndMap}>
                       <div className={classes.orderDetailHolder__detailAndMap__detail}>
