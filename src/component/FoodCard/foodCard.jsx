@@ -21,9 +21,11 @@ export default function DetailView(props) {
   const handleAdd = () => {
     if(cartItems.length === 0){
       dispatch(addToCart(props.id, props.name, props.price, 1, props.restaurant));
+      message.success("added to cart");
     }
     else if(props.restaurant === cartItems[0].restaurant){
       dispatch(addToCart(props.id, props.name, props.price, 1, props.restaurant));
+      message.success("added to cart");
     }else{
       message.error("You can only order from one restarant")
     }
