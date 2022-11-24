@@ -11,6 +11,11 @@
     font-size: 12px; 
 }
 
+.orderLoader{
+    overflow: hidden;
+    scale: 0.7;
+}
+
 .checkout {
     display: flex;
     flex-direction: column;
@@ -218,14 +223,16 @@
     .contentDetail{
         font-size: 11px;
     }
-    /* .stepOneInfo {
-        display: none;
-        height: 0px;
-        padding: 0;
+     .stepOneInfo {
+        // display: none;
+        // height: 0px;
+        padding: 8px 0;
     }
     .stepOneInfo .infoHolder{
-        display: none;
+        // display: none;
+        padding: 8px 0;
     }
+    /*
     .checkout .stepOneContainer{
         display: flex;
         padding: 5px;

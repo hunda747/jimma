@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.28dbb7b2.css",
+    "main.js": "/static/js/main.c041e2cb.js",
+    "static/media/fhero_img.png": "/static/media/fhero_img.f7ada407d40dee150e96.png",
+    "static/js/mapbox-gl-csp-worker.aca90a6b.worker.js": "/static/js/mapbox-gl-csp-worker.aca90a6b.worker.js",
+    "static/media/pizza.jpg": "/static/media/pizza.d0f611630177dea3f6f9.jpg",
+    "static/media/bj5Edit.jpg": "/static/media/bj5Edit.7bcc9ec76d4103e7fdf0.jpg",
+    "static/media/bj5.jpg": "/static/media/bj5.6e087f52bc718c639022.jpg",
+    "static/media/pasta.jpg": "/static/media/pasta.84e10bc2d8d0c4ee672f.jpg",
+    "static/media/tolo.png": "/static/media/tolo.ce34c9042e25825bdb00.png",
+    "static/media/search.png": "/static/media/search.cadee8cdb0c0afb1a713.png",
+    "static/media/add.png": "/static/media/add.3809380f64dbf318a1eb.png",
+    "index.html": "/index.html",
+    "main.28dbb7b2.css.map": "/static/css/main.28dbb7b2.css.map",
+    "main.c041e2cb.js.map": "/static/js/main.c041e2cb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.28dbb7b2.css",
+    "static/js/main.c041e2cb.js"
+  ]
+}

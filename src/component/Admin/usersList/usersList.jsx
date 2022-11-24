@@ -1,36 +1,43 @@
-import React from 'react'
-import './usersList.css'
-import {useState, useEffect} from 'react'
-import axios from 'axios';
+import React from "react";
+import "./usersList.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import { Button } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+import { Button } from "@material-ui/core";
 
 //imports for dialog box
-import { withStyles } from '@material-ui/core/styles';
-import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
-import ReactMapGL , {Marker, Popup} from 'react-map-gl';
-import PersonPinCircleIcon from '@material-ui/icons/PersonPinCircle';
+import { withStyles } from "@material-ui/core/styles";
+import Dialog from "@material-ui/core/Dialog";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import MuiDialogActions from "@material-ui/core/DialogActions";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import Typography from "@material-ui/core/Typography";
+import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import PersonPinCircleIcon from "@material-ui/icons/PersonPinCircle";
 
 // import Chart from "react-apexcharts";
 
-import {InputLabel, MenuItem,Option, FormHelperText, FormControl, Select} from '@material-ui/core';
+import {
+  InputLabel,
+  MenuItem,
+  Option,
+  FormHelperText,
+  FormControl,
+  Select,
+} from "@material-ui/core";
 
-import { useDispatch, useSelector } from 'react-redux';
-import { getAllUser } from '../../../redux/actions/userActions';
+import { useDispatch, useSelector } from "react-redux";
+import { getAllUser } from "../../../redux/actions/userActions";
 
 //user analysis dialog box content
 const styles = (theme) => ({
@@ -39,7 +46,7 @@ const styles = (theme) => ({
     padding: theme.spacing(2),
   },
   closeButton: {
-    position: 'absolute',
+    position: "absolute",
     right: theme.spacing(1),
     top: theme.spacing(1),
     color: theme.palette.grey[500],
@@ -52,7 +59,11 @@ const DialogTitle = withStyles(styles)((props) => {
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose}
+        >
           <CloseIcon />
         </IconButton>
       ) : null}
@@ -82,98 +93,96 @@ const useStyles = makeStyles({
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
-const localhost = 'https://jimma-e-comm.herokuapp.com/';
+const localhost = "https://jimma-e-comm.herokuapp.com/";
 export default function UsersList() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const datas = [
     {
-      id: 1 ,
-      fname: "Hunda", 
+      id: 1,
+      fname: "Hunda",
       lname: "nk",
       email: "hunda@gmail.com",
-      phone_number: "0988562356", 
-      signUpDate: "2022-06-06", 
-      status: "active"
+      phone_number: "0988562356",
+      signUpDate: "2022-06-06",
+      status: "active",
     },
     {
-      id: 2 ,
-      fname: "james", 
+      id: 2,
+      fname: "james",
       lname: "rogri",
       email: "james@gmail.com",
-      phone_number: "0988562356", 
-      signUpDate: "2022-06-06", 
-      status: "active"
-    }
-  ]
+      phone_number: "0988562356",
+      signUpDate: "2022-06-06",
+      status: "active",
+    },
+  ];
   const classes = useStyles();
-  const [users ,setUsers] = useState([]);
-  const [categoryValue, setCategoryValue] = useState('all');
+  // const [users, setUsers] = useState([]);
+  const [categoryValue, setCategoryValue] = useState("all");
 
-    useEffect(()=>{
-      const fetchProducts = async ()=>{
-        const res = await axios.post(localhost + 'api/getUsers');
-        console.log(res.data);
-        setUsers(res.data);
-      }
-      // dispatch(getAllUser());
-      fetchProducts()
-    }, [])
-    // const user = useSelector((state) => state.user.user);
-    // setUsers(user);
-    // console.log(users);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const res = await axios.post(localhost + "api/getUsers");
+      console.log(res.data);
+      setUsers(res.data);
+    };
+    dispatch(getAllUser());
+    // fetchProducts()
+  }, []);
+  const user = useSelector((state) => state.user.user);
+  // setUsers(user);
+  console.log(user);
 
-    const handleNext = async ()=>{
-      // const response = await axios.post('http://localhost:5000/api/getAllUsers');
-      // setUsers(response.data)
-    }
+  const handleNext = async () => {
+    // const response = await axios.post('http://localhost:5000/api/getAllUsers');
+    // setUsers(response.data)
+  };
 
-    const handleChange = async (event) => {
-      // setCategoryValue(event.target.value);
-      // if(event.target.value === "tcal"){
-      //   const res = await axios.post('http://127.0.0.1:5000/api/getUserLogActivity', {days: 1000});
-      //   console.log(res.data);
-      //   setUsers(res.data);
-      // }else if(event.target.value === "tcty"){
-      //   const res = await axios.post('http://127.0.0.1:5000/api/getUserLogActivity', {days: 365});
-      //   console.log(res.data);
-      //   setUsers(res.data);
-      // }else if(event.target.value === "tctm"){
-      //   const res = await axios.post('http://127.0.0.1:5000/api/getUserLogActivity', {days: 30});
-      //   console.log(res.data);
-      //   setUsers(res.data);
-      // }else if(event.target.value === "acal"){
-      //   const res = await axios.post('http://127.0.0.1:5000/api/getUserLogHistory', {days: 1000});
-      //   console.log(res.data);
-      //   setUsers(res.data);
-      // }else if(event.target.value === "acty"){
-      //   const res = await axios.post('http://127.0.0.1:5000/api/getUserLogHistory', {days: 365});
-      //   console.log(res.data);
-      //   setUsers(res.data);
-      // }else if(event.target.value === "actm"){
-      //   const res = await axios.post('http://127.0.0.1:5000/api/getUserLogHistory', {days: 30});
-      //   console.log(res.data);
-      //   setUsers(res.data);
-      // }else {
-      //   const res = await axios.post('http://localhost:5000/api/getAllUsers');
-      //   console.log(res.data);
-      //   setUsers(res.data);
-      // }
-      
-    }
+  const handleChange = async (event) => {
+    // setCategoryValue(event.target.value);
+    // if(event.target.value === "tcal"){
+    //   const res = await axios.post('http://127.0.0.1:5000/api/getUserLogActivity', {days: 1000});
+    //   console.log(res.data);
+    //   setUsers(res.data);
+    // }else if(event.target.value === "tcty"){
+    //   const res = await axios.post('http://127.0.0.1:5000/api/getUserLogActivity', {days: 365});
+    //   console.log(res.data);
+    //   setUsers(res.data);
+    // }else if(event.target.value === "tctm"){
+    //   const res = await axios.post('http://127.0.0.1:5000/api/getUserLogActivity', {days: 30});
+    //   console.log(res.data);
+    //   setUsers(res.data);
+    // }else if(event.target.value === "acal"){
+    //   const res = await axios.post('http://127.0.0.1:5000/api/getUserLogHistory', {days: 1000});
+    //   console.log(res.data);
+    //   setUsers(res.data);
+    // }else if(event.target.value === "acty"){
+    //   const res = await axios.post('http://127.0.0.1:5000/api/getUserLogHistory', {days: 365});
+    //   console.log(res.data);
+    //   setUsers(res.data);
+    // }else if(event.target.value === "actm"){
+    //   const res = await axios.post('http://127.0.0.1:5000/api/getUserLogHistory', {days: 30});
+    //   console.log(res.data);
+    //   setUsers(res.data);
+    // }else {
+    //   const res = await axios.post('http://localhost:5000/api/getAllUsers');
+    //   console.log(res.data);
+    //   setUsers(res.data);
+    // }
+  };
 
-    // for the dialog box
+  // for the dialog box
   const [open, setOpen] = React.useState(false);
 
-  const [userInfo , setUserInfo]= useState({
-    id:'',
-    fname:'',
-    lname:'',
-    emal:'',
-    phone_number:'',
-    signUpDate:'',
-    status:''
+  const [userInfo, setUserInfo] = useState({
+    id: "",
+    fname: "",
+    lname: "",
+    emal: "",
+    phone_number: "",
+    signUpDate: "",
+    status: "",
   });
-
 
   const handleClickOpen = () => {
     // setUserInfo({...userInfo , fname: fname})
@@ -184,76 +193,73 @@ export default function UsersList() {
     setOpen(false);
   };
 
-  const [checkoutRate , setCheckoutRate]= useState([]);
-  const [recentCart , setRecentCart]= useState([]);
-   
-  const calcChechoutRate =  async (userId)=>{
+  const [checkoutRate, setCheckoutRate] = useState([]);
+  const [recentCart, setRecentCart] = useState([]);
+
+  const calcChechoutRate = async (userId) => {
     // const resp = await axios.post('http://localhost:5000/api/getUserCheckoutRate', {userId: userId})
     // console.log(resp);
     // setCheckoutRate(resp.data)
-  }
+  };
 
-  const getOrderLocation = (userId)=>{
-  // dispatching the redux to get the recent order loccation for user id specified
-  console.log("dispatching order location getter");
-    // dispatch(getRecentOrderLocation(userId));        
-  }
+  const getOrderLocation = (userId) => {
+    // dispatching the redux to get the recent order loccation for user id specified
+    console.log("dispatching order location getter");
+    // dispatch(getRecentOrderLocation(userId));
+  };
 
-  const getRecetentCart = async(userId)=>{
-  //  const resp = await axios.post('http://localhost:5000/api/getRecentCartHistory',{userId:userId})
-  //  console.log(resp);
-  //  setRecentCart(resp.data)
-  }
+  const getRecetentCart = async (userId) => {
+    //  const resp = await axios.post('http://localhost:5000/api/getRecentCartHistory',{userId:userId})
+    //  console.log(resp);
+    //  setRecentCart(resp.data)
+  };
 
-      console.log(checkoutRate);
+  console.log(checkoutRate);
 
-    //  const stat = {  
+  //  const stat = {
 
-    //   series:  checkoutRate['one'] === null || checkoutRate['zero']=== null ? [0 , 0] :   [checkoutRate["zero"], checkoutRate["one"]],
-    //   options: {
-    //     chart: {
-    //       type: 'pie',
-    //     },
-    //     labels:[`Failed to reach Checkout ( ${checkoutRate['zero']} #)`,`Reached Checkout ( ${checkoutRate['one']} #)`],
-    //     // responsive: [{
-         
-    //     //   options: {
-    //     //     chart: {
-    //     //       width: 100
-    //     //     },
-    //     //     legend: {
-    //     //       position: 'bottom'
-    //     //     }
-    //     //   }
-    //     // }]
-    //   },
+  //   series:  checkoutRate['one'] === null || checkoutRate['zero']=== null ? [0 , 0] :   [checkoutRate["zero"], checkoutRate["one"]],
+  //   options: {
+  //     chart: {
+  //       type: 'pie',
+  //     },
+  //     labels:[`Failed to reach Checkout ( ${checkoutRate['zero']} #)`,`Reached Checkout ( ${checkoutRate['one']} #)`],
+  //     // responsive: [{
 
-     
-    // }
-    const [viewPort , setViewPort] = useState({
-      latitude:9.022875,
-      longitude: 38.752261,
-      zoom:12,
-      width: '100vw',
-      height: '100vh'
-    })
+  //     //   options: {
+  //     //     chart: {
+  //     //       width: 100
+  //     //     },
+  //     //     legend: {
+  //     //       position: 'bottom'
+  //     //     }
+  //     //   }
+  //     // }]
+  //   },
 
-    const [dialogPage , setDialogPage] = useState(0)
-    // const recentOrder = useSelector((state)=> state.recentOrderLoc)
-    // const {loading, recentOrders , error} = recentOrder;
-    const loading = false;
-    const error = false;
- 
-    
+  // }
+  const [viewPort, setViewPort] = useState({
+    latitude: 9.022875,
+    longitude: 38.752261,
+    zoom: 12,
+    width: "100vw",
+    height: "100vh",
+  });
+
+  const [dialogPage, setDialogPage] = useState(0);
+  // const recentOrder = useSelector((state)=> state.recentOrderLoc)
+  // const {loading, recentOrders , error} = recentOrder;
+  const loading = false;
+  const error = false;
+
   return (
     <>
-    <div className="productListPageHolder">
-      
-      <Select
-        value={categoryValue ?? " "}
-        onChange={handleChange}
-        inputProps={{ 'aria-label': 'Without label' }}
-        defaultValue='all'
+      <div className="productListPageHolder">
+        <Select
+          value={categoryValue ?? " "}
+          onChange={handleChange}
+          inputProps={{ "aria-label": "Without label" }}
+          defaultValue="all"
         >
           <MenuItem value="all">All user</MenuItem>
           <MenuItem value="tcal">Top customer all time</MenuItem>
@@ -265,101 +271,134 @@ export default function UsersList() {
           {/* <MenuItem value="icat">Inactive customer all time</MenuItem>
           <MenuItem value="icty">Inactive customer this year</MenuItem>
           <MenuItem value="ictm">Inactive customer this month</MenuItem>      */}
-      </Select>
+        </Select>
 
-      <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="caption table">
-        <caption>All Users table</caption>
-        <TableHead>
-          {categoryValue === "all" ?
-            <TableRow>
-              <TableCell>UserID</TableCell>
-              <TableCell align="right">First Name</TableCell>
-              <TableCell align="right">Last Name</TableCell>
-              <TableCell align="right">Contact</TableCell>
-              <TableCell align="right">SignUp Date</TableCell>
-              <TableCell align='right'>Status</TableCell>
-            </TableRow>
-           : 
-            <TableRow>
-              <TableCell>UserID</TableCell>
-              <TableCell align="right">First Name</TableCell>
-              <TableCell align="right">Last Name</TableCell>
-              <TableCell align="right">Visit</TableCell>
-              <TableCell align="right">Conversion rate</TableCell>
-              <TableCell align="right">SignUp Date</TableCell>
-              <TableCell align='right'>Status</TableCell>
-            </TableRow>
-          }
-        </TableHead>
-        <TableBody>
-          {
-            !users?.length ? <div>Empty</div> :
-            categoryValue === "all" ? 
-              users.map((val,key)=>{
-                return (
-                  <>
-                      <TableRow key={val.id}  style={{cursor:'pointer'}} onClick={()=>{ 
-                        setUserInfo({...userInfo, id:val.id ,fname:val.fname, lname:val.lname,email:val.email,phone_number:val.phone_number, signUpDate:val.signUpDate, status:val.status }); 
-                        calcChechoutRate(val.id);
-                        getOrderLocation(val.id)
-                        handleClickOpen();
-
-                        }} > 
-                    <TableCell component="th" scope="val">
-                      {val._id}
-                    </TableCell>
-                    <TableCell align="right">{val.fname}</TableCell>
-                    <TableCell align="right">{val.lname}</TableCell>
-                    <TableCell align="right">{val.phone}</TableCell>
-
-                    <TableCell align="right">{val.date.substr(3, 12)}</TableCell>
-                    <TableCell align='center'>{ val.status === "active" ? 
-                    <p className='active_status'></p> : <p className="de-active_status"></p>}</TableCell>
-                  </TableRow>
-                  </>
-                )
-              })
-            :
-              users.map((val,key)=>{
-
+        <TableContainer component={Paper}>
+          <Table className={classes.table} aria-label="caption table">
+            <caption>All Users table</caption>
+            <TableHead>
+              {categoryValue === "all" ? (
+                <TableRow>
+                  <TableCell>UserID</TableCell>
+                  <TableCell align="right">First Name</TableCell>
+                  <TableCell align="right">Last Name</TableCell>
+                  <TableCell align="right">Contact</TableCell>
+                  <TableCell align="right">SignUp Date</TableCell>
+                  <TableCell align="right">Status</TableCell>
+                </TableRow>
+              ) : (
+                <TableRow>
+                  <TableCell>UserID</TableCell>
+                  <TableCell align="right">First Name</TableCell>
+                  <TableCell align="right">Last Name</TableCell>
+                  <TableCell align="right">Visit</TableCell>
+                  <TableCell align="right">Conversion rate</TableCell>
+                  <TableCell align="right">SignUp Date</TableCell>
+                  <TableCell align="right">Status</TableCell>
+                </TableRow>
+              )}
+            </TableHead>
+            <TableBody>
+              {!user?.length ? (
+                <div>Empty</div>
+              ) : categoryValue === "all" ? (
+                user.map((val, key) => {
                   return (
                     <>
-                      <TableRow key={val.id}  style={{cursor:'pointer'}} onClick={()=>{ 
-                        setUserInfo({...userInfo, id:val.id ,fname:val.fname, lname:val.lname,email:val.email,phone_number:val.phone_number, signUpDate:val.signUpDate, status:val.status }); 
-                        calcChechoutRate(val.id);
-                        getOrderLocation(val.id)
-                        handleClickOpen();
-                        
-                        }} > 
-                      <TableCell component="th" scope="val">
-                        {val.id}
-                      </TableCell>
-                      <TableCell align="right">{val.fname}</TableCell>
-                      <TableCell align="right">{val.lname}</TableCell>
-                      <TableCell align="right">{val.visit}</TableCell>
-                      <TableCell align="right">{((val.purchase/val.visit)*100).toFixed(2) + '%'}</TableCell>
-                      <TableCell align="right">{val.signUpDate}</TableCell>
-                      <TableCell align='center'>{ val.status === "active"? <p className='active_status'></p> : <p className="de-active_status"></p>}</TableCell>
-                    </TableRow>
+                      <TableRow
+                        key={val.id}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => {
+                          setUserInfo({
+                            ...userInfo,
+                            id: val.id,
+                            fname: val.fname,
+                            lname: val.lname,
+                            email: val.email,
+                            phone_number: val.phone_number,
+                            signUpDate: val.signUpDate,
+                            status: val.status,
+                          });
+                          calcChechoutRate(val.id);
+                          getOrderLocation(val.id);
+                          handleClickOpen();
+                        }}
+                      >
+                        <TableCell component="th" scope="val">
+                          {val.id}
+                        </TableCell>
+                        <TableCell align="right">{val.fname}</TableCell>
+                        <TableCell align="right">{val.lname}</TableCell>
+                        <TableCell align="right">{val.phone}</TableCell>
+
+                        <TableCell align="right">{val.date}</TableCell>
+                        <TableCell align="center">
+                          {val.status === "active" ? (
+                            <p className="active_status"></p>
+                          ) : (
+                            <p className="de-active_status"></p>
+                          )}
+                        </TableCell>
+                      </TableRow>
                     </>
-                  )
-              })
-          }
-        </TableBody>
-      </Table>
-    </TableContainer>
+                  );
+                })
+              ) : (
+                users.map((val, key) => {
+                  return (
+                    <>
+                      <TableRow
+                        key={val.id}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => {
+                          setUserInfo({
+                            ...userInfo,
+                            id: val.id,
+                            fname: val.fname,
+                            lname: val.lname,
+                            email: val.email,
+                            phone_number: val.phone_number,
+                            signUpDate: val.signUpDate,
+                            status: val.status,
+                          });
+                          calcChechoutRate(val.id);
+                          getOrderLocation(val.id);
+                          handleClickOpen();
+                        }}
+                      >
+                        <TableCell component="th" scope="val">
+                          {val.id}
+                        </TableCell>
+                        <TableCell align="right">{val.fname}</TableCell>
+                        <TableCell align="right">{val.lname}</TableCell>
+                        <TableCell align="right">{val.visit}</TableCell>
+                        <TableCell align="right">
+                          {((val.purchase / val.visit) * 100).toFixed(2) + "%"}
+                        </TableCell>
+                        <TableCell align="right">{val.signUpDate}</TableCell>
+                        <TableCell align="center">
+                          {val.status === "active" ? (
+                            <p className="active_status"></p>
+                          ) : (
+                            <p className="de-active_status"></p>
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    </>
+                  );
+                })
+              )}
+            </TableBody>
+          </Table>
+        </TableContainer>
 
-    <div className="nextButtonHolder">
-      <Button  onClick={handleNext} >
-          Next
-      </Button>
-    </div>
-</div>
-     
+        <div className="nextButtonHolder">
+          <Button onClick={handleNext}>Next</Button>
+        </div>
+      </div>
 
-    <div>
-      {/* <Dialog  onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}   >
+      <div>
+        {/* <Dialog  onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}   >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
             <div className="dialog_userInfoHolder">
                   <h2>Name: {userInfo.fname + " " + userInfo.lname}</h2>
@@ -450,47 +489,13 @@ export default function UsersList() {
          
         </DialogContent>
       </Dialog> */}
-    </div>
-
-         
-
-
+      </div>
     </>
-  )
+  );
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    {/* <Table 
+{
+  /* <Table 
     rowSelection={{ ...rowSelection }}
     columns={columns}
     dataSource={data}
@@ -509,4 +514,5 @@ export default function UsersList() {
           </Table.Summary>
     )}
     sticky
-    /> */}
+    /> */
+}
