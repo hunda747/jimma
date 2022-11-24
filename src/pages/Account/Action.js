@@ -1,10 +1,9 @@
-
 // import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const logout = () => {
   localStorage.removeItem("jwt");
-  localStorage.removeItem("cart");
+  localStorage.removeItem("toloDeliverycart");
   localStorage.removeItem("wishList");
   window.location.href = "/";
 };
@@ -77,11 +76,14 @@ export const handleChangePassword = async (fData, setFdata, phone) => {
     setFdata({ ...fData, error: "Password does't match" });
   } else {
     try {
-      let responseData = await axios.post('http://localhost:5000/api/resetPassword', {
-        "phone": phone, 
-        "oldPassword": fData.oldPassword, 
-        "newPassword": fData.confirmPassword
-      });
+      let responseData = await axios.post(
+        "http://localhost:5000/api/resetPassword",
+        {
+          phone: phone,
+          oldPassword: fData.oldPassword,
+          newPassword: fData.confirmPassword,
+        }
+      );
       if (responseData && responseData.status === 200) {
         setFdata({
           ...fData,
@@ -103,16 +105,15 @@ export const handleChangePassword = async (fData, setFdata, phone) => {
           newPassword: "",
           confirmPassword: "",
         });
-        
       }
     } catch (err) {
       console.log(err);
       if (!err?.response) {
-        setFdata({ ...fData, error: 'No Server Response' });
+        setFdata({ ...fData, error: "No Server Response" });
       } else if (err.response?.status === 400) {
-        setFdata({ ...fData, error: 'Username not found' });
+        setFdata({ ...fData, error: "Username not found" });
       } else if (err.response?.status === 401) {
-        setFdata({ ...fData, error: 'Incorrect password' });
+        setFdata({ ...fData, error: "Incorrect password" });
       }
     }
   }

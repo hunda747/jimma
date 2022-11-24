@@ -188,13 +188,13 @@ export default function Home() {
 
         <div className="main_rest">
           <div className="">
-            {restaurant.length !== 0 ? (
+            {restaurant?.length > 0 ? (
               <>
                 <h1>Featured Restaurants</h1>
                 <div className="cards">
                   {restaurant?.map((restaurant, index) => {
                     return (
-                      <Link to={`/detail/${restaurant._id}`}>
+                      <Link to={`/detail/${restaurant.id}`}>
                         <RestaurantCard
                           Name={restaurant.name}
                           image={restaurant.img}

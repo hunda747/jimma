@@ -30,7 +30,7 @@ import mapboxgl from "mapbox-gl";
 mapboxgl.workerClass =
   require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 // import { clearCart } from '../../../redux/actions/cartActions';
-
+import { CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 // import axios from 'axios';
@@ -42,10 +42,11 @@ export default function Checkout() {
   const [cookies, setCookie] = useCookies(["user"]);
 
   const [errMsg, setErrMsg] = useState("");
-
+  const [load, setLoad] = useState(false);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+  const order = useSelector((state) => state.order.orders);
   // console.log(cartItems);
 
   // const product = useSelector((state) => state.getProduct.products)
@@ -138,6 +139,7 @@ export default function Checkout() {
   const handleConfirm = (event) => {
     event.preventDefault();
     event.stopPropagation();
+    setLoad(true);
     console.log("In handle confirm");
     const date = new Date();
     console.log("this is the ordered phone number");
@@ -152,6 +154,7 @@ export default function Checkout() {
         ) ||
         phoneNumber.length !== 10
       ) {
+        setLoad(false);
         message.error("Phone Number Is Invalid");
       } else {
         if (cookies?.uid) {
@@ -184,15 +187,14 @@ export default function Checkout() {
                 selectedLocation.formatted
               )
             );
+            console.log(order);
             dispatch(clearCart());
           } catch (e) {
             console.log(e);
+          } finally {
+            setLoad(false);
           }
 
-          // const pro = product.find(x => x.id === item.product).cost;
-          // console.log(pro*item.qtyCounter);
-          // dispatch(createOrderDetails(date, item.product , item.qtyCounter, item.price))
-          // dispatch(sellProduct(item.product , item.qtyCounter))
           sessionStorage.setItem("purchased", true);
           console.log(phoneNumber);
           // dispatch(clearCart());
@@ -200,10 +202,12 @@ export default function Checkout() {
 
           navigate("/");
         } else {
+          setLoad(false);
           message.error("Order Place Failed: Check if you are logged in");
         }
       }
     } else {
+      setLoad(false);
       navigate("/");
       message.error("Your cart is empty");
     }
@@ -488,7 +492,6 @@ export default function Checkout() {
             <div className="stepTitle">
               <p>Step 3 - Payment Methods</p>
             </div>
-
             <div className="payment">
               <div className="memberDiscount">
                 <MonetizationOnOutlined
@@ -526,8 +529,13 @@ export default function Checkout() {
 
             <div className="confirmOrder">
               <button className="btn_order" onClick={handleConfirm}>
-                {" "}
-                Order{" "}
+                {load ? (
+                  <div className="orderLoader">
+                    <CircularProgress />
+                  </div>
+                ) : (
+                  <div> Order </div>
+                )}
               </button>
             </div>
           </div>

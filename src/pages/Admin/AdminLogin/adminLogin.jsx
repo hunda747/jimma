@@ -30,6 +30,8 @@ import { useCookies } from "react-cookie";
 
 export default function AdminLogin() {
   const localhost = "https://jimma-e-comm.herokuapp.com/";
+  const apiURL = process.env.REACT_APP_BASE_URL;
+  console.log(apiURL);
   const dispatch = useDispatch();
   // const { setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -74,18 +76,18 @@ export default function AdminLogin() {
   const onFinish = async (values) => {
     //  console.log('Success:', values);
     setLoader(true);
-    const username = values.email_log;
+    const username = values.userName;
     const password = values.password_log;
     console.log(username + password + "from admin login");
     try {
-      const response = await axios.post(localhost + "api/getAdmin	", {
+      const response = await axios.post(apiURL + "/api/admin/getAdmin	", {
         username: username,
         password: password,
       });
       // console.log("this is just the respnse" + response)
       // console.log(response.data.status === 'success');
 
-      console.log(response.data[0]);
+      console.log(response.data);
       if (response?.error) {
         setLoader(false);
         setErrMsg(response.data.message);
@@ -93,25 +95,26 @@ export default function AdminLogin() {
       } else if (false) {
         setLoader(false);
         setErrMsg(response.data.message);
-      } else if (response.data[0]._id) {
+      } else if (response.data.admin.id) {
         setLoader(false);
         setErrMsg("");
         // console.log(response);
         console.log("admin");
-        // const accessToken = 'response.data.accessToken';
-        const role = response.data[0].role;
-        const id = response.data[0]._id;
-        const status = response.data[0].status;
-        const user = response.data[0].username;
+        const accessToken = response.data.jwt;
+        const role = response.data.admin.role;
+        const id = response.data.admin._id;
+        const status = response.data.admin.status;
+        const user = response.data.admin.username;
         console.log(role);
 
         let expires = new Date();
-        expires.setTime(expires.getTime() + 2 * 60 * 60 * 1000);
+        expires.setTime(expires.getTime() + 4 * 60 * 60 * 1000);
 
-        setCookie("ADusername", user, { path: "/", expires });
-        setCookie("ADrole", role, { path: "/", expires });
-        setCookie("ADid", id, { path: "/", expires });
-        // setCookie('ADaccess_token', accessToken, { path: '/',  expires});
+        setCookie("toloDAMusername", user, { path: "/", expires });
+        setCookie("toloDAMrole", role, { path: "/", expires });
+        setCookie("toloDAMid", id, { path: "/", expires });
+        console.log(accessToken);
+        setCookie("toloDADaccess_token", accessToken, { path: "/", expires });
 
         // setAuth({email, password, accessToken});
         if (role === "admin") {
@@ -132,6 +135,7 @@ export default function AdminLogin() {
         } else if (role === "delivery") {
           setLoader(false);
           console.log("delivery");
+          navigate("/delivery");
           // if(status === 'pending'){
           // 	setWarnInfo("Account Has not been Activated, Please wait For Response")
           // }else if(status === 'Diactive'){
@@ -141,7 +145,6 @@ export default function AdminLogin() {
           // 	message.success("login Successful")
           // }
         }
-        navigate("/delivery");
       } else {
         setLoader(false);
         // console.log('product');
@@ -154,7 +157,7 @@ export default function AdminLogin() {
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 400) {
-        setErrMsg("Missing Username");
+        setErrMsg("Username doesn't exist");
       } else if (err.response?.status === 401) {
         setErrMsg("Unauthorized");
       } else {
@@ -176,13 +179,16 @@ export default function AdminLogin() {
       } else if (regVal.password.length < 6) {
         setErrMsg("Password must be more than 6 characters");
       } else {
-        const response = await axios.post(localhost + "api/addAdminAccount", {
-          userName: regVal.userName,
-          fname: regVal.fname,
-          lname: regVal.lname,
-          phone: regVal.phone,
-          password: regVal.password,
-        });
+        const response = await axios.post(
+          apiURL + "/api/admin/addAdminAccount",
+          {
+            username: regVal.userName,
+            fname: regVal.fname,
+            lname: regVal.lname,
+            phone: regVal.phone,
+            password: regVal.password,
+          }
+        );
 
         console.log("this is the admin signup finishing");
         console.log(response.status);
@@ -210,7 +216,7 @@ export default function AdminLogin() {
       } else if (err.response?.status === 400) {
         setErrMsg("Invalid Input Provided");
       } else if (err.response?.status === 404) {
-        setErrMsg("Account Not Found");
+        setErrMsg("Username Already Exist");
       } else if (err.response?.status === 401) {
         setErrMsg("Unauthorized");
       } else {
@@ -413,14 +419,14 @@ export default function AdminLogin() {
                     onFinish={onFinish}
                   >
                     <Form.Item
-                      name="email_log"
+                      name="userName"
                       rules={[
                         { required: true, message: "Username is required" },
                       ]}
                     >
                       <Input
                         type="text"
-                        prefix={<MailOutlineIcon />}
+                        prefix={<PermIdentityIcon />}
                         placeholder="User name"
                       />
                     </Form.Item>
