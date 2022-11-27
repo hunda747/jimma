@@ -4,6 +4,7 @@ import { getOrdersInprogress } from "../actions/orderActions";
 // axios.defaults.withCredentials = true;
 axios.create({ withCredentials: true });
 
+// const localhost = "http://tolodeliveryjimma.com/";
 const localhost = "http://localhost:5000/";
 // const localhost = 'https://jimma-e-comm.herokuapp.com/';
 
