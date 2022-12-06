@@ -55,7 +55,7 @@ export default function Feature() {
             <div className={index === current ? "slide current" : "slide"}>
               {index === current && (
                 <div className="imgHolder">
-                  <img src={slide.image} alt={slide.heading} />
+                  {/* <img src={slide.image} alt={slide.heading} /> */}
                   <div className="contentHolder_new">
                     <div className="content_new">
                       <h2>Order Food To Your Home Or Office.</h2>

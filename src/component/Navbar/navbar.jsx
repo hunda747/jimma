@@ -97,9 +97,9 @@ export default function Navbar() {
               <div className={classes.header__content__logo__wrap}>
                 <img src={logo} alt="Logo" width="100px" height="100px" />
               </div>
-              <span className={classes.header__content__logo__name}>
-                TOLO DELIVERY
-              </span>
+              <div className={classes.header__content__logo__name}>
+                <span>TOLO DELIVERY!</span>
+              </div>
             </div>
 
             <nav
@@ -171,74 +171,17 @@ export default function Navbar() {
                       className={classes.header__content__nav__controllers}
                       style={menuOpen ? { width: "100%" } : {}}
                     >
-                      {/* <>
-                      <Link
-                        style={
-                          menuOpen
-                            ? {
-                                cursor: "pointer",
-                                width: "100%",
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                              }
-                            : { width: "fit-content" }
-                        }
-                        to="/checkout"
-                        onClick={() => setMenuOpen(false)}
-                      >
-                        {" "}
-                        <ShoppingCart /> <span>{getCartCount()}</span>
-                      </Link>
-                    </> */}
-
-                      {/* <div
-                        className={
-                          classes.header__content__nav__controllers__logoutHolder
-                        }
-                        style={
-                          menuOpen
-                            ? {
-                                marginTop: "1rem",
-                                display: "flex",
-                                width: "100%",
-                                justifyContent: "center",
-                                alignItems: "center",
-                              }
-                            : {}
-                        }
-                      > */}
-                      {/* <>
-                          <AccountCircleIcon
-                            style={
-                              menuOpen
-                                ? {
-                                    cursor: "pointer",
-                                    marginRight: "0.5rem",
-                                    fontSize: "40px",
-                                    color: "#6464d5",
-                                  }
-                                : {}
-                            }
-                            onClick={() => {
-                              navigate("/account");
-                            }}
-                          />
-                        </>
-                        <Button
-                          variant="contained"
-                          color="secondary"
-                          onClick={handleLogout}
-                        >
-                          Logout
-                        </Button> */}
                       <Fragment>
                         <Box
                           sx={{
                             display: "flex",
                             alignItems: "center",
                             textAlign: "center",
-                            marginRight: "2rem",
+                            // marginleft: "8rem",
+                            // marginRight: "2rem",
+                          }}
+                          style={{
+                            marginLeft: "4rem",
                           }}
                         >
                           <Tooltip title="Account settings">
@@ -360,6 +303,7 @@ export default function Navbar() {
                             // borderRadius: 35,
                             backgroundColor: "black",
                             color: "white",
+                            marginLeft: "1.8rem",
                             // padding: "18px 36px",
                             // fontSize: "18px",
                           }}

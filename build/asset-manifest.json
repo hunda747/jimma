@@ -1,8 +1,9 @@
 {
   "files": {
-    "main.css": "/static/css/main.4ec09b98.css",
-    "main.js": "/static/js/main.7fc1346b.js",
+    "main.css": "/static/css/main.5119f013.css",
+    "main.js": "/static/js/main.e099a06e.js",
     "static/media/fhero_img.png": "/static/media/fhero_img.f7ada407d40dee150e96.png",
+    "static/media/half_pizza_with2.png": "/static/media/half_pizza_with2.683e8061593a0d2c828a.png",
     "static/js/mapbox-gl-csp-worker.959e7e3b.worker.js": "/static/js/mapbox-gl-csp-worker.959e7e3b.worker.js",
     "static/media/pizza.jpg": "/static/media/pizza.d0f611630177dea3f6f9.jpg",
     "static/media/bj5Edit.jpg": "/static/media/bj5Edit.7bcc9ec76d4103e7fdf0.jpg",
@@ -13,11 +14,11 @@
     "static/media/tolo-dark.png": "/static/media/tolo-dark.564cd92e84bbfc7a43ac.png",
     "static/media/add.png": "/static/media/add.3809380f64dbf318a1eb.png",
     "index.html": "/index.html",
-    "main.4ec09b98.css.map": "/static/css/main.4ec09b98.css.map",
-    "main.7fc1346b.js.map": "/static/js/main.7fc1346b.js.map"
+    "main.5119f013.css.map": "/static/css/main.5119f013.css.map",
+    "main.e099a06e.js.map": "/static/js/main.e099a06e.js.map"
   },
   "entrypoints": [
-    "static/css/main.4ec09b98.css",
-    "static/js/main.7fc1346b.js"
+    "static/css/main.5119f013.css",
+    "static/js/main.e099a06e.js"
   ]
 }
