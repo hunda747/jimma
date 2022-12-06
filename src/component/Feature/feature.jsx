@@ -20,17 +20,16 @@ export default function Feature() {
   function auto() {
     slideInterval = setInterval(nextSlide, intervalTime);
   }
-
   const nextSlide = () => {
     setCurrent(current === featureData.length - 1 ? 0 : current + 1);
   };
   const prevSlide = () => {
     setCurrent(current === 0 ? featureData.length - 1 : current - 1);
   };
+
   useEffect(() => {
     setCurrent(0);
   }, []);
-
   useEffect(() => {
     if (autoScroll) {
       auto();
@@ -57,26 +56,28 @@ export default function Feature() {
               {index === current && (
                 <div className="imgHolder">
                   <img src={slide.image} alt={slide.heading} />
-                  <div className="content">
-                    <h2>{slide.heading}</h2>
-                    <h3>{slide.info}</h3>
+                  <div className="contentHolder_new">
+                    <div className="content_new">
+                      <h2>Order Food To Your Home Or Office.</h2>
+                      <h3>{slide.info}</h3>
 
-                    <div className="searchBarHolder">
-                      <input
-                        type="text"
-                        className="searchInput active"
-                        placeholder="Search"
-                        value={search}
-                        onChange={(e) => {
-                          setSearch(e.target.value);
-                        }}
-                      />
-                      <SearchIcon onClick={() => handleSearch()} />
+                      <div className="searchBarHolder">
+                        <input
+                          type="text"
+                          className="searchInput active"
+                          placeholder="Search"
+                          value={search}
+                          onChange={(e) => {
+                            setSearch(e.target.value);
+                          }}
+                        />
+                        <SearchIcon onClick={() => handleSearch()} />
+                      </div>
+
+                      <p>
+                        <a href="/login">Sign In</a> for your recent addresses
+                      </p>
                     </div>
-
-                    <p>
-                      <a href="/login">Sign In</a> for your recent addresses
-                    </p>
                   </div>
                 </div>
               )}
