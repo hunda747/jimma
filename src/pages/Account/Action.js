@@ -66,6 +66,7 @@ export const logout = () => {
 // };
 
 export const handleChangePassword = async (fData, setFdata, phone) => {
+  const apiURL = process.env.REACT_APP_BASE_URL;
   // const navigate = useNavigate();
   if (!fData.newPassword || !fData.oldPassword || !fData.confirmPassword) {
     setFdata({
@@ -76,14 +77,11 @@ export const handleChangePassword = async (fData, setFdata, phone) => {
     setFdata({ ...fData, error: "Password does't match" });
   } else {
     try {
-      let responseData = await axios.post(
-        "http://localhost:5000/api/resetPassword",
-        {
-          phone: phone,
-          oldPassword: fData.oldPassword,
-          newPassword: fData.confirmPassword,
-        }
-      );
+      let responseData = await axios.post(apiURL + "/api/resetPassword", {
+        phone: phone,
+        oldPassword: fData.oldPassword,
+        newPassword: fData.confirmPassword,
+      });
       if (responseData && responseData.status === 200) {
         setFdata({
           ...fData,

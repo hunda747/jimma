@@ -92,7 +92,7 @@
   align-items: center;
   color: black;
   margin: 0 1rem;
-  margin-top: 5rem;
+  // margin-top: 5rem;
 
   @include breakpoint(sm) {
     margin: 0 4rem;
@@ -101,8 +101,8 @@
   @include breakpoint(md) {
     // margin: 0 4rem;
     // margin-top: 0;
-    // height: 300px;
-    top: 5rem;
+    // height: 600px;
+    top: 6rem;
   }
   @include breakpoint(lg) {
     // margin: 0 4rem;

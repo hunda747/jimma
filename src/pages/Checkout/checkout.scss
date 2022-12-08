@@ -1,176 +1,195 @@
+@import "../../styles/variables.scss";
 
-@import '../../styles/variables.scss';
-
-*{   
-    font-family: $Poppins;
+* {
+  font-family: $Poppins;
 }
 
 .checkout_main {
-    padding: 0;
-    margin: 0;
-    font-size: 12px; 
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
 }
 
-.orderLoader{
-    overflow: hidden;
-    scale: 0.7;
+.orderLoader {
+  overflow: hidden;
+  scale: 0.7;
 }
 
 .checkout {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    margin: auto;
-    max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: auto;
+  max-width: 1300px;
 }
 
-.checkout .checkoutPath{
-    padding: 0;
-    margin: 0;
-    width: 100%;
-
+.checkout .checkoutPath {
+  padding: 0;
+  margin: 0;
+  width: 100%;
 }
-.checkout .pathContent{
-    padding: 5px;
-    color: rgb(163, 159, 159);
-    font-style: normal;
-    font-size: 12px; 
-    margin: 10px 15px;
-    font-size: 12px;
-    font-weight: lighter;
+.checkout .pathContent {
+  padding: 5px;
+  color: rgb(163, 159, 159);
+  font-style: normal;
+  font-size: 12px;
+  margin: 10px 15px;
+  font-size: 12px;
+  font-weight: lighter;
 }
-.checkout .checkoutTitleHolder{
-    padding: 0;
-    margin: 0;
-    width: 100%;
-   
+.checkout .checkoutTitleHolder {
+  padding: 0;
+  margin: 0;
+  width: 100%;
 }
-.checkout .checkoutTitleHolder h3{
-    padding: 5px;
-    color: rgb(0, 0, 0);
-    font-style: normal;
-    font-size: 12px; 
-    margin: 10px 15px;
-    font-size: 25px;
-    font-weight: lighter;
+.checkout .checkoutTitleHolder h3 {
+  padding: 5px;
+  color: rgb(0, 0, 0);
+  font-style: normal;
+  font-size: 12px;
+  margin: 10px 15px;
+  font-size: 25px;
+  font-weight: lighter;
 }
 .checkout .checkoutSteps {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
-.checkout .stepTitle{
-    display: flex;
-    height: 30px;
-    padding: 5px;
-    margin: 5px 15px;
-   
+.checkout .stepTitle {
+  display: flex;
+  height: 30px;
+  padding: 5px;
+  margin: 5px 15px;
 }
-.checkout .stepTitle p{
-    font-size: 14px;
-    font-weight: bold;
-    color: rgba(208, 160, 5, 0.897);
-    
+
+.checkout .getCurrentLocation {
+  padding-bottom: 10px;
+  margin-left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.checkout .stepOneContainer{
-    display: flex;
-    justify-content: space-around;
-    padding: 5px;
-    margin: 5px 15px;
-   
+.checkout .getCurrentLocation button {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkout .orderParagraph {
+  padding-left: 5px;
+  color: rgb(141, 141, 141);
+  text-align: left;
+}
+
+.checkout .stepTitle p {
+  font-size: 14px;
+  font-weight: bold;
+  color: rgba(208, 160, 5, 0.897);
+}
+.checkout .stepOneContainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+  margin: 5px 15px;
+  width: 100%;
 }
 
 .mapboxgl-canvas {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.checkout .mapHolder{
-    flex: 1.3;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    /* height: 100vh; */
-    height: 400px;
-    overflow:visible;
+.checkout .mapHolder {
+  flex: 1.3;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  /* height: 100vh; */
+  height: 400px;
+  overflow: visible;
 }
 
-.checkout .stepOneInfo{
-    display: flex;
-    width: 100%;
-    flex: 1;
-    margin: 0;
-    padding: 8px;
-    align-items: center;
-    justify-content: center;
+.checkout .stepOneInfo {
+  display: flex;
+  width: 100%;
+  flex: 1;
+  margin: 0;
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
 }
-.checkout .infoHolder{
-    width: 100%;
-    height: 100%;
-    margin: 5px auto;
-    padding: 0 14px;
-    
-    display: flex;
-    flex-direction: column;
-}
+.checkout .infoHolder {
+  width: 100%;
+  height: 100%;
+  margin: 5px auto;
+  padding: 0 14px;
 
-.checkout .lngLat{
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.latHolder input, .lngHolder input{
-    display: flex;
-    height: 50px;
-    padding: 5px 10px;
-    margin: 6px 6px;
-    border-radius: 4px;
-    font-size: 12px; 
-    border: none;
+.checkout .lngLat {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
 }
 
-.locationName input ,.phoneNumber input{
-    display: flex;
-    height: 50px;
-    margin: 6px 6px;
-    padding: 8px;
-    width: 100%;    
-    border-radius: 4px;
-    font-size: 12px; 
-    border: none;
+.latHolder input,
+.lngHolder input {
+  display: flex;
+  height: 50px;
+  padding: 5px 10px;
+  margin: 6px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  border: none;
+}
 
-    &:focus{
-        outline: none;
-    }
+.locationName input,
+.phoneNumber input {
+  display: flex;
+  height: 50px;
+  margin: 6px 6px;
+  padding: 8px;
+  width: 100%;
+  border-radius: 4px;
+  font-size: 12px;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .checkout .confirmOrder {
-    display: flex;
-    justify-content: right  ;
-    align-items: right;
+  display: flex;
+  justify-content: right;
+  align-items: right;
 }
 
-.checkout .confirmOrder .btn_order{
-    display: flex;
-    height: 35px;
-    padding: 5px 10px;
-    margin: 5px 15px;
-    align-items: center;
-    justify-content: right;
+.checkout .confirmOrder .btn_order {
+  display: flex;
+  height: 35px;
+  padding: 5px 10px;
+  margin: 5px 15px;
+  align-items: center;
+  justify-content: right;
 }
-.checkout .checkoutTitleHolder h3{
-    font-size: 23px;
-    font-weight: bold;
+.checkout .checkoutTitleHolder h3 {
+  font-size: 23px;
+  font-weight: bold;
 }
 
 // .checkout .cartEmpty{
@@ -180,59 +199,59 @@
 // }
 
 .checkout .payment,
-.checkout .cartEmpty{
-    background-color: rgb(238, 238, 238);
-    padding: 15px 30px;
-    color: black;
-    width: 100%;
-    display: flex;
-    gap: 20px
+.checkout .cartEmpty {
+  background-color: rgb(238, 238, 238);
+  padding: 15px 30px;
+  color: black;
+  width: 100%;
+  display: flex;
+  gap: 20px;
 }
-.checkout .payment .memberDiscountInfo .contentTitle{
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.checkout .totalInfoTable{
-    tr{
-        td{
-            font-size: 12px;
-        }
-    }
+.checkout .payment .memberDiscountInfo .contentTitle {
+  font-size: 18px;
+  font-weight: bold;
 }
 
-@media(max-width: 700px){
-    .stepTitle p{
-        font-size: 11px;
+.checkout .totalInfoTable {
+  tr {
+    td {
+      font-size: 12px;
     }
+  }
+}
 
-    .checkoutTitleHolder h3{
-        font-size: 19px;
-    }
-    .stepOneContainer{
-        display: none;
-        flex-direction: row;
-        /* height: 800px; */
-    }
-    .memberDiscount svg{
-        font-size: 14px;
-    }
-    .contentTitle{
-        font-size: 13px;
-    }
-    .contentDetail{
-        font-size: 11px;
-    }
-     .stepOneInfo {
-        // display: none;
-        // height: 0px;
-        padding: 8px 0;
-    }
-    .stepOneInfo .infoHolder{
-        // display: none;
-        padding: 8px 0;
-    }
-    /*
+@media (max-width: 700px) {
+  .stepTitle p {
+    font-size: 11px;
+  }
+
+  .checkoutTitleHolder h3 {
+    font-size: 19px;
+  }
+  .stepOneContainer {
+    display: none;
+    flex-direction: row;
+    /* height: 800px; */
+  }
+  .memberDiscount svg {
+    font-size: 14px;
+  }
+  .contentTitle {
+    font-size: 13px;
+  }
+  .contentDetail {
+    font-size: 11px;
+  }
+  .stepOneInfo {
+    // display: none;
+    // height: 0px;
+    padding: 8px 0;
+  }
+  .stepOneInfo .infoHolder {
+    // display: none;
+    padding: 8px 0;
+  }
+  /*
     .checkout .stepOneContainer{
         display: flex;
         padding: 5px;
@@ -240,18 +259,14 @@
         height: 100%;
        
     } */
-    
 }
 
-@media(max-width: 480px){
-    .stepOneContainer{
-    
-        flex-direction: column;
-        height: 500px;
-    }
-    .stepOneInfo{
-        width: 100%;
-    }
+@media (max-width: 480px) {
+  .stepOneContainer {
+    flex-direction: column;
+    height: 500px;
+  }
+  .stepOneInfo {
+    width: 100%;
+  }
 }
-
-

@@ -95,10 +95,10 @@ export default function Navbar() {
               className={classes.header__content__logo}
             >
               <div className={classes.header__content__logo__wrap}>
-                <img src={logo} alt="Logo" width="100px" height="100px" />
+                <img src={logo} alt="Logo" />
               </div>
               <div className={classes.header__content__logo__name}>
-                <span>TOLO DELIVERY!</span>
+                <span>TOLO DELIVERY</span>
               </div>
             </div>
 
@@ -181,7 +181,8 @@ export default function Navbar() {
                             // marginRight: "2rem",
                           }}
                           style={{
-                            marginLeft: "4rem",
+                            marginLeft: "6rem",
+                            marginRight: "2rem",
                           }}
                         >
                           <Tooltip title="Account settings">
@@ -294,16 +295,23 @@ export default function Navbar() {
                     <div className={classes.header__content__nav__controllers}>
                       <Link
                         to="/login"
-                        style={!menuOpen ? { width: "fit-content" } : {}}
+                        style={
+                          !menuOpen
+                            ? { width: "fit-content", marginLeft: "5rem" }
+                            : { marginLeft: "5rem" }
+                        }
                       >
                         <Button
                           variant="contained"
+                          className={
+                            classes.header__content__nav__controllers__login
+                          }
                           // color="black"
                           style={{
                             // borderRadius: 35,
                             backgroundColor: "black",
                             color: "white",
-                            marginLeft: "1.8rem",
+
                             // padding: "18px 36px",
                             // fontSize: "18px",
                           }}

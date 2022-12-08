@@ -34,7 +34,7 @@ export default function UserOrder(params) {
   const orderLoad = useSelector((state) => state.order.loading);
 
   console.log("order info from user order file ");
-
+  console.log(orders);
   return (
     <>
       <div className={classes.userOrderHolder}>
