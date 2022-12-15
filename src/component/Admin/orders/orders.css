@@ -1,6 +1,11 @@
 body{
     padding: 0;
     margin: 0;
+
+}
+
+* {
+    font-family: sans-serif;
 }
 
 .loaders{
@@ -15,7 +20,8 @@ body{
 }
 .MuiTableCell-root.MuiTableCell-head{
     font-size: 12px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: sans-serif;
+    /* font-family:  sans-serif; */
     color: black;
     font-weight: bold;
 }

@@ -3,7 +3,8 @@ import "./feature.scss";
 import { featureData } from "../Feature/featureData.jsx";
 
 import { Link } from "react-router-dom";
-
+import imageUrl from "../../assets/photo/crust_full_pizza.png";
+// import imageUrl from "../../assets/photo/half_pizza_C.png";
 import SearchIcon from "@material-ui/icons/Search";
 import { useNavigate } from "react-router-dom";
 
@@ -55,6 +56,9 @@ export default function Feature() {
             <div className={index === current ? "slide current" : "slide"}>
               {index === current && (
                 <div className="imgHolder">
+                  <div className="imageCOntainer">
+                    <img src={imageUrl} alt={slide.heading} />
+                  </div>
                   {/* <img src={slide.image} alt={slide.heading} /> */}
                   <div className="contentHolder_new">
                     <div className="content_new">

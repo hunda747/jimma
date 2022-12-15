@@ -11,7 +11,7 @@
 
 .header {
   position: sticky;
-
+  font-family: $Poppins;
   z-index: 999;
   //   background: linear-gradient(to right, $bg, $light);
 
@@ -293,6 +293,17 @@
               );
             }
           }
+
+          &__mobile {
+            color: red;
+            @include breakpoint(md) {
+              display: none;
+            }
+          }
+        }
+
+        &.mobile {
+          // display: block;
         }
       }
 
@@ -326,7 +337,18 @@
 
 .current {
   // display: none;
-  border-bottom: 2px solid black;
+  @include breakpoint(md) {
+    // display: none;
+    border-bottom: 2px solid black;
+  }
+}
+
+.mobile {
+  // display: block;
+  @include breakpoint(md) {
+    display: none;
+    color: red;
+  }
 }
 
 @media (max-width: 915px) {

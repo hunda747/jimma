@@ -39,14 +39,14 @@ import axios from "axios";
 export default function Checkout() {
   const errRef = useRef();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [cookies, setCookie] = useCookies(["user"]);
 
   const [errMsg, setErrMsg] = useState("");
   const [load, setLoad] = useState(false);
-  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
   const order = useSelector((state) => state.order.orders);
+  const { cartItems } = cart;
   // console.log(cartItems);
 
   // const product = useSelector((state) => state.getProduct.products)
@@ -72,7 +72,7 @@ export default function Checkout() {
     longitude: 36.8406,
   });
 
-  const [phoneNumber, setPhoneNumber] = useState(cookies.phoneNo);
+  const [phoneNumber, setPhoneNumber] = useState(cookies.ToleDUphoneNo);
   const [deliveryPrice, setDeliveryPrice] = useState(35);
 
   let printIt = (data) => {
@@ -157,7 +157,7 @@ export default function Checkout() {
         setLoad(false);
         message.error("Phone Number Is Invalid");
       } else {
-        if (cookies?.uid) {
+        if (cookies?.ToleDUuid) {
           let orderItems = [];
           cartItems.map((item) => {
             const singleProduct = {
@@ -177,7 +177,7 @@ export default function Checkout() {
             dispatch(
               createOrders(
                 date,
-                cookies?.uid,
+                cookies?.ToleDUuid,
                 getTotalProductPrice(),
                 marker.latitude,
                 marker.longitude,
@@ -390,11 +390,6 @@ export default function Checkout() {
               </div>
               <div className="stepOneInfo">
                 <div className="infoHolder">
-                  {/* <div className="lngLat">
-                    <div className="latHolder"> <Input prefix="Lat" value={marker.latitude}  disabled /></div>
-                    <div className="lngHolder"><Input prefix="Lng" value={marker.longitude} disabled /></div>
-                  </div> */}
-
                   <div className="getCurrentLocation">
                     <button onClick={getLocation}>
                       <span>

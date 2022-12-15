@@ -27,7 +27,7 @@ export default function UserOrder(params) {
   useEffect(() => {
     // fetchAllOrders();
     // dispatch(getOrdersbyUser(2));
-    dispatch(getOrdersbyUser(cookies.uid));
+    dispatch(getOrdersbyUser(cookies?.ToleDUuid));
   }, []);
 
   const orders = useSelector((state) => state.order.orders);

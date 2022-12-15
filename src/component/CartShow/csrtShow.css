@@ -1,3 +1,4 @@
+
 .cartShow{
   position: fixed;
   bottom: 20px;
@@ -8,9 +9,14 @@
   /* border: 1px solid black; */
   border-radius: 100%;
   z-index: 100;
+  font-family: "Poppins", sans-serif;
   /* box-shadow: 8px 8px 5px #efefef; */
 }
 
 .cartShow .icon{
   color: black;
+}
+
+.cartShow .bold{
+  font-weight: bold;
 }

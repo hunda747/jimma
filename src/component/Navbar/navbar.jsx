@@ -48,10 +48,10 @@ export default function Navbar() {
   }, []);
 
   const handleLogout = () => {
-    removeCookie("fname", { path: "/" });
-    removeCookie("lname", { path: "/" });
-    removeCookie("phoneNo", { path: "/" });
-    removeCookie("uid", { path: "/" });
+    removeCookie("ToleDUfname", { path: "/" });
+    removeCookie("ToleDUlname", { path: "/" });
+    removeCookie("ToleDUphoneNo", { path: "/" });
+    removeCookie("ToleDUuid", { path: "/" });
     navigate("/");
     window.location.reload(false);
   };
@@ -116,9 +116,6 @@ export default function Navbar() {
                   : {}
               }
             >
-              {/* <div className={classes.header__content__nav__logo}  style={menuOpen? {marginTop: '1rem'}:{}}>
-                      <img src={logo} alt="Logo"  style={{width:'60px', height: '60px', marginBottom: '5rem'}} />
-                  </div> */}
               <ul>
                 <li>
                   <Link to="/" onClick={() => setMenuOpen(false)}>
@@ -166,7 +163,7 @@ export default function Navbar() {
                 </li>
 
                 <li>
-                  {cookies?.uid ? (
+                  {cookies?.ToleDUuid ? (
                     <div
                       className={classes.header__content__nav__controllers}
                       style={menuOpen ? { width: "100%" } : {}}
@@ -335,156 +332,6 @@ export default function Navbar() {
           </div>
         </header>
       </div>
-
-      {/* 
-      <div className="navbar_main">
-        <div className="container">
-          <div className="navbar">
-            <div className="logo">
-              <Link to={"/"}>
-                <img src={logo} alt="logo" height={'50px'}/>
-               
-              </Link>
-            </div>
-
-            <div className="menus">
-              <ul>
-                <li className='menu current'>Home</li>
-                <li className='menu'>Menu</li>
-                <li className='menu'>Services</li>
-                <li className='menu'>Shop</li>
-              </ul>
-            </div>
-
-            <div className="icons">
-              <div className="icon">
-                <div className="cartIconHolder smaller">
-                  <Link to='/checkout'>  
-                    <ShoppingCartSharp 
-                    style={{color: 'black'}}
-                    className='infosIcons' />   
-                    <span>{getCartCount()}</span>
-                  </Link>
-                </div>
-              </div>
-
-              
-              {cookies?.uid ? 
-                <div className="icon">
-                  <div className="accountIconHolder" onClick={handleLogout}>
-             
-                      <AccountCircle />
-                      LOGOUT
-                
-                  </div>
-                </div>
-              :
-                <div className="icon">
-                  <Link to='/login'>
-                    <div className="accountIconHolder">
-                    
-                      LOGIN
-                    </div>
-                  </Link>
-                </div>
-              }
-            </div>
-
-          </div>
-        </div>
-      </div> */}
     </>
   );
-}
-
-// {/* <div className="navbar_main">
-//         <div className="container">
-//           <div className="navbar">
-//             <div className="logo">
-//               <Link to={"/"}>
-//                 {/* <img src={logo} alt="logo" height={'100px'}/> */}
-//                 Jimma Delivery
-//               </Link>
-//             </div>
-//             <div className="menu"> */}
-{
-  /* <div className="btn">
-                <Link to='/login'>
-                  Login
-                </Link>
-              </div> */
-}
-{
-  /* <div className="icons">
-                <Link to='/checkout'>
-                  <div className="cartIconHolder">
-                    <Favorite />
-                  </div>
-                </Link>
-              </div> */
-}
-{
-  /* <div className="icons">
-                <div className="cartIconHolder smaller">
-                  <Link to='/checkout'>  
-                    <ShoppingCartSharp 
-                    
-                    className='infosIcons' />   
-                    <span>{getCartCount()}</span>
-                  </Link>
-                </div>
-              </div> */
-}
-
-{
-  /* <div className="btn">
-                {cookies?.fname}
-
-                <button  onClick={handleLogout}>
-                  <ExitToApp />
-                </button>
-              </div> */
-}
-{
-  /* {cookies?.uid ? 
-                <div className="icons">
-                  <div className="accountIconHolder" onClick={handleLogout}> */
-}
-{
-  /* <Link to='/login'> */
-}
-{
-  /* <AccountCircle />
-                      LOGOUT */
-}
-{
-  /* </Link> */
-}
-{
-  /* </div>
-                </div>
-              :
-                <div className="icons">
-                  <Link to='/login'>
-                    <div className="accountIconHolder">
-                      <AccountCircle />
-                      LOGIN
-                    </div>
-                  </Link>
-                </div>
-              } */
-}
-{
-  /* <div className="btn">
-                  <Link to='/register'>
-                    Sign Up
-                  </Link>
-                </div> */
-}
-{
-  /*               
-            </div>
-          </div>
-        </div>
-      </div> */
 }

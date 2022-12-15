@@ -43,6 +43,7 @@ import {
   changeOrderStatus,
   getOrdersPending,
   getOrdersComplete,
+  getOrdersInprogress,
 } from "../../../redux/actions/orderActions";
 // import { returnProduct } from '../../../redux/actions/productActions';
 const steps = ["Processing", "Shipped", "Delivered"];
@@ -85,21 +86,25 @@ export default function Row(props) {
   const handleCancelOrder = () => {
     console.log(props.id);
     dispatch(changeOrderStatus(props.id, "cancel"));
-    dispatch(getOrdersPending());
+    // dispatch(getOrdersPending());
+    props.pending();
     // window.location.reload(true);
   };
 
   const handleAcceptOrder = () => {
     console.log(props.id);
     dispatch(changeOrderStatus(props.id, "inProgress"));
-    dispatch(getOrdersPending());
+    // dispatch(getOrdersPending());
+    props.pending();
     // window.location.reload(true);
   };
 
   const handleCompleteOrder = () => {
     console.log(props.id);
     dispatch(changeOrderStatus(props.id, "complete"));
-    dispatch(getOrdersComplete());
+    // dispatch(getOrdersInprogress());
+    props.inprogress();
+    // dispatch(getOrdersComplete());
     // window.location.reload(true);
   };
 

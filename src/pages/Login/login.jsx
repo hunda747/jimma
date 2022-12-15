@@ -23,7 +23,7 @@ import {
   GooglePlusOutlined,
 } from "@ant-design/icons";
 // import { useDispatch, useSelector } from 'react-redux';
-
+import logo from "../../assets/photo/tolo-dark.png";
 import { useNavigate, useLocation } from "react-router-dom";
 
 //for signup
@@ -208,19 +208,19 @@ export default function AdminLogin() {
         let expires = new Date();
         expires.setTime(expires.getTime() + 2 * 60 * 60 * 1000);
 
-        setCookie("uid", response.data.id, { path: "/", expires });
-        setCookie("fname", response.data.fname, { path: "/", expires });
-        setCookie("lname", response.data.lname, { path: "/", expires });
-        setCookie("phoneNo", response.data.phone, { path: "/", expires });
+        setCookie("ToleDUuid", response.data.id, { path: "/", expires });
+        setCookie("ToleDUfname", response.data.fname, { path: "/", expires });
+        setCookie("ToleDUlname", response.data.lname, { path: "/", expires });
+        setCookie("ToleDUphoneNo", response.data.phone, { path: "/", expires });
 
-        // console.log(cookies.uid);
+        // console.log(cookies?.ToleDUuid);
         // return ( <Navigate to='/' /> )
         // console.log(from);
         navigate(from);
       } else {
         setLoader(false);
         console.log("login failed");
-        console.log(cookies.uid);
+        console.log(cookies?.ToleDUuid);
       }
     } catch (err) {
       setLoader(false);
@@ -362,7 +362,8 @@ export default function AdminLogin() {
               <div className="overlay-container">
                 <div className="overlay">
                   <div className="overlay-panel overlay-left">
-                    <h1>Jimma</h1>
+                    <img src={logo} alt="Logo" />
+                    <h1>Tole delivery</h1>
                     <p>
                       If u don't have an account
                       <span onClick={signInButton} className="btnLink">

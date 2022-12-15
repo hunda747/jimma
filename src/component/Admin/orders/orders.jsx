@@ -63,6 +63,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 0,
     width: "100%",
     backgroundColor: theme.palette.background.paper,
+    fontFamily: "sans-serif",
   },
 }));
 
@@ -73,23 +74,53 @@ function a11yProps(index) {
   };
 }
 
+const localhsots = "http://tolodeliveryjimma.com/";
+
 export default function Orders() {
   // const [orders , setOrders] = useState([]);
   const [loader, setLoader] = React.useState(false);
+  const [tableRows, setTableRow] = React.useState([]);
   const dispatch = useDispatch();
   const [cookies, setCookie] = useCookies(["user"]);
   // console.log(cookies.ADaccess_token);
 
+  const orders = useSelector((state) => state.order.orders);
+
+  const orderLoad = useSelector((state) => state.order.loading);
+
+  const fetchPending = async () => {
+    const res = await axios.post(localhsots + "api/order/getPendingOrders");
+    console.log(res.data);
+    setTableRow(res.data);
+  };
+
+  const fetchInprogress = async () => {
+    const res = await axios.post(localhsots + "api/order/getInprogressOrders");
+    console.log(res.data);
+    setTableRow(res.data);
+  };
+
+  const fetchComplete = async () => {
+    const res = await axios.post(localhsots + "api/order/getCompleteOrders");
+    setTableRow(res.data);
+  };
+
   const handleChange = (event, newValue) => {
+    console.log(newValue);
     setValue(newValue);
     if (newValue === 0) {
-      dispatch(getOrdersPending());
+      fetchPending();
     } else if (newValue === 1) {
-      dispatch(getOrdersInprogress());
+      fetchInprogress();
     } else {
-      dispatch(getOrdersComplete(cookies.ADaccess_token));
+      fetchComplete();
+      // dispatch(getOrdersComplete(cookies.ADaccess_token));
     }
+    // console.log(orders);
+    // setTableRow(orders);
   };
+
+  const fetchTableRow = () => {};
 
   const classes = useStyles();
   const [value, setValue] = useState(0);
@@ -101,12 +132,18 @@ export default function Orders() {
 
   useEffect(() => {
     // fetchAllOrders();
-    dispatch(getOrdersPending());
+    console.log(value);
+    if (value === 0) {
+      fetchPending();
+    } else if (value === 1) {
+      fetchInprogress();
+    } else {
+      fetchComplete();
+    }
+    // console.log(orders);
+    // setTableRow(orders);
   }, []);
 
-  const orders = useSelector((state) => state.order.orders);
-
-  const orderLoad = useSelector((state) => state.order.loading);
   // const load = useSelector((state) => state.order.loading);
   // setLoader(load);
 
@@ -174,10 +211,11 @@ export default function Orders() {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {!orders?.length > 0 ? (
+                      {!tableRows?.length > 0 ? (
                         <div>No Orders</div>
                       ) : (
-                        orders.map((val, key) => {
+                        tableRows.map((val, key) => {
+                          // console.log(val);
                           return (
                             <Row
                               key={val.id}
@@ -223,13 +261,13 @@ export default function Orders() {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {!orders?.length ? (
+                      {!tableRows?.length ? (
                         // loader ?
                         //   <CircularProgress />
                         // :
                         <div>empty</div>
                       ) : (
-                        orders.map((val, key) => {
+                        tableRows.map((val, key) => {
                           return (
                             <Row
                               key={val.id}
@@ -246,6 +284,9 @@ export default function Orders() {
                               longitude={val.longitude}
                               latitude={val.latitude}
                               admin={true}
+                              complete={fetchComplete}
+                              pending={fetchPending}
+                              inprogress={fetchInprogress}
                             />
                           );
                         })
@@ -261,6 +302,7 @@ export default function Orders() {
             </TabPanel>
 
             <TabPanel value={value} index={2}>
+              <div>calander </div>
               {!orderLoad ? (
                 <TableContainer component={Paper}>
                   <Table aria-label="collapsible table">
@@ -275,10 +317,10 @@ export default function Orders() {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {!orders?.length ? (
+                      {!tableRows?.length ? (
                         <div>empty</div>
                       ) : (
-                        orders.map((val, key) => {
+                        tableRows.map((val, key) => {
                           return (
                             <Row
                               key={val.id}

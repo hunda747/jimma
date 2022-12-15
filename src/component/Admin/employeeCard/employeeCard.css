@@ -71,7 +71,7 @@ body{
 .emp_accessKey_holder p,
 .emp_status_holder p{
    font-size: 12px;
-   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   font-family:  sans-serif;
    font-weight: lighter;
        
 }
@@ -90,7 +90,7 @@ body{
 .dialog_date,
 .dialog_status{
     font-size: 12px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family:  sans-serif;
     font-weight: lighter;
     color: black;
     padding: 4px;

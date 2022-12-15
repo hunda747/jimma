@@ -25,7 +25,7 @@ body{
   height: 40px;
   background-color: #d3cba830;
   font-size: 17px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: sans-serif;
   font-weight: lighter;
   padding: 4px;
   margin: 4px 0px;
@@ -62,7 +62,7 @@ body{
   margin-top: 10px;
   width: 100%;
   font-size: 15px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: sans-serif;
   color: orange;
   font-weight: normal;
 }
@@ -149,7 +149,7 @@ body{
 .cr_title_more{
   font: 12px;
   font-weight: lighter;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: sans-serif;
   padding: 5px;
   margin: 5px;
   color: blue;
@@ -190,7 +190,7 @@ body{
 .checkout_cr_title,
 .purchase_cr_title{ 
   font-size: 13px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: sans-serif;
   font-weight: normal;
   padding: 5px;
   margin: 5px;
@@ -199,7 +199,7 @@ body{
 .checkout_cr_content,
 .purchase_cr_content{
   font-size: 14px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: sans-serif;
   font-weight: normal;
   padding: 5px;
   margin: 5px;

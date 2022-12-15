@@ -94,6 +94,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     menuButton: {
       marginRight: 36,
+      fontFamily: "sans-serif",
+      color: "red",
     },
     hide: {
       display: "none",

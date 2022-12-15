@@ -1,10 +1,7 @@
 @import "../../styles/variables.scss";
 
-* {
-  font-family: $Poppins;
-}
-
 .checkout_main {
+  font-family: $Poppins;
   padding: 0;
   margin: 0;
   font-size: 12px;
@@ -16,6 +13,7 @@
 }
 
 .checkout {
+  font-family: $Poppins;
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -228,10 +226,14 @@
   .checkoutTitleHolder h3 {
     font-size: 19px;
   }
+
   .stepOneContainer {
-    display: none;
-    flex-direction: row;
-    /* height: 800px; */
+    flex-direction: column;
+    height: 500px;
+    margin: 0px;
+  }
+  .checkout .stepOneContainer {
+    margin: 0px;
   }
   .memberDiscount svg {
     font-size: 14px;
@@ -242,7 +244,7 @@
   .contentDetail {
     font-size: 11px;
   }
-  .stepOneInfo {
+  .checkout .stepOneInfo {
     // display: none;
     // height: 0px;
     padding: 8px 0;
@@ -251,14 +253,6 @@
     // display: none;
     padding: 8px 0;
   }
-  /*
-    .checkout .stepOneContainer{
-        display: flex;
-        padding: 5px;
-        margin: 5px 15px;
-        height: 100%;
-       
-    } */
 }
 
 @media (max-width: 480px) {
@@ -266,7 +260,38 @@
     flex-direction: column;
     height: 500px;
   }
+
+  .checkout .stepOneContainer {
+    // display: flex;
+    // justify-content: space-around;
+    // padding: 5px;
+    margin: 0px;
+  }
   .stepOneInfo {
     width: 100%;
+  }
+  .checkout .stepOneInfo {
+    padding: 8px 0;
+  }
+  .checkout .mapHolder {
+    // width: 100%;
+    height: 50vh;
+    // height: 500px;
+    // overflow: visible;
+  }
+  .checkout .mapHolder canvas {
+    height: 400px;
+  }
+
+  .latHolder input,
+  .lngHolder input {
+    padding: 5px 10px;
+    margin: 6px 1px;
+  }
+
+  .locationName input,
+  .phoneNumber input {
+    margin: 6px 1px;
+    padding: 8px;
   }
 }

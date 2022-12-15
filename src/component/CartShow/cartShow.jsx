@@ -36,7 +36,7 @@ export default function CartShow(props) {
         <Link to="/checkout">
           {" "}
           <ShoppingCart className="icon" />{" "}
-          <span className="icon">{getCartCount()}</span>
+          <span className="icon bold">{getCartCount()}</span>
         </Link>
       </Fab>
     </div>

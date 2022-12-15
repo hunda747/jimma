@@ -51,10 +51,10 @@ export default function Home() {
   console.log(loading);
 
   const handleLogout = () => {
-    removeCookie("fname", { path: "/" });
-    removeCookie("lname", { path: "/" });
-    removeCookie("phoneNo", { path: "/" });
-    removeCookie("uid", { path: "/" });
+    removeCookie("ToleDUfname", { path: "/" });
+    removeCookie("ToleDUlname", { path: "/" });
+    removeCookie("ToleDUphoneNo", { path: "/" });
+    removeCookie("ToleDUuid", { path: "/" });
     window.location.reload(false);
   };
 
