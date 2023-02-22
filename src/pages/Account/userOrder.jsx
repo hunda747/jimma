@@ -95,7 +95,7 @@ export default function UserOrder(params) {
                       date={val.date}
                       status={val.status}
                       address={val.address}
-                      // orders={val.orders}
+                      orders={JSON.parse(val.orders)}
                       longitude={val.longitude}
                       latitude={val.latitude}
                       admin={true}

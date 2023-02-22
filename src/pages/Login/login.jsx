@@ -206,7 +206,7 @@ export default function AdminLogin() {
         console.log("sucess");
 
         let expires = new Date();
-        expires.setTime(expires.getTime() + 2 * 60 * 60 * 1000);
+        expires.setTime(expires.getTime() + 30 * 24 * 60 * 60 * 1000);
 
         setCookie("ToleDUuid", response.data.id, { path: "/", expires });
         setCookie("ToleDUfname", response.data.fname, { path: "/", expires });
@@ -228,7 +228,7 @@ export default function AdminLogin() {
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 400) {
-        setErrMsg("Username not found");
+        setErrMsg("Phone number not found");
       } else if (err.response?.status === 401) {
         setErrMsg("Incorrect password");
       } else {
@@ -362,7 +362,9 @@ export default function AdminLogin() {
               <div className="overlay-container">
                 <div className="overlay">
                   <div className="overlay-panel overlay-left">
-                    <img src={logo} alt="Logo" />
+                    <div>
+                      <img src={logo} alt="Logo" />
+                    </div>
                     <h1>Tole delivery</h1>
                     <p>
                       If u don't have an account

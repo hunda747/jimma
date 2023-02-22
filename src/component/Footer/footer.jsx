@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./footer.module.scss";
 import { Link } from "react-router-dom";
 import { Twitter, Instagram, Facebook, LinkedIn } from "@material-ui/icons";
-import logo from "../../assets/photo/tolo-dark.png";
+import logo from "../../assets/photo/tole_blackgb.png";
 
 export default function Footer() {
   return (
@@ -12,18 +12,18 @@ export default function Footer() {
           <div className={classes.footer__container__logoHolder}>
             <img src={logo} alt="Logo" />
             {/* <img src="https://i.im.ge/2022/09/27/1NHrd1.tolo.jpg" alt="Logo" /> */}
-            <h2>TOLO DELIVERY</h2>
+            {/* <h2>TOLE DELIVERY</h2> */}
           </div>
           <div className={classes.footer__container__needHelp}>
             <h1>Need Help</h1>
             <p>Call us +251921321231</p>
 
-            <p>Email: tolo@jimaDelivery.com</p>
+            <p>Email: tole@jimaDelivery.com</p>
             <p>
-              <Twitter /> : @toloDelivery
+              <Twitter /> : @toleDelivery
             </p>
             <p>
-              <Instagram />: @toloJima_delivery
+              <Instagram />: @toleJima_delivery
             </p>
           </div>
           <div className={classes.footer__container__knowUs}>
@@ -36,7 +36,7 @@ export default function Footer() {
               <p>Contact Us</p>
             </Link>
             <Link to={"#"}>
-              <p>Tolo Delivery</p>
+              <p>Tole Delivery</p>
             </Link>
 
             <p>Location</p>

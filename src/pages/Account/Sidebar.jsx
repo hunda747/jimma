@@ -29,9 +29,9 @@ const Sidebar = ({ changeCounter, counter }) => {
           </div>
           <div className={classes.sidebar__acountInfo__nameAphone}>
             <p>
-              UserName: {cookies.fname} {cookies.lname}
+              UserName: {cookies.ToleDUfname} {cookies.ToleDUlname}
             </p>
-            <p>PhoneNo: {cookies.phoneNo}</p>
+            <p>PhoneNo: {cookies.ToleDUphoneNo}</p>
           </div>
         </div>
         <div className={classes.sidebar__options}>

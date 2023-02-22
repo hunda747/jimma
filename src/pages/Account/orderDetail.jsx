@@ -32,7 +32,7 @@ export default function OrderDetail(props) {
     "Shipped",
     props?.status === "cancel" ? "Canceled" : "Delivered",
   ];
-  const orders = useSelector((state) => state.orderDetail.orderDetail);
+  // const orders = useSelector((state) => state.orderDetail.orderDetail);
 
   const [viewPort, setViewPort] = useState({
     latitude: props.latitude,
@@ -57,7 +57,7 @@ export default function OrderDetail(props) {
 
   useEffect(() => {
     console.log(props.id);
-    dispatch(getOrderDetails(props.id));
+    // dispatch(getOrderDetails(props.id));
   }, []);
 
   const handleCancelOrder = () => {
@@ -67,26 +67,6 @@ export default function OrderDetail(props) {
     //window.location.reload(true);
   };
 
-  // const handleAcceptOrder = () => {
-  //   console.log(props.id);
-  //   dispatch(changeOrderStatus(props.id, 'inProgress'));
-  //   dispatch(getOrdersPending());
-  //   // window.location.reload(true);
-  // }
-
-  // const handleCompleteOrder = () => {
-  //   console.log(props.id);
-  //   dispatch(changeOrderStatus(props.id, 'complete'));
-  //   dispatch(getOrdersComplete());
-  //   // window.location.reload(true);
-  // }
-
-  // const handleReorder = () => {
-  //   props?.orderProducts.map((order) => {
-  //     dispatch(addToCart(order.id , order.productQuantity));
-  //   })
-  //   navigator('/cart')
-  // }
 
   //orders items list
   // orders?.map((val) => console.log(val._id.food_name));
@@ -166,16 +146,16 @@ export default function OrderDetail(props) {
         </div>
         <div className={classes.orderDetailHolder__itemInfo}>
           <Collapse accordion>
-            {orders?.map((val, index) => {
+            {props?.orders?.map((val, index) => {
               return (
-                <Panel header={`${val.foods.food_name}`} key={index}>
-                  <p>Quantity : {val.quantity}</p>
-                  <p>Price : food price</p>
+                <Panel header={`${val?.foodName}`} key={index}>
+                  <p>Quantity : {val.foodQuantity}</p>
+                  <p>Price : {val?.foodPrice} BIRR</p>
 
                   <Button
                     style={{ marginTop: "1rem", width: "fit-content" }}
                     onClick={(e) => {
-                      navigator("/details/" + val.id);
+                      navigator("/details/" + val.foodId);
                     }}
                   >
                     View Product

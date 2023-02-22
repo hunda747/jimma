@@ -3,6 +3,7 @@ import "./addOrder.css";
 
 import FoodCard from "../../FoodCard/foodCard";
 import CartView from "../../CartView/cartView";
+import AdminCart from "../AdminOrderCart/adminCart";
 
 import { useState } from "react";
 import { message, Upload, Input, Button } from "antd";
@@ -26,6 +27,16 @@ import { clearCart } from "../../../redux/actions/cartActions";
 
 // import {CircularProgress, CircularProgressWithLabel} from '@mui/material';
 import { Box } from "@mui/material";
+import axios from "axios";
+// const localhost = "http://localhost:5000/";
+const localhost = process.env.REACT_APP_BASE_URL;
+// const localhost = "http://tolodeliveryjimma.com/";
+const config = {
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  },
+};
 
 export default function AddRestaurant({ onMorePage }) {
   const dispatch = useDispatch();
@@ -65,7 +76,7 @@ export default function AddRestaurant({ onMorePage }) {
     dispatch(getFoodsByRestaurant(e.target.value));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     console.log("order");
     e.preventDefault();
     e.stopPropagation();
@@ -98,41 +109,74 @@ export default function AddRestaurant({ onMorePage }) {
         });
       } else {
         if (1) {
-          let orderItems = [];
+          var orderItems = [];
           cartItems.map((item) => {
             const singleProduct = {
               foodId: item.id,
+              foodName: item.food_name,
+              foodPrice: item.price,
+              foodRestaurantId: item.restaurant,
               foodQuantity: item.qtyCounter,
             };
             orderItems.push(singleProduct);
           });
-          console.log(orderItems);
+
           try {
-            let costTotal = getTotalProductPrice();
-            let no_item = getCartCount();
+            const costTotal = getTotalProductPrice();
+            const no_item = getCartCount();
 
             console.log(costTotal);
             console.log(no_item);
-            dispatch(
-              createOrders(
-                date,
-                2,
-                getTotalProductPrice(),
-                0,
-                0,
-                phoneData,
-                no_item,
-                orderItems,
-                addressData
+            console.log(orderItems);
+            const orderDetail = JSON.stringify(orderItems);
+            console.log(orderDetail);
+
+            const addOrder = localhost + "/api/order/addOrder";
+           
+            axios
+              .post(
+                `${localhost}/api/order/addOrder`,
+                {
+                  date: date,
+                  userId: 7,
+                  total: costTotal,
+                  latitude: 0,
+                  longitude: 0,
+                  contact: phoneData,
+                  no_item: no_item,
+                  orders: orderItems,
+                  ordersDetail: orderDetail,
+                  address: addressData,
+                },
+                config
               )
-            );
-            message.success({
-              content: "Order Placed",
-              style: {
-                marginTop: "10vh",
-              },
-            });
-            handleCancel();
+              .then((res) => {
+                console.log(res);
+                message.success({
+                  content: "Order Placed",
+                  style: {
+                    marginTop: "10vh",
+                  },
+                });
+                handleCancel();
+              })
+              .catch((err) => {
+                console.log(err);
+                message.error({
+                  content: "Order Place Failed: Try again",
+                  style: {
+                    marginTop: "10vh",
+                  },
+                });
+              });
+            // } else {
+            //   message.error({
+            //     content: "Order Place Failed: Try again",
+            //     style: {
+            //       marginTop: "10vh",
+            //     },
+            //   });
+            // }
           } catch (e) {
             console.log(e);
             message.error("Order Place Failed: Try again");
@@ -173,92 +217,84 @@ export default function AddRestaurant({ onMorePage }) {
           </div>
         </div>
         <div className="orders">
-          <div className="menu">
-            <div className="searchBar">
-              <input
-                class="search__input"
-                type="text"
-                value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                }}
-                placeholder="Search"
-              />
-              {/* <button > */}
-              <div
-                className="btn_search"
-                onClick={() => {
-                  console.log(search);
-                  dispatch(searchFood(search));
-                }}
-              >
-                <Search
-                  style={{
-                    background: "black",
-                    display: "flex",
-                    justifyContent: "center",
+          <div className="orderAndCard">
+            <div className="menu card">
+              <div className="searchBar">
+                <input
+                  class="search__input"
+                  type="text"
+                  value={search}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
                   }}
+                  placeholder="Search"
                 />
-              </div>
-            </div>
-            <div className="rest_list">
-              <h3>choose restaurant</h3>
-              <div className="restaurants">
-                <Select
-                  value={restaurantData}
-                  className={"rest_select"}
-                  onChange={handleChange}
+                {/* <button > */}
+                <div
+                  className="btn_search"
+                  onClick={() => {
+                    console.log(search);
+                    dispatch(searchFood(search));
+                  }}
                 >
-                  {restaurants.map((restaurant) => {
+                  <Search
+                    style={{
+                      background: "black",
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="rest_list">
+                <h3>choose restaurant</h3>
+                <div className="restaurants">
+                  <Select
+                    value={restaurantData}
+                    className={"rest_select"}
+                    onChange={handleChange}
+                  >
+                    {restaurants.map((restaurant) => {
+                      return (
+                        <MenuItem
+                          value={restaurant.id}
+                          className={"rest_select"}
+                        >
+                          {restaurant.name}
+                        </MenuItem>
+                      );
+                    })}
+                  </Select>
+                </div>
+              </div>
+              <div className="food_list">
+                {/* <h3>Food list</h3> */}
+                <div className="foods">
+                  {foods?.map((food) => {
                     return (
-                      <MenuItem value={restaurant.id} className={"rest_select"}>
-                        {restaurant.name}
-                      </MenuItem>
+                      <div className="menuItem">
+                        <FoodCard
+                          key={food.id}
+                          id={food.id}
+                          name={food.food_name}
+                          desc={food.description}
+                          price={food.price}
+                          restaurant={food.restaurantsId}
+                          type={food.type}
+                        />
+                      </div>
                     );
                   })}
-                </Select>
-              </div>
-            </div>
-            <div className="food_list">
-              {/* <h3>Food list</h3> */}
-              <div className="foods">
-                {foods?.map((food) => {
-                  return (
-                    <div className="menuItem">
-                      <FoodCard
-                        key={food.id}
-                        id={food.id}
-                        name={food.food_name}
-                        desc={food.description}
-                        price={food.price}
-                        type={food.type}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-          <div className="cart_main">
-            <CartView />
-            {/* {
-              cartItems?.map((cart) => {
-                return(
-                <div className="product">
-                  <p className="name">{cart.food_name}</p>
-                  <p className="qty">{cart.qtyCounter}</p>
-                  <p className="price">{cart.price} Birr</p>
-                  <div className='action'  onClick={() => {
-                    console.log(cart.id);
-                    dispatch(removeFromCart(cart.id))
-                  }} ><Delete color='red'/></div>
                 </div>
-                )
-              })
-            } */}
+              </div>
+            </div>
+
+            <div className="cart_main card">
+              <AdminCart />
+            </div>
           </div>
 
-          <div className="address">
+          <div className="address card">
             <h3>Address</h3>
             <input
               type="text"
@@ -279,7 +315,7 @@ export default function AddRestaurant({ onMorePage }) {
             />
           </div>
 
-          <div className="buttonHolder">
+          <div className="buttonHolder card">
             <button className="add_product_btn" onClick={handleSubmit}>
               Add Order
             </button>

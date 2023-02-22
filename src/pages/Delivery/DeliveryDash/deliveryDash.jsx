@@ -169,7 +169,7 @@ export default function Delivery_Dashboard() {
     useEffect(()=>{
       const getPendingOrderCount = async () =>{
         try {
-          const response = await axios.get(localhost + 'api/getPendingOrderCount');
+          const response = await axios.get(localhost + '/api/getPendingOrderCount');
           setOrderNotification(response.data)
         } catch (error) {
           setOrderNotification('...')

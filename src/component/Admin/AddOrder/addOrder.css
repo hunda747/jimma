@@ -2,6 +2,13 @@
 
 }
 
+.add_order .card{
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+}
+
 .add_order .form_side .tops{
   display: flex;
   gap: 15px;
@@ -19,8 +26,15 @@
   margin: 5px;
 }
 
+.add_order .orders .orderAndCard {
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+
 .add_order .orders .menu {
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  width: 100%;
 }
 
 .add_order .orders .menu .rest_list .rest_select{
@@ -30,9 +44,9 @@
 
 /* cart */
 .add_order .orders .cart_main{
-  width: 100%;
+  width: 40%;
   padding: 24px 10px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 /* .add_order .orders .cart h1{
@@ -60,7 +74,7 @@
 
 .add_order .orders .address{
   padding: 10px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   background-color: rgb(255, 255, 255);
 }
 .add_order .orders .address input{

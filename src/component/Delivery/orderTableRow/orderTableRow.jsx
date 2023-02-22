@@ -26,7 +26,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {MenuItem, Select} from '@mui/material';
 import { useCookies } from 'react-cookie';
-
+const localhost = process.env.REACT_APP_BASE_URL;
 export default function Row(props) {
   // const { row } = props;
   const [open, setOpen] = React.useState(false);
@@ -45,14 +45,14 @@ export default function Row(props) {
     console.log(props.id);
     //dispatch(changeOrderStatus(props.id, 'complete'))
     if(cookies?.ADid){
-      const orderNo = await axios.post('http://127.0.0.1:5000/api/countOrderById', {id: cookies.ADid});
+      const orderNo = await axios.post(`https://${localhost}/api/countOrderById`, {id: cookies.ADid});
 
       console.log(orderNo.data.orderNo);
      
 
       if(orderNo.data.orderNo < 1){
         message.success("Order Accepted")
-        const respond = await axios.post('http://localhost:5000/api/changeStatusAccept', {id: props.id, deliveryID: cookies.ADid});
+        const respond = await axios.post(`https://${localhost}/api/changeStatusAccept`, {id: props.id, deliveryID: cookies.ADid});
         if(respond.status === 200){
           window.location.reload(false);          
         }
@@ -70,7 +70,7 @@ export default function Row(props) {
     console.log(props.id);
     //dispatch(changeOrderStatus(props.id, 'complete'))
     if(cookies?.ADid){
-      const respond = await axios.post('http://localhost:5000/api/changeStatusComplete', {id: props.id, status: "complete"});
+      const respond = await axios.post(`http://${localhost}/api/changeStatusComplete`, {id: props.id, status: "complete"});
       message.success("Order Complete")
        if(respond.status === 200){
         window.location.reload(false);
@@ -86,7 +86,7 @@ export default function Row(props) {
     //dispatch(changeOrderStatus(props.id, 'complete'))
     message.success("Order Has Been Canceled")
     if(cookies?.ADid){
-      const respond = await axios.post('http://localhost:5000/api/changeStatusComplete', {id: props.id, status: "pending"});
+      const respond = await axios.post(`http://${localhost}/api/changeStatusComplete`, {id: props.id, status: "pending"});
       if(respond.status === 200){
         window.location.reload(false);
        

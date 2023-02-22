@@ -35,19 +35,28 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 // import axios from 'axios';
 import axios from "axios";
+import { type } from "@testing-library/user-event/dist/type";
 
 export default function Checkout() {
   const errRef = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [cookies, setCookie] = useCookies(["user"]);
-
+  // const localhost = "http://localhost:5000/";
+  const localhost = process.env.REACT_APP_BASE_URL;
+  // const localhost = "http://tolodeliveryjimma.com/";
   const [errMsg, setErrMsg] = useState("");
   const [load, setLoad] = useState(false);
   const cart = useSelector((state) => state.cart);
   const order = useSelector((state) => state.order.orders);
   const { cartItems } = cart;
   // console.log(cartItems);
+  const config = {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+    },
+  };
 
   // const product = useSelector((state) => state.getProduct.products)
   // const user = useSelector((state) => state.getUser.user);
@@ -160,8 +169,12 @@ export default function Checkout() {
         if (cookies?.ToleDUuid) {
           let orderItems = [];
           cartItems.map((item) => {
+            console.log(item);
             const singleProduct = {
               foodId: item.id,
+              foodName: item.food_name,
+              foodPrice:item.price,
+              foodRestaurantId:item.restaurant,
               foodQuantity: item.qtyCounter,
             };
             orderItems.push(singleProduct);
@@ -174,33 +187,43 @@ export default function Checkout() {
 
             console.log(costTotal);
             console.log(no_item);
-            dispatch(
-              createOrders(
-                date,
-                cookies?.ToleDUuid,
-                getTotalProductPrice(),
-                marker.latitude,
-                marker.longitude,
-                phoneNumber,
-                no_item,
-                orderItems,
-                selectedLocation.formatted
-              )
-            );
-            console.log(order);
-            dispatch(clearCart());
+            console.log(typeof(orderItems));
+            const orderDetail = JSON.stringify(orderItems);
+            console.log(orderDetail);
+            axios.post(
+              `${localhost}/api/order/addOrder`,
+              {
+                date: date,
+                userId: cookies?.ToleDUuid,
+                total: getTotalProductPrice(),
+                latitude: marker.latitude,
+                longitude: marker.longitude,
+                contact: phoneNumber,
+                no_item: no_item,
+                orders: orderItems,
+                ordersDetail: orderDetail,
+                address: selectedLocation.formatted,
+              },
+              config
+            ).then((res) => {
+              console.log(res);
+              dispatch(clearCart());
+              sessionStorage.setItem("purchased", true);
+              message.success("Order Placed");
+              navigate("/");
+            }).catch((err) => {
+              console.log(err);
+            });
+            // console.log(order);
           } catch (e) {
             console.log(e);
           } finally {
             setLoad(false);
           }
 
-          sessionStorage.setItem("purchased", true);
           console.log(phoneNumber);
           // dispatch(clearCart());
-          message.success("Order Placed");
 
-          navigate("/");
         } else {
           setLoad(false);
           message.error("Order Place Failed: Check if you are logged in");

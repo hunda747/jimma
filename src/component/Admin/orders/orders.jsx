@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import "./orders.css";
 import {
   Box,
@@ -37,6 +37,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { useCookies } from "react-cookie";
 import { Stack, TextField } from "@material-ui/core";
+import { DesktopDatePicker } from "@mui/x-date-pickers";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+// import { AdapterDayjs } from "@mui/x-date-pickers/";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { OrderContext } from "./index";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -73,37 +78,102 @@ function a11yProps(index) {
     "aria-controls": `scrollable-force-tabpanel-${index}`,
   };
 }
-
-const localhsots = "http://tolodeliveryjimma.com/";
+const localhost = process.env.REACT_APP_BASE_URL;
+// const localhsots = "http://localhost:5000/";
+// const localhsots = "http://tolodeliveryjimma.com/";
 
 export default function Orders() {
+  const { data, dispatch } = useContext(OrderContext);
+  console.log(data);
   // const [orders , setOrders] = useState([]);
   const [loader, setLoader] = React.useState(false);
   const [tableRows, setTableRow] = React.useState([]);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [cookies, setCookie] = useCookies(["user"]);
   // console.log(cookies.ADaccess_token);
+  const nowData = new Date();
+  const [dateValue, setDateValue] = React.useState(new Date());
+
+  const handleDateChange = (e) => {
+    // setValue(newValue);
+    console.log(e);
+    console.log(e.target.value);
+  };
 
   const orders = useSelector((state) => state.order.orders);
 
   const orderLoad = useSelector((state) => state.order.loading);
 
   const fetchPending = async () => {
-    const res = await axios.post(localhsots + "api/order/getPendingOrders");
-    console.log(res.data);
-    setTableRow(res.data);
+    setLoader(true);
+    axios
+      .post(localhost + "/api/order/getPendingOrders")
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: "fetchOrderAndChangeState",
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoader(false);
+      });
+    // console.log(res.data);
   };
 
+
   const fetchInprogress = async () => {
-    const res = await axios.post(localhsots + "api/order/getInprogressOrders");
-    console.log(res.data);
-    setTableRow(res.data);
+    setLoader(true);
+    axios
+      .post(localhost + "/api/order/getInprogressOrders")
+      .then((res) => {
+        console.log(res);
+        // setTableRow(res.data);
+        dispatch({
+          type: "fetchOrderAndChangeState",
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoader(false);
+      });
+    // console.log(res.data);
   };
 
   const fetchComplete = async () => {
-    const res = await axios.post(localhsots + "api/order/getCompleteOrders");
-    setTableRow(res.data);
+    setLoader(true);
+    const selectedDate = new Date().toISOString().slice(0, 10);
+    console.log(selectedDate);
+    axios
+      .post(localhost + "/api/order/getCompleteOrdersByDate", {
+        date: selectedDate,
+      })
+      .then((res) => {
+        console.log(res);
+        // setTableRow(res.data);
+        dispatch({
+          type: "fetchOrderAndChangeState",
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoader(false);
+      });
   };
+
+  
+  useEffect(() => {
+    setTableRow(data.orders)
+  }, [data])
 
   const handleChange = (event, newValue) => {
     console.log(newValue);
@@ -119,8 +189,6 @@ export default function Orders() {
     // console.log(orders);
     // setTableRow(orders);
   };
-
-  const fetchTableRow = () => {};
 
   const classes = useStyles();
   const [value, setValue] = useState(0);
@@ -144,21 +212,13 @@ export default function Orders() {
     // setTableRow(orders);
   }, []);
 
-  // const load = useSelector((state) => state.order.loading);
-  // setLoader(load);
-
-  // useEffect(()=>{
-  //   setLoader(load);
-  // },[dispatch])
-
-  const date = new Date();
-  const [dateValue, setDateValue] = React.useState(date);
-
-  const handleChangeDate = (newValue) => {
+  const handleChangeDate = async (newValue) => {
     setDateValue(newValue);
-    const year = newValue.getFullYear();
-    let months = newValue.getMonth() + 1;
-    let days = newValue.getDate();
+    console.log(newValue);
+    setLoader(true);
+    const year = newValue.$y;
+    let months = newValue.$M + 1;
+    let days = newValue.$D;
     if (String(days).length < 2) {
       days = "0" + days;
     }
@@ -167,6 +227,35 @@ export default function Orders() {
     }
     const selectedDate = year + "-" + months + "-" + days;
     console.log(selectedDate);
+    // const res = await axios.post('http://to')
+    // const res = await axios.post(
+    //   localhsots + "api/order/getCompleteOrdersByDate",
+    //   {
+    //     date: selectedDate,
+    //   }
+    // );
+
+    axios
+      .post(localhost + "/api/order/getCompleteOrdersByDate", {
+        date: selectedDate,
+      })
+      .then((res) => {
+        console.log(res);
+        // setTableRow(res.data);
+        dispatch({
+          type: "fetchOrderAndChangeState",
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoader(false);
+      });
+
+    // console.log(res.data);
+    // setTableRow(res.data);
     // dispatch(getCompleteOrdersByDate(selectedDate))
   };
 
@@ -196,7 +285,7 @@ export default function Orders() {
             </AppBar>
 
             <TabPanel value={value} index={0}>
-              {!orderLoad ? (
+              {!loader ? (
                 <TableContainer component={Paper}>
                   <Table aria-label="collapsible table">
                     <TableHead>
@@ -211,11 +300,13 @@ export default function Orders() {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {!tableRows?.length > 0 ? (
+                      {!data?.orders?.length > 0 ? (
                         <div>No Orders</div>
                       ) : (
-                        tableRows.map((val, key) => {
-                          // console.log(val);
+                        data?.orders?.map((val, key) => {
+                          console.log(val.orders);
+                          const jason = JSON.parse(val.orders);
+                          console.log(jason);
                           return (
                             <Row
                               key={val.id}
@@ -228,10 +319,15 @@ export default function Orders() {
                               date={val.date}
                               status={val.status}
                               address={val.address}
-                              // orders = {val.orders}
+                              orders = {jason}
                               longitude={val.longitude}
                               latitude={val.latitude}
                               admin={true}
+                              complete={fetchComplete}
+                              pending={fetchPending}
+                              inprogress={fetchInprogress}
+                              changeTab={setValue}
+                              setLoader={setLoader}
                             />
                           );
                         })
@@ -247,7 +343,7 @@ export default function Orders() {
             </TabPanel>
 
             <TabPanel value={value} index={1}>
-              {!orderLoad ? (
+              {!loader ? (
                 <TableContainer component={Paper}>
                   <Table aria-label="collapsible table">
                     <TableHead>
@@ -261,13 +357,13 @@ export default function Orders() {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {!tableRows?.length ? (
+                      {!data?.orders?.length ? (
                         // loader ?
                         //   <CircularProgress />
                         // :
                         <div>empty</div>
                       ) : (
-                        tableRows.map((val, key) => {
+                        data?.orders?.map((val, key) => {
                           return (
                             <Row
                               key={val.id}
@@ -280,13 +376,15 @@ export default function Orders() {
                               date={val.date}
                               status={val.status}
                               address={val.address}
-                              // orders = {val.orders}
+                              orders = {JSON.parse(val.orders)}
                               longitude={val.longitude}
                               latitude={val.latitude}
                               admin={true}
                               complete={fetchComplete}
                               pending={fetchPending}
                               inprogress={fetchInprogress}
+                              changeTab={setValue}
+                              setLoader={setLoader}
                             />
                           );
                         })
@@ -302,8 +400,18 @@ export default function Orders() {
             </TabPanel>
 
             <TabPanel value={value} index={2}>
-              <div>calander </div>
-              {!orderLoad ? (
+              <div>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DesktopDatePicker
+                    label="Date desktop"
+                    inputFormat="MM/DD/YYYY"
+                    value={dateValue}
+                    onChange={handleChangeDate}
+                    renderInput={(params) => <TextField {...params} />}
+                  />{" "}
+                </LocalizationProvider>
+              </div>
+              {!loader ? (
                 <TableContainer component={Paper}>
                   <Table aria-label="collapsible table">
                     <TableHead>
@@ -317,10 +425,10 @@ export default function Orders() {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {!tableRows?.length ? (
+                      {!data?.orders?.length ? (
                         <div>empty</div>
                       ) : (
-                        tableRows.map((val, key) => {
+                        data?.orders?.map((val, key) => {
                           return (
                             <Row
                               key={val.id}
@@ -333,10 +441,15 @@ export default function Orders() {
                               date={val.date}
                               status={val.status}
                               address={val.address}
-                              // orders = {val.orders}
+                              orders = {JSON.parse(val.orders)}
                               longitude={val.longitude}
                               latitude={val.latitude}
                               admin={true}
+                              complete={fetchComplete}
+                              pending={fetchPending}
+                              inprogress={fetchInprogress}
+                              changeTab={setValue}
+                              setLoader={setLoader}
                             />
                           );
                         })

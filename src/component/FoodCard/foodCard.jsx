@@ -29,7 +29,13 @@ export default function DetailView(props) {
       );
       message.success("added to cart");
     } else {
-      message.error("You can only order from one restarant");
+      // message.error("You can only order from one restarant");
+      message.error({
+        content: "You can only order from one restarant",
+        style: {
+          marginTop: "10vh",
+        },
+      });
     }
   };
 

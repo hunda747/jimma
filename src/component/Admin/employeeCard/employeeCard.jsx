@@ -18,7 +18,7 @@ import { message } from 'antd';
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
   })
-
+  const localhost = process.env.REACT_APP_BASE_URL;
 export default function EmployeeCard({key, user_name,email, phone, accessKey, status, role , date}) {
 
     const [open, setOpen] = React.useState(false);
@@ -45,7 +45,7 @@ export default function EmployeeCard({key, user_name,email, phone, accessKey, st
     window.alert("Are you sure you want to Activate User");
     if(empInfo.Status === 'Deactive' || empInfo.Status === "pending"){
       setEmpInfo({...empInfo, Status: "Active"})
-      const response = await axios.post('http://localhost:5000/api/activation', {
+      const response = await axios.post(`http://${localhost}/api/activation`, {
         email: email
     })
     console.log(response.data.message);
@@ -72,7 +72,7 @@ export default function EmployeeCard({key, user_name,email, phone, accessKey, st
     if(empInfo.Status === 'Active'){
         setEmpInfo({...empInfo , Status: "Deactive"})
 
-        const response = await axios.post('http://localhost:5000/api/deactivation',{
+        const response = await axios.post(`http://${localhost}/api/deactivation`,{
           email:email
         })
         console.log(response.data.message);

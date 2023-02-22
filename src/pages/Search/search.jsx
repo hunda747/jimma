@@ -236,11 +236,12 @@ export default function SearchPage() {
                     return (
                       <div className="menuItem">
                         <FoodCard
-                          key={food._id}
-                          id={food._id}
+                          key={food.id}
+                          id={food.id}
                           name={food.food_name}
                           desc={food.description}
                           price={food.price}
+                          restaurant={food.restaurantsId}
                           type={food.type}
                         />
                       </div>

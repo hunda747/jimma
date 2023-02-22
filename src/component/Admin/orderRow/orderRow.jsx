@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./orderRow.css";
 
 import {
@@ -45,12 +45,18 @@ import {
   getOrdersComplete,
   getOrdersInprogress,
 } from "../../../redux/actions/orderActions";
+import ReactMapGL, { Marker } from "react-map-gl";
+import { fetchPending, fetchComplete, fetchInprogress } from "../orders/action";
+import axios from "axios";
+import { OrderContext } from "../orders";
 // import { returnProduct } from '../../../redux/actions/productActions';
 const steps = ["Processing", "Shipped", "Delivered"];
 
-import ReactMapGL, { Marker } from "react-map-gl";
-
+const localhost = process.env.REACT_APP_BASE_URL;
+// const localhost = "http://localhost:5000/";
+// const localhost = "http://tolodeliveryjimma.com/";
 export default function Row(props) {
+  const { data, dispatch } = useContext(OrderContext);
   const steps = [
     "Processing",
     "Shipped",
@@ -72,7 +78,7 @@ export default function Row(props) {
   // const { row } = props;
   const [open, setOpen] = React.useState(false);
   const navigator = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const handleClick = () => {
     setOpen(!open);
@@ -85,25 +91,86 @@ export default function Row(props) {
 
   const handleCancelOrder = () => {
     console.log(props.id);
-    dispatch(changeOrderStatus(props.id, "cancel"));
-    // dispatch(getOrdersPending());
-    props.pending();
-    // window.location.reload(true);
+    // dispatch(changeOrderStatus(props.id, "cancel"));
+    axios
+      .post(`${localhost}/api/order/changeStatus`, {
+        id: props.id,
+        status: "cancel",
+      })
+      .then((res) => {
+        console.log(res);
+        fetchPending(dispatch, props.setLoader);
+        // props.changeTab(0);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // props.pending();
   };
 
   const handleAcceptOrder = () => {
     console.log(props.id);
-    dispatch(changeOrderStatus(props.id, "inProgress"));
+    // dispatch(changeOrderStatus(props.id, "inProgress"));
     // dispatch(getOrdersPending());
-    props.pending();
+    axios
+      .post(`${localhost}/api/order/changeStatus`, {
+        id: props.id,
+        status: "inProgress",
+      })
+      .then((res) => {
+        console.log(res);
+        fetchPending(dispatch, props.setLoader);
+        // fetchInprogress(dispatch, props.setLoader);
+        // props.changeTab(1);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // props.inprogress();
+    // window.location.reload(true);
+  };
+
+  const handleReverseOrder = () => {
+    console.log(props.id);
+    // dispatch(changeOrderStatus(props.id, "pending"));
+    // dispatch(getOrdersPending());
+    axios
+      .post(`${localhost}/api/order/changeStatus`, {
+        id: props.id,
+        status: "pending",
+      })
+      .then((res) => {
+        console.log(res);
+        fetchInprogress(dispatch, props.setLoader);
+        // fetchPending(dispatch, props.setLoader);
+        // props.changeTab(0);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // props.pending();
+
     // window.location.reload(true);
   };
 
   const handleCompleteOrder = () => {
     console.log(props.id);
-    dispatch(changeOrderStatus(props.id, "complete"));
+    // dispatch(changeOrderStatus(props.id, "complete"));
     // dispatch(getOrdersInprogress());
-    props.inprogress();
+    axios
+      .post(`${localhost}/api/order/changeStatus`, {
+        id: props.id,
+        status: "complete",
+      })
+      .then((res) => {
+        console.log(res);
+        fetchInprogress(dispatch, props.setLoader);
+        // fetchComplete(dispatch, props.setLoader);
+        // props.changeTab(2);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     // dispatch(getOrdersComplete());
     // window.location.reload(true);
   };
@@ -115,7 +182,7 @@ export default function Row(props) {
     navigator("/cart");
   };
 
-  // console.log(orders)
+  console.log(props.orders);
   // console.log("inside row");
   return (
     <React.Fragment>
@@ -177,6 +244,12 @@ export default function Row(props) {
               style={{ border: "1px solid black" }}
             >
               Complete
+            </Button>
+            <Button
+              onClick={handleReverseOrder}
+              style={{ border: "1px solid black" }}
+            >
+              Cancel
             </Button>
             {/* <Label className='btn'>In progress</Label> */}
           </TableCell>
@@ -291,19 +364,21 @@ export default function Row(props) {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {orders?.map((order) => (
-                        <TableRow key={order.id}>
+                      {props?.orders?.map((order) => (
+                        <TableRow key={order?.foodId}>
                           <TableCell component="th" scope="row">
-                            {order.foods.food_name}
+                            {order?.foodName}
                           </TableCell>
                           {/* <TableCell>{order.price} Birr</TableCell> */}
                           {/* <TableCell align="right">{order.productId.productCategory}</TableCell> */}
-                          <TableCell align="right">{order.quantity}</TableCell>
+                          <TableCell align="right">
+                            {order?.foodQuantity}
+                          </TableCell>
                           <TableCell align="right">
                             <Button
                               className="btn"
                               onClick={(e) => {
-                                navigator("/details/" + order.id);
+                                navigator("/details/" + order?.foodId);
                               }}
                               style={{ border: "1px solid black" }}
                             >

@@ -1,5 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
-import logo from "../../assets/photo/tolo-dark.png";
+import logo from "../../assets/photo/tole_black_no_text.png";
+// import logo from "../../assets/photo/TOLE.png";
+// import logo from "../../assets/photo/tolo-dark.png";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import { Link, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -37,7 +39,7 @@ export default function Navbar() {
   const isHome = true;
 
   const changeNavBg = () => {
-    window.scrollY >= 50 ? setNavBg(true) : setNavBg(false);
+    window.scrollY >= 40 ? setNavBg(true) : setNavBg(false);
   };
 
   useEffect(() => {
@@ -98,7 +100,7 @@ export default function Navbar() {
                 <img src={logo} alt="Logo" />
               </div>
               <div className={classes.header__content__logo__name}>
-                <span>TOLO DELIVERY</span>
+                <span>TOLE DELIVERY</span>
               </div>
             </div>
 
@@ -219,6 +221,7 @@ export default function Navbar() {
                           PaperProps={{
                             elevation: 0,
                             sx: {
+                              fontFamily: "sans-serif",
                               overflow: "visible",
                               filter:
                                 "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
@@ -257,15 +260,26 @@ export default function Navbar() {
                             onClick={() => {
                               navigate("/account");
                             }}
-                            sx={{ padding: "0 10px 0 10px" }}
+                            sx={{
+                              padding: "0 20px",
+                              display: "flex",
+                              justifyContent: "space-between",
+                              gap: "6px",
+                            }}
                           >
                             <ListItemIcon>
                               <Avatar
                                 fontSize="small"
-                                sx={{ width: "8px", height: "8px" }}
+                                sx={{
+                                  width: "8px",
+                                  height: "8px",
+                                  fontFamily: "sans-serif",
+                                }}
                               />
                             </ListItemIcon>{" "}
-                            Profile
+                            <span style={{ fontFamily: "sans-serif" }}>
+                              Profile
+                            </span>
                           </MenuItem>
                           {/* <MenuItem>
                             <Avatar /> My account
@@ -274,15 +288,26 @@ export default function Navbar() {
 
                           <MenuItem
                             onClick={handleLogout}
-                            sx={{ padding: "0 10px 0 10px" }}
+                            sx={{
+                              padding: "0 20px",
+                              display: "flex",
+                              justifyContent: "space-between",
+                              gap: "6px",
+                            }}
                           >
                             <ListItemIcon>
                               <Logout
-                                fontSize="small"
-                                sx={{ width: "8px", height: "8px" }}
+                                fontSize="big"
+                                sx={{
+                                  width: "28px",
+                                  height: "28px",
+                                  // scale: "1.5",
+                                }}
                               />
                             </ListItemIcon>
-                            Logout
+                            <span style={{ fontFamily: "sans-serif" }}>
+                              Logout
+                            </span>
                           </MenuItem>
                         </Menu>
                       </Fragment>

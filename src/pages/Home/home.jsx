@@ -188,7 +188,7 @@ export default function Home() {
 
         <div className="main_rest">
           <div className="">
-            {restaurant?.length > 0 ? (
+            {/* {restaurant?.length > 0 ? (
               <>
                 <h1>Featured Restaurants</h1>
                 <div className="cards">
@@ -206,11 +206,11 @@ export default function Home() {
                   })}
                 </div>
               </>
-            ) : (
+            ) : ( */}
               <div className="soon">
                 <p>Comming soon</p>
               </div>
-            )}
+            {/* // )} */}
 
             {/* <div>
               <p>Server Unavailable</p>
