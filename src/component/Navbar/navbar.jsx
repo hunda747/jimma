@@ -176,13 +176,14 @@ export default function Navbar() {
                             display: "flex",
                             alignItems: "center",
                             textAlign: "center",
+                            justifyContent: "center",
                             // marginleft: "8rem",
                             // marginRight: "2rem",
                           }}
-                          style={{
-                            marginLeft: "6rem",
-                            marginRight: "2rem",
-                          }}
+                          // style={{
+                          //   marginLeft: "6rem",
+                          //   marginRight: "2rem",
+                          // }}
                         >
                           <Tooltip title="Account settings">
                             <IconButton
@@ -320,7 +321,7 @@ export default function Navbar() {
                         style={
                           !menuOpen
                             ? { width: "fit-content", marginLeft: "5rem" }
-                            : { marginLeft: "5rem" }
+                            : { marginLeft: "0rem" }
                         }
                       >
                         <Button

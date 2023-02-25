@@ -61,15 +61,9 @@ export default function DetailView() {
       console.log(types);
       let typeItems = [];
       food?.map((fo) => {
-        console.log(types);
-        console.log(fo.type);
         if (!typeItems?.includes(fo.type)) {
-          // console.log(types);
-          console.log('there');
           typeItems.push(fo.type);
-          // setTypes({...types, type})
-        } else{
-          console.log("already there");
+        } else {
         }
       });
       setTypes(typeItems);
@@ -234,18 +228,59 @@ export default function DetailView() {
             <h2>Menu</h2>
             <div className="menu_container">
               <div className="typeFood">
-                {
-                  // types ?
-                  types?.length > 0
+                <div className="type">
+                  {types?.length > 0
+                    ? types?.map((type, key) => {
+                        return <p>{type}</p>;
+                      })
+                    : " 0 type"}
+                </div>
+                <div className="foods">
+                  {types?.length > 0
                     ? types?.map((type, key) => {
                         const filter = food?.filter(
                           (food) => food.type === type
                         );
-                        const pan0el = "panel" + 
                         console.log(filter);
-                        console.log(key);
                         return (
-                          <Accordion
+                          <>
+                            <h1 style={{textTransform: 'uppercase'}}>{type}</h1>
+                            {filter?.map((food, index) => {
+                              console.log(food);
+                              return (
+                                <div className="menuItem">
+                                  <FoodCard
+                                    key={food.id}
+                                    id={food.id}
+                                    name={food.food_name}
+                                    desc={food.description}
+                                    price={food.price}
+                                    restaurant={food.restaurantsId}
+                                    type={food.type}
+                                  />
+                                </div>
+                              );
+                            })}
+                          </>
+                        );
+                      })
+                    : " 0 type"}
+                </div>
+              </div>
+              <div className="cartView">
+                <CartView />
+              </div>
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    </>
+  );
+}
+
+{
+  /* <Accordion
                             expanded={expanded === `panel${(key + 1)}`}
                             onChange={handleChange(`panel${(key + 1)}`)}
                             className="accordion"
@@ -287,21 +322,5 @@ export default function DetailView() {
                                 </div>
                               )}
                             </AccordionDetails>
-                          </Accordion>
-                        );
-                      })
-                    : " 0 type"
-                  // : "no type"
-                }
-              </div>
-              <div className="cartView">
-                <CartView />
-              </div>
-            </div>
-          </div>
-        </div>
-        <Footer />
-      </div>
-    </>
-  );
+                          </Accordion> */
 }

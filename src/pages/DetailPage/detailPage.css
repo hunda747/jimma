@@ -67,15 +67,42 @@
 
 .detail .container .menu .typeFood {
   width: 70%;
-  padding: 20px 40px;
+  /* padding: 20px 40px; */
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  gap: 3rem;
+}
 
+/* 
+.detail .container .menu .typeFood .type,
+.detail .container .menu_container .cartView{
+  position: absolute;
+  top: 0;
+} */
+
+.detail .container .menu .typeFood .type{
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  /* padding: 0 10px; */
+}
+.detail .container .menu .typeFood .type p{
+  padding: 8px 20px;
+  background-color: #ffdb00;
+  text-transform: uppercase;
+  /* text-align: center; */
+  border: 2px solid #ffdb00;
 }
 
 .detail .container .menu .accordion {
   font-family: sans-serif;
+}
+.detail .container .menu .typeFood .foods{
+  width: 100%;
+}
+.detail .container .menu .typeFood .foods .menuItem{
+  padding-left: 1rem;
 }
 
 .detail .container .typeFood .displayMenu {
