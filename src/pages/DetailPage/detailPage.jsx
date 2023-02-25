@@ -12,6 +12,12 @@ import DisplayStars from "../../component/displayStar";
 import FoodCard from "../../component/FoodCard/foodCard";
 import CartView from "../../component/CartView/cartView";
 
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 import { useParams } from "react-router-dom";
 import CartShow from "../../component/CartShow/cartShow";
 import { useDispatch, useSelector } from "react-redux";
@@ -25,6 +31,11 @@ import Footer from "../../component/Footer/footer";
 
 export default function DetailView() {
   // const [cookies, setCookie, removeCookie] = useCookies(['user']);
+  const [expanded, setExpanded] = useState(false);
+
+  const handleChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
 
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -39,6 +50,33 @@ export default function DetailView() {
   const { loading, food, error } = allFoods;
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+  const [types, setTypes] = useState([]);
+
+  useEffect(() => {
+    findTypes();
+  }, [food]);
+
+  const findTypes = () => {
+    if (food) {
+      console.log(types);
+      let typeItems = [];
+      food?.map((fo) => {
+        console.log(types);
+        console.log(fo.type);
+        if (!typeItems?.includes(fo.type)) {
+          // console.log(types);
+          console.log('there');
+          typeItems.push(fo.type);
+          // setTypes({...types, type})
+        } else{
+          console.log("already there");
+        }
+      });
+      setTypes(typeItems);
+
+      console.log(types);
+    }
+  };
 
   // console.log(restaurants);
   let restaurant = {};
@@ -195,34 +233,70 @@ export default function DetailView() {
           <div className="menu">
             <h2>Menu</h2>
             <div className="menu_container">
-              {food.length !== 0 ? (
-                <>
-                  <div className="displayMenu">
-                    {food?.map((food, index) => {
-                      return (
-                        <div className="menuItem">
-                          <FoodCard
-                            key={food.id}
-                            id={food.id}
-                            name={food.food_name}
-                            desc={food.description}
-                            price={food.price}
-                            restaurant={food.restaurantsId}
-                            type={food.type}
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div className="cartView">
-                    <CartView />
-                  </div>
-                </>
-              ) : (
-                <div>
-                  <p>Not Available</p>
-                </div>
-              )}
+              <div className="typeFood">
+                {
+                  // types ?
+                  types?.length > 0
+                    ? types?.map((type, key) => {
+                        const filter = food?.filter(
+                          (food) => food.type === type
+                        );
+                        const pan0el = "panel" + 
+                        console.log(filter);
+                        console.log(key);
+                        return (
+                          <Accordion
+                            expanded={expanded === `panel${(key + 1)}`}
+                            onChange={handleChange(`panel${(key + 1)}`)}
+                            className="accordion"
+                          >
+                            <AccordionSummary
+                              expandIcon={<ExpandMoreIcon />}
+                              aria-controls="panel1bh-content"
+                              id="panel1bh-header"
+                            >
+                              <Typography sx={{ flexShrink: 0 }} style={{ textTransform: 'capitalize', fontFamily: 'sans-serif'}}>
+                                {type}
+                              </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                              {filter?.length !== 0 ? (
+                                <>
+                                  <div className="displayMenu">
+                                    {filter?.map((food, index) => {
+                                      console.log(food);
+                                      return (
+                                        <div className="menuItem">
+                                          <FoodCard
+                                            key={food.id}
+                                            id={food.id}
+                                            name={food.food_name}
+                                            desc={food.description}
+                                            price={food.price}
+                                            restaurant={food.restaurantsId}
+                                            type={food.type}
+                                          />
+                                        </div>
+                                      );
+                                    })}
+                                  </div>
+                                </>
+                              ) : (
+                                <div>
+                                  <p>Not Available</p>
+                                </div>
+                              )}
+                            </AccordionDetails>
+                          </Accordion>
+                        );
+                      })
+                    : " 0 type"
+                  // : "no type"
+                }
+              </div>
+              <div className="cartView">
+                <CartView />
+              </div>
             </div>
           </div>
         </div>

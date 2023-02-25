@@ -50,7 +50,7 @@ td {
 
 .MuiTab-wrapper{
   font-size: 12px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:  sans-serif;
   font-weight: bold;
 }
 
@@ -91,7 +91,7 @@ td {
 .MuiTypography-root.MuiTypography-h6.MuiTypography-gutterBottom
 {
   font-size: 15px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:  sans-serif;
   font-weight: lighter;
   padding: 2px;
   margin: 3px;
@@ -99,7 +99,7 @@ td {
 .detailInfoTitle{
   display: inline;
   font-size: 13px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:  sans-serif;
   font-weight: bold;
   padding: 2px;
   margin: 3px;
@@ -107,7 +107,7 @@ td {
 .detailInfos{
   display: inline;
   font-size: 12px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:  sans-serif;
   font-weight: lighter;
   padding: 2px;
   margin: 3px;

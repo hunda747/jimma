@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./productList.css";
 
 import { Switch, message, Button } from "antd";
@@ -30,7 +30,9 @@ import { Add } from "@material-ui/icons";
 import { CircularProgress } from "@mui/material";
 // const { Option } = Select;
 import { useCookies } from "react-cookie";
-
+import { EditFoodContext } from "./index";
+// const localhost = "http://tolodeliveryjimma.com/";
+const localhost = process.env.REACT_APP_BASE_URL;
 const EditableCell = ({
   editing,
   dataIndex,
@@ -67,7 +69,8 @@ const EditableCell = ({
 };
 
 export default function ProductList({ onMorePage }) {
-  const dispatch = useDispatch();
+  const { data, dispatch } = useContext(EditFoodContext);
+  // const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [searchCategory, setSearchCategory] = useState("");
@@ -77,7 +80,8 @@ export default function ProductList({ onMorePage }) {
   console.log(restId);
 
   useEffect(() => {
-    dispatch(getAllFoodsByRestaurant(restId));
+    // dispatch(getAllFoodsByRestaurant(restId));
+    fetchFoodByRestaurant();
   }, []);
 
   // rowSelection objects indicates the need for row selection
@@ -106,18 +110,45 @@ export default function ProductList({ onMorePage }) {
 
   const [fixedTop, setFixedTop] = React.useState(false);
 
+  const changeLoader = (load) => {
+    dispatch({
+      type: "changeLoader",
+      payload: load,
+    })
+  }
+
+  const fetchFoodByRestaurant = () => {
+    changeLoader(true);
+    axios
+      .post(`${localhost}/api/food/getFoodsByRestaurant`, {
+        restaurant: restId,
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: "fetchFoodAndChangeState",
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      }).finally(() => {
+        changeLoader(false);
+      });
+  };
+
   const food = useSelector((state) => state.food.food);
   const foodLoad = useSelector((state) => state.food.loading);
   console.log(foodLoad);
 
   const [form] = Form.useForm();
-  const [data, setData] = useState(food);
+  // const [data, setData] = useState(food);
   console.log(data);
   const [editingKey, setEditingKey] = useState("");
 
-  useEffect(() => {
-    setData(food);
-  }, []);
+  // useEffect(() => {
+  //   setData(food);
+  // }, []);
 
   const isEditing = (record) => record.key === editingKey;
 
@@ -319,7 +350,6 @@ export default function ProductList({ onMorePage }) {
   const EditProduct = (record) => {
     console.log(record);
     setEditValues({
-      ...editValues,
       id: record.id,
       food_name: record.food_name,
       description: record.description,
@@ -358,18 +388,35 @@ export default function ProductList({ onMorePage }) {
   const handleEditChanges = () => {
     console.log("handling edit changes");
     console.log(editValues);
-    dispatch(
-      updateFood(
-        editValues.food_name,
-        editValues.description,
-        editValues.type,
-        editValues.id,
-        editValues.price,
-        editValues.status
-      )
-    );
-    setVisible(false);
-    onMorePage(1);
+    axios
+      .post(`${localhost}/api/food/updateFood`, {
+        food_name: editValues.food_name,
+        description: editValues.description,
+        type: editValues.type,
+        id: editValues.id,
+        price: editValues.price,
+        status: editValues.status,
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          fetchFoodByRestaurant();
+          setVisible(false);
+          // onMorePage(1);
+          setEditValues({
+            id: "",
+            food_name: "",
+            description: "",
+            type: "",
+            status: false,
+            restaurant: "",
+            price: "",
+          })
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     // window.location.reload(0)
 
     if (editValues.status === 0) {
@@ -403,13 +450,13 @@ export default function ProductList({ onMorePage }) {
             />
           </div>
         </div>
-        {!foodLoad ? (
+        {!data?.loader ? (
           <div className="table">
             <Form form={form} component={false}>
               <Table
                 rowSelection={{ ...rowSelection }}
                 columns={columns}
-                dataSource={food}
+                dataSource={data.foods}
                 scroll={{ x: 1000 }}
                 // onChange={handleChange}
                 summary={(pageData) => (

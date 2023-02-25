@@ -14,14 +14,7 @@ import { CircularProgress } from "@material-ui/core";
 import { useParams } from "react-router-dom";
 import { Switch } from "antd";
 import { Form, Input, Button, Checkbox } from "antd";
-import {
-  UserOutlined,
-  LockOutlined,
-  PhoneOutlined,
-  MailOutlined,
-  GooglePlusOutlined,
-} from "@ant-design/icons";
-// import { useDispatch, useSelector } from 'react-redux';
+import logo from "../../assets/photo/tolo-dark.png";
 
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -163,7 +156,7 @@ export default function Register() {
         setSignUpErr("Try again");
       } else if (err.response?.status === 401) {
         console.log("in user name error");
-        setSignUpErr("User name is taken");
+        setSignUpErr("Phone number already in use");
       } else {
         console.log("login error");
         setSignUpErr("Login Failed");
@@ -197,24 +190,33 @@ export default function Register() {
         expires.setTime(expires.getTime() + 2 * 60 * 60 * 1000);
 
         // setCookie('uid', response.data[0].id, {path: '/', expires})
-        setCookie("fname", response.data[0].fname, { path: "/", expires });
-        setCookie("lname", response.data[0].lname, { path: "/", expires });
+        setCookie("ToleDUfname", response.data[0].fname, {
+          path: "/",
+          expires,
+        });
+        setCookie("ToleDUlname", response.data[0].lname, {
+          path: "/",
+          expires,
+        });
         setCookie("username", response.data[0].username, {
           path: "/",
           expires,
         });
-        setCookie("phoneNo", response.data[0].phoneNo, { path: "/", expires });
+        setCookie("ToleDUphoneNo", response.data[0].phoneNo, {
+          path: "/",
+          expires,
+        });
         setCookie("email", response.data[0].email, { path: "/", expires });
         setCookie("school", response.data[0].school, { path: "/", expires });
 
-        // console.log(cookies.uid);
+        // console.log(cookies?.ToleDUuid);
         // return ( <Navigate to='/' /> )
         console.log(from);
         navigate("/plan");
       } else {
         setLoader(false);
         console.log("login failed");
-        console.log(cookies.uid);
+        console.log(cookies?.ToleDUuid);
       }
     } catch (err) {
       setLoader(false);
@@ -352,7 +354,7 @@ export default function Register() {
               <div className="overlay-container">
                 <div className="overlay">
                   <div className="overlay-panel overlay-left">
-                    <h1>Pazion</h1>
+                    <h1>Tole Delivery</h1>
                     <p>
                       If u dont ttttttttttt have an account sign up
                       {/* <span onClick={signInButton} className='btnLink'> sign up</span> */}
@@ -475,7 +477,10 @@ export default function Register() {
               <div className="overlay-container">
                 <div className="overlay">
                   <div className="overlay-panel overlay-right">
-                    <h1>Jimma </h1>
+                    <div>
+                      <img src={logo} alt="Logo" />
+                    </div>
+                    <h1>Tole Delevery </h1>
                     {/* <p>Enter your personal details and start journey with us</p> */}
                     {/* <button class="ghost" id="signUp" onClick={signUpButtons}>Sign In</button> */}
                     {/* <p>If u already have an account 

@@ -54,7 +54,9 @@ import Profile from "../../../component/Admin/Profile/profile";
 import UsersList from "../../../component/Admin/usersList/usersList";
 import RestaurantList from "../../../component/Admin/RestaurantList/restaurantList";
 import ProductList from "../../../component/Admin/productList/productList";
+import ProductListIndex from "../../../component/Admin/productList";
 import Orders from "../../../component/Admin/orders/orders";
+import OrdersIndex from "../../../component/Admin/orders";
 import AddRestaurant from "../../../component/Admin/AddRestaurant/addRestaurant";
 import Hiring from "../../../component/Admin/Hiring/hiring";
 import AddOrder from "../../../component/Admin/AddOrder/addOrder";
@@ -94,6 +96,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     menuButton: {
       marginRight: 36,
+      fontFamily: "sans-serif",
+      color: "red",
     },
     hide: {
       display: "none",
@@ -167,18 +171,18 @@ export default function PM_Dashboard() {
     setOpen(false);
   };
   //track index of the components clicked
-  const [compCounter, setCompCounter] = useState(0);
+  const [compCounter, setCompCounter] = useState(5);
 
   const handleLogout = (e) => {
     e.preventDefault();
-    removeCookie("toloDADusername", { path: "/" });
-    removeCookie("toloDADrole", { path: "/" });
-    removeCookie("toloDADid", { path: "/" });
-    removeCookie("ADaccess_token", { path: "/" });
-    navigate("/adminstrationLogin");
+    removeCookie("toloDAMusername", { path: "/" });
+    removeCookie("toloDAMrole", { path: "/" });
+    removeCookie("toloDAMid", { path: "/" });
+    removeCookie("toloDADaccess_token", { path: "/" });
+    navigate("/adminLogin");
   };
 
-  const username = cookies.toloDADusername;
+  const username = cookies.toloDAMusername;
 
   return (
     <>
@@ -263,6 +267,7 @@ export default function PM_Dashboard() {
             </IconButton>
           </div>
           <Divider />
+
           <List>
             {[
               "Dashboard",
@@ -271,7 +276,7 @@ export default function PM_Dashboard() {
               "Users",
               "Add Order",
               "Order List",
-              "Hiring",
+              // "Hiring",
               "Profile",
             ].map((text, index) => (
               <>
@@ -297,10 +302,10 @@ export default function PM_Dashboard() {
                     ) : index === 5 ? (
                       <ListAltOutlined />
                     ) : index === 6 ? (
-                      <ListAltOutlined />
-                    ) : index === 7 ? (
-                      <TrackChangesIcon />
-                    ) : index === 8 ? (
+                      <AccountCircleIcon />
+                    ) : // ) : index === 7 ? (
+                    // <TrackChangesIcon />
+                    index === 7 ? (
                       <AccountCircleIcon />
                     ) : (
                       ""
@@ -313,7 +318,28 @@ export default function PM_Dashboard() {
               </>
             ))}
           </List>
+
+          <div className="Admin_footer">
+            <div className="Admin_profileInfWrapper">
+              <div
+                className="Admin_profileIconHolder"
+                onClick={() => setCompCounter(1)}
+              >
+                <AccountCircleIcon />
+              </div>
+              <div className="Admin_profileInfo">
+                <p>{username}</p>
+                {/* <span>email</span> */}
+                {/* <p>{user.user_name}</p>  
+                        <span>{cookies.ADemail}</span>  */}
+              </div>
+              <div className="logoutButtonHolder">
+                <ExitToAppIcon onClick={handleLogout} />
+              </div>
+            </div>
+          </div>
         </Drawer>
+
         <main className={classes.content}>
           <div className={classes.toolbar} />
           {compCounter === 0 ? (
@@ -327,10 +353,10 @@ export default function PM_Dashboard() {
           ) : compCounter === 4 ? (
             <AddOrder />
           ) : compCounter === 5 ? (
-            <Orders />
-          ) : compCounter === 6 ? (
-            <Hiring />
-          ) : compCounter === 7 ? (
+            <OrdersIndex />
+          ) : // ) : compCounter === 6 ? (
+          //   <Hiring />
+          compCounter === 6 ? (
             <Profile
               userName={username}
               email={"hunda@gmail.com"}
@@ -338,7 +364,7 @@ export default function PM_Dashboard() {
               signUpDate={"2022-05-29"}
             />
           ) : compCounter === 10 ? (
-            <ProductList onMorePage={setCompCounter} />
+            <ProductListIndex onMorePage={setCompCounter} />
           ) : (
             "others"
           )}

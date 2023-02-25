@@ -35,19 +35,28 @@ import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 // import axios from 'axios';
 import axios from "axios";
+import { type } from "@testing-library/user-event/dist/type";
 
 export default function Checkout() {
   const errRef = useRef();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [cookies, setCookie] = useCookies(["user"]);
-
+  // const localhost = "http://localhost:5000/";
+  const localhost = process.env.REACT_APP_BASE_URL;
+  // const localhost = "http://tolodeliveryjimma.com/";
   const [errMsg, setErrMsg] = useState("");
   const [load, setLoad] = useState(false);
-  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  const { cartItems } = cart;
   const order = useSelector((state) => state.order.orders);
+  const { cartItems } = cart;
   // console.log(cartItems);
+  const config = {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+    },
+  };
 
   // const product = useSelector((state) => state.getProduct.products)
   // const user = useSelector((state) => state.getUser.user);
@@ -72,7 +81,7 @@ export default function Checkout() {
     longitude: 36.8406,
   });
 
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState(cookies.ToleDUphoneNo);
   const [deliveryPrice, setDeliveryPrice] = useState(35);
 
   let printIt = (data) => {
@@ -157,11 +166,15 @@ export default function Checkout() {
         setLoad(false);
         message.error("Phone Number Is Invalid");
       } else {
-        if (cookies?.uid) {
+        if (cookies?.ToleDUuid) {
           let orderItems = [];
           cartItems.map((item) => {
+            console.log(item);
             const singleProduct = {
               foodId: item.id,
+              foodName: item.food_name,
+              foodPrice:item.price,
+              foodRestaurantId:item.restaurant,
               foodQuantity: item.qtyCounter,
             };
             orderItems.push(singleProduct);
@@ -174,33 +187,43 @@ export default function Checkout() {
 
             console.log(costTotal);
             console.log(no_item);
-            dispatch(
-              createOrders(
-                date,
-                cookies?.uid,
-                getTotalProductPrice(),
-                marker.latitude,
-                marker.longitude,
-                phoneNumber,
-                no_item,
-                orderItems,
-                selectedLocation.formatted
-              )
-            );
-            console.log(order);
-            dispatch(clearCart());
+            console.log(typeof(orderItems));
+            const orderDetail = JSON.stringify(orderItems);
+            console.log(orderDetail);
+            axios.post(
+              `${localhost}/api/order/addOrder`,
+              {
+                date: date,
+                userId: cookies?.ToleDUuid,
+                total: getTotalProductPrice(),
+                latitude: marker.latitude,
+                longitude: marker.longitude,
+                contact: phoneNumber,
+                no_item: no_item,
+                orders: orderItems,
+                ordersDetail: orderDetail,
+                address: selectedLocation.formatted,
+              },
+              config
+            ).then((res) => {
+              console.log(res);
+              dispatch(clearCart());
+              sessionStorage.setItem("purchased", true);
+              message.success("Order Placed");
+              navigate("/");
+            }).catch((err) => {
+              console.log(err);
+            });
+            // console.log(order);
           } catch (e) {
             console.log(e);
           } finally {
             setLoad(false);
           }
 
-          sessionStorage.setItem("purchased", true);
           console.log(phoneNumber);
           // dispatch(clearCart());
-          message.success("Order Placed");
 
-          navigate("/");
         } else {
           setLoad(false);
           message.error("Order Place Failed: Check if you are logged in");
@@ -390,14 +413,57 @@ export default function Checkout() {
               </div>
               <div className="stepOneInfo">
                 <div className="infoHolder">
-                  {/* <div className="lngLat">
-                    <div className="latHolder"> <Input prefix="Lat" value={marker.latitude}  disabled /></div>
-                    <div className="lngHolder"><Input prefix="Lng" value={marker.longitude} disabled /></div>
-                  </div> */}
-
-                  <div className="currentLocation">
+                  <div className="getCurrentLocation">
                     <button onClick={getLocation}>
-                      Get my current location
+                      <span>
+                        <svg
+                          width="14px"
+                          height="20px"
+                          viewBox="0 0 14 20"
+                          version="1.1"
+                          xmlns="http://www.w3.org/2000/svg"
+                          // xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                          {/* <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch --> */}
+                          <title>location_on</title>
+                          <desc>Created with Sketch.</desc>
+                          <g
+                            id="Icons"
+                            stroke="none"
+                            stroke-width="1"
+                            fill="none"
+                            fill-rule="evenodd"
+                          >
+                            <g
+                              id="Rounded"
+                              transform="translate(-377.000000, -1306.000000)"
+                            >
+                              <g
+                                id="Communication"
+                                transform="translate(100.000000, 1162.000000)"
+                              >
+                                <g
+                                  id="-Round-/-Communication-/-location_on"
+                                  transform="translate(272.000000, 142.000000)"
+                                >
+                                  <g>
+                                    <polygon
+                                      id="Path"
+                                      points="0 0 24 0 24 24 0 24"
+                                    ></polygon>
+                                    <path
+                                      d="M12,2 C8.13,2 5,5.13 5,9 C5,13.17 9.42,18.92 11.24,21.11 C11.64,21.59 12.37,21.59 12.77,21.11 C14.58,18.92 19,13.17 19,9 C19,5.13 15.87,2 12,2 Z M12,11.5 C10.62,11.5 9.5,10.38 9.5,9 C9.5,7.62 10.62,6.5 12,6.5 C13.38,6.5 14.5,7.62 14.5,9 C14.5,10.38 13.38,11.5 12,11.5 Z"
+                                      id="🔹Icon-Color"
+                                      fill="#1D1D1D"
+                                    ></path>
+                                  </g>
+                                </g>
+                              </g>
+                            </g>
+                          </g>
+                        </svg>
+                      </span>
+                      <span>Get my current location</span>
                     </button>
                   </div>
                   <div className="locationName">
@@ -409,6 +475,10 @@ export default function Checkout() {
                       disabled
                       style={{ border: "1px solid black" }}
                     />
+                    <p className="orderParagraph">
+                      Click on the map the area you want the order to be
+                      delivered
+                    </p>
                   </div>
                   <div className="phoneNumber">
                     <h3>Phone number:</h3>
@@ -420,6 +490,10 @@ export default function Checkout() {
                       onChange={(e) => setPhoneNumber(e.target.value)}
                       style={{ border: "1px solid black" }}
                     />
+                    <p className="orderParagraph">
+                      You can change the phone nuber. we will call you to this
+                      number to confirm your order.
+                    </p>
                   </div>
                 </div>
               </div>

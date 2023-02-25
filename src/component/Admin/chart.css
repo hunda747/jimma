@@ -19,8 +19,9 @@ body{
 }
 .headerTitle p{
     font-size: 15px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: normal;
+    font-family: sans-serif;
+    /* font-family:  sans-serif; */
     color: orange;
     padding: 5px;
     margin: 5px;

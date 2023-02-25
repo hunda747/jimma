@@ -1,21 +1,22 @@
-/* .detail{
-  position: relative;
-  top: 90px;
-} */
+.detail {
+  /* position: relative;
+  top: 90px; */
+  font-family: sans-serif;
+}
 
-.detail .container{
+.detail .container {
   padding: 20px;
   max-width: 1300px;
   margin: auto;
 }
 
-.detail .image{
+.detail .image {
   padding: 0;
   margin: 0;
   height: 260px;
 }
 
-.image img{
+.image img {
   width: 100%;
   height: 100%;
   background-position: center;
@@ -25,77 +26,83 @@
   background-blend-mode: darken;
 }
 
-
 .detail .container .information {
   padding: 1rem;
   display: flex;
   flex-direction: column;
 }
 
-.detail .container .information .rating{
+.detail .container .information .rating {
   display: flex;
   justify-content: left;
   align-items: left;
   margin: 5px 0;
 }
 
-.detail .container .information .moreInfo{
+.detail .container .information .moreInfo {
   display: flex;
   max-width: 1000px;
   padding: 5px;
 }
 
-.detail .container .information .moreInfo .name{
-
+.detail .container .information .moreInfo .name {
 }
 
-.detail .container .information .moreInfo .disc{
+.detail .container .information .moreInfo .disc {
   width: 60%;
   margin-right: 50px;
   padding-right: 35px;
   border-right: 1px solid rgb(161, 161, 161);
 }
 
-
-.detail .container .menu{
+.detail .container .menu {
   max-width: 1300px;
   margin: auto;
 }
 
-.detail .container .menu .menu_container{
+.detail .container .menu .menu_container {
   display: flex;
+  gap: 30px;
 }
 
-.detail .container .displayMenu{
+.detail .container .menu .typeFood {
   width: 70%;
+  padding: 20px 40px;
+
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  padding: 20px 40px;
+  gap: 1rem;
 }
 
-.detail .container .menu_container .cartView{
+.detail .container .menu .accordion {
+  font-family: sans-serif;
+}
+
+.detail .container .typeFood .displayMenu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail .container .menu_container .cartView {
   width: 30%;
 }
 
-
-@media(max-width: 700px){  
-  .detail .container .displayMenu{
+@media (max-width: 700px) {
+  .detail .container .displayMenu {
     display: flex;
     flex-direction: column;
   }
-
 }
 
-
-@media(max-width: 500px){ 
-  .detail .container{
+@media (max-width: 500px) {
+  .detail .container {
     padding: 20px;
     max-width: 1300px;
     margin: auto;
   }
 
-  .detail .image{
+  .detail .image {
     padding: 0;
     margin: 0;
     height: 160px;
@@ -107,21 +114,21 @@
     flex-direction: column;
   }
 
-  .detail .container .information .rating{
+  .detail .container .information .rating {
     display: flex;
     justify-content: left;
     align-items: left;
     margin: 5px 0;
   }
 
-  .detail .container .information .moreInfo{
+  .detail .container .information .moreInfo {
     display: flex;
     flex-direction: column;
     max-width: 1000px;
     padding: 5px;
   }
 
-  .detail .container .information .moreInfo .disc{
+  .detail .container .information .moreInfo .disc {
     width: 100%;
     margin-right: 50px;
     padding-right: 35px;
@@ -130,11 +137,11 @@
     border-bottom: 1px solid rgb(161, 161, 161);
   }
 
-  .detail .container .menu .menu_container{
+  .detail .container .menu .menu_container {
     display: block;
   }
-  
-  .detail .container .displayMenu{
+
+  .detail .container .displayMenu {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -142,10 +149,14 @@
     padding: 0px;
     /* border: 1px solid black; */
   }
-  
-  .detail .container .menu_container .cartView{
+
+  .detail .container .menu .typeFood {
+    width: 100%;
+    padding: 0;
+  }
+
+  .detail .container .menu_container .cartView {
     width: 100%;
     /* display: none; */
   }
-
 }

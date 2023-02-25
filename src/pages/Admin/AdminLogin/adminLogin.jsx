@@ -282,7 +282,7 @@ export default function AdminLogin() {
                     </Form.Item>
 
                     <Form.Item
-                      name="fname"
+                      name="ToleDUfname"
                       rules={[
                         { required: true, message: "First name is required" },
                       ]}
@@ -299,7 +299,7 @@ export default function AdminLogin() {
                     </Form.Item>
 
                     <Form.Item
-                      name="lname"
+                      name="ToleDUlname"
                       rules={[
                         { required: true, message: "Last name is required" },
                       ]}

@@ -27,14 +27,14 @@ export default function UserOrder(params) {
   useEffect(() => {
     // fetchAllOrders();
     // dispatch(getOrdersbyUser(2));
-    dispatch(getOrdersbyUser(cookies.uid));
+    dispatch(getOrdersbyUser(cookies?.ToleDUuid));
   }, []);
 
   const orders = useSelector((state) => state.order.orders);
   const orderLoad = useSelector((state) => state.order.loading);
 
   console.log("order info from user order file ");
-
+  console.log(orders);
   return (
     <>
       <div className={classes.userOrderHolder}>
@@ -95,7 +95,7 @@ export default function UserOrder(params) {
                       date={val.date}
                       status={val.status}
                       address={val.address}
-                      // orders={val.orders}
+                      orders={JSON.parse(val.orders)}
                       longitude={val.longitude}
                       latitude={val.latitude}
                       admin={true}

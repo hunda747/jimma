@@ -50,10 +50,16 @@ export default function RestuarantList({ onMorePage }) {
   const loading = false;
   const error = false;
   const [cookies, setCookie] = useCookies(["user"]);
+
   const [visible, setVisible] = useState(false);
+  const [visibleAdd, setVisibleAdd] = useState(false);
 
   const onClose = () => {
     setVisible(false);
+  };
+
+  const onCloseAdd = () => {
+    setVisibleAdd(false);
   };
 
   useEffect(() => {
@@ -137,7 +143,7 @@ export default function RestuarantList({ onMorePage }) {
         <div className="header">
           <h2>Restaurant List</h2>
         </div>
-        {restaurants.length !== 0 ? (
+        {restaurants?.length !== 0 ? (
           <div className="restaurants">
             <table className="restaurant_table">
               <tr>
@@ -228,6 +234,169 @@ export default function RestuarantList({ onMorePage }) {
 
       <Drawer
         title="Edit Restaurant"
+        width={720}
+        onClose={onClose}
+        visible={visible}
+        bodyStyle={{ paddingBottom: 80, zIndex: "100" }}
+        extra={
+          <Space>
+            <Button onClick={onClose}>Cancel</Button>
+            <Button type="primary" onClick={() => handleEditChanges()}>
+              Submit
+            </Button>
+          </Space>
+        }
+      >
+        <Form layout="vertical" hideRequiredMark>
+          <Row gutter={20}></Row>
+          <Row gutter={16}>
+            <Col span={12}>
+              <div className="editProduct_imageHolder">
+                <img
+                  src={editValues.image}
+                  onClick={() => message.warning("Want To Change the image")}
+                />
+              </div>
+            </Col>
+
+            <Col span={12}>
+              <Form.Item
+                name="product_status"
+                label="Product Status"
+                rules={[
+                  { required: true, message: "Please Give Status for Product" },
+                ]}
+              >
+                <Switch
+                  checked={editValues.status === true ? true : false}
+                  onChange={() =>
+                    editValues.status === true
+                      ? setEditValues({ ...editValues, status: false })
+                      : setEditValues({ ...editValues, status: true })
+                  }
+                />
+              </Form.Item>
+              <Form.Item
+                name="product_name"
+                label="Product Name"
+                rules={[
+                  { required: true, message: "Please enter product Name" },
+                ]}
+              >
+                <Input
+                  value={editValues.restaurant_name}
+                  onChange={(e) =>
+                    setEditValues({
+                      ...editValues,
+                      restaurant_name: e.target.value,
+                    })
+                  }
+                  initialValues={editValues.restaurant_name}
+                  placeholder={editValues.restaurant_name}
+                />
+              </Form.Item>
+              <Form.Item
+                name="open_days"
+                label="Open days"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter restaurant opening days",
+                  },
+                ]}
+              >
+                <Input
+                  value={editValues.open_days}
+                  onChange={(e) =>
+                    setEditValues({ ...editValues, open_days: e.target.value })
+                  }
+                  initialValues={editValues.open_days}
+                  placeholder={editValues.open_days}
+                />
+              </Form.Item>
+              <Form.Item
+                name="Working hours"
+                label="Open days"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please enter restaurant working hours",
+                  },
+                ]}
+              >
+                <Input
+                  value={editValues.working_hour}
+                  onChange={(e) =>
+                    setEditValues({
+                      ...editValues,
+                      working_hour: e.target.value,
+                    })
+                  }
+                  initialValues={editValues.working_hour}
+                  placeholder={editValues.working_hour}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+          <Row gutter={16}>
+            <Col span={12}></Col>
+            <Col span={12}></Col>
+          </Row>
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item
+                name="rating"
+                label="rating"
+                rules={[
+                  { required: true, message: "Please enter product rating" },
+                ]}
+              >
+                <Input
+                  min={0}
+                  value={editValues.rating}
+                  type="number"
+                  placeholder={editValues.rating}
+                  initialValues={editValues.rating}
+                  onChange={(e) =>
+                    setEditValues({ ...editValues, rating: e.target.value })
+                  }
+                />
+              </Form.Item>
+            </Col>
+            <Col span={12}></Col>
+          </Row>
+          <Row gutter={16}>
+            <Col span={24}>
+              <Form.Item
+                name="description"
+                label="Description"
+                rules={[
+                  {
+                    required: true,
+                    message: "please enter description",
+                  },
+                ]}
+              >
+                <Input.TextArea
+                  rows={4}
+                  value={editValues.description}
+                  initialValues={editValues.description}
+                  placeholder={editValues.description}
+                  onChange={(e) =>
+                    setEditValues({
+                      ...editValues,
+                      description: e.target.value,
+                    })
+                  }
+                />
+              </Form.Item>
+            </Col>
+          </Row>
+        </Form>
+      </Drawer>
+
+      <Drawer
+        title="Add Restaurant"
         width={720}
         onClose={onClose}
         visible={visible}

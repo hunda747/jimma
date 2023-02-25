@@ -1,16 +1,22 @@
+
 .cartShow{
   position: fixed;
   bottom: 20px;
   right: 20px;
   /* background-color: #FF4F79; */
-  background-color: rgb(255 219 0);
+  /* background-color: rgb(255 219 0); */
   padding: 12px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 100%;
   z-index: 100;
+  font-family: "Poppins", sans-serif;
   /* box-shadow: 8px 8px 5px #efefef; */
 }
 
 .cartShow .icon{
   color: black;
+}
+
+.cartShow .bold{
+  font-weight: bold;
 }

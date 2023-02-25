@@ -82,7 +82,7 @@ body{
   padding: 6px;
   margin-top: 5px;
   font-size: 12px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:  sans-serif;
   font-weight: lighter;
 }
 
@@ -93,7 +93,7 @@ body{
   padding: 6px;
   margin-top: 5px;
   font-size: 12px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:  sans-serif;
   font-weight: lighter;
 }
 
@@ -104,7 +104,7 @@ body{
   border-radius: 2px;
   margin-top: 5px;
   font-size: 12px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:  sans-serif;
   font-weight: lighter;
   padding: 6px;
 
@@ -195,7 +195,7 @@ body{
   padding: 4px;
   margin: 15px 6px;
   font-size: 12px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:  sans-serif;
   background-color: rgb(20, 187, 20);
   color: white;
   border: none;
@@ -211,7 +211,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:  sans-serif;
   padding: 4px;
   margin: 15px 6px;
   font-size: 12px;
@@ -274,13 +274,13 @@ body{
   padding: 3px;
   margin: 2px 0px;
   font-size: 12px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:  sans-serif;
   font-weight: lighter;
 }
 
 .aboutProduct_container input textarea{
   font-size: 12px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:  sans-serif;
   font-weight: normal;
   color: black;
   border: 1px solid black;
@@ -291,7 +291,7 @@ body{
 .productBrand_holder h3,
 .productMedia_holder h3{
   font-size: 13px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:  sans-serif;
   font-weight: 100;
   padding: 2px;
   margin-top: 5px;
@@ -335,14 +335,14 @@ body{
   padding: 3px;
   margin: 2px 0px;
   font-size: 12px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:  sans-serif;
   font-weight: lighter;
 }
 
 .productPricingCalculator_container span{
   font-size: 13px;
   font-weight: 200;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family:  sans-serif;
 
 }
 

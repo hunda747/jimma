@@ -4,42 +4,51 @@ import { getOrdersInprogress } from "../actions/orderActions";
 // axios.defaults.withCredentials = true;
 axios.create({ withCredentials: true });
 
-const localhost = "http://localhost:5000/";
+const config = {
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  },
+};
+const localhost = process.env.REACT_APP_BASE_URL;
+// const localhost = "http://toledelivery.com/";
+// const localhost = "http://tolodeliveryjimma.com/";
+// const localhost = "http://localhost:5000/";
 // const localhost = 'https://jimma-e-comm.herokuapp.com/';
 
 // user
-const addUserByPhone = localhost + "api/user/addUserByPhone";
-const getUsers = localhost + "api/user/getUsers";
-const getUser = localhost + "api/user/getUser";
-const resetPassword = localhost + "api/user/resetPassword";
+const addUserByPhone = localhost + "/api/user/addUserByPhone";
+const getUsers = localhost + "/api/user/getUsers";
+const getUser = localhost + "/api/user/getUser";
+const resetPassword = localhost + "/api/user/resetPassword";
 
 // order
-const addOrder = localhost + "api/order/addOrder";
-const getOrders = localhost + "api/order/getOrders";
-const getInprogressOrders = localhost + "api/order/getInprogressOrders";
-const getPendingOrders = localhost + "api/order/getPendingOrders";
-const getCompleteOrders = localhost + "api/order/getCompleteOrders";
-const getCompleteOrdersByDate = localhost + "api/order/getCompleteOrdersByDate";
-const getOrdersbyId = localhost + "api/order/getOrdersbyId";
-const changeStatus = localhost + "api/order/changeStatus";
-const getOrdersbyUser = localhost + "api/order/getOrdersbyUser";
-const changeStatusComplete = localhost + "api/order/changeStatusComplete";
-const changeStatusAccept = localhost + "api/order/changeStatusAccept";
+const addOrder = localhost + "/api/order/addOrder";
+const getOrders = localhost + "/api/order/getOrders";
+const getInprogressOrders = localhost + "/api/order/getInprogressOrders";
+const getPendingOrders = localhost + "/api/order/getPendingOrders";
+const getCompleteOrders = localhost + "/api/order/getCompleteOrders";
+const getCompleteOrdersByDate = localhost + "/api/order/getCompleteOrdersByDate";
+const getOrdersbyId = localhost + "/api/order/getOrdersbyId";
+const changeStatus = localhost + "/api/order/changeStatus";
+const getOrdersbyUser = localhost + "/api/order/getOrdersbyUser";
+const changeStatusComplete = localhost + "/api/order/changeStatusComplete";
+const changeStatusAccept = localhost + "/api/order/changeStatusAccept";
 
 // food
-const addFood = localhost + "api/food/addFood";
-const getAllFoods = localhost + "api/food/getAllFood";
-const getFoodsByRestaurant = localhost + "api/food/getFoodsByRestaurant";
-const getAllFoodsByRestaurant = localhost + "api/food/getAllFoodsByRestaurant";
-const updateFood = localhost + "api/food/updateFood";
-const searchFood = localhost + "api/food/searchFood";
+const addFood = localhost + "/api/food/addFood";
+const getAllFoods = localhost + "/api/food/getAllFood";
+const getFoodsByRestaurant = localhost + "/api/food/getFoodsByRestaurant";
+const getAllFoodsByRestaurant = localhost + "/api/food/getAllFoodsByRestaurant";
+const updateFood = localhost + "/api/food/updateFood";
+const searchFood = localhost + "/api/food/searchFood";
 
 // Restaurant
-const getAllRestaurant = localhost + "api/restaurant/getAllRestaurant";
-const getRestaurant = localhost + "api/restaurant/getRestaurant";
-const getRestaurantById = localhost + "api/restaurant/getRestaurantById";
-const addRestaurant = localhost + "api/restaurant/addRestaurant";
-const updateRestaurant = localhost + "api/restaurant/updateRestaurant";
+const getAllRestaurant = localhost + "/api/restaurant/getAllRestaurant";
+const getRestaurant = localhost + "/api/restaurant/getRestaurant";
+const getRestaurantById = localhost + "/api/restaurant/getRestaurantById";
+const addRestaurant = localhost + "/api/restaurant/addRestaurant";
+const updateRestaurant = localhost + "/api/restaurant/updateRestaurant";
 
 // order details
 const getOrderDetail = localhost + "api/orderDetail/getOrdersDetails";
@@ -137,7 +146,7 @@ export const createOrder = (
     no_item: no_item,
     orders: orders,
     address: address,
-  });
+  }, config);
 };
 
 export const changeOrderStatus = (id, status) => {

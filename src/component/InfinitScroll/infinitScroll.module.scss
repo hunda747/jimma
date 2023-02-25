@@ -1,116 +1,106 @@
-@import '../../styles/variables.scss';
+@import "../../styles/variables.scss";
 
-.scroller{
-    width: 100%;
-    height: 200px;   
+.scroller {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+  }
+
+  &__content {
+    position: relative;
+    width: 90%;
+    height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
     overflow: hidden;
+    justify-content: space-between;
 
-    img {
-        object-fit: cover;
-    }
+    &__item1 {
+      display: flex;
+      width: 300%;
+      align-items: center;
+      justify-content: space-between;
+      animation: scroll 20s linear infinite;
+      margin-left: 0rem;
+      transition: all ease 0.4s;
 
-    &__content{
-        position: relative;
-        width: 90%;
-        height: 100%;      
-        display: flex;
+      @include breakpoint(md) {
+        width: 200%;
+        transition: all ease 0.4s;
+      }
+      &:hover {
+        animation-play-state: paused;
+      }
+
+      div {
+        width: 190px;
+        height: 70px;
         align-items: center;
-        overflow: hidden;
-        justify-content: space-between;
+        justify-content: center;
+        display: flex;
+        margin-right: 2rem;
+        background-color: rgb(226, 239, 45);
+        border: none;
+        border-radius: 5px;
 
-
-        &__item1{
-            display: flex;
-            width: 300%;
-            align-items: center;
-            justify-content: space-between;
-            animation: scroll 20s linear infinite;
-            margin-left: 0rem;
-            transition: all ease 0.4s;
-
-
-            @include breakpoint(md){
-                width: 200%;
-                transition: all ease 0.4s;
-            }
-            &:hover{
-                animation-play-state: paused;
-            }
-       
-            
-            div{
-                width: 190px;
-                height: 70px;
-                align-items: center;
-                justify-content: center;
-                display: flex;
-                margin-right: 2rem;
-                background-color: rgb(226, 239, 45);
-                border: none;
-                border-radius: 5px;
-
-                @include breakpoint(sm){
-                    height: 90px;
-                }
-
-              
-                @include breakpoint(md){
-                    height: 100px;
-                    transition: all ease 0.4s;
-                }
-                @include breakpoint(lg){
-                    width: 360px;
-                    height: 140px;
-                    transition: all ease 0.4s;
-                }
-            }
-
+        @include breakpoint(sm) {
+          height: 90px;
         }
-        &__item2{
-            display: flex;
-            width: 200%;
-            align-items: center;
-            justify-content: space-between;
-        
 
-            div{
-                width: 170px;
-                height: 70px;
-                align-items: center;
-                justify-content: center;
-                display: flex;
-                margin: 0 1rem;
-                background-color: rgb(226, 239, 45);
-                border: none;
-                border-radius: 5px;
-
-                @include breakpoint(md){
-                    height: 100px;
-                    transition: all ease 0.4s;
-                }
-                @include breakpoint(lg){
-                    width: 360px;
-                    height: 140px;
-                    transition: all ease 0.4s;
-                }
-            }
+        @include breakpoint(md) {
+          height: 100px;
+          transition: all ease 0.4s;
         }
+        @include breakpoint(lg) {
+          width: 360px;
+          height: 140px;
+          transition: all ease 0.4s;
+        }
+      }
     }
+    &__item2 {
+      display: flex;
+      width: 200%;
+      align-items: center;
+      justify-content: space-between;
 
+      div {
+        width: 170px;
+        height: 70px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        margin: 0 1rem;
+        background-color: rgb(226, 239, 45);
+        border: none;
+        border-radius: 5px;
 
+        @include breakpoint(md) {
+          height: 100px;
+          transition: all ease 0.4s;
+        }
+        @include breakpoint(lg) {
+          width: 360px;
+          height: 140px;
+          transition: all ease 0.4s;
+        }
+      }
+    }
+  }
 }
 
-
-@keyframes scroll{
-    0%{
-         margin-left: 0%;
-    }
-    100%{
-        margin-left: -157%;
-        display: none;
-        
-    }
+@keyframes scroll {
+  0% {
+    margin-left: 0%;
+  }
+  100% {
+    margin-left: -157%;
+    display: none;
+  }
 }
