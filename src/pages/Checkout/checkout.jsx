@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
-import NavBar from "../../component/Navbar/navbar";
+// import NavBar from "../../component/Navbar/navbar";
+import NavBar from "../../component/Layout/Navbar/navbar";
 import Footer from "../../component/Footer/footer";
 import "./checkout.scss";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -36,8 +37,12 @@ import { useCookies } from "react-cookie";
 // import axios from 'axios';
 import axios from "axios";
 import { type } from "@testing-library/user-event/dist/type";
+import { Alert } from "@mui/material";
+import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
 
 export default function Checkout() {
+  const vertical = "top";
+  const horizontal = "center";
   const errRef = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -46,9 +51,10 @@ export default function Checkout() {
   const localhost = process.env.REACT_APP_BASE_URL;
   // const localhost = "http://tolodeliveryjimma.com/";
   const [errMsg, setErrMsg] = useState("");
-  const [load, setLoad] = useState(false);
+  const [load, setLoad] = useState(true);
   const cart = useSelector((state) => state.cart);
   const order = useSelector((state) => state.order.orders);
+  const [show, setShow] = useState(false);
   const { cartItems } = cart;
   // console.log(cartItems);
   const config = {
@@ -56,6 +62,10 @@ export default function Checkout() {
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
     },
+  };
+
+  const handleClose = () => {
+    setShow(false);
   };
 
   // const product = useSelector((state) => state.getProduct.products)
@@ -173,8 +183,8 @@ export default function Checkout() {
             const singleProduct = {
               foodId: item.id,
               foodName: item.food_name,
-              foodPrice:item.price,
-              foodRestaurantId:item.restaurant,
+              foodPrice: item.price,
+              foodRestaurantId: item.restaurant,
               foodQuantity: item.qtyCounter,
             };
             orderItems.push(singleProduct);
@@ -187,33 +197,37 @@ export default function Checkout() {
 
             console.log(costTotal);
             console.log(no_item);
-            console.log(typeof(orderItems));
+            console.log(typeof orderItems);
             const orderDetail = JSON.stringify(orderItems);
             console.log(orderDetail);
-            axios.post(
-              `${localhost}/api/order/addOrder`,
-              {
-                date: date,
-                userId: cookies?.ToleDUuid,
-                total: getTotalProductPrice(),
-                latitude: marker.latitude,
-                longitude: marker.longitude,
-                contact: phoneNumber,
-                no_item: no_item,
-                orders: orderItems,
-                ordersDetail: orderDetail,
-                address: selectedLocation.formatted,
-              },
-              config
-            ).then((res) => {
-              console.log(res);
-              dispatch(clearCart());
-              sessionStorage.setItem("purchased", true);
-              message.success("Order Placed");
-              navigate("/");
-            }).catch((err) => {
-              console.log(err);
-            });
+            axios
+              .post(
+                `${localhost}/api/order/addOrder`,
+                {
+                  date: date,
+                  userId: cookies?.ToleDUuid,
+                  total: getTotalProductPrice(),
+                  latitude: marker.latitude,
+                  longitude: marker.longitude,
+                  contact: phoneNumber,
+                  no_item: no_item,
+                  orders: orderItems,
+                  ordersDetail: orderDetail,
+                  address: selectedLocation.formatted,
+                },
+                config
+              )
+              .then((res) => {
+                console.log(res);
+                dispatch(clearCart());
+                sessionStorage.setItem("purchased", true);
+                message.success("Order Placed");
+                // setShow(true);
+                navigate("/");
+              })
+              .catch((err) => {
+                console.log(err);
+              });
             // console.log(order);
           } catch (e) {
             console.log(e);
@@ -223,7 +237,6 @@ export default function Checkout() {
 
           console.log(phoneNumber);
           // dispatch(clearCart());
-
         } else {
           setLoad(false);
           message.error("Order Place Failed: Check if you are logged in");
@@ -373,6 +386,19 @@ export default function Checkout() {
         <></>
       )}
       <div className="checkout_main">
+        <Snackbar
+          anchorOrigin={{ vertical, horizontal }}
+          open={show}
+          onClose={handleClose}
+        >
+          <Alert
+            onClose={handleClose}
+            severity={"success"}
+            sx={{ width: "100%" }}
+          >
+            Order placed
+          </Alert>
+        </Snackbar>
         <div className="navbar_holder">
           <NavBar />
         </div>

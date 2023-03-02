@@ -87,6 +87,11 @@
         color: black;
         transition: all ease 0.4s;
 
+        display: flex;
+        justify-content: left;
+        gap: 10px;
+        align-items: center;
+
         @include breakpoint(sm) {
           font-size: 14px;
           transition: all ease 0.4s;

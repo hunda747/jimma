@@ -1,13 +1,25 @@
 import React, { useState, useEffect } from "react";
-import "./detailPage.css";
+import "./detailPage.scss";
 
 import photo from "../../assets/photo/bj5.jpg";
+import BurgerSvg from "../../assets/svg/burger.js";
+
+import pizzaIcon from "../../assets/svg/pizza.png";
+import burgerIcon from "../../assets/svg/hamburger.png";
+import chickenIcon from "../../assets/svg/chicken.png";
+import drinkIcon from "../../assets/svg/drink.png";
+import fishIcon from "../../assets/svg/fish.png";
+import lunchIcon from "../../assets/svg/lunch.png";
+import steakIcon from "../../assets/svg/steak.png";
+import saladIcon from "../../assets/svg/salad.png";
+import soupIcon from "../../assets/svg/soup.png";
 
 import { Favorite, SearchIcon } from "@material-ui/icons";
 import { ShoppingCart, Delete } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 
-import Navbar from "../../component/Navbar/navbar";
+import Navbar from "../../component/Layout/Navbar/navbar";
+// import Navbar from "../../component/Navbar/navbar";
 import DisplayStars from "../../component/displayStar";
 import FoodCard from "../../component/FoodCard/foodCard";
 import CartView from "../../component/CartView/cartView";
@@ -209,11 +221,11 @@ export default function DetailView() {
         <div className="container">
           <div className="information">
             <h1>{restaurant.name}</h1>
-            <div className="rating">
+            {/* <div className="rating">
               <p>
                 <DisplayStars rating={4} />
               </p>
-            </div>
+            </div> */}
             <div className="moreInfo">
               <div className="disc">
                 <p>{restaurant.description}</p>
@@ -228,44 +240,94 @@ export default function DetailView() {
             <h2>Menu</h2>
             <div className="menu_container">
               <div className="typeFood">
-                <div className="type">
-                  {types?.length > 0
-                    ? types?.map((type, key) => {
-                        return <p>{type}</p>;
-                      })
-                    : " 0 type"}
-                </div>
-                <div className="foods">
-                  {types?.length > 0
+                {
+                  // types ?
+                  types?.length > 0
                     ? types?.map((type, key) => {
                         const filter = food?.filter(
                           (food) => food.type === type
                         );
-                        console.log(filter);
+                        const pan0el = "panel" + console.log(filter);
+                        // console.log(key);
                         return (
-                          <>
-                            <h1 style={{textTransform: 'uppercase'}}>{type}</h1>
-                            {filter?.map((food, index) => {
-                              console.log(food);
-                              return (
-                                <div className="menuItem">
-                                  <FoodCard
-                                    key={food.id}
-                                    id={food.id}
-                                    name={food.food_name}
-                                    desc={food.description}
-                                    price={food.price}
-                                    restaurant={food.restaurantsId}
-                                    type={food.type}
-                                  />
+                          <Accordion
+                            expanded={expanded === `panel${key + 1}`}
+                            onChange={handleChange(`panel${key + 1}`)}
+                            className="accordion"
+                          >
+                            <AccordionSummary
+                              expandIcon={<ExpandMoreIcon />}
+                              aria-controls="panel1bh-content"
+                              id="panel1bh-header"
+                            >
+                              <Typography
+                                sx={{ flexShrink: 0 }}
+                                style={{
+                                  textTransform: "capitalize",
+                                  fontFamily: "sans-serif",
+                                }}
+                                className="foodType"
+                              >
+                                <div className="icon">
+                                  {type === "pizza" ? (
+                                    <img src={pizzaIcon} alt="" />
+                                  ) : type === "burger" ? (
+                                    <img src={burgerIcon} alt="" />
+                                  ) : type === "chickenIcon" ? (
+                                    <img src={chickenIcon} alt="" />
+                                  ) : type === "drinkIcon" ? (
+                                    <img src={drinkIcon} alt="" />
+                                  ) : type === "fishIcon" ? (
+                                    <img src={fishIcon} alt="" />
+                                  ) : type === "lunchIcon" ? (
+                                    <img src={lunchIcon} alt="" />
+                                  ) : type === "steakIcon" ? (
+                                    <img src={steakIcon} alt="" />
+                                  ) : type === "saladIcon" ? (
+                                    <img src={saladIcon} alt="" />
+                                  ) : type === "soupIcon" ? (
+                                    <img src={soupIcon} alt="" />
+                                  ) : (
+                                    <img src={lunchIcon} alt="" />
+                                  )}
                                 </div>
-                              );
-                            })}
-                          </>
+                                {type}
+                              </Typography>
+                            </AccordionSummary>
+                            <AccordionDetails className="detailFood">
+                              {filter?.length !== 0 ? (
+                                <>
+                                  <div className="displayMenu">
+                                    {filter?.map((food, index) => {
+                                      // console.log(food);
+                                      return (
+                                        <div className="menuItem">
+                                          <FoodCard
+                                            key={food.id}
+                                            id={food.id}
+                                            name={food.food_name}
+                                            desc={food.description}
+                                            price={food.price}
+                                            restaurant={food.restaurantsId}
+                                            type={food.type}
+                                          />
+                                        </div>
+                                      );
+                                    })}
+                                  </div>
+                                </>
+                              ) : (
+                                <div>
+                                  <p>Not Available</p>
+                                </div>
+                              )}
+                            </AccordionDetails>
+                          </Accordion>
                         );
                       })
-                    : " 0 type"}
-                </div>
+                    : " 0 type"
+                  // : "no type"
+                }
               </div>
               <div className="cartView">
                 <CartView />

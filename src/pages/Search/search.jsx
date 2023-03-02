@@ -7,7 +7,8 @@ import hero from "../../assets/photo/bj5Edit.jpg";
 
 import { Favorite, SearchIcon } from "@material-ui/icons";
 import { Link } from "react-router-dom";
-import Navbar from "../../component/Navbar/navbar";
+// import Navbar from "../../component/Navbar/navbar";
+import Navbar from "../../component/Layout/Navbar/navbar";
 import Footer from "../../component/Footer/footer";
 
 import FoodCard from "../../component/FoodCard/foodCard";

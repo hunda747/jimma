@@ -15,17 +15,32 @@ $main: #ffdb00;
 $spacing-md: 12px;
 $spacing-lg: 32px;
 
-//fonts
-$sm-tl: 25px;
-$md-tl: 30px;
-$lg-tl: 35px;
+$lightBlue: #ecfdff;
+$textColor: #00adef;
+$secondaryTextColor: #74a4f8;
+// $primary: #01adf1;
+$grey: rgb(232, 232, 232);
+$lightGrey: rgb(241, 241, 241);
+// $main: rgb(255 219 0);
+
+//spacing
+$spacing-md: 12px;
+$spacing-lg: 32px;
 
 //border radius
-
 $borderRadius: 12px;
 
 //header height
 $headerHeight: 50px;
+
+//laptop wrapper padding
+$fullPadding: 5rem;
+$mobilePadding: 1.5rem;
+
+//fonts
+$sm-tl: 25px;
+$md-tl: 30px;
+$lg-tl: 35px;
 
 //restaurant card width
 $restCardWidth: 345px;

@@ -41,28 +41,28 @@ export default function CartShow(props) {
         // color="secondary"
         aria-label="cart"
         style={{
-          padding: "12px",
+          padding: "10px",
           height: "100%",
           width: "100%",
           backgroundColor: "rgb(255 219 0)",
         }}
       >
         <Link to="/checkout">
-          <IconButton aria-label="cart">
+          {/* <IconButton aria-label="cart">
             <StyledBadge
-              badgeContent={4}
+              badgeContent={getCartCount()}
               className="icon"
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-              }}
+              // anchorOrigin={{
+              //   vertical: "bottom",
+              //   horizontal: "right",
+              // }}
               // color="secondary"
             >
               <ShoppingCart />
             </StyledBadge>
-          </IconButton>
-          {/* <ShoppingCart className="icon" />{" "} */}
-          {/* <span className="icon bold">{getCartCount()}</span> */}
+          </IconButton> */}
+          <ShoppingCart className="icon" />{" "}
+          <span className="icon bold">{getCartCount()}</span>
         </Link>
       </Fab>
     </div>

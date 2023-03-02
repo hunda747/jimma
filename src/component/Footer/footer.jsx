@@ -16,15 +16,22 @@ export default function Footer() {
           </div>
           <div className={classes.footer__container__needHelp}>
             <h1>Need Help</h1>
-            <p>Call us +251921321231</p>
+            <p>Call us +251966669666</p>
+            <p>Call us +251966669766</p>
 
-            <p>Email: tole@jimaDelivery.com</p>
-            <p>
+            <p>Email: support@toledelivery.com</p>
+            {/* <p>
               <Twitter /> : @toleDelivery
-            </p>
-            <p>
-              <Instagram />: @toleJima_delivery
-            </p>
+            </p> */}
+            <a
+              href="https://www.instagram.com/tole_delivery/"
+              target={"_blank"}
+            >
+              <p className="insta">
+                <Instagram />
+                <span>: @tole_delivery</span>
+              </p>
+            </a>
           </div>
           <div className={classes.footer__container__knowUs}>
             <h1>Get to know us</h1>
@@ -54,7 +61,7 @@ export default function Footer() {
               <p>Account Details</p>
             </Link>
 
-            <p>Jima</p>
+            <p>Jimma</p>
           </div>
         </div>
         <div className={classes.footer__copyRight}>

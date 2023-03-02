@@ -1,0 +1,145 @@
+.navbar{
+  padding: 0;
+  margin: 0;
+
+  position: sticky;
+  width: 100%;
+  overflow: hidden;
+  top: 0px;
+  background-color: white;
+  z-index: 100;
+
+  border-bottom: 2px solid var(--grey-color);
+}
+
+.navbar .wraper{
+  padding: 0 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar .wraper .left{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 2rem;
+}
+
+
+
+
+
+.navbar .wraper .left .search-box {
+  /* position: absolute; */
+  /* top : 50%; */
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%); */
+  /* background: #2f3640; */
+  /* height: 100%; */
+  border: 1px solid var(--primary-color);
+  height: 40px;
+  border-radius: 40px;
+  padding: 10px;
+}
+
+.navbar .wraper .left .search-box:hover > .search-text{
+  width: 240px;
+  padding: 0 4px;
+}
+
+.navbar .wraper .left .search-box:hover > .search-btn{
+  background: white;
+  color: black;
+  /* border: 1px solid black; */
+}
+
+.navbar .wraper .left .search-btn {
+  color: black;
+  float: right;
+  width: 20px;
+  height: 100%;
+  /* height: 40px; */
+  border-radius: 50%;
+  /* background: #2f3640; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.navbar .wraper .left .search-btn > i {
+  font-size: 14px;
+}
+
+.navbar .wraper .left .search-text {
+  border: none;
+  background: none;
+  outline: none;
+  float: left;
+  padding: 0;
+  color: black;
+  font-size: 16px;
+  font-weight: normal;
+  transition: 0.4s;
+  line-height: 20px;
+  width: 0px;
+/*   width: 250px; */
+}
+
+
+
+
+
+
+.navbar .wraper .left .logo{
+  cursor: pointer;
+}
+
+.navbar .wraper .left img{
+  width: 80px;
+  height: 100%;
+}
+
+.navbar .wraper .right ul{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 3rem;
+  font-family:  sans-serif;
+}
+
+.navbar .wraper .right ul .btn{
+  padding: 7px 15px;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.navbar .wraper .right ul .btn_alt{
+  box-sizing: border-box;
+  padding: 7px 15px;
+  border-radius: 5px;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  background-color: white;
+}
+.searchButton :hover {
+ color: #E48525;
+ cursor: pointer
+}
+/* Popup style */
+/* .popupRegistration {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.signupDialog {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+
+} */

@@ -1,8 +1,9 @@
 import React, { Fragment, createContext, useReducer, useEffect } from "react";
 // import { Navber, Footer, CartModal } from "../partials";
-import Navbar from "../../component/Navbar/navbar"
-import Footer from "../../component/Footer/footer"
-import CartModal from "../../component/CartView/cartView"
+// import Navbar from "../../component/Navbar/navbar"
+import Navbar from "../../component/Layout/Navbar/navbar";
+import Footer from "../../component/Footer/footer";
+import CartModal from "../../component/CartView/cartView";
 
 import Sidebar from "../Account/Sidebar";
 import {

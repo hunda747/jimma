@@ -11,7 +11,8 @@ import hero from "../../assets/photo/fhero_img.png";
 
 import { Favorite, SearchIcon } from "@material-ui/icons";
 import { Link } from "react-router-dom";
-import Navbar from "../../component/Navbar/navbar";
+import Navbar from "../../component/Layout/Navbar/navbar";
+// import Navbar from "../../component/Navbar/navbar";
 import Footer from "../../component/Footer/footer";
 import Star from "../../component/displayStar";
 import RestaurantCardView from "../../component/RestaurantCardView/restaurantCardView";
@@ -41,7 +42,7 @@ export default function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getAllRestaurants());
+    // dispatch(getAllRestaurants());
   }, []);
 
   const rests = useSelector((state) => state.restaurant);
@@ -208,13 +209,13 @@ export default function Home() {
               </>
             ) : (
               <div className="soon">
-                <p>Comming soon</p>
+                <p>Coming soon</p>
               </div>
             )}
 
-            <div>
+            {/* <div>
               <p>Server Unavailable</p>
-            </div>
+            </div> */}
           </div>
         </div>
 

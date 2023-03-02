@@ -1,5 +1,4 @@
-
-.cartShow{
+.cartShow {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -13,10 +12,11 @@
   /* box-shadow: 8px 8px 5px #efefef; */
 }
 
-.cartShow .icon{
+.cartShow .icon {
   color: black;
+  /* border: none; */
 }
 
-.cartShow .bold{
+.cartShow .bold {
   font-weight: bold;
 }

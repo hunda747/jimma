@@ -17,24 +17,75 @@ export default function DetailView(props) {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
 
+  const getCartCount = () => {
+    return cartItems.reduce(
+      (qtyCounter, item) => Number(item.qtyCounter) + qtyCounter,
+      0
+    );
+  };
+  console.log(props.type);
+
+  const countFood = () => {
+    let count = 0;
+    cartItems?.map((cart) => {
+      if (cart.type != "fries") {
+        count = count + cart.qtyCounter;
+      }
+    });
+    return count;
+  };
+
   const handleAdd = () => {
-    if (cartItems.length === 0) {
+    console.log(cartItems);
+    if (props.type === "fries") {
       dispatch(
-        addToCart(props.id, props.name, props.price, 1, props.restaurant)
+        addToCart(
+          props.id,
+          props.name,
+          props.price,
+          1,
+          props.restaurant,
+          props.type
+        )
+      );
+    } else if (countFood() >= 3) {
+      message.error({
+        content: "You can only order max 3 foods",
+        // style: {
+        //   marginTop: "10vh",
+        // },
+      });
+    } else if (cartItems.length === 0) {
+      dispatch(
+        addToCart(
+          props.id,
+          props.name,
+          props.price,
+          1,
+          props.restaurant,
+          props.type
+        )
       );
       message.success("added to cart");
     } else if (props.restaurant === cartItems[0].restaurant) {
       dispatch(
-        addToCart(props.id, props.name, props.price, 1, props.restaurant)
+        addToCart(
+          props.id,
+          props.name,
+          props.price,
+          1,
+          props.restaurant,
+          props.type
+        )
       );
       message.success("added to cart");
     } else {
       // message.error("You can only order from one restarant");
       message.error({
         content: "You can only order from one restarant",
-        style: {
-          marginTop: "10vh",
-        },
+        // style: {
+        //   marginTop: "10vh",
+        // },
       });
     }
   };

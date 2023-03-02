@@ -3,7 +3,7 @@ import axios from "axios";
 import * as api from "../api/index";
 
 export const addToCart =
-  (id, food_name, price, qtyCounter, restaurant) =>
+  (id, food_name, price, qtyCounter, restaurant, type) =>
   async (dispatch, getState) => {
     console.log(restaurant);
     dispatch({
@@ -14,6 +14,7 @@ export const addToCart =
         price,
         qtyCounter,
         restaurant,
+        type,
       },
     });
 
