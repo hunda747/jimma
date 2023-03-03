@@ -40,6 +40,7 @@ import axios from "axios";
 import { type } from "@testing-library/user-event/dist/type";
 import { Alert } from "@mui/material";
 import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
+import { notifActions } from "../../redux/actions/notifyActions";
 
 export default function Checkout() {
   const vertical = "top";
@@ -157,96 +158,104 @@ export default function Checkout() {
   };
 
   const handleConfirm = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setLoad(true);
-    console.log("In handle confirm");
-    const date = new Date();
-    console.log("this is the ordered phone number");
-    console.log(phoneNumber);
-
-    if (cartItems?.length !== 0) {
-      // if(1){
-      if (
-        phoneNumber === "" ||
-        !/(\+\s*2\s*5\s*1\s*9\s*(([0-9]\s*){8}\s*))|(0\s*9\s*(([0-9]\s*){8}))/.test(
-          phoneNumber
-        ) ||
-        phoneNumber.length !== 10
-      ) {
-        setLoad(false);
-        message.error("Phone Number Is Invalid");
-      } else {
-        if (cookies?.ToleDUuid) {
-          let orderItems = [];
-          cartItems.map((item) => {
-            console.log(item);
-            const singleProduct = {
-              foodId: item.id,
-              foodName: item.food_name,
-              foodPrice: item.price,
-              foodRestaurantId: item.restaurant,
-              foodQuantity: item.qtyCounter,
-            };
-            orderItems.push(singleProduct);
-          });
-          console.log(orderItems);
-
-          try {
-            let costTotal = getTotalProductPrice();
-            let no_item = getCartCount();
-
-            console.log(costTotal);
-            console.log(no_item);
-            console.log(typeof orderItems);
-            const orderDetail = JSON.stringify(orderItems);
-            console.log(orderDetail);
-            axios
-              .post(
-                `${localhost}/api/order/addOrder`,
-                {
-                  date: date,
-                  userId: cookies?.ToleDUuid,
-                  total: getTotalProductPrice(),
-                  latitude: marker.latitude,
-                  longitude: marker.longitude,
-                  contact: phoneNumber,
-                  no_item: no_item,
-                  orders: orderItems,
-                  ordersDetail: orderDetail,
-                  address: selectedLocation.formatted,
-                },
-                config
-              )
-              .then((res) => {
-                console.log(res);
-                dispatch(clearCart());
-                sessionStorage.setItem("purchased", true);
-                message.success("Order Placed");
-                // setShow(true);
-                navigate("/");
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-            // console.log(order);
-          } catch (e) {
-            console.log(e);
-          } finally {
-            setLoad(false);
-          }
-
-          console.log(phoneNumber);
-          // dispatch(clearCart());
-        } else {
-          setLoad(false);
-          message.error("Order Place Failed: Check if you are logged in");
-        }
-      }
-    } else {
-      setLoad(false);
+    if (true) {
+      message.success("Order Placed");
+      dispatch(notifActions.notif({ type: "danger", msg: "invalid password" }));
       navigate("/");
-      message.error("Your cart is empty");
+
+    }
+    else {
+      event.preventDefault();
+      event.stopPropagation();
+      setLoad(true);
+      console.log("In handle confirm");
+      const date = new Date();
+      console.log("this is the ordered phone number");
+      console.log(phoneNumber);
+
+      if (cartItems?.length !== 0) {
+        // if(1){
+        if (
+          phoneNumber === "" ||
+          !/(\+\s*2\s*5\s*1\s*9\s*(([0-9]\s*){8}\s*))|(0\s*9\s*(([0-9]\s*){8}))/.test(
+            phoneNumber
+          ) ||
+          phoneNumber.length !== 10
+        ) {
+          setLoad(false);
+          message.error("Phone Number Is Invalid");
+        } else {
+          if (cookies?.ToleDUuid) {
+            let orderItems = [];
+            cartItems.map((item) => {
+              console.log(item);
+              const singleProduct = {
+                foodId: item.id,
+                foodName: item.food_name,
+                foodPrice: item.price,
+                foodRestaurantId: item.restaurant,
+                foodQuantity: item.qtyCounter,
+              };
+              orderItems.push(singleProduct);
+            });
+            console.log(orderItems);
+
+            try {
+              let costTotal = getTotalProductPrice();
+              let no_item = getCartCount();
+
+              console.log(costTotal);
+              console.log(no_item);
+              console.log(typeof orderItems);
+              const orderDetail = JSON.stringify(orderItems);
+              console.log(orderDetail);
+              axios
+                .post(
+                  `${localhost}/api/order/addOrder`,
+                  {
+                    date: date,
+                    userId: cookies?.ToleDUuid,
+                    total: getTotalProductPrice(),
+                    latitude: marker.latitude,
+                    longitude: marker.longitude,
+                    contact: phoneNumber,
+                    no_item: no_item,
+                    orders: orderItems,
+                    ordersDetail: orderDetail,
+                    address: selectedLocation.formatted,
+                  },
+                  config
+                )
+                .then((res) => {
+                  console.log(res);
+                  dispatch(clearCart());
+                  sessionStorage.setItem("purchased", true);
+                  message.success("Order Placed");
+                  // setShow(true);
+                  navigate("/");
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+              // console.log(order);
+            } catch (e) {
+              console.log(e);
+            } finally {
+              setLoad(false);
+            }
+
+            console.log(phoneNumber);
+            // dispatch(clearCart());
+          } else {
+            setLoad(false);
+            message.error("Order Place Failed: Check if you are logged in");
+          }
+        }
+      } else {
+        setLoad(false);
+        navigate("/");
+        message.error("Your cart is empty");
+      }
     }
   };
 

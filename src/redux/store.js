@@ -8,6 +8,7 @@ import { getRestaurantReducer } from "./reducers/restaurantReducer";
 import { getOrdersReducer } from "./reducers/orderReducer";
 import { getOrderDetailReducer } from "./reducers/orderDetailReducer";
 import { cartReducer } from "./reducers/cartReducer";
+import notifSlice from "./actions/notifyActions";
 
 const reducer = combineReducers({
   user: getUserReducer,
@@ -16,6 +17,7 @@ const reducer = combineReducers({
   order: getOrdersReducer,
   orderDetail: getOrderDetailReducer,
   cart: cartReducer,
+  ui: notifSlice.reducer,
 });
 
 const middleware = [thunk];
