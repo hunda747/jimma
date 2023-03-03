@@ -1,23 +1,24 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import './cartView.css';
 
-import { ShoppingCart, Delete, Add, Remove} from '@material-ui/icons';
+import { ShoppingCart, Delete, Add, Remove } from '@material-ui/icons';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { removeFromCart, addToCart, changeToCart, clearCart} from '../../redux/actions/cartActions'
+import { removeFromCart, addToCart, changeToCart, clearCart } from '../../redux/actions/cartActions'
 import { useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 export default function CartView() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const cart = useSelector(state => state.cart);
-  const {cartItems} = cart;
+  const { cartItems } = cart;
 
 
   //handle total price calculation
-  const getTotalProductPrice = ()=>{
-    return cartItems.reduce((price , item)=> item.price * item.qtyCounter + price , 0)
+  const getTotalProductPrice = () => {
+    return cartItems.reduce((price, item) => item.price * item.qtyCounter + price, 0)
   }
 
   const [deliveryPrice, setDeliveryPrice] = useState(35);
@@ -30,44 +31,44 @@ export default function CartView() {
   return (
     <div className="cart">
       <div className="head">
-        <h1><ShoppingCart fontSize='medium'/> Cart</h1>
-        
+        <h1><ShoppingCart fontSize='medium' /> Cart</h1>
+
       </div>
       {
         cartItems?.map((cart) => {
-          return(
-          <div className="product">
-            <p className="name">{cart.food_name}</p>
+          return (
+            <div className="product">
+              <p className="name">{cart.food_name}</p>
 
-            <div className="qty">
-              <div onClick={() => {
-                dispatch(addToCart(cart.id))
-              }}>
-                <Add className='icons' fontSize='small'/>
+              <div className="qty">
+                <div onClick={() => {
+                  dispatch(addToCart(cart.id))
+                }}>
+                  <Add className='icons' fontSize='small' />
+                </div>
+
+                <div className="number">
+                  {cart.qtyCounter}
+                </div>
+
+                <div onClick={() => {
+                  if (cart.qtyCounter === 1) {
+                    dispatch(removeFromCart(cart.id))
+                  } else {
+                    dispatch(changeToCart(cart.id, (cart.qtyCounter - 1)))
+                  }
+                }}>
+                  <Remove className='icons' fontSize='small' />
+                </div>
               </div>
 
-              <div className="number">
-                {cart.qtyCounter}
-              </div>
-
-              <div onClick={() => {
-                if(cart.qtyCounter === 1){
-                  dispatch(removeFromCart(cart.id))
-                }else{
-                  dispatch(changeToCart(cart.id, (cart.qtyCounter - 1)))
-                }
-              }}>
-                <Remove className='icons' fontSize='small'/>
-              </div>
+              <p className="price">{cart.price} Birr</p>
             </div>
-
-            <p className="price">{cart.price} Birr</p>
-          </div>
           )
         })
       }
       {
-        totalPrice?   
+        totalPrice ?
           <div className="total">
             {/* <p>Price: {totalPrice} Birr</p>
             <p>Delivery price: {deliveryPrice} Birr</p>
@@ -87,22 +88,23 @@ export default function CartView() {
               </tr>
             </table>
           </div>
-        :
+          :
           <div>
             <p>No item</p>
           </div>
       }
-      
+
       <div className="checkout">
         <button className="button-32" onClick={() => navigate('/checkout')}>
           Checkout
         </button>
       </div>
-      <div className="">
-        <button className="button-32" onClick={() => dispatch(clearCart())}>
-          clear cart
-        </button>
-      </div>
+      <div style={{ width: '100%', display: 'flex', paddingRight: '10px' }}>
+        <Button variant='outlined' color='error' onClick={() => dispatch(clearCart())}
+          sx={{ marginLeft: 'auto' }}>
+          clear
+        </Button></div>
+
     </div>
   )
 }
