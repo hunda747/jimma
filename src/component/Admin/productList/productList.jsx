@@ -484,8 +484,8 @@ export default function ProductList({ onMorePage }) {
           className="addButton"
           onClick={() => {
             setVisibleAdd(true);
-            setAddValues({ ...addValues, restaurant: food[0].restaurant });
-            console.log(food[0].restaurant);
+            setAddValues({ ...addValues, restaurant: food[0]?.restaurantsId });
+            console.log(food[0]?.restaurantsId);
           }}
         >
           <IconButton>
