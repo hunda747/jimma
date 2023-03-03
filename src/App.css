@@ -2,11 +2,16 @@
 /* @import url('https://fonts.googleapis.com/css?family=EB+Garamond'); */
 
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 8px;
 
 }
-::-webkit-scrollbar-thumb{
-  background-color:  rgb(156, 160, 166);
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(156, 160, 166);
   border-radius: 10px;
+}
+
+button {
+  cursor: pointer;
 }

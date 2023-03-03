@@ -7,6 +7,7 @@ import photo from '../../assets/photo/pizza.jpg';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCart, addToCart, changeToCart } from '../../redux/actions/cartActions'
+import { IconButton } from '@mui/material';
 
 export default function CartItem({
   item,
@@ -51,7 +52,9 @@ export default function CartItem({
           <div onClick={() => {
             dispatch(addToCart(item.id))
           }}>
-            <Add className='icons' fontSize='small' />
+            <IconButton>
+              <Add className='icons' fontSize='small' />
+            </IconButton>
           </div>
 
           <div className="number">
@@ -61,7 +64,7 @@ export default function CartItem({
           <div onClick={() => {
             dispatch(changeToCart(item.id, (item.qtyCounter - 1)))
           }} className='icons' >
-            {item.qtyCounter > 1 && <Remove fontSize='small' />}
+            {item.qtyCounter > 1 && <IconButton><Remove fontSize='small' /></IconButton>}
           </div>
         </div>
 
