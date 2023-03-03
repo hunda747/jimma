@@ -6,12 +6,13 @@ import "./checkout.scss";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 import ReactMapGL, { Marker } from "react-map-gl";
-import { Input, Button, message } from "antd";
+import { Input, message } from "antd";
 // import {  Input, Button  } from '@material-ui/core';
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import SentimentVeryDissatisfiedIcon from "@material-ui/icons/SentimentVeryDissatisfied";
 import { useSelector, useDispatch } from "react-redux";
 import CartItem from "../../component/cartItem/cartItem";
+
 import { createOrders } from "../../redux/actions/orderActions";
 import {
   addToCart,
@@ -31,7 +32,7 @@ import mapboxgl from "mapbox-gl";
 mapboxgl.workerClass =
   require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 // import { clearCart } from '../../../redux/actions/cartActions';
-import { CircularProgress } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 // import axios from 'axios';
@@ -51,7 +52,7 @@ export default function Checkout() {
   const localhost = process.env.REACT_APP_BASE_URL;
   // const localhost = "http://tolodeliveryjimma.com/";
   const [errMsg, setErrMsg] = useState("");
-  const [load, setLoad] = useState(true);
+  const [load, setLoad] = useState(false);
   const cart = useSelector((state) => state.cart);
   const order = useSelector((state) => state.order.orders);
   const [show, setShow] = useState(false);
@@ -627,17 +628,19 @@ export default function Checkout() {
             </div>
           </div> */}
 
-            <div className="confirmOrder">
-              <button className="btn_order" onClick={handleConfirm}>
-                {load ? (
-                  <div className="orderLoader">
-                    <CircularProgress />
-                  </div>
-                ) : (
-                  <div> Order </div>
-                )}
-              </button>
-            </div>
+            <Button onClick={handleConfirm}
+              className='order-btn'
+              variant='outlined'
+            // sx={{ marginBlock: 3, marginInline: 'auto', color: '#ffdb00', borderColor: '#ffdb00', width: '50%' }}
+            >
+              {load ? (
+                <div className="orderLoader">
+                  <CircularProgress />
+                </div>
+              ) : (
+                <div> Order </div>
+              )}
+            </Button>
           </div>
         </div>
         {/* <ContactUs/> */}

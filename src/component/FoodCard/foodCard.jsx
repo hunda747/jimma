@@ -10,6 +10,7 @@ import { message } from "antd";
 import { useCookies } from "react-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../redux/actions/cartActions";
+import { IconButton } from "@mui/material";
 
 export default function DetailView(props) {
   // const [cookies, setCookie, removeCookie] = useCookies(['user']);
@@ -102,7 +103,9 @@ export default function DetailView(props) {
           <p>ETB</p>
         </div>
         <div className="add" onClick={handleAdd}>
-          <Add className="addIcon" />
+          <IconButton>
+            <Add className="addIcon" />
+          </IconButton>
           {/* <img src={add} height={'30px'} alt="ADD" /> */}
         </div>
       </div>
