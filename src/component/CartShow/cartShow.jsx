@@ -7,10 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Fab } from "@mui/material";
 import { ShoppingCart } from "@material-ui/icons";
 
-import Badge from "@mui/material/Badge";
+import { Badge } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
-// import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useState } from "react";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -26,6 +27,10 @@ export default function CartShow(props) {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+  const [cartCount, setCartCount] = useState(cartItems.reduce(
+    (qtyCounter, item) => Number(item.qtyCounter) + qtyCounter,
+    0
+  ))
 
   const getCartCount = () => {
     return cartItems.reduce(
@@ -41,7 +46,7 @@ export default function CartShow(props) {
         // color="secondary"
         aria-label="cart"
         style={{
-          padding: "10px",
+          padding: "14px",
           height: "100%",
           width: "100%",
           backgroundColor: "rgb(255 219 0)",
@@ -61,8 +66,21 @@ export default function CartShow(props) {
               <ShoppingCart />
             </StyledBadge>
           </IconButton> */}
-          <ShoppingCart className="icon" />{" "}
-          <span className="icon bold">{getCartCount()}</span>
+          <Badge badgeContent={cartCount}
+            // overlap='circular'
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            sx={{ color: 'black' }}
+            // color='warning'
+            // overlap="circular"
+            showZero={true}
+          >
+            <ShoppingCartIcon fontSize='large'></ShoppingCartIcon>
+          </Badge>
+
+          {/* <span className="icon bold">{getCartCount()}</span> */}
         </Link>
       </Fab>
     </div>

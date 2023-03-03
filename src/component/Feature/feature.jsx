@@ -78,9 +78,9 @@ export default function Feature() {
                         <SearchIcon onClick={() => handleSearch()} />
                       </div>
 
-                      <p>
+                      {/* <p>
                         <a href="/login">Sign In</a> for your recent addresses
-                      </p>
+                      </p> */}
                     </div>
                   </div>
                 </div>
