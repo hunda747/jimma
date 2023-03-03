@@ -28,6 +28,7 @@
   color: #ffdb00;
   border-color: #ffdb00;
   width: 100%;
+  border-width: 2px;
 
   @include breakpoint(md) {
     width: 50%

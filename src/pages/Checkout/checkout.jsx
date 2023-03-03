@@ -631,7 +631,6 @@ export default function Checkout() {
             <Button onClick={handleConfirm}
               className='order-btn'
               variant='outlined'
-            // sx={{ marginBlock: 3, marginInline: 'auto', color: '#ffdb00', borderColor: '#ffdb00', width: '50%' }}
             >
               {load ? (
                 <div className="orderLoader">
