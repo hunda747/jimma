@@ -41,13 +41,14 @@ export default function CartView() {
               <p className="name">{cart.food_name}</p>
 
               <div className="qty">
+
                 <div onClick={() => {
                   dispatch(addToCart(cart.id))
                 }}>
                   <Add className='icons' fontSize='small' />
                 </div>
-
                 <div className="number">
+
                   {cart.qtyCounter}
                 </div>
 

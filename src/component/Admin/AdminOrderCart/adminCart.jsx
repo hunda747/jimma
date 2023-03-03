@@ -55,7 +55,9 @@ export default function AdminCart() {
                 <Add className="icons" fontSize="small" />
               </div>
 
-              <div className="number">{cart.qtyCounter}</div>
+              <div className="number">
+                {cart.qtyCounter}
+              </div>
 
               <div
                 onClick={() => {

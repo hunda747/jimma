@@ -49,22 +49,22 @@ export default function CartItem({
                 <option key={item.qtyCounter + 1} value={item.qtyCounter + 1}>{item.qtyCounter + 1}</option>
             </select> */}
         <div className="qty">
-          <div onClick={() => {
-            dispatch(addToCart(item.id))
-          }}>
-            <IconButton>
-              <Add className='icons' fontSize='small' />
-            </IconButton>
-          </div>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div onClick={() => {
+              dispatch(addToCart(item.id))
+            }}>
+              <IconButton>
+                <Add className='icons' fontSize='small' />
+              </IconButton>
+            </div>
 
-          <div className="number">
-            {item.qtyCounter}
-          </div>
+            <p style={{ margin: 0 }}>{item.qtyCounter}</p>
 
-          <div onClick={() => {
-            dispatch(changeToCart(item.id, (item.qtyCounter - 1)))
-          }} className='icons' >
-            {item.qtyCounter > 1 && <IconButton><Remove fontSize='small' /></IconButton>}
+            <div onClick={() => {
+              dispatch(changeToCart(item.id, (item.qtyCounter - 1)))
+            }} className='icons' >
+              {item.qtyCounter > 1 && <IconButton><Remove fontSize='small' /></IconButton>}
+            </div>
           </div>
         </div>
 
