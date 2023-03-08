@@ -13,6 +13,9 @@ import lunchIcon from "../../assets/svg/lunch.png";
 import steakIcon from "../../assets/svg/steak.png";
 import saladIcon from "../../assets/svg/salad.png";
 import soupIcon from "../../assets/svg/soup.png";
+import firfirIcon from "../../assets/svg/firfir.jpg";
+import shiroIcon from "../../assets/svg/shiro.png";
+import riceIcon from "../../assets/svg/rice.png";
 
 import { Favorite, SearchIcon } from "@material-ui/icons";
 import { ShoppingCart, Delete } from "@material-ui/icons";
@@ -273,20 +276,26 @@ export default function DetailView() {
                                     <img src={pizzaIcon} alt="" />
                                   ) : type === "burger" ? (
                                     <img src={burgerIcon} alt="" />
-                                  ) : type === "chickenIcon" ? (
+                                  ) : type === "chicken" ? (
                                     <img src={chickenIcon} alt="" />
                                   ) : type === "drinkIcon" ? (
                                     <img src={drinkIcon} alt="" />
-                                  ) : type === "fishIcon" ? (
+                                  ) : type === "fish" ? (
                                     <img src={fishIcon} alt="" />
-                                  ) : type === "lunchIcon" ? (
+                                  ) : type === "lunch" ? (
                                     <img src={lunchIcon} alt="" />
-                                  ) : type === "steakIcon" ? (
+                                  ) : type === "steak" ? (
                                     <img src={steakIcon} alt="" />
-                                  ) : type === "saladIcon" ? (
+                                  ) : type === "salad" ? (
                                     <img src={saladIcon} alt="" />
-                                  ) : type === "soupIcon" ? (
+                                  ) : type === "soup" ? (
                                     <img src={soupIcon} alt="" />
+                                  ) : type === "shiro" ? (
+                                    <img src={shiroIcon} alt="" />
+                                  ) : type === "firfir" ? (
+                                    <img src={firfirIcon} alt="" />
+                                  ) : type === "rice" ? (
+                                    <img src={riceIcon} alt="" />
                                   ) : (
                                     <img src={lunchIcon} alt="" />
                                   )}
@@ -325,7 +334,7 @@ export default function DetailView() {
                           </Accordion>
                         );
                       })
-                    : " 0 type"
+                    : ""
                   // : "no type"
                 }
               </div>

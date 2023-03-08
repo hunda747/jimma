@@ -161,7 +161,6 @@ export default function Checkout() {
   };
 
   const handleConfirm = (event) => {
-
     event.preventDefault();
     event.stopPropagation();
     setLoad(true);
@@ -180,8 +179,9 @@ export default function Checkout() {
         phoneNumber.length !== 10
       ) {
         setLoad(false);
-        dispatch(notifActions.notif({ type: "error", msg: "Phone Number Is Invalid" }));
-
+        dispatch(
+          notifActions.notif({ type: "error", msg: "Phone Number Is Invalid" })
+        );
       } else {
         if (cookies?.ToleDUuid) {
           let orderItems = [];
@@ -228,7 +228,9 @@ export default function Checkout() {
                 console.log(res);
                 dispatch(clearCart());
                 sessionStorage.setItem("purchased", true);
-                dispatch(notifActions.notif({ type: "success", msg: "Order placed" }));
+                dispatch(
+                  notifActions.notif({ type: "success", msg: "Order placed" })
+                );
                 // setShow(true);
                 navigate("/");
               })
@@ -246,17 +248,22 @@ export default function Checkout() {
           // dispatch(clearCart());
         } else {
           setLoad(false);
-          dispatch(notifActions.notif({ type: "error", msg: "Order Place Failed: Check if you are logged in" }));
-
+          dispatch(
+            notifActions.notif({
+              type: "error",
+              msg: "Order Place Failed: Check if you are logged in",
+            })
+          );
         }
       }
     } else {
       setLoad(false);
       navigate("/");
-      dispatch(notifActions.notif({ type: "error", msg: "Your cart is empty" }));
-
+      dispatch(
+        notifActions.notif({ type: "error", msg: "Your cart is empty" })
+      );
     }
-  }
+  };
   // };
 
   const qtyChangeHandler = (id, qty) => {
@@ -460,7 +467,7 @@ export default function Checkout() {
                           viewBox="0 0 14 20"
                           version="1.1"
                           xmlns="http://www.w3.org/2000/svg"
-                        // xmlns:xlink="http://www.w3.org/1999/xlink"
+                          // xmlns:xlink="http://www.w3.org/1999/xlink"
                         >
                           {/* <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch --> */}
                           <title>location_on</title>
@@ -639,9 +646,10 @@ export default function Checkout() {
             </div>
           </div> */}
 
-            <Button onClick={handleConfirm}
-              className='order-btn'
-              variant='outlined'
+            <Button
+              onClick={handleConfirm}
+              className="order-btn"
+              variant="outlined"
             >
               {load ? (
                 <div className="orderLoader">

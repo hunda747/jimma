@@ -23,8 +23,8 @@
 
   .container {
     padding: 2rem 0rem;
-    padding-left: calc(1rem + 5vw);
-    padding-right: calc(1rem + 5vw);
+    padding-left: calc(1rem + 4vw);
+    padding-right: calc(1rem + 4vw);
     max-width: 1300px;
     margin: auto;
 
@@ -68,7 +68,7 @@
       .menu_container {
         display: flex;
         flex-direction: column;
-        // gap: 30px;
+        gap: 30px;
         @include breakpoint(md) {
           flex-direction: row;
         }

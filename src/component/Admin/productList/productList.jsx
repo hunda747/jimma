@@ -76,8 +76,19 @@ export default function ProductList({ onMorePage }) {
   const [searchCategory, setSearchCategory] = useState("");
   const [category, setCategory] = useState(0);
   const [cookies, setCookie] = useCookies(["user"]);
+  const [loader, setLoader] = useState(false);
   const restId = localStorage.getItem("restId");
   console.log(restId);
+
+  const [addValues, setAddValues] = useState({
+    id: "",
+    food_name: "",
+    description: "",
+    type: "",
+    status: true,
+    restaurant: "",
+    price: "",
+  });
 
   useEffect(() => {
     // dispatch(getAllFoodsByRestaurant(restId));
@@ -114,8 +125,8 @@ export default function ProductList({ onMorePage }) {
     dispatch({
       type: "changeLoader",
       payload: load,
-    })
-  }
+    });
+  };
 
   const fetchFoodByRestaurant = () => {
     changeLoader(true);
@@ -132,7 +143,8 @@ export default function ProductList({ onMorePage }) {
       })
       .catch((err) => {
         console.log(err);
-      }).finally(() => {
+      })
+      .finally(() => {
         changeLoader(false);
       });
   };
@@ -324,6 +336,16 @@ export default function ProductList({ onMorePage }) {
 
   const onAddClose = () => {
     setVisibleAdd(false);
+    setAddValues({
+      ...addValues,
+      id: "",
+      food_name: "",
+      description: "",
+      type: "",
+      status: true,
+      restaurant: "",
+      price: "",
+    });
   };
 
   const [editValues, setEditValues] = useState({
@@ -332,16 +354,6 @@ export default function ProductList({ onMorePage }) {
     description: "",
     type: "",
     status: false,
-    restaurant: "",
-    price: "",
-  });
-
-  const [addValues, setAddValues] = useState({
-    id: "",
-    food_name: "",
-    description: "",
-    type: "",
-    status: true,
     restaurant: "",
     price: "",
   });
@@ -363,17 +375,60 @@ export default function ProductList({ onMorePage }) {
   const handleAddFood = () => {
     console.log("handling add values");
     console.log(addValues);
-    dispatch(
-      createFood(
-        addValues.food_name,
-        addValues.description,
-        addValues.type,
-        restId,
-        addValues.price
-      )
-    );
-    setVisibleAdd(false);
-    onMorePage(1);
+    console.log(restId);
+    setLoader(true);
+
+    axios
+      .post(`${localhost}/api/food/addFood`, {
+        food_name: addValues.food_name,
+        description: addValues.description,
+        type: addValues.type,
+        restaurant: restId,
+        price: addValues.price,
+      })
+      .then((res) => {
+        console.log(res);
+        setVisibleAdd(false);
+        fetchFoodByRestaurant();
+        setAddValues({
+          ...addValues,
+          id: "",
+          food_name: "",
+          description: "",
+          type: "",
+          status: true,
+          restaurant: "",
+          price: "",
+        });
+        message.success("Product Updated");
+      })
+      .catch((err) => {
+        console.log(err);
+        message.error({
+          content:
+            err?.response?.data ||
+            err?.response?.message ||
+            err?.message ||
+            "Error",
+          style: {
+            marginTop: "10vh",
+            zIndex: 10000,
+          },
+        });
+      })
+      .finally(() => {
+        setLoader(false);
+      });
+    // dispatch(
+    //   createFood(
+    //     addValues.food_name,
+    //     addValues.description,
+    //     addValues.type,
+    //     restId,
+    //     addValues.price
+    //   )
+    // );
+    // onMorePage(1);
     // window.location.reload(0)
 
     if (addValues.status === 0) {
@@ -388,6 +443,7 @@ export default function ProductList({ onMorePage }) {
   const handleEditChanges = () => {
     console.log("handling edit changes");
     console.log(editValues);
+    setLoader(true);
     axios
       .post(`${localhost}/api/food/updateFood`, {
         food_name: editValues.food_name,
@@ -411,11 +467,27 @@ export default function ProductList({ onMorePage }) {
             status: false,
             restaurant: "",
             price: "",
-          })
+          });
+          message.error({
+            content:
+              err?.response?.data ||
+              err?.response?.message ||
+              err?.message ||
+              "Error",
+            style: {
+              marginTop: "10vh",
+              zIndex: 10000,
+            },
+          });
+          message.success("Product Updated");
         }
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        console.log(false);
+        setLoader(false);
       });
     // window.location.reload(0)
 
@@ -423,7 +495,6 @@ export default function ProductList({ onMorePage }) {
       message.warning("Product is still inactive");
     }
 
-    message.success("Product Updated");
     // dispatch(getAllProducts());
   };
 
@@ -499,14 +570,20 @@ export default function ProductList({ onMorePage }) {
         title="Add Product"
         width={720}
         onClose={onAddClose}
-        visible={visibleAdd}
+        open={visibleAdd}
         bodyStyle={{ paddingBottom: 80, zIndex: "100" }}
         extra={
           <Space>
             <Button onClick={onAddClose}>Cancel</Button>
-            <Button type="primary" onClick={() => handleAddFood()}>
-              Submit
-            </Button>
+            {loader ? (
+              <div>
+                <CircularProgress />
+              </div>
+            ) : (
+              <Button type="primary" onClick={() => handleAddFood()}>
+                Submit
+              </Button>
+            )}
           </Space>
         }
       >
@@ -541,7 +618,7 @@ export default function ProductList({ onMorePage }) {
                   onChange={(e) =>
                     setAddValues({ ...addValues, food_name: e.target.value })
                   }
-                  initialValues={"food_name"}
+                  initialvalues={"food_name"}
                   placeholder={"food_name"}
                 />
               </Form.Item>
@@ -620,14 +697,20 @@ export default function ProductList({ onMorePage }) {
         title="Edit Product"
         width={720}
         onClose={onClose}
-        visible={visible}
+        open={visible}
         bodyStyle={{ paddingBottom: 80, zIndex: "100" }}
         extra={
           <Space>
             <Button onClick={onClose}>Cancel</Button>
-            <Button type="primary" onClick={() => handleEditChanges()}>
-              Submit
-            </Button>
+            {loader ? (
+              <div>
+                <CircularProgress />
+              </div>
+            ) : (
+              <Button type="primary" onClick={() => handleEditChanges()}>
+                Submit
+              </Button>
+            )}
           </Space>
         }
       >
@@ -662,7 +745,7 @@ export default function ProductList({ onMorePage }) {
                   onChange={(e) =>
                     setEditValues({ ...editValues, food_name: e.target.value })
                   }
-                  defaultValue={editValues.food_name}
+                  initialvalues={editValues.food_name}
                   placeholder={editValues.food_name}
                 />
               </Form.Item>

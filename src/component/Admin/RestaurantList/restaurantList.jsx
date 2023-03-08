@@ -29,6 +29,12 @@ import axios from "axios";
 import { Add } from "@material-ui/icons";
 import { CircularProgress, IconButton } from "@mui/material";
 import { useCookies } from "react-cookie";
+
+import {
+  projectStorage,
+  projectFirestore,
+  timestamp,
+} from "../firebase/config";
 //for the input hider
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,6 +45,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: theme.typography.fontWeightRegular,
   },
 }));
+const fileTypes = ["JPEG", "PNG", "GIF", "JPG"];
 
 export default function RestuarantList({ onMorePage }) {
   const classes = useStyles();
@@ -50,12 +57,61 @@ export default function RestuarantList({ onMorePage }) {
   const loading = false;
   const error = false;
   const [cookies, setCookie] = useCookies(["user"]);
-
+  const [prog, setProgress] = useState(0);
   const [visible, setVisible] = useState(false);
   const [visibleAdd, setVisibleAdd] = useState(false);
 
   const onClose = () => {
     setVisible(false);
+  };
+
+  const onChange = async (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+    let url;
+    if (!file) return;
+
+    const storageRef = projectStorage.ref(`Restaurant/${file.name}`);
+    const collectionRef = projectFirestore.collection("Restaurant");
+
+    storageRef.put(file).on(
+      "state_changed",
+      (snapshot) => {
+        const prog = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        console.log(prog);
+        setProgress(prog);
+      },
+      (err) => {
+        console.log(err);
+      },
+      async () => {
+        // url = await storageRef.getDownloadURL().then();
+        storageRef.getDownloadURL().then((url) => {
+          console.log(url);
+          // setImgPreview(url);
+          // console.log(url);
+          collectionRef.add({ url, createdAt });
+
+          setEditValues({
+            ...editValues,
+            image: url,
+          });
+        });
+
+        const createdAt = timestamp();
+        // console.log(url);
+        // console.log(imgPreview);
+      }
+    );
+    // console.log('url: ' + url);
+  };
+
+  const handleChange = (file) => {
+    // setFile(file);
+    console.log(file);
+    setCampaign({ ...campaign, photo: file });
   };
 
   const onCloseAdd = () => {
@@ -131,7 +187,7 @@ export default function RestuarantList({ onMorePage }) {
   };
 
   const restaurants = useSelector((state) => state.restaurant.restaurant);
-
+  console.log(restaurants);
   const handleClick = () => {
     dispatch(getAllFoodsByRestaurant(props.id));
     onMorePage(10);
@@ -238,7 +294,7 @@ export default function RestuarantList({ onMorePage }) {
         title="Edit Restaurant"
         width={720}
         onClose={onClose}
-        visible={visible}
+        open={visible}
         bodyStyle={{ paddingBottom: 80, zIndex: "100" }}
         extra={
           <Space>
@@ -259,6 +315,20 @@ export default function RestuarantList({ onMorePage }) {
                   onClick={() => message.warning("Want To Change the image")}
                 />
               </div>
+              <Button
+                variant="contained"
+                component="label"
+                className="changeImage"
+              >
+                Change image
+                <input
+                  hidden
+                  accept={fileTypes}
+                  onChange={onChange}
+                  // onChange={(e) => handleChange(e.target.files)}
+                  type="file"
+                />
+              </Button>
             </Col>
 
             <Col span={12}>
@@ -401,7 +471,7 @@ export default function RestuarantList({ onMorePage }) {
         title="Add Restaurant"
         width={720}
         onClose={onClose}
-        visible={visible}
+        open={visible}
         bodyStyle={{ paddingBottom: 80, zIndex: "100" }}
         extra={
           <Space>
@@ -419,9 +489,24 @@ export default function RestuarantList({ onMorePage }) {
               <div className="editProduct_imageHolder">
                 <img
                   src={editValues.image}
-                  onClick={() => message.warning("Want To Change the image")}
+                  // onClick={() => message.warning("Want To Change the image")}
                 />
               </div>
+              <Button
+                // variant="contained"
+                component="label"
+                // className="changeImage"
+              >
+                Change image
+                <input
+                  // hidden
+                  accept={fileTypes}
+                  onChange={onChange}
+                  // onChange={(e) => handleChange(e.target.files)}
+                  type="file"
+                />
+              </Button>
+              {prog && prog === 0 && prog === 100 ? <p>{prog}%</p> : ""}
             </Col>
 
             <Col span={12}>
