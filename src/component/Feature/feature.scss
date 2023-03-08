@@ -27,16 +27,16 @@
     // background-size: 600px 100%;
     transition: all ease 0.4s;
   }
+
   @include breakpoint(md) {
-    background: url("../../assets/photo/half_pizza_C.png") center bottom
-      no-repeat;
+    background: url("../../assets/photo/half_pizza_C.png") center bottom no-repeat;
     // height: 550px;
     background-size: 700px auto;
     transition: all ease 0.4s;
   }
+
   @include breakpoint(lg) {
-    background: url("../../assets/photo/half_pizza_C.png") center bottom
-      no-repeat;
+    background: url("../../assets/photo/half_pizza_C.png") center bottom no-repeat;
     background-size: 900px auto;
     height: 450px;
     transition: all ease 0.4s;
@@ -83,6 +83,7 @@
     align-items: right;
     // align-items: right;
     vertical-align: top;
+
     // top: 0px;
     img {
       // margin-top: 60px;
@@ -107,12 +108,14 @@
         height: 400px;
         transition: all ease 0.4s;
       }
+
       @include breakpoint(md) {
         display: none;
         height: 600px;
         width: 550px;
         transition: all ease 0.4s;
       }
+
       @include breakpoint(lg) {
         display: none;
         height: 100%;
@@ -140,9 +143,11 @@
     margin: 0 4rem;
     // margin-top: 0;
   }
+
   @include breakpoint(md) {
     top: 6rem;
   }
+
   @include breakpoint(lg) {
     // margin: 0 4rem;
     top: 4rem;
@@ -169,6 +174,7 @@
     background-color: rgba(248, 162, 24, 0.494);
     border: none;
     border-radius: 25px;
+
     input {
       display: flex;
       flex: 4;
@@ -188,12 +194,13 @@
         outline: none;
       }
 
-      @include breakpoint(sm) {
-      }
+      @include breakpoint(sm) {}
+
       @include breakpoint(md) {
         align-items: center;
         width: 60%;
       }
+
       @include breakpoint(lg) {
         width: 60%;
         height: 40px;
@@ -212,6 +219,7 @@
       margin-right: 1rem;
       color: black;
       transform: 0;
+
       &:hover {
         transform: scale(1.4);
         transition: all ease-in 0.3ms;
@@ -223,11 +231,13 @@
       background-color: rgba(248, 162, 24, 0.494);
       transition: all ease 0.4s;
     }
+
     @include breakpoint(md) {
       width: 80%;
       background-color: rgba(248, 162, 24, 0.494);
       transition: all ease 0.4s;
     }
+
     @include breakpoint(lg) {
       width: 80%;
       // background-color: rgba(248, 162, 24, 0.494);
@@ -261,6 +271,7 @@
     background: #ffffff8c;
     border: none;
     border-radius: 25px;
+
     input {
       display: flex;
       flex: 4;
@@ -285,6 +296,7 @@
       margin-right: 1rem;
       color: white;
       transform: 0;
+
       &:hover {
         transform: scale(1.4);
         transition: all ease-in 0.3ms;
@@ -297,11 +309,13 @@
       transition: all ease 0.4s;
       align-items: center;
     }
+
     @include breakpoint(md) {
       width: 80%;
       background-color: rgba(248, 162, 24, 0.494);
       transition: all ease 0.4s;
     }
+
     @include breakpoint(lg) {
       width: 80%;
       background-color: rgba(248, 162, 24, 0.494);
@@ -314,9 +328,11 @@
     padding: 2rem;
     left: 2rem;
   }
+
   @include breakpoint(md) {
     width: 70%;
   }
+
   @include breakpoint(lg) {
     width: 50%;
   }
@@ -327,6 +343,7 @@
     visibility: visible;
     top: 30rem;
   }
+
   100% {
     visibility: visible;
     top: 3rem;
@@ -344,13 +361,14 @@
   align-items: left;
   justify-content: left;
 
-  @include breakpoint(sm) {
-  }
+  @include breakpoint(sm) {}
+
   @include breakpoint(md) {
     margin: 1rem auto;
     text-align: center;
     margin: 2rem auto;
   }
+
   @include breakpoint(lg) {
     margin: 2rem auto;
   }
@@ -374,9 +392,11 @@
   text-shadow: 0.02em 0 white, 0 0.02em white, -0.02em 0 white, 0 -0.02em white,
     -0.02em -0.02em white, -0.02em 0.02em white, 0.02em -0.02em white,
     0.02em 0.02em white;
+
   @include breakpoint(sm) {
     font-size: 25px;
   }
+
   @include breakpoint(md) {
     text-shadow: 0.02em 0 white, 0 0.02em white, -0.02em 0 white,
       0 -0.02em white, -0.02em -0.02em white, -0.02em 0.02em white,
@@ -385,11 +405,13 @@
     margin-top: 6rem;
     text-align: center;
   }
+
   @include breakpoint(lg) {
     font-size: 40px;
     margin-top: 8rem;
   }
 }
+
 .content_new h3 {
   font-size: 17px;
   padding: 4px;
@@ -401,21 +423,25 @@
   font-family: $Poppins;
   font-weight: 300;
   display: none;
+
   @include breakpoint(sm) {
     display: none;
   }
+
   @include breakpoint(md) {
     display: block;
   }
+
   @include breakpoint(lg) {
     display: block;
   }
 }
 
-.content > * {
+.content>* {
   color: rgb(147, 86, 5);
   background-color: transparent;
 }
+
 .current {
   opacity: 1;
   transform: translateX(0);
@@ -424,6 +450,7 @@
   margin: 0;
   background: transparent;
 }
+
 .current .content {
   opacity: 1;
 }
@@ -439,9 +466,11 @@
 .arrow:hover {
   color: gray;
 }
+
 .next {
   right: 1rem;
 }
+
 .prev {
   left: 1rem;
 }

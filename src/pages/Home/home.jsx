@@ -35,8 +35,10 @@ import { getAllRestaurants } from "../../redux/actions/restaurantAction";
 import { CircularProgress } from "@material-ui/core";
 
 import { useCookies } from "react-cookie";
+import Notify from "../../component/Notify/Notify.jsx";
 
 export default function Home() {
+  const notifType = useSelector((state) => state.ui.notif.type);
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
   const dispatch = useDispatch();
@@ -61,6 +63,7 @@ export default function Home() {
 
   return (
     <>
+      {notifType && <Notify />}
       {loading ? (
         <>
           <div className="loader">

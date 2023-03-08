@@ -27,7 +27,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import axios from "axios";
 import { Add } from "@material-ui/icons";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, IconButton } from "@mui/material";
 import { useCookies } from "react-cookie";
 //for the input hider
 const useStyles = makeStyles((theme) => ({
@@ -222,7 +222,9 @@ export default function RestuarantList({ onMorePage }) {
                 onMorePage(2);
               }}
             >
-              <Add className="add" />
+              <IconButton>
+                <Add className="add" />
+              </IconButton>
             </div>
           </div>
         ) : (

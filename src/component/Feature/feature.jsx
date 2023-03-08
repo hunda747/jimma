@@ -65,7 +65,7 @@ export default function Feature() {
                       <h2>Order Food To Your Home Or Office.</h2>
                       <h3>{slide.info}</h3>
 
-                      <div className="searchBarHolder">
+                      <div className="searchBarHolder" style={{ display: 'flex', alignItems: 'center' }}>
                         <input
                           type="text"
                           className="searchInput active"
@@ -78,9 +78,9 @@ export default function Feature() {
                         <SearchIcon onClick={() => handleSearch()} />
                       </div>
 
-                      <p>
+                      {/* <p>
                         <a href="/login">Sign In</a> for your recent addresses
-                      </p>
+                      </p> */}
                     </div>
                   </div>
                 </div>

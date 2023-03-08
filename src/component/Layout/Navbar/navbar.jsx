@@ -177,9 +177,8 @@ export default function Navbar(params) {
                 onClick={() => {
                   navigate("/contact");
                 }}
-                className={`${
-                  location.pathname === "/contact" ? "current" : ""
-                }`}
+                className={`${location.pathname === "/contact" ? "current" : ""
+                  }`}
               >
                 Contact us
               </li>
@@ -236,10 +235,10 @@ export default function Navbar(params) {
                         // marginleft: "8rem",
                         // marginRight: "2rem",
                       }}
-                      // style={{
-                      //   marginLeft: "6rem",
-                      //   marginRight: "2rem",
-                      // }}
+                    // style={{
+                    //   marginLeft: "6rem",
+                    //   marginRight: "2rem",
+                    // }}
                     >
                       <Tooltip title="Account settings">
                         <IconButton
@@ -518,7 +517,7 @@ const useOnClickOutside = (ref, handler) => {
       console.log("event.target.className", event.target.className);
       if (
         ref.current?.contains(event.target) ||
-        event.target.className.includes("exempt-from-bkgd")
+        String(event?.target?.className)?.includes("exempt-from-bkgd")
       ) {
         return;
       }

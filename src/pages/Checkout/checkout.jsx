@@ -6,12 +6,13 @@ import "./checkout.scss";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 import ReactMapGL, { Marker } from "react-map-gl";
-import { Input, Button, message } from "antd";
+// import { Input, message } from "antd";
 // import {  Input, Button  } from '@material-ui/core';
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import SentimentVeryDissatisfiedIcon from "@material-ui/icons/SentimentVeryDissatisfied";
 import { useSelector, useDispatch } from "react-redux";
 import CartItem from "../../component/cartItem/cartItem";
+
 import { createOrders } from "../../redux/actions/orderActions";
 import {
   addToCart,
@@ -31,7 +32,7 @@ import mapboxgl from "mapbox-gl";
 mapboxgl.workerClass =
   require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 // import { clearCart } from '../../../redux/actions/cartActions';
-import { CircularProgress } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 // import axios from 'axios';
@@ -39,6 +40,8 @@ import axios from "axios";
 import { type } from "@testing-library/user-event/dist/type";
 import { Alert } from "@mui/material";
 import Snackbar, { SnackbarOrigin } from "@mui/material/Snackbar";
+import { notifActions } from "../../redux/actions/notifyActions";
+import Notify from "../../component/Notify/Notify";
 
 export default function Checkout() {
   const vertical = "top";
@@ -51,10 +54,12 @@ export default function Checkout() {
   const localhost = process.env.REACT_APP_BASE_URL;
   // const localhost = "http://tolodeliveryjimma.com/";
   const [errMsg, setErrMsg] = useState("");
-  const [load, setLoad] = useState(true);
+  const [load, setLoad] = useState(false);
   const cart = useSelector((state) => state.cart);
   const order = useSelector((state) => state.order.orders);
   const [show, setShow] = useState(false);
+  const notifType = useSelector((state) => state.ui.notif.type);
+
   const { cartItems } = cart;
   // console.log(cartItems);
   const config = {
@@ -156,6 +161,7 @@ export default function Checkout() {
   };
 
   const handleConfirm = (event) => {
+
     event.preventDefault();
     event.stopPropagation();
     setLoad(true);
@@ -174,7 +180,8 @@ export default function Checkout() {
         phoneNumber.length !== 10
       ) {
         setLoad(false);
-        message.error("Phone Number Is Invalid");
+        dispatch(notifActions.notif({ type: "error", msg: "Phone Number Is Invalid" }));
+
       } else {
         if (cookies?.ToleDUuid) {
           let orderItems = [];
@@ -221,7 +228,7 @@ export default function Checkout() {
                 console.log(res);
                 dispatch(clearCart());
                 sessionStorage.setItem("purchased", true);
-                message.success("Order Placed");
+                dispatch(notifActions.notif({ type: "success", msg: "Order placed" }));
                 // setShow(true);
                 navigate("/");
               })
@@ -239,15 +246,18 @@ export default function Checkout() {
           // dispatch(clearCart());
         } else {
           setLoad(false);
-          message.error("Order Place Failed: Check if you are logged in");
+          dispatch(notifActions.notif({ type: "error", msg: "Order Place Failed: Check if you are logged in" }));
+
         }
       }
     } else {
       setLoad(false);
       navigate("/");
-      message.error("Your cart is empty");
+      dispatch(notifActions.notif({ type: "error", msg: "Your cart is empty" }));
+
     }
-  };
+  }
+  // };
 
   const qtyChangeHandler = (id, qty) => {
     dispatch(changeToCart(id, qty));
@@ -275,6 +285,8 @@ export default function Checkout() {
 
   return (
     <>
+      {notifType && <Notify />}
+
       {!cartItems.length === 0 ? (
         <>
           <div className="loader">
@@ -448,7 +460,7 @@ export default function Checkout() {
                           viewBox="0 0 14 20"
                           version="1.1"
                           xmlns="http://www.w3.org/2000/svg"
-                          // xmlns:xlink="http://www.w3.org/1999/xlink"
+                        // xmlns:xlink="http://www.w3.org/1999/xlink"
                         >
                           {/* <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch --> */}
                           <title>location_on</title>
@@ -627,17 +639,18 @@ export default function Checkout() {
             </div>
           </div> */}
 
-            <div className="confirmOrder">
-              <button className="btn_order" onClick={handleConfirm}>
-                {load ? (
-                  <div className="orderLoader">
-                    <CircularProgress />
-                  </div>
-                ) : (
-                  <div> Order </div>
-                )}
-              </button>
-            </div>
+            <Button onClick={handleConfirm}
+              className='order-btn'
+              variant='outlined'
+            >
+              {load ? (
+                <div className="orderLoader">
+                  <CircularProgress />
+                </div>
+              ) : (
+                <div> Order </div>
+              )}
+            </Button>
           </div>
         </div>
         {/* <ContactUs/> */}

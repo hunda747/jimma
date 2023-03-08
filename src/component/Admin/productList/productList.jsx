@@ -27,7 +27,7 @@ import {
   createFood,
 } from "../../../redux/actions/foodAction";
 import { Add } from "@material-ui/icons";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, IconButton } from "@mui/material";
 // const { Option } = Select;
 import { useCookies } from "react-cookie";
 import { EditFoodContext } from "./index";
@@ -484,11 +484,13 @@ export default function ProductList({ onMorePage }) {
           className="addButton"
           onClick={() => {
             setVisibleAdd(true);
-            setAddValues({ ...addValues, restaurant: food[0].restaurant });
-            console.log(food[0].restaurant);
+            setAddValues({ ...addValues, restaurant: food[0]?.restaurantsId });
+            console.log(food[0]?.restaurantsId);
           }}
         >
-          <Add className="add" />
+          <IconButton>
+            <Add className="add" />
+          </IconButton>
         </div>
       </div>
 
