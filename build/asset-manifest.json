@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/static/css/main.9b782777.chunk.css",
-    "main.js": "/static/js/main.4b7df8fc.chunk.js",
+    "main.css": "/static/css/main.54f9bf47.chunk.css",
+    "main.js": "/static/js/main.f75d9399.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.f69725ce.js",
     "static/css/2.50b9a019.chunk.css": "/static/css/2.50b9a019.chunk.css",
-    "static/js/2.d3cc87b3.chunk.js": "/static/js/2.d3cc87b3.chunk.js",
+    "static/js/2.f682c493.chunk.js": "/static/js/2.f682c493.chunk.js",
     "index.html": "/index.html",
-    "static/js/2.d3cc87b3.chunk.js.LICENSE.txt": "/static/js/2.d3cc87b3.chunk.js.LICENSE.txt",
+    "static/js/2.f682c493.chunk.js.LICENSE.txt": "/static/js/2.f682c493.chunk.js.LICENSE.txt",
     "static/js/mapbox-gl-csp-worker.5f717133.worker.js": "/static/js/mapbox-gl-csp-worker.5f717133.worker.js",
     "static/js/mapbox-gl-csp-worker.5f717133.worker.js.LICENSE.txt": "/static/js/mapbox-gl-csp-worker.5f717133.worker.js.LICENSE.txt",
     "static/media/add.3809380f.png": "/static/media/add.3809380f.png",
@@ -16,14 +16,17 @@
     "static/media/crust_full_pizza.2692fc70.png": "/static/media/crust_full_pizza.2692fc70.png",
     "static/media/drink.11f90c92.png": "/static/media/drink.11f90c92.png",
     "static/media/fhero_img.f7ada407.png": "/static/media/fhero_img.f7ada407.png",
+    "static/media/firfir.185a7167.jpg": "/static/media/firfir.185a7167.jpg",
     "static/media/fish.a6932535.png": "/static/media/fish.a6932535.png",
     "static/media/feature.scss": "/static/media/half_pizza_C.8af67c30.png",
     "static/media/hamburger.fa56f8af.png": "/static/media/hamburger.fa56f8af.png",
     "static/media/lunch.5cc4bb90.png": "/static/media/lunch.5cc4bb90.png",
     "static/media/pizza.2e30927c.png": "/static/media/pizza.2e30927c.png",
     "static/media/pizza.d0f61163.jpg": "/static/media/pizza.d0f61163.jpg",
+    "static/media/rice.01ac38cb.png": "/static/media/rice.01ac38cb.png",
     "static/media/salad.41d8c750.png": "/static/media/salad.41d8c750.png",
     "static/media/search.cadee8cd.png": "/static/media/search.cadee8cd.png",
+    "static/media/shiro.df876311.png": "/static/media/shiro.df876311.png",
     "static/media/slidePhoto1.ad7f48bb.png": "/static/media/slidePhoto1.ad7f48bb.png",
     "static/media/slidePhoto10.20055856.png": "/static/media/slidePhoto10.20055856.png",
     "static/media/slidePhoto2.40769436.png": "/static/media/slidePhoto2.40769436.png",
@@ -43,8 +46,8 @@
   "entrypoints": [
     "static/js/runtime-main.f69725ce.js",
     "static/css/2.50b9a019.chunk.css",
-    "static/js/2.d3cc87b3.chunk.js",
-    "static/css/main.9b782777.chunk.css",
-    "static/js/main.4b7df8fc.chunk.js"
+    "static/js/2.f682c493.chunk.js",
+    "static/css/main.54f9bf47.chunk.css",
+    "static/js/main.f75d9399.chunk.js"
   ]
 }

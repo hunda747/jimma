@@ -84,9 +84,10 @@ export default function DetailView(props) {
       // message.error("You can only order from one restarant");
       message.error({
         content: "You can only order from one restarant",
-        // style: {
-        //   marginTop: "10vh",
-        // },
+        style: {
+          zIndex: 100000000,
+          marginTop: "10vh",
+        },
       });
     }
   };

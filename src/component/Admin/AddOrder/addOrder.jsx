@@ -5,6 +5,25 @@ import FoodCard from "../../FoodCard/foodCard";
 import CartView from "../../CartView/cartView";
 import AdminCart from "../AdminOrderCart/adminCart";
 
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import Typography from "@mui/material/Typography";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
+import pizzaIcon from "../../../assets/svg/pizza.png";
+import burgerIcon from "../../../assets/svg/hamburger.png";
+import chickenIcon from "../../../assets/svg/chicken.png";
+import drinkIcon from "../../../assets/svg/drink.png";
+import fishIcon from "../../../assets/svg/fish.png";
+import lunchIcon from "../../../assets/svg/lunch.png";
+import steakIcon from "../../../assets/svg/steak.png";
+import saladIcon from "../../../assets/svg/salad.png";
+import soupIcon from "../../../assets/svg/soup.png";
+import firfirIcon from "../../../assets/svg/firfir.jpg";
+import shiroIcon from "../../../assets/svg/shiro.png";
+import riceIcon from "../../../assets/svg/rice.png";
+
 import { useState } from "react";
 import { message, Upload, Input, Button } from "antd";
 
@@ -44,7 +63,7 @@ export default function AddRestaurant({ onMorePage }) {
   const [addressData, setAddressData] = useState("");
   const [phoneData, setPhoneData] = useState("");
   const [search, setSearch] = useState("");
-
+  const [expanded, setExpanded] = useState(false);
   useEffect(() => {
     dispatch(getAllRestaurants());
   }, []);
@@ -54,6 +73,28 @@ export default function AddRestaurant({ onMorePage }) {
 
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
+
+  const [types, setTypes] = useState([]);
+
+  useEffect(() => {
+    findTypes();
+  }, [foods]);
+
+  const findTypes = () => {
+    if (foods) {
+      console.log(types);
+      let typeItems = [];
+      foods?.map((fo) => {
+        if (!typeItems?.includes(fo.type)) {
+          typeItems.push(fo.type);
+        } else {
+        }
+      });
+      setTypes(typeItems);
+
+      console.log(types);
+    }
+  };
 
   const getCartCount = () => {
     return cartItems.reduce(
@@ -68,6 +109,10 @@ export default function AddRestaurant({ onMorePage }) {
       (price, item) => item.price * item.qtyCounter + price,
       0
     );
+  };
+
+  const handleNewChange = (panel) => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
   };
 
   const handleChange = (e) => {
@@ -97,6 +142,7 @@ export default function AddRestaurant({ onMorePage }) {
           content: "Phone Number Is Invalid",
           style: {
             marginTop: "10vh",
+            zIndex: 1000,
           },
         });
       } else if (addressData === "") {
@@ -105,6 +151,7 @@ export default function AddRestaurant({ onMorePage }) {
           content: "Address Is Invalid",
           style: {
             marginTop: "10vh",
+            zIndex: 1000,
           },
         });
       } else {
@@ -132,7 +179,7 @@ export default function AddRestaurant({ onMorePage }) {
             console.log(orderDetail);
 
             const addOrder = localhost + "/api/order/addOrder";
-           
+
             axios
               .post(
                 `${localhost}/api/order/addOrder`,
@@ -156,6 +203,7 @@ export default function AddRestaurant({ onMorePage }) {
                   content: "Order Placed",
                   style: {
                     marginTop: "10vh",
+                    zIndex: 1000,
                   },
                 });
                 handleCancel();
@@ -166,6 +214,7 @@ export default function AddRestaurant({ onMorePage }) {
                   content: "Order Place Failed: Try again",
                   style: {
                     marginTop: "10vh",
+                    zIndex: 1000,
                   },
                 });
               });
@@ -179,10 +228,20 @@ export default function AddRestaurant({ onMorePage }) {
             // }
           } catch (e) {
             console.log(e);
-            message.error("Order Place Failed: Try again");
+            message.error({
+              content: "Order Place Failed: Try again",
+              style: {
+                zIndex: 1000,
+              },
+            });
           }
         } else {
-          message.error("Order Place Failed: Check if you are logged in");
+          message.error({
+            content: "Order Place Failed: Check if you are logged in",
+            style: {
+              zIndex: 1000,
+            },
+          });
         }
       }
     } else {
@@ -270,7 +329,7 @@ export default function AddRestaurant({ onMorePage }) {
               <div className="food_list">
                 {/* <h3>Food list</h3> */}
                 <div className="foods">
-                  {foods?.map((food) => {
+                  {/* {foods?.map((food) => {
                     return (
                       <div className="menuItem">
                         <FoodCard
@@ -284,7 +343,103 @@ export default function AddRestaurant({ onMorePage }) {
                         />
                       </div>
                     );
-                  })}
+                  })} */}
+                  {
+                    // types ?
+                    types?.length > 0
+                      ? types?.map((type, key) => {
+                          const filter = foods?.filter(
+                            (food) => foods.type === type
+                          );
+                          const pan0el = "panel" + console.log(filter);
+                          // console.log(key);
+                          return (
+                            <Accordion
+                              expanded={expanded === `panel${key + 1}`}
+                              onChange={handleNewChange(`panel${key + 1}`)}
+                              className="accordion"
+                              id={key}
+                              key={key}
+                            >
+                              <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel1bh-content"
+                                id="panel1bh-header"
+                              >
+                                <Typography
+                                  sx={{ flexShrink: 0 }}
+                                  style={{
+                                    textTransform: "capitalize",
+                                    fontFamily: "sans-serif",
+                                  }}
+                                  className="foodType"
+                                >
+                                  <div className="icon">
+                                    {type === "pizza" ? (
+                                      <img src={pizzaIcon} alt="" />
+                                    ) : type === "burger" ? (
+                                      <img src={burgerIcon} alt="" />
+                                    ) : type === "chicken" ? (
+                                      <img src={chickenIcon} alt="" />
+                                    ) : type === "drinkIcon" ? (
+                                      <img src={drinkIcon} alt="" />
+                                    ) : type === "fish" ? (
+                                      <img src={fishIcon} alt="" />
+                                    ) : type === "lunch" ? (
+                                      <img src={lunchIcon} alt="" />
+                                    ) : type === "steak" ? (
+                                      <img src={steakIcon} alt="" />
+                                    ) : type === "salad" ? (
+                                      <img src={saladIcon} alt="" />
+                                    ) : type === "soup" ? (
+                                      <img src={soupIcon} alt="" />
+                                    ) : type === "shiro" ? (
+                                      <img src={shiroIcon} alt="" />
+                                    ) : type === "firfir" ? (
+                                      <img src={firfirIcon} alt="" />
+                                    ) : type === "rice" ? (
+                                      <img src={riceIcon} alt="" />
+                                    ) : (
+                                      <img src={lunchIcon} alt="" />
+                                    )}
+                                  </div>
+                                  {type}
+                                </Typography>
+                              </AccordionSummary>
+                              <AccordionDetails className="detailFood">
+                                {filter?.length !== 0 ? (
+                                  <>
+                                    <div className="displayMenu">
+                                      {filter?.map((food, index) => {
+                                        // console.log(food);
+                                        return (
+                                          <div className="menuItem">
+                                            <FoodCard
+                                              key={index}
+                                              id={food.id}
+                                              name={food.food_name}
+                                              desc={food.description}
+                                              price={food.price}
+                                              restaurant={food.restaurantsId}
+                                              type={food.type}
+                                            />
+                                          </div>
+                                        );
+                                      })}
+                                    </div>
+                                  </>
+                                ) : (
+                                  <div>
+                                    <p>Not Available</p>
+                                  </div>
+                                )}
+                              </AccordionDetails>
+                            </Accordion>
+                          );
+                        })
+                      : ""
+                    // : "no type"
+                  }
                 </div>
               </div>
             </div>

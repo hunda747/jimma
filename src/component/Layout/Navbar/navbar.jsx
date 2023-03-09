@@ -9,6 +9,8 @@ import {
   MenuOutlined,
   SearchOutlined,
   Campaign,
+  ContactPage,
+  SearchOffOutlined,
 } from "@mui/icons-material";
 import { useLocation, useNavigate } from "react-router-dom";
 import Axios from "axios";
@@ -33,6 +35,10 @@ import {
   ExpandMoreOutlined,
   ChevronLeft,
   ChevronRight,
+  Home,
+  AccountCircle,
+  Info,
+  Close,
 } from "@material-ui/icons";
 
 import CloseIcon from "@mui/icons-material/Close";
@@ -177,8 +183,9 @@ export default function Navbar(params) {
                 onClick={() => {
                   navigate("/contact");
                 }}
-                className={`${location.pathname === "/contact" ? "current" : ""
-                  }`}
+                className={`${
+                  location.pathname === "/contact" ? "current" : ""
+                }`}
               >
                 Contact us
               </li>
@@ -195,7 +202,7 @@ export default function Navbar(params) {
                 // setOpenMenu(true);
               }}
             >
-              <MenuOutlined />
+              {sideMenu ? <Close /> : <MenuOutlined />}
               {/* <Burger openMenu={openMenu} setOpenMenu={setOpenMenu} />
               <MenuMobile openMenu={openMenu} setOpenMenu={setOpenMenu} /> */}
             </div>
@@ -235,10 +242,10 @@ export default function Navbar(params) {
                         // marginleft: "8rem",
                         // marginRight: "2rem",
                       }}
-                    // style={{
-                    //   marginLeft: "6rem",
-                    //   marginRight: "2rem",
-                    // }}
+                      // style={{
+                      //   marginLeft: "6rem",
+                      //   marginRight: "2rem",
+                      // }}
                     >
                       <Tooltip title="Account settings">
                         <IconButton
@@ -374,36 +381,94 @@ export default function Navbar(params) {
           <div className="sideBard">
             <div className="main">
               {/* <div className="menu">explore</div> */}
-              <div className="menu" onClick={() => navigate("/")}>
-                Home
+              <div className="top">
+                <div className="menu" onClick={() => navigate("/")}>
+                  <Home className="iconMenu" />
+                  <span>Home</span>
+                </div>
+                <div className="menu" onClick={() => navigate("/about")}>
+                  <Info className="iconMenu" />
+                  <span>About us</span>
+                </div>
+                <div className="menu" onClick={() => navigate("/contact")}>
+                  <ContactPage className="iconMenu" />
+                  <span>Contact us</span>
+                </div>
+                <div className="menu" onClick={() => navigate("/search/pizza")}>
+                  <Search className="iconMenu" />
+                  <span>Search</span>
+                </div>
+                {token && (
+                  <div className="menu" onClick={() => navigate("/account")}>
+                    <AccountCircle className="iconMenu" />
+                    <span>Profile</span>
+                  </div>
+                )}
               </div>
-              <div className="menu" onClick={() => navigate("/about")}>
-                About us
+              <div className="mid"></div>
+              <div className="end">
+                {/* {!token && (
+                  <div className="menu" onClick={() => navigate("/login")}>
+                    LOGIN
+                  </div>
+                )}
+                {!token && (
+                  <div className="menu" onClick={() => navigate("/reigster")}>
+                    SIGNUP
+                  </div>
+                )}
+                {token && (
+                  <div className="menu" onClick={handleLogout}>
+                    Log out
+                  </div>
+                )} */}
+                <div className="end">
+                  {token && (
+                    <div>
+                      <div className="name">
+                        <Avatar
+                          sx={{
+                            width: 32,
+                            height: 32,
+                            background: "#ffdb00",
+                            textTransform: "uppercase",
+                          }}
+                        >
+                          {cookies?.ToleDUfname
+                            ? cookies?.ToleDUfname.charAt(0)
+                            : ""}
+                          {/* H */}
+                        </Avatar>
+                        <span>
+                          {cookies?.ToleDUfname} {cookies?.ToleDUlname}
+                          {/* Hundaol Nk */}
+                        </span>
+                      </div>
+                      <div className="menu btn" onClick={handleLogout}>
+                        Log out
+                      </div>
+                    </div>
+                  )}
+                  {!token && (
+                    <div className="login">
+                      <div
+                        className="menu btn"
+                        onClick={() => navigate("/login")}
+                      >
+                        LOGIN
+                      </div>
+                      <div
+                        className="menu btn"
+                        onClick={() => navigate("/reigster")}
+                      >
+                        SIGNUP
+                      </div>
+                    </div>
+                  )}
+                  {/* {!token && (
+                )} */}
+                </div>
               </div>
-              <div className="menu" onClick={() => navigate("/contact")}>
-                Contact us
-              </div>
-
-              {!token && (
-                <div className="menu" onClick={() => navigate("/login")}>
-                  LOGIN
-                </div>
-              )}
-              {!token && (
-                <div className="menu" onClick={() => navigate("/reigster")}>
-                  SIGNUP
-                </div>
-              )}
-              {token && (
-                <div className="menu" onClick={() => navigate("/account")}>
-                  Profile
-                </div>
-              )}
-              {token && (
-                <div className="menu" onClick={handleLogout}>
-                  Log out
-                </div>
-              )}
             </div>
           </div>
         ) : (

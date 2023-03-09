@@ -1,28 +1,27 @@
-.add_order{
-
+.add_order {
 }
 
-.add_order .card{
+.add_order .card {
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   margin-bottom: 1rem;
   padding: 0.5rem;
 }
 
-.add_order .form_side .tops{
+.add_order .form_side .tops {
   display: flex;
   gap: 15px;
 }
 
-.add_order .form_side .tops h3{
+.add_order .form_side .tops h3 {
   font-size: 25px;
 }
 
-.add_order .orders .menu .rest_list, 
-.add_order .orders .menu .food_list{
+.add_order .orders .menu .rest_list,
+.add_order .orders .menu .food_list {
   padding: 20px;
   /* background-color: antiquewhite; */
-  
+
   margin: 5px;
 }
 
@@ -37,13 +36,13 @@
   width: 100%;
 }
 
-.add_order .orders .menu .rest_list .rest_select{
+.add_order .orders .menu .rest_list .rest_select {
   width: 100%;
   /* display: none; */
 }
 
 /* cart */
-.add_order .orders .cart_main{
+.add_order .orders .cart_main {
   width: 40%;
   padding: 24px 10px;
   /* border: 1px solid black; */
@@ -72,23 +71,22 @@
   width: 10%;
 } */
 
-.add_order .orders .address{
+.add_order .orders .address {
   padding: 10px;
   /* border: 1px solid black; */
   background-color: rgb(255, 255, 255);
 }
-.add_order .orders .address input{
+.add_order .orders .address input {
   padding: 8px;
   width: 100%;
 }
 
-
-.add_order .searchBar{
+.add_order .searchBar {
   margin: 16px 20px;
   display: flex;
 }
 
-.add_order .searchBar .btn_search{
+.add_order .searchBar .btn_search {
   padding: 5px 24px;
   border-radius: 6px;
   margin: 0 10px;
@@ -101,7 +99,7 @@
   vertical-align: center;
 }
 
-.search__input { 
+.search__input {
   width: 60%;
   padding: 12px 24px;
 
@@ -109,7 +107,7 @@
   transition: transform 250ms ease-in-out;
   font-size: 14px;
   line-height: 18px;
-  
+
   color: #000000;
   background-color: transparent;
 
@@ -127,4 +125,28 @@
   color: rgba(0, 0, 0, 0.8);
   text-transform: uppercase;
   letter-spacing: 1.5px;
+}
+
+.add_order .accordion {
+  font-family: sans-serif;
+}
+.add_order .accordion .detailFood {
+  /* // padding: 0 2rem; */
+}
+
+.add_order .accordion .foodType {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 1rem;
+}
+.add_order .accordion .icon img {
+  width: 30px;
+  height: 100%;
+}
+
+.add_order .accordion .displayMenu {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }

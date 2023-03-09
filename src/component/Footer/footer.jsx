@@ -4,13 +4,21 @@ import { Link } from "react-router-dom";
 import { Twitter, Instagram, Facebook, LinkedIn } from "@material-ui/icons";
 import logo from "../../assets/photo/tole_blackgb.png";
 
+import jigiiLogo from "../../assets/photo/toleBlackNew.png";
+// import jigiiLogo from "../../../assets/photo/tole_black_no_text.png";
+import jigiiText from "../../assets/photo/text_only.png";
+
 export default function Footer() {
   return (
     <>
       <footer className={classes.footer}>
         <div className={classes.footer__container}>
           <div className={classes.footer__container__logoHolder}>
-            <img src={logo} alt="Logo" />
+            <br />
+            <img src={jigiiLogo} alt="Logo" />
+            <br />
+            <img src={jigiiText} alt="Logo" />
+            {/* <img src={logo} alt="Logo" /> */}
             {/* <img src="https://i.im.ge/2022/09/27/1NHrd1.tolo.jpg" alt="Logo" /> */}
             {/* <h2>TOLE DELIVERY</h2> */}
           </div>

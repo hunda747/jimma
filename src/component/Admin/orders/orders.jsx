@@ -124,7 +124,6 @@ export default function Orders() {
     // console.log(res.data);
   };
 
-
   const fetchInprogress = async () => {
     setLoader(true);
     axios
@@ -170,10 +169,9 @@ export default function Orders() {
       });
   };
 
-  
   useEffect(() => {
-    setTableRow(data.orders)
-  }, [data])
+    setTableRow(data.orders);
+  }, [data]);
 
   const handleChange = (event, newValue) => {
     console.log(newValue);
@@ -192,11 +190,6 @@ export default function Orders() {
 
   const classes = useStyles();
   const [value, setValue] = useState(0);
-
-  const fetchAllOrders = async () => {
-    const response = await axios.post("http://localhost:5000/api/getOrders");
-    // setOrders(response.data)
-  };
 
   useEffect(() => {
     // fetchAllOrders();
@@ -319,7 +312,7 @@ export default function Orders() {
                               date={val.date}
                               status={val.status}
                               address={val.address}
-                              orders = {jason}
+                              orders={jason}
                               longitude={val.longitude}
                               latitude={val.latitude}
                               admin={true}
@@ -376,7 +369,7 @@ export default function Orders() {
                               date={val.date}
                               status={val.status}
                               address={val.address}
-                              orders = {JSON.parse(val.orders)}
+                              orders={JSON.parse(val.orders)}
                               longitude={val.longitude}
                               latitude={val.latitude}
                               admin={true}
@@ -441,7 +434,7 @@ export default function Orders() {
                               date={val.date}
                               status={val.status}
                               address={val.address}
-                              orders = {JSON.parse(val.orders)}
+                              orders={JSON.parse(val.orders)}
                               longitude={val.longitude}
                               latitude={val.latitude}
                               admin={true}
