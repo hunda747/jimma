@@ -95,7 +95,7 @@ export default function AddRestaurant({ onMorePage }) {
       console.log(types);
     }
   };
-
+  console.log(foods);
   const getCartCount = () => {
     return cartItems.reduce(
       (qtyCounter, item) => Number(item.qtyCounter) + qtyCounter,
@@ -349,9 +349,10 @@ export default function AddRestaurant({ onMorePage }) {
                     types?.length > 0
                       ? types?.map((type, key) => {
                           const filter = foods?.filter(
-                            (food) => foods.type === type
+                            (food) => food.type === type
                           );
-                          const pan0el = "panel" + console.log(filter);
+                          console.log(filter);
+
                           // console.log(key);
                           return (
                             <Accordion
