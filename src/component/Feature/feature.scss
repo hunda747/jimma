@@ -29,15 +29,18 @@
   }
 
   @include breakpoint(md) {
-    background: url("../../assets/photo/half_pizza_C.png") center bottom no-repeat;
+    background: url("../../assets/photo/crust_half_pizza3.png") center bottom
+      no-repeat;
+    // background: url("../../assets/photo/half_pizza_C.png") center bottom no-repeat;
     // height: 550px;
     background-size: 700px auto;
     transition: all ease 0.4s;
   }
 
   @include breakpoint(lg) {
-    background: url("../../assets/photo/half_pizza_C.png") center bottom no-repeat;
-    background-size: 900px auto;
+    background: url("../../assets/photo/crust_half_pizza3.png") center bottom
+      no-repeat;
+    background-size: 850px auto;
     height: 450px;
     transition: all ease 0.4s;
   }
@@ -194,7 +197,8 @@
         outline: none;
       }
 
-      @include breakpoint(sm) {}
+      @include breakpoint(sm) {
+      }
 
       @include breakpoint(md) {
         align-items: center;
@@ -361,7 +365,8 @@
   align-items: left;
   justify-content: left;
 
-  @include breakpoint(sm) {}
+  @include breakpoint(sm) {
+  }
 
   @include breakpoint(md) {
     margin: 1rem auto;
@@ -437,7 +442,7 @@
   }
 }
 
-.content>* {
+.content > * {
   color: rgb(147, 86, 5);
   background-color: transparent;
 }

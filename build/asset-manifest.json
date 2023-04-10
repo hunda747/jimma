@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.aab9a087.chunk.css",
-    "main.js": "/static/js/main.45073d7c.chunk.js",
+    "main.js": "/static/js/main.b6d9cdbb.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.f69725ce.js",
     "static/css/2.50b9a019.chunk.css": "/static/css/2.50b9a019.chunk.css",
     "static/js/2.09f1aee1.chunk.js": "/static/js/2.09f1aee1.chunk.js",
@@ -27,14 +27,14 @@
     "static/media/salad.41d8c750.png": "/static/media/salad.41d8c750.png",
     "static/media/search.cadee8cd.png": "/static/media/search.cadee8cd.png",
     "static/media/shiro.df876311.png": "/static/media/shiro.df876311.png",
-    "static/media/slidePhoto1.ad7f48bb.png": "/static/media/slidePhoto1.ad7f48bb.png",
+    "static/media/slidePhoto1.e8e8b2cd.webp": "/static/media/slidePhoto1.e8e8b2cd.webp",
     "static/media/slidePhoto10.20055856.png": "/static/media/slidePhoto10.20055856.png",
-    "static/media/slidePhoto2.40769436.png": "/static/media/slidePhoto2.40769436.png",
+    "static/media/slidePhoto2.ce06414d.webp": "/static/media/slidePhoto2.ce06414d.webp",
     "static/media/slidePhoto3.140d0958.png": "/static/media/slidePhoto3.140d0958.png",
-    "static/media/slidePhoto4.ede1ac04.png": "/static/media/slidePhoto4.ede1ac04.png",
-    "static/media/slidePhoto5.e3096389.png": "/static/media/slidePhoto5.e3096389.png",
-    "static/media/slidePhoto6.246a24e2.png": "/static/media/slidePhoto6.246a24e2.png",
-    "static/media/slidePhoto7.f981fd4d.png": "/static/media/slidePhoto7.f981fd4d.png",
+    "static/media/slidePhoto4.26314b2c.webp": "/static/media/slidePhoto4.26314b2c.webp",
+    "static/media/slidePhoto5.02dc6b83.webp": "/static/media/slidePhoto5.02dc6b83.webp",
+    "static/media/slidePhoto6.a55b4ff2.webp": "/static/media/slidePhoto6.a55b4ff2.webp",
+    "static/media/slidePhoto7.b543d8d2.webp": "/static/media/slidePhoto7.b543d8d2.webp",
     "static/media/slidePhoto8.14f2d5de.png": "/static/media/slidePhoto8.14f2d5de.png",
     "static/media/slidePhoto9.6bb3efe3.png": "/static/media/slidePhoto9.6bb3efe3.png",
     "static/media/soup.f59f84e1.png": "/static/media/soup.f59f84e1.png",
@@ -48,6 +48,6 @@
     "static/css/2.50b9a019.chunk.css",
     "static/js/2.09f1aee1.chunk.js",
     "static/css/main.aab9a087.chunk.css",
-    "static/js/main.45073d7c.chunk.js"
+    "static/js/main.b6d9cdbb.chunk.js"
   ]
 }

@@ -65,7 +65,10 @@ export default function Feature() {
                       <h2>Order Food To Your Home Or Office.</h2>
                       <h3>{slide.info}</h3>
 
-                      <div className="searchBarHolder" style={{ display: 'flex', alignItems: 'center' }}>
+                      <div
+                        className="searchBarHolder"
+                        style={{ display: "flex", alignItems: "center" }}
+                      >
                         <input
                           type="text"
                           className="searchInput active"
