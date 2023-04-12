@@ -28,7 +28,7 @@ function normalizeColor(hexCode) {
         const context = _miniGl.gl;
         width && height && this.setSize(width, height), _miniGl.lastDebugMsg, _miniGl.debug = debug && debug_output ? function(e) {
             const t = new Date;
-            t - _miniGl.lastDebugMsg > 1e3 && console.log("---"), console.log(t.toLocaleTimeString() + Array(Math.max(0, 32 - e.length)).join(" ") + e + ": ", ...Array.from(arguments).slice(1)), _miniGl.lastDebugMsg = t
+            t - _miniGl.lastDebugMsg > 1e3 && // console.log("---"), // console.log(t.toLocaleTimeString() + Array(Math.max(0, 32 - e.length)).join(" ") + e + ": ", ...Array.from(arguments).slice(1)), _miniGl.lastDebugMsg = t
         } : () => {}, Object.defineProperties(_miniGl, {
             Material: {
                 enumerable: false,
@@ -332,7 +332,7 @@ function normalizeColor(hexCode) {
             rotation: 0,
             playing: true
         }, 
-        document.querySelectorAll("canvas").length < 1 ? console.log("DID NOT LOAD HERO STRIPE CANVAS") : (
+        document.querySelectorAll("canvas").length < 1 ? // console.log("DID NOT LOAD HERO STRIPE CANVAS") : (
           
           this.minigl = new MiniGl(this.el, null, null, !0), 
           requestAnimationFrame(() => {

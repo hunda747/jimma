@@ -44,7 +44,7 @@ const ProfileComponent = () => {
   }, []);
 
   const handleSubmit = () => {
-    console.log(fData);
+    // console.log(fData);
   };
 
   //for password
@@ -244,7 +244,7 @@ const ProfileComponent = () => {
     //           </div>
     //           {
     //             fPData.error ?
-    //             console.log(fPData.error) : ""
+    //             // console.log(fPData.error) : ""
     //           }
     //           <hr />
     //           <div className="py-4 px-4 md:px-8 lg:px-16 flex flex-col space-y-4">

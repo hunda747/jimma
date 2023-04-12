@@ -39,9 +39,9 @@ export default function Feature() {
   }, [current]);
 
   const handleSearch = () => {
-    console.log("in search");
+    // console.log("in search");
     if (search === "") {
-      console.log("empty");
+      // console.log("empty");
     } else {
       navigate(`/search/${search}`);
     }
@@ -50,7 +50,7 @@ export default function Feature() {
   return (
     <div className="slider">
       {featureData.map((slide, index) => {
-        console.log(index);
+        // console.log(index);
         return (
           <div className="sliderImageContainer" key={index}>
             <div className={index === current ? "slide current" : "slide"}>

@@ -21,7 +21,7 @@ export default function RestaurantCard({
 
             <div className="styleContentHolder">
               <div className="styleContent">
-                <h1>{Name}</h1>
+                <h1 style={{ textTransform: "uppercase" }}>{Name}</h1>
                 <h3>
                   <DisplayStars rating={rating} />
                 </h3>

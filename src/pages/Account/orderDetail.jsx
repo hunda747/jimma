@@ -56,20 +56,19 @@ export default function OrderDetail(props) {
   };
 
   useEffect(() => {
-    console.log(props.id);
+    // console.log(props.id);
     // dispatch(getOrderDetails(props.id));
   }, []);
 
   const handleCancelOrder = () => {
-    console.log(props.id);
+    // console.log(props.id);
     dispatch(changeOrderStatus(props.id, "cancel"));
     dispatch(getOrdersPending());
     //window.location.reload(true);
   };
 
-
   //orders items list
-  // orders?.map((val) => console.log(val._id.food_name));
+  // orders?.map((val) => // console.log(val._id.food_name));
   return (
     <>
       <div className={classes.orderDetailHolder}>

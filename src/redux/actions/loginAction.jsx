@@ -8,20 +8,20 @@ import Chart from "react-apexcharts";
 export const loginWithPhone = (phone, password, cookies, setCookie) => async(dispatch) => {
   
 
-    console.log(phone + ' , ' + password);
+    // console.log(phone + ' , ' + password);
     try{
         dispatch({
           type: actionType.LOGIN_WITH_PHONE_REQUEST,
         });
 
         const { data } = await api.loginWithPhoneNumber(phone, password);
-        console.log(data);
+        // console.log(data);
 
         dispatch({ 
             type: actionType.LOGIN_WITH_PHONE_SUCCESS, 
             payload: true
           });
-          console.log(data[0].fname);
+          // console.log(data[0].fname);
           let expires = new Date();
           expires.setTime(expires.getTime() + (2 * 60 * 60 * 1000))
           setCookie('uid', data[0].id, {path: '/', expires})
@@ -37,7 +37,7 @@ export const loginWithPhone = (phone, password, cookies, setCookie) => async(dis
               error.response && error.response.data.message 
               ?error.response.data.message:error.message,
             });
-          console.log(error.response && error.response.data.message 
+          // console.log(error.response && error.response.data.message 
             ?error.response.data.message:error.message);
     }
 };
@@ -51,7 +51,7 @@ export const  adminSignUp = (userName, email, password, accessKey)=> async (disp
       });
 
       const { data } = await api.admin_signup(userName ,email, password, accessKey);
-      console.log(data);
+      // console.log(data);
 
       dispatch({ 
           type: actionType.ADMIN_SIGNUP_SUCCESS, 
@@ -66,7 +66,7 @@ export const  adminSignUp = (userName, email, password, accessKey)=> async (disp
             error.response && error.response.data.message 
             ?error.response.data.message:error.message,
           });
-        console.log(error.response && error.response.data.message 
+        // console.log(error.response && error.response.data.message 
           ?error.response.data.message:error.message);
   }
 }
@@ -79,7 +79,7 @@ export const adminLogin = (email , password) => async (dispatch) =>{
   //     });
 
   //     const { data } = await api.adminLogin(email, password);
-  //     console.log(data);
+  //     // console.log(data);
 
   //     dispatch({ 
   //         type: actionType.ADMIN_LOGIN_SUCCESS, 
@@ -94,7 +94,7 @@ export const adminLogin = (email , password) => async (dispatch) =>{
   //           error.response && error.response.data.message 
   //           ?error.response.data.message:error.message,
   //         });
-  //       console.log(error.response && error.response.data.message 
+  //       // console.log(error.response && error.response.data.message 
   //         ?error.response.data.message:error.message);
   // }
 }

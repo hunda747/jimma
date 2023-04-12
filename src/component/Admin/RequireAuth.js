@@ -7,7 +7,7 @@ const RequireAuth = ({ allowedRoles }) => {
   const location = useLocation();
 
   const [cookie, setCookie] = useCookies(["user"]);
-  console.log(allowedRoles);
+  // // console.log(allowedRoles);
   return cookie?.toloDAMrole === allowedRoles ? (
     <Outlet />
   ) : (

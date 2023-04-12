@@ -34,8 +34,8 @@ export default function UserOrder(params) {
   const orders = useSelector((state) => state.order.orders);
   const orderLoad = useSelector((state) => state.order.loading);
 
-  console.log("order info from user order file ");
-  console.log(orders);
+  // console.log("order info from user order file ");
+  // console.log(orders);
   return (
     <>
       <div className={classes.userOrderHolder}>
@@ -66,21 +66,12 @@ export default function UserOrder(params) {
               <Spin />
             </div>
           ) : (
-            // orders?. .map((val, index) => {
+            //  orders?. .map((val, index) => {
             orders
               ?.filter((order) => order.status === type)
               .map((val, index) => {
                 return (
                   <>
-                    {val.status === "cancel"
-                      ? console.log("cancel")
-                      : val.status === "pending"
-                      ? console.log("pending")
-                      : val.status === "complete"
-                      ? console.log("complete")
-                      : val.status === "inProgress"
-                      ? console.log("inProgress")
-                      : console.log("")}
                     <Panel
                       className={
                         val.status === "cancel"

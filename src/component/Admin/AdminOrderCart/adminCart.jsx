@@ -55,9 +55,7 @@ export default function AdminCart() {
                 <Add className="icons" fontSize="small" />
               </div>
 
-              <div className="number">
-                {cart.qtyCounter}
-              </div>
+              <div className="number">{cart.qtyCounter}</div>
 
               <div
                 onClick={() => {
@@ -117,7 +115,7 @@ export default function AdminCart() {
 }
 {
   /* <div className='action'  onClick={() => {
-  console.log(cart.id);
+  // console.log(cart.id);
   dispatch(removeFromCart(cart.id))
 }} ><Delete color='red'/>
 </div> */

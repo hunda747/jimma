@@ -144,7 +144,7 @@ export default function PM_Dashboard() {
   const dispatch = useDispatch();
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
-  console.log(cookies.ADemail);
+  // console.log(cookies.ADemail);
 
   useEffect(() => {
     // dispatch(getAdminUserName(cookies.ADemail));
@@ -155,7 +155,7 @@ export default function PM_Dashboard() {
 
   const loading = false;
   const error = false;
-  // console.log(user);
+  // // console.log(user);
 
   //material ui menu navigation
   const classes = useStyles();
@@ -284,7 +284,7 @@ export default function PM_Dashboard() {
                   button
                   onClick={() => {
                     setCompCounter(index);
-                    console.log(index);
+                    // console.log(index);
                   }}
                   key={text}
                 >

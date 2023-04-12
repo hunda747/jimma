@@ -81,17 +81,17 @@ export default function Profile({ userName, email, role, signUpDate }) {
   const loading = false;
   const error = false;
 
-  // console.log(user)
+  // // console.log(user)
 
   const userNameChangeHandler = async () => {
-    console.log(userInfoState);
+    // console.log(userInfoState);
     //dispatch(changeAdminUserName(email,userName))
     // if(window.confirm("Are you sure you want to change User Name")){
     const res = await axios.post(apiURL + "/api/admin/changeAdminUserName", {
       userNameOld: userInfoState.userName,
       userNameNew: userInfoState.userNameNew,
     });
-    console.log(res.data);
+    // console.log(res.data);
     if (res.data.status === 200) {
       message.success({
         content: "UserName changed successfully",
@@ -139,7 +139,7 @@ export default function Profile({ userName, email, role, signUpDate }) {
             newPassword: passwordChange.newPassword,
           }
         );
-        console.log(response);
+        // console.log(response);
         if (response.data.status === 402) {
           setErrMsg("Invalid Old Password");
           message.error({
@@ -148,7 +148,7 @@ export default function Profile({ userName, email, role, signUpDate }) {
               marginTop: "10vh",
             },
           });
-          console.log("im getting the error msg here " + errMsg);
+          // console.log("im getting the error msg here " + errMsg);
         } else if (response.data.status === 404) {
           setErrMsg("User Not Found");
           message.error({
@@ -170,7 +170,7 @@ export default function Profile({ userName, email, role, signUpDate }) {
           // window.location.reload(true);
         }
       } catch (err) {
-        console.log(err);
+        // console.log(err);
         if (!err?.response) {
           setErrMsg("No Server Response");
         } else if (err.response?.status === 404) {
@@ -211,7 +211,7 @@ export default function Profile({ userName, email, role, signUpDate }) {
     //             email: newAccount.email,
     //             password: newAccount.password
     //         })
-    //         console.log(response)
+    //         // console.log(response)
     //        // dispatch(createAdminAccount(newAccount.userName, newAccount.email , newAccount.password))
     //         if(response.data.status === 400){
     //             // message.error(user.message)
@@ -224,7 +224,7 @@ export default function Profile({ userName, email, role, signUpDate }) {
     //             message.success("Account Created");
     //         }
     //     } catch (err) {
-    //         console.log(err);
+    //         // console.log(err);
     //         if (!err?.response) {
     //             setAddAccErr('No Server Response');
     //         } else if (err.response?.status === 401) {

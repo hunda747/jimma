@@ -55,7 +55,7 @@ export default function SearchPage() {
   const foods = useSelector((state) => state.food);
   const { loading, food, error } = foods;
 
-  console.log(foods);
+  // console.log(foods);
 
   const handleLogout = () => {
     removeCookie("fname", { path: "/" });
@@ -208,7 +208,7 @@ export default function SearchPage() {
                 >
                   {/* <div className='btn_search' 
                     onClick={() => {
-                      console.log(search);
+                      // console.log(search);
                       navigate(`/search/${search}`)
                     }}> */}
                   <Search />

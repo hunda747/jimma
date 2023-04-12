@@ -128,7 +128,7 @@ export default function AddRestaurant({ onMorePage }) {
 
   const onChange = async (e) => {
     const file = e.target.files[0];
-    console.log(file);
+    // console.log(file);
     let url;
     if (!file) return;
 
@@ -141,18 +141,18 @@ export default function AddRestaurant({ onMorePage }) {
         const prog = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-        console.log(prog);
+        // console.log(prog);
         setProgress(prog);
       },
       (err) => {
-        console.log(err);
+        // console.log(err);
       },
       async () => {
         // url = await storageRef.getDownloadURL().then();
         storageRef.getDownloadURL().then((url) => {
-          console.log(url);
+          // console.log(url);
           setImgPreview(url);
-          console.log(url);
+          // console.log(url);
           collectionRef.add({ url, createdAt });
 
           setRestaurantData({
@@ -162,19 +162,19 @@ export default function AddRestaurant({ onMorePage }) {
         });
 
         const createdAt = timestamp();
-        // console.log(url);
-        console.log(imgPreview);
+        // // console.log(url);
+        // console.log(imgPreview);
       }
     );
-    // console.log('url: ' + url);
+    // // console.log('url: ' + url);
   };
 
   const { TextArea } = Input;
   //add product button loading state
 
   const handleSubmit = () => {
-    console.log("validating all the product inputs");
-    console.log(restaurantData);
+    // console.log("validating all the product inputs");
+    // console.log(restaurantData);
     setLoader(true);
 
     try {
@@ -189,8 +189,8 @@ export default function AddRestaurant({ onMorePage }) {
       } else if (restaurantData.rating === "") {
         message.error("Product rating missing");
       } else if (fileList?.length) {
-        console.log("this is the product data so far");
-        console.log(restaurantData);
+        // console.log("this is the product data so far");
+        // console.log(restaurantData);
         // dispatch(createRestaurant(restaurantData.name, restaurantData.description, restaurantData.rating, restaurantData.open_days, restaurantData.working_hour, restaurantData.productImg, true))
 
         axios
@@ -204,7 +204,7 @@ export default function AddRestaurant({ onMorePage }) {
             status: true,
           })
           .then((res) => {
-            console.log(res);
+            // console.log(res);
             message.success({
               content: "New Restaurant added",
               style: {
@@ -214,7 +214,7 @@ export default function AddRestaurant({ onMorePage }) {
             });
           })
           .catch((err) => {
-            console.log(err);
+            // console.log(err);
             message.error({
               content:
                 err?.response?.data ||
@@ -234,14 +234,14 @@ export default function AddRestaurant({ onMorePage }) {
         // window.location.reload(true)
       }
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     } finally {
       setLoader(false);
     }
   };
 
   const handleAddCategory = () => {
-    // console.log(categoryData);
+    // // console.log(categoryData);
     // if(categoryData.categoryName === ''){
     // 	message.error("Category Name is missing")
     // }else if(categoryData.categoryImg === ''){
@@ -253,8 +253,8 @@ export default function AddRestaurant({ onMorePage }) {
     // }else if(! /(?=.*[A-Za-z]).{2,}/.test(categoryData.categoryValue)){
     // 	message.error("Invalid Category Brand")
     // }else if(fileList?.length){
-    // 	console.log("this is the product data so far")
-    // 	console.log(categoryData)
+    // 	// console.log("this is the product data so far")
+    // 	// console.log(categoryData)
     // 	dispatch(createCategory(categoryData.categoryName, categoryData.categoryValue, categoryData.categoryImg))
     // 	handleClose();
     // 	// categoryData.location.reload(true)

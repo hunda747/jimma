@@ -82,7 +82,7 @@ export default function AddRestaurant({ onMorePage }) {
 
   const findTypes = () => {
     if (foods) {
-      console.log(types);
+      // // console.log(types);
       let typeItems = [];
       foods?.map((fo) => {
         if (!typeItems?.includes(fo.type)) {
@@ -92,10 +92,10 @@ export default function AddRestaurant({ onMorePage }) {
       });
       setTypes(typeItems);
 
-      console.log(types);
+      // // console.log(types);
     }
   };
-  console.log(foods);
+  // // console.log(foods);
   const getCartCount = () => {
     return cartItems.reduce(
       (qtyCounter, item) => Number(item.qtyCounter) + qtyCounter,
@@ -116,18 +116,18 @@ export default function AddRestaurant({ onMorePage }) {
   };
 
   const handleChange = (e) => {
-    console.log(e.target.value);
+    // // console.log(e.target.value);
     setRestaurantData(e.target.value);
     dispatch(getFoodsByRestaurant(e.target.value));
   };
 
   const handleSubmit = async (e) => {
-    console.log("order");
+    // // console.log("order");
     e.preventDefault();
     e.stopPropagation();
-    console.log("In handle confirm");
+    // // console.log("In handle confirm");
     const date = new Date();
-    console.log("this is the ordered phone number");
+    // // console.log("this is the ordered phone number");
 
     if (cartItems?.length !== 0) {
       if (
@@ -137,7 +137,7 @@ export default function AddRestaurant({ onMorePage }) {
         ) ||
         phoneData.length !== 10
       ) {
-        console.log("Phone Number Is Invalid");
+        // // console.log("Phone Number Is Invalid");
         message.error({
           content: "Phone Number Is Invalid",
           style: {
@@ -146,7 +146,7 @@ export default function AddRestaurant({ onMorePage }) {
           },
         });
       } else if (addressData === "") {
-        console.log("Address Is Invalid");
+        // // console.log("Address Is Invalid");
         message.error({
           content: "Address Is Invalid",
           style: {
@@ -172,11 +172,11 @@ export default function AddRestaurant({ onMorePage }) {
             const costTotal = getTotalProductPrice();
             const no_item = getCartCount();
 
-            console.log(costTotal);
-            console.log(no_item);
-            console.log(orderItems);
+            // // console.log(costTotal);
+            // // console.log(no_item);
+            // // console.log(orderItems);
             const orderDetail = JSON.stringify(orderItems);
-            console.log(orderDetail);
+            // // console.log(orderDetail);
 
             const addOrder = localhost + "/api/order/addOrder";
 
@@ -198,7 +198,7 @@ export default function AddRestaurant({ onMorePage }) {
                 config
               )
               .then((res) => {
-                console.log(res);
+                // // console.log(res);
                 message.success({
                   content: "Order Placed",
                   style: {
@@ -209,7 +209,7 @@ export default function AddRestaurant({ onMorePage }) {
                 handleCancel();
               })
               .catch((err) => {
-                console.log(err);
+                // // console.log(err);
                 message.error({
                   content: "Order Place Failed: Try again",
                   style: {
@@ -227,7 +227,7 @@ export default function AddRestaurant({ onMorePage }) {
             //   });
             // }
           } catch (e) {
-            console.log(e);
+            // console.log(e);
             message.error({
               content: "Order Place Failed: Try again",
               style: {
@@ -250,7 +250,7 @@ export default function AddRestaurant({ onMorePage }) {
   };
 
   const handleCancel = () => {
-    console.log("cancel");
+    // console.log("cancel");
     dispatch(clearCart());
     setAddressData("");
     setPhoneData("");
@@ -292,7 +292,7 @@ export default function AddRestaurant({ onMorePage }) {
                 <div
                   className="btn_search"
                   onClick={() => {
-                    console.log(search);
+                    // console.log(search);
                     dispatch(searchFood(search));
                   }}
                 >
@@ -351,9 +351,9 @@ export default function AddRestaurant({ onMorePage }) {
                           const filter = foods?.filter(
                             (food) => food.type === type
                           );
-                          console.log(filter);
+                          // console.log(filter);
 
-                          // console.log(key);
+                          // // console.log(key);
                           return (
                             <Accordion
                               expanded={expanded === `panel${key + 1}`}
@@ -412,7 +412,7 @@ export default function AddRestaurant({ onMorePage }) {
                                   <>
                                     <div className="displayMenu">
                                       {filter?.map((food, index) => {
-                                        // console.log(food);
+                                        // // console.log(food);
                                         return (
                                           <div className="menuItem">
                                             <FoodCard

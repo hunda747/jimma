@@ -7,14 +7,14 @@ export const fetchPending = async (dispatch, setLoader) => {
   axios
     .post(localhost + "/api/order/getPendingOrders")
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       dispatch({
         type: "fetchOrderAndChangeState",
         payload: res.data,
       });
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
     })
     .finally(() => {
       setLoader(false);
@@ -26,14 +26,14 @@ export const fetchInprogress = async (dispatch, setLoader) => {
   axios
     .post(localhost + "/api/order/getInprogressOrders")
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       dispatch({
         type: "fetchOrderAndChangeState",
         payload: res.data,
       });
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
     })
     .finally(() => {
       setLoader(false);
@@ -43,20 +43,20 @@ export const fetchInprogress = async (dispatch, setLoader) => {
 export const fetchComplete = async (dispatch, setLoader) => {
   setLoader(true);
   const selectedDate = new Date().toISOString().slice(0, 10);
-  console.log(selectedDate);
+  // console.log(selectedDate);
   axios
     .post(localhost + "/api/order/getCompleteOrdersByDate", {
       date: selectedDate,
     })
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       dispatch({
         type: "fetchOrderAndChangeState",
         payload: res.data,
       });
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
     })
     .finally(() => {
       setLoader(false);

@@ -50,8 +50,8 @@ export default function Home() {
   const rests = useSelector((state) => state.restaurant);
   const { loading, restaurant, error } = rests;
 
-  console.log(restaurant);
-  console.log(loading);
+  // console.log(restaurant);
+  // console.log(loading);
 
   const handleLogout = () => {
     removeCookie("ToleDUfname", { path: "/" });

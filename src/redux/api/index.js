@@ -28,7 +28,8 @@ const getOrders = localhost + "/api/order/getOrders";
 const getInprogressOrders = localhost + "/api/order/getInprogressOrders";
 const getPendingOrders = localhost + "/api/order/getPendingOrders";
 const getCompleteOrders = localhost + "/api/order/getCompleteOrders";
-const getCompleteOrdersByDate = localhost + "/api/order/getCompleteOrdersByDate";
+const getCompleteOrdersByDate =
+  localhost + "/api/order/getCompleteOrdersByDate";
 const getOrdersbyId = localhost + "/api/order/getOrdersbyId";
 const changeStatus = localhost + "/api/order/changeStatus";
 const getOrdersbyUser = localhost + "/api/order/getOrdersbyUser";
@@ -136,17 +137,21 @@ export const createOrder = (
   orders,
   address
 ) => {
-  return axios.post(addOrder, {
-    date: date,
-    userId: userId,
-    total: total,
-    latitude: latitude,
-    longitude: longitude,
-    contact: contact,
-    no_item: no_item,
-    orders: orders,
-    address: address,
-  }, config);
+  return axios.post(
+    addOrder,
+    {
+      date: date,
+      userId: userId,
+      total: total,
+      latitude: latitude,
+      longitude: longitude,
+      contact: contact,
+      no_item: no_item,
+      orders: orders,
+      address: address,
+    },
+    config
+  );
 };
 
 export const changeOrderStatus = (id, status) => {
@@ -176,7 +181,7 @@ export const fetchOrdersComplete = (token) => {
       // header2: value2
     },
   };
-  console.log(token);
+  // console.log(token);
   return axios.post(getCompleteOrders, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -227,6 +232,6 @@ export const fetchAllFoodsByRestaurant = (restaurant) => {
 };
 
 export const fetchOrderDetail = (id) => {
-  console.log(id);
+  // console.log(id);
   return axios.post(getOrderDetail, { id: id });
 };

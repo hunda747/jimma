@@ -35,7 +35,7 @@ import { message } from "antd";
 export default function AdminLogin() {
   const history = useNavigate();
   const apiURL = process.env.REACT_APP_BASE_URL;
-  console.log(apiURL);
+  // console.log(apiURL);
   const heroku = "https://jimma-e-comm.herokuapp.com/";
   // const heroku = 'http://localhost:5000/';
   // const localhost = 'http://localhost:5000/';
@@ -73,7 +73,7 @@ export default function AdminLogin() {
     // const res = await axios.post('http://localhost:5000/api/checkUserPhone', {
     //         phone: phone
     // });
-    // console.log(res.data);
+    // // console.log(res.data);
     // return res.data;
   };
 
@@ -81,7 +81,7 @@ export default function AdminLogin() {
     // const res = await axios.post('http://localhost:5000/api/checkEmail', {
     //         email: email
     // });
-    // console.log(res.data);
+    // // console.log(res.data);
     // return res.data;
   };
 
@@ -98,7 +98,7 @@ export default function AdminLogin() {
   // finishing up registeration
   const onFinish = async () => {
     // const existNumber = await checkuser(values.phone_number);
-    console.log(registerInfo);
+    // console.log(registerInfo);
     setLoader(true);
     try {
       if (
@@ -140,9 +140,9 @@ export default function AdminLogin() {
           school_id: "Indivisula",
           password: registerInfo.password,
         });
-        console.log(res.data.status);
-        console.log(res.data);
-        console.log(res);
+        // console.log(res.data.status);
+        // console.log(res.data);
+        // console.log(res);
         if (res.status === 200) {
           setLoader(false);
           setSignUpErr("SignUp successfull");
@@ -163,19 +163,19 @@ export default function AdminLogin() {
       }
     } catch (err) {
       setLoader(false);
-      console.log(err);
-      console.log(err?.response.status);
+      // console.log(err);
+      // console.log(err?.response.status);
       if (!err?.response) {
         setSignUpErr("No Server Response");
-        console.log("response error");
+        // console.log("response error");
       } else if (err.response?.status === 400) {
-        console.log("try again error");
+        // console.log("try again error");
         setSignUpErr("Try again");
       } else if (err.response?.status === 401) {
-        console.log("in user name error");
+        // console.log("in user name error");
         setSignUpErr("User name is taken");
       } else {
-        console.log("login error");
+        // console.log("login error");
         setSignUpErr("Login Failed");
       }
     }
@@ -187,23 +187,23 @@ export default function AdminLogin() {
   });
 
   const loginHandler = async () => {
-    // console.log('Success:', values);
-    // console.log(loginInfo)
+    // // console.log('Success:', values);
+    // // console.log(loginInfo)
     setLoader(true);
 
     try {
-      console.log(apiURL + "api/getUser");
+      // console.log(apiURL + "api/getUser");
       let response;
       response = await axios.post(apiURL + "/api/user/getUser", {
         phone: loginInfo.phone_number,
         password: loginInfo.password,
       });
 
-      console.log(response);
-      console.log(response.data);
+      // console.log(response);
+      // console.log(response.data);
 
       if (response.data.phone) {
-        console.log("sucess");
+        // console.log("sucess");
 
         let expires = new Date();
         expires.setTime(expires.getTime() + 30 * 24 * 60 * 60 * 1000);
@@ -213,18 +213,18 @@ export default function AdminLogin() {
         setCookie("ToleDUlname", response.data.lname, { path: "/", expires });
         setCookie("ToleDUphoneNo", response.data.phone, { path: "/", expires });
 
-        // console.log(cookies?.ToleDUuid);
+        // // console.log(cookies?.ToleDUuid);
         // return ( <Navigate to='/' /> )
-        // console.log(from);
+        // // console.log(from);
         navigate(from);
       } else {
         setLoader(false);
-        console.log("login failed");
-        console.log(cookies?.ToleDUuid);
+        // console.log("login failed");
+        // console.log(cookies?.ToleDUuid);
       }
     } catch (err) {
       setLoader(false);
-      console.log(err);
+      // console.log(err);
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 400) {
@@ -238,13 +238,13 @@ export default function AdminLogin() {
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    // console.log("Failed:", errorInfo);
   };
 
   const container = document.getElementById("container");
 
   const signUpButtons = () => {
-    console.log(isLogin);
+    // console.log(isLogin);
     setErrMsg("");
     setSignUpErr("");
     setLoader(false);
@@ -262,7 +262,7 @@ export default function AdminLogin() {
   };
 
   const signInButton = () => {
-    console.log(isLogin);
+    // console.log(isLogin);
     setSignUpErr("");
     setErrMsg("");
     setLoader(false);

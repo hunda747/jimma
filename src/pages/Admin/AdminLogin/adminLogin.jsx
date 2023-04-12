@@ -31,7 +31,7 @@ import { useCookies } from "react-cookie";
 export default function AdminLogin() {
   const localhost = "https://jimma-e-comm.herokuapp.com/";
   const apiURL = process.env.REACT_APP_BASE_URL;
-  console.log(apiURL);
+  // console.log(apiURL);
   const dispatch = useDispatch();
   // const { setAuth } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -74,38 +74,38 @@ export default function AdminLogin() {
   }, [user, pwd]);
 
   const onFinish = async (values) => {
-    //  console.log('Success:', values);
+    //  // console.log('Success:', values);
     setLoader(true);
     const username = values.userName;
     const password = values.password_log;
-    console.log(username + password + "from admin login");
+    // console.log(username + password + "from admin login");
     try {
       const response = await axios.post(apiURL + "/api/admin/getAdmin	", {
         username: username,
         password: password,
       });
-      // console.log("this is just the respnse" + response)
-      // console.log(response.data.status === 'success');
+      // // console.log("this is just the respnse" + response)
+      // // console.log(response.data.status === 'success');
 
-      console.log(response.data);
+      // console.log(response.data);
       if (response?.error) {
         setLoader(false);
         setErrMsg(response.data.message);
-        console.log("im getting the error messgae  " + errMsg);
+        // console.log("im getting the error messgae  " + errMsg);
       } else if (false) {
         setLoader(false);
         setErrMsg(response.data.message);
       } else if (response.data.admin.id) {
         setLoader(false);
         setErrMsg("");
-        // console.log(response);
-        console.log("admin");
+        // // console.log(response);
+        // console.log("admin");
         const accessToken = response.data.jwt;
         const role = response.data.admin.role;
         const id = response.data.admin._id;
         const status = response.data.admin.status;
         const user = response.data.admin.username;
-        console.log(role);
+        // console.log(role);
 
         let expires = new Date();
         expires.setTime(expires.getTime() + 4 * 60 * 60 * 1000);
@@ -113,17 +113,17 @@ export default function AdminLogin() {
         setCookie("toloDAMusername", user, { path: "/", expires });
         setCookie("toloDAMrole", role, { path: "/", expires });
         setCookie("toloDAMid", id, { path: "/", expires });
-        console.log(accessToken);
+        // console.log(accessToken);
         setCookie("toloDADaccess_token", accessToken, { path: "/", expires });
 
         // setAuth({email, password, accessToken});
         if (role === "admin") {
           setLoader(false);
-          console.log("admin");
+          // console.log("admin");
           navigate("/dashboard");
         } else if (role === "manager") {
           setLoader(false);
-          console.log("manager");
+          // console.log("manager");
           // if(status === 'pending'){
           // 	setWarnInfo("Account Has not been Activated, Please wait For Response")
           // }else if(status === 'Diactive'){
@@ -134,7 +134,7 @@ export default function AdminLogin() {
           // }
         } else if (role === "delivery") {
           setLoader(false);
-          console.log("delivery");
+          // console.log("delivery");
           navigate("/delivery");
           // if(status === 'pending'){
           // 	setWarnInfo("Account Has not been Activated, Please wait For Response")
@@ -147,13 +147,13 @@ export default function AdminLogin() {
         }
       } else {
         setLoader(false);
-        // console.log('product');
+        // // console.log('product');
         // navigate('/productManagerDashboard')
         setErrMsg("Login Failed");
       }
     } catch (err) {
       setLoader(false);
-      console.log(err.response);
+      // console.log(err.response);
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 400) {
@@ -163,13 +163,13 @@ export default function AdminLogin() {
       } else {
         setErrMsg("Login Failed");
       }
-      console.log(errMsg);
+      // console.log(errMsg);
     }
   };
 
   const onSignUpFinish = async (value) => {
-    console.log("sign up" + value);
-    console.log(value);
+    // console.log("sign up" + value);
+    // console.log(value);
 
     try {
       if (regVal.userName.length < 3) {
@@ -190,10 +190,10 @@ export default function AdminLogin() {
           }
         );
 
-        console.log("this is the admin signup finishing");
-        console.log(response.status);
+        // console.log("this is the admin signup finishing");
+        // console.log(response.status);
         if (response.status === 200) {
-          console.log(response.data);
+          // console.log(response.data);
           setSuccessMsg("SignUp Successful");
           setRegVal({
             ...regVal,
@@ -210,7 +210,7 @@ export default function AdminLogin() {
         }
       }
     } catch (err) {
-      console.log(err.response.status);
+      // console.log(err.response.status);
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 400) {
@@ -222,7 +222,7 @@ export default function AdminLogin() {
       } else {
         setErrMsg("SignUp Failed");
       }
-      console.log(errMsg);
+      // console.log(errMsg);
     }
   };
 

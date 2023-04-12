@@ -24,39 +24,57 @@ export default function DetailView(props) {
       0
     );
   };
-  console.log(props.type);
+  // console.log(props.type);
 
   const countFood = () => {
     let count = 0;
     cartItems?.map((cart) => {
-      if (cart.type != "fries") {
+      if (isFood(cart.type)) {
+        console.log(cart.type);
         count = count + cart.qtyCounter;
       }
     });
     return count;
   };
 
+  const countDrink = () => {
+    let count = 0;
+    cartItems?.map((cart) => {
+      if (isDrink(cart.type)) {
+        count = count + cart.qtyCounter;
+      }
+    });
+    return count;
+  };
+
+  const isFood = (food) => {
+    if (
+      food.toLowerCase() != "drink" &&
+      food.toLowerCase() != "bottled water" &&
+      food.toLowerCase() != "beverages" &&
+      food.toLowerCase() != "juice" &&
+      food.toLowerCase() != "shake"
+    )
+      return true;
+    else return false;
+  };
+
+  const isDrink = (food) => {
+    if (
+      food.toLowerCase() === "drink" ||
+      food.toLowerCase() === "bottled water" ||
+      food.toLowerCase() === "beverages" ||
+      food.toLowerCase() === "juice" ||
+      food.toLowerCase() === "shake"
+    )
+      return true;
+    else return false;
+  };
+
   const handleAdd = () => {
-    console.log(cartItems);
-    if (props.type === "fries") {
-      dispatch(
-        addToCart(
-          props.id,
-          props.name,
-          props.price,
-          1,
-          props.restaurant,
-          props.type
-        )
-      );
-    } else if (countFood() >= 3) {
-      message.error({
-        content: "You can only order max 3 foods",
-        // style: {
-        //   marginTop: "10vh",
-        // },
-      });
-    } else if (cartItems.length === 0) {
+    // console.log(cartItems);
+    console.log(countFood());
+    if (cartItems.length === 0) {
       dispatch(
         addToCart(
           props.id,
@@ -68,18 +86,49 @@ export default function DetailView(props) {
         )
       );
       message.success("added to cart");
-    } else if (props.restaurant === cartItems[0].restaurant) {
-      dispatch(
-        addToCart(
-          props.id,
-          props.name,
-          props.price,
-          1,
-          props.restaurant,
-          props.type
-        )
-      );
-      message.success("added to cart");
+    } else if (props?.restaurant === cartItems[0]?.restaurant) {
+      console.log(isDrink(props.type));
+      if (isDrink(props.type)) {
+        if (countDrink() >= 3) {
+          message.error({
+            content: "You can only order max 3 drink",
+            // style: {
+            //   marginTop: "10vh",
+            // },
+          });
+        } else {
+          dispatch(
+            addToCart(
+              props.id,
+              props.name,
+              props.price,
+              1,
+              props.restaurant,
+              props.type
+            )
+          );
+          message.success("added to cart");
+        }
+      } else if (countFood() >= 3) {
+        message.error({
+          content: "You can only order max 3 foods",
+          // style: {
+          //   marginTop: "10vh",
+          // },
+        });
+      } else if (props.restaurant === cartItems[0].restaurant) {
+        dispatch(
+          addToCart(
+            props.id,
+            props.name,
+            props.price,
+            1,
+            props.restaurant,
+            props.type
+          )
+        );
+        message.success("added to cart");
+      }
     } else {
       // message.error("You can only order from one restarant");
       message.error({

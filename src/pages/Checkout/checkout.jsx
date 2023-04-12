@@ -61,7 +61,7 @@ export default function Checkout() {
   const notifType = useSelector((state) => state.ui.notif.type);
 
   const { cartItems } = cart;
-  // console.log(cartItems);
+  // // console.log(cartItems);
   const config = {
     headers: {
       "Access-Control-Allow-Origin": "*",
@@ -75,7 +75,7 @@ export default function Checkout() {
 
   // const product = useSelector((state) => state.getProduct.products)
   // const user = useSelector((state) => state.getUser.user);
-  // console.log(user);
+  // // console.log(user);
   let users = [];
 
   useEffect(() => {
@@ -100,9 +100,9 @@ export default function Checkout() {
   const [deliveryPrice, setDeliveryPrice] = useState(35);
 
   let printIt = (data) => {
-    console.log(data);
+    // console.log(data);
     data?.map((val) => {
-      console.log(val.formatted);
+      // console.log(val.formatted);
       setMapLocation(val.formatted);
     });
   };
@@ -121,9 +121,9 @@ export default function Checkout() {
     const resp = await axios.get(
       `https://api.opencagedata.com/geocode/v1/json?q=${lati}+${long}&key=018d9986cb5c483380337c7f6526c2fe`
     );
-    console.log("this is my local");
+    // console.log("this is my local");
 
-    console.log(resp.data);
+    // console.log(resp.data);
     setSelectedLocation({
       ...selectedLocation,
       country: resp.data.results[0].components.country,
@@ -134,14 +134,14 @@ export default function Checkout() {
       formatted: resp.data.results[0].formatted,
     });
 
-    console.log(resp);
-    console.log(selectedLocation);
+    // console.log(resp);
+    // console.log(selectedLocation);
   };
 
   const getLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       const p = position.coords;
-      console.log(p.latitude, p.longitude);
+      // console.log(p.latitude, p.longitude);
       setMarker({
         latitude: p.latitude,
         longitude: p.longitude,
@@ -157,17 +157,17 @@ export default function Checkout() {
 
   const handleDOubleConfirm = (event) => {
     event.preventDefault();
-    console.log("PURCHASE");
+    // console.log("PURCHASE");
   };
 
   const handleConfirm = (event) => {
     event.preventDefault();
     event.stopPropagation();
     setLoad(true);
-    console.log("In handle confirm");
+    // console.log("In handle confirm");
     const date = new Date();
-    console.log("this is the ordered phone number");
-    console.log(phoneNumber);
+    // console.log("this is the ordered phone number");
+    // console.log(phoneNumber);
 
     if (cartItems?.length !== 0) {
       // if(1){
@@ -186,7 +186,7 @@ export default function Checkout() {
         if (cookies?.ToleDUuid) {
           let orderItems = [];
           cartItems.map((item) => {
-            console.log(item);
+            // console.log(item);
             const singleProduct = {
               foodId: item.id,
               foodName: item.food_name,
@@ -196,17 +196,17 @@ export default function Checkout() {
             };
             orderItems.push(singleProduct);
           });
-          console.log(orderItems);
+          // console.log(orderItems);
 
           try {
             let costTotal = getTotalProductPrice();
             let no_item = getCartCount();
 
-            console.log(costTotal);
-            console.log(no_item);
-            console.log(typeof orderItems);
+            // console.log(costTotal);
+            // console.log(no_item);
+            // console.log(typeof orderItems);
             const orderDetail = JSON.stringify(orderItems);
-            console.log(orderDetail);
+            // console.log(orderDetail);
             axios
               .post(
                 `${localhost}/api/order/addOrder`,
@@ -225,7 +225,7 @@ export default function Checkout() {
                 config
               )
               .then((res) => {
-                console.log(res);
+                // console.log(res);
                 dispatch(clearCart());
                 sessionStorage.setItem("purchased", true);
                 dispatch(
@@ -235,16 +235,16 @@ export default function Checkout() {
                 navigate("/");
               })
               .catch((err) => {
-                console.log(err);
+                // console.log(err);
               });
-            // console.log(order);
+            // // console.log(order);
           } catch (e) {
-            console.log(e);
+            // console.log(e);
           } finally {
             setLoad(false);
           }
 
-          console.log(phoneNumber);
+          // console.log(phoneNumber);
           // dispatch(clearCart());
         } else {
           setLoad(false);
@@ -445,7 +445,7 @@ export default function Checkout() {
                       latitude: viewPort.lngLat.lat,
                       longitude: viewPort.lngLat.lng,
                     });
-                    console.log(viewPort);
+                    // console.log(viewPort);
                     // setMapLocation()
                     handleLocation(viewPort.lngLat.lat, viewPort.lngLat.lng);
                   }}

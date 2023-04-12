@@ -5,7 +5,7 @@ import * as api from "../api/index";
 export const addToCart =
   (id, food_name, price, qtyCounter, restaurant, type) =>
   async (dispatch, getState) => {
-    console.log(restaurant);
+    // console.log(restaurant);
     dispatch({
       type: actionType.ADD_TO_CART,
       payload: {
@@ -29,12 +29,12 @@ export const addToCart =
 export const subtractFromCart =
   (id, food_name, price, qtyCounter) => async (dispatch, getState) => {
     // const {data} = await api.fetchProductsById(id);
-    console.log(id);
-    console.log(food_name);
-    console.log("comming from  add to cart action");
-    // console.log(data);
-    console.log(qtyCounter, " is the ammount being added to cart");
-    // console.log(data[0].productBrand);
+    // console.log(id);
+    // console.log(food_name);
+    // console.log("comming from  add to cart action");
+    // // console.log(data);
+    // console.log(qtyCounter, " is the ammount being added to cart");
+    // // console.log(data[0].productBrand);
 
     dispatch({
       type: actionType.ADD_TO_CART,
@@ -56,11 +56,11 @@ export const subtractFromCart =
 
 export const changeToCart = (id, qtyCounter) => async (dispatch, getState) => {
   // const {data} = await api.fetchProductsById(id);
-  console.log(id);
-  console.log("comming from  change to cart action");
-  // console.log(data);
-  console.log(qtyCounter, " is the ammount being added to cart");
-  // console.log(data[0].productBrand);
+  // console.log(id);
+  // console.log("comming from  change to cart action");
+  // // console.log(data);
+  // console.log(qtyCounter, " is the ammount being added to cart");
+  // // console.log(data[0].productBrand);
 
   dispatch({
     type: actionType.CHANGE_TO_CART,

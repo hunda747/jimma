@@ -89,7 +89,7 @@ export default function Navbar(params) {
   let token = cookies?.ToleDUuid;
   // let token = localStorage.getItem("access_token");
   const from = location.state?.from?.pathname || "/";
-  // console.log(token);
+  // // console.log(token);
   const navigate = useNavigate();
   const theme = useTheme();
   const node = React.useRef();
@@ -196,8 +196,8 @@ export default function Navbar(params) {
             <div
               className="mobileMenu"
               onClick={() => {
-                console.log("inside menu");
-                console.log(sideMenu);
+                // console.log("inside menu");
+                // console.log(sideMenu);
                 setSideMenu(!sideMenu);
                 // setOpenMenu(true);
               }}
@@ -579,7 +579,7 @@ export default function Navbar(params) {
 const useOnClickOutside = (ref, handler) => {
   React.useEffect(() => {
     const listener = (event) => {
-      console.log("event.target.className", event.target.className);
+      // console.log("event.target.className", event.target.className);
       if (
         ref.current?.contains(event.target) ||
         String(event?.target?.className)?.includes("exempt-from-bkgd")

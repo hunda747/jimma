@@ -84,20 +84,20 @@ const localhost = process.env.REACT_APP_BASE_URL;
 
 export default function Orders() {
   const { data, dispatch } = useContext(OrderContext);
-  console.log(data);
+  // console.log(data);
   // const [orders , setOrders] = useState([]);
   const [loader, setLoader] = React.useState(false);
   const [tableRows, setTableRow] = React.useState([]);
   // const dispatch = useDispatch();
   const [cookies, setCookie] = useCookies(["user"]);
-  // console.log(cookies.ADaccess_token);
+  // // console.log(cookies.ADaccess_token);
   const nowData = new Date();
   const [dateValue, setDateValue] = React.useState(new Date());
 
   const handleDateChange = (e) => {
     // setValue(newValue);
-    console.log(e);
-    console.log(e.target.value);
+    // console.log(e);
+    // console.log(e.target.value);
   };
 
   const orders = useSelector((state) => state.order.orders);
@@ -109,19 +109,19 @@ export default function Orders() {
     axios
       .post(localhost + "/api/order/getPendingOrders")
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         dispatch({
           type: "fetchOrderAndChangeState",
           payload: res.data,
         });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       })
       .finally(() => {
         setLoader(false);
       });
-    // console.log(res.data);
+    // // console.log(res.data);
   };
 
   const fetchInprogress = async () => {
@@ -129,7 +129,7 @@ export default function Orders() {
     axios
       .post(localhost + "/api/order/getInprogressOrders")
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         // setTableRow(res.data);
         dispatch({
           type: "fetchOrderAndChangeState",
@@ -137,24 +137,24 @@ export default function Orders() {
         });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       })
       .finally(() => {
         setLoader(false);
       });
-    // console.log(res.data);
+    // // console.log(res.data);
   };
 
   const fetchComplete = async () => {
     setLoader(true);
     const selectedDate = new Date().toISOString().slice(0, 10);
-    console.log(selectedDate);
+    // console.log(selectedDate);
     axios
       .post(localhost + "/api/order/getCompleteOrdersByDate", {
         date: selectedDate,
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         // setTableRow(res.data);
         dispatch({
           type: "fetchOrderAndChangeState",
@@ -162,7 +162,7 @@ export default function Orders() {
         });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       })
       .finally(() => {
         setLoader(false);
@@ -174,7 +174,7 @@ export default function Orders() {
   }, [data]);
 
   const handleChange = (event, newValue) => {
-    console.log(newValue);
+    // console.log(newValue);
     setValue(newValue);
     if (newValue === 0) {
       fetchPending();
@@ -184,7 +184,7 @@ export default function Orders() {
       fetchComplete();
       // dispatch(getOrdersComplete(cookies.ADaccess_token));
     }
-    // console.log(orders);
+    // // console.log(orders);
     // setTableRow(orders);
   };
 
@@ -193,7 +193,7 @@ export default function Orders() {
 
   useEffect(() => {
     // fetchAllOrders();
-    console.log(value);
+    // console.log(value);
     if (value === 0) {
       fetchPending();
     } else if (value === 1) {
@@ -201,13 +201,13 @@ export default function Orders() {
     } else {
       fetchComplete();
     }
-    // console.log(orders);
+    // // console.log(orders);
     // setTableRow(orders);
   }, []);
 
   const handleChangeDate = async (newValue) => {
     setDateValue(newValue);
-    console.log(newValue);
+    // console.log(newValue);
     setLoader(true);
     const year = newValue.$y;
     let months = newValue.$M + 1;
@@ -219,7 +219,7 @@ export default function Orders() {
       months = "0" + months;
     }
     const selectedDate = year + "-" + months + "-" + days;
-    console.log(selectedDate);
+    // console.log(selectedDate);
     // const res = await axios.post('http://to')
     // const res = await axios.post(
     //   localhsots + "api/order/getCompleteOrdersByDate",
@@ -233,7 +233,7 @@ export default function Orders() {
         date: selectedDate,
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         // setTableRow(res.data);
         dispatch({
           type: "fetchOrderAndChangeState",
@@ -241,13 +241,13 @@ export default function Orders() {
         });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       })
       .finally(() => {
         setLoader(false);
       });
 
-    // console.log(res.data);
+    // // console.log(res.data);
     // setTableRow(res.data);
     // dispatch(getCompleteOrdersByDate(selectedDate))
   };
@@ -297,9 +297,9 @@ export default function Orders() {
                         <div>No Orders</div>
                       ) : (
                         data?.orders?.map((val, key) => {
-                          console.log(val.orders);
+                          // console.log(val.orders);
                           const jason = JSON.parse(val.orders);
-                          console.log(jason);
+                          // console.log(jason);
                           return (
                             <Row
                               key={val.id}

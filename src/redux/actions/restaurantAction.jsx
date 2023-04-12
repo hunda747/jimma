@@ -68,7 +68,7 @@ export const getRestaurantById = (id) => async (dispatch) => {
 export const createRestaurant =
   (name, description, rating, open_days, working_hour, img, status) =>
   async (dispatch) => {
-    console.log("in create reastuarant action");
+    // console.log("in create reastuarant action");
     try {
       dispatch({
         type: actionType.CREATE_RESTAURANT_REQUEST,
@@ -100,8 +100,8 @@ export const createRestaurant =
 export const updateRestaurant =
   (name, description, rating, open_days, working_hour, img, id, status) =>
   async (dispatch) => {
-    console.log("in change reastuarant action");
-    console.log(img);
+    // console.log("in change reastuarant action");
+    // console.log(img);
     try {
       dispatch({
         type: actionType.CREATE_RESTAURANT_REQUEST,

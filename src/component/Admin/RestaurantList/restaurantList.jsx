@@ -67,7 +67,7 @@ export default function RestuarantList({ onMorePage }) {
 
   const onChange = async (e) => {
     const file = e.target.files[0];
-    console.log(file);
+    // console.log(file);
     let url;
     if (!file) return;
 
@@ -80,18 +80,18 @@ export default function RestuarantList({ onMorePage }) {
         const prog = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
-        console.log(prog);
+        // console.log(prog);
         setProgress(prog);
       },
       (err) => {
-        console.log(err);
+        // console.log(err);
       },
       async () => {
         // url = await storageRef.getDownloadURL().then();
         storageRef.getDownloadURL().then((url) => {
-          console.log(url);
-          // setImgPreview(url);
           // console.log(url);
+          // setImgPreview(url);
+          // // console.log(url);
           collectionRef.add({ url, createdAt });
 
           setEditValues({
@@ -101,16 +101,16 @@ export default function RestuarantList({ onMorePage }) {
         });
 
         const createdAt = timestamp();
-        // console.log(url);
-        // console.log(imgPreview);
+        // // console.log(url);
+        // // console.log(imgPreview);
       }
     );
-    // console.log('url: ' + url);
+    // // console.log('url: ' + url);
   };
 
   const handleChange = (file) => {
     // setFile(file);
-    console.log(file);
+    // console.log(file);
     setCampaign({ ...campaign, photo: file });
   };
 
@@ -123,8 +123,8 @@ export default function RestuarantList({ onMorePage }) {
   }, []);
 
   const handleEditChanges = () => {
-    console.log("edit");
-    console.log(editValues);
+    // console.log("edit");
+    // console.log(editValues);
     dispatch(
       updateRestaurant(
         editValues.restaurant_name,
@@ -187,7 +187,7 @@ export default function RestuarantList({ onMorePage }) {
   };
 
   const restaurants = useSelector((state) => state.restaurant.restaurant);
-  console.log(restaurants);
+  // console.log(restaurants);
   const handleClick = () => {
     dispatch(getAllFoodsByRestaurant(props.id));
     onMorePage(10);
@@ -244,8 +244,8 @@ export default function RestuarantList({ onMorePage }) {
                             open_days: restaurant.open_days,
                             status: restaurant.status,
                           });
-                          console.log(editValues);
-                          console.log(restaurant);
+                          // console.log(editValues);
+                          // console.log(restaurant);
 
                           setVisible(true);
                         }}

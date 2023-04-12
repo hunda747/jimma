@@ -24,7 +24,7 @@ export const getOrderDetails = (id) => async (dispatch) => {
 };
 
 // export const createOrderDetails = (orderId, productId,price, productQuantity) => async (dispatch) => {
-//   console.log('action order Detail action : ' + productId);
+//   // console.log('action order Detail action : ' + productId);
 // 	try{
 //     dispatch({
 //       type: actionType.CREATE_ORDERS_DETAILS_REQUEST,

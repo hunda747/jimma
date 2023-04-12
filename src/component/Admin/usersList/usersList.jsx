@@ -123,7 +123,7 @@ export default function UsersList() {
   useEffect(() => {
     const fetchProducts = async () => {
       const res = await axios.post(localhost + "api/getUsers");
-      console.log(res.data);
+      // console.log(res.data);
       setUsers(res.data);
     };
     dispatch(getAllUser());
@@ -131,7 +131,7 @@ export default function UsersList() {
   }, []);
   const user = useSelector((state) => state.user.user);
   // setUsers(user);
-  console.log(user);
+  // console.log(user);
 
   const handleNext = async () => {
     // const response = await axios.post('http://localhost:5000/api/getAllUsers');
@@ -142,31 +142,31 @@ export default function UsersList() {
     // setCategoryValue(event.target.value);
     // if(event.target.value === "tcal"){
     //   const res = await axios.post('http://127.0.0.1:5000/api/getUserLogActivity', {days: 1000});
-    //   console.log(res.data);
+    //   // console.log(res.data);
     //   setUsers(res.data);
     // }else if(event.target.value === "tcty"){
     //   const res = await axios.post('http://127.0.0.1:5000/api/getUserLogActivity', {days: 365});
-    //   console.log(res.data);
+    //   // console.log(res.data);
     //   setUsers(res.data);
     // }else if(event.target.value === "tctm"){
     //   const res = await axios.post('http://127.0.0.1:5000/api/getUserLogActivity', {days: 30});
-    //   console.log(res.data);
+    //   // console.log(res.data);
     //   setUsers(res.data);
     // }else if(event.target.value === "acal"){
     //   const res = await axios.post('http://127.0.0.1:5000/api/getUserLogHistory', {days: 1000});
-    //   console.log(res.data);
+    //   // console.log(res.data);
     //   setUsers(res.data);
     // }else if(event.target.value === "acty"){
     //   const res = await axios.post('http://127.0.0.1:5000/api/getUserLogHistory', {days: 365});
-    //   console.log(res.data);
+    //   // console.log(res.data);
     //   setUsers(res.data);
     // }else if(event.target.value === "actm"){
     //   const res = await axios.post('http://127.0.0.1:5000/api/getUserLogHistory', {days: 30});
-    //   console.log(res.data);
+    //   // console.log(res.data);
     //   setUsers(res.data);
     // }else {
     //   const res = await axios.post('http://localhost:5000/api/getAllUsers');
-    //   console.log(res.data);
+    //   // console.log(res.data);
     //   setUsers(res.data);
     // }
   };
@@ -198,23 +198,23 @@ export default function UsersList() {
 
   const calcChechoutRate = async (userId) => {
     // const resp = await axios.post('http://localhost:5000/api/getUserCheckoutRate', {userId: userId})
-    // console.log(resp);
+    // // console.log(resp);
     // setCheckoutRate(resp.data)
   };
 
   const getOrderLocation = (userId) => {
     // dispatching the redux to get the recent order loccation for user id specified
-    console.log("dispatching order location getter");
+    // console.log("dispatching order location getter");
     // dispatch(getRecentOrderLocation(userId));
   };
 
   const getRecetentCart = async (userId) => {
     //  const resp = await axios.post('http://localhost:5000/api/getRecentCartHistory',{userId:userId})
-    //  console.log(resp);
+    //  // console.log(resp);
     //  setRecentCart(resp.data)
   };
 
-  console.log(checkoutRate);
+  // console.log(checkoutRate);
 
   //  const stat = {
 

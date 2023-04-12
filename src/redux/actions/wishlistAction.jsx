@@ -4,10 +4,10 @@ import * as api from "../api/index";
 export const addToWishlist = (id) => async (dispatch, getState) => {
   const { data } = await api.fetchProductsById(id);
   const date = new Date();
-  console.log("comming from  add to wishlist action");
-  console.log(data);
-  //  console.log(qtyCounter ," is the ammount being added to cart");
-  console.log(data[0].productBrand);
+  // console.log("comming from  add to wishlist action");
+  // console.log(data);
+  //  // console.log(qtyCounter ," is the ammount being added to cart");
+  // console.log(data[0].productBrand);
 
   dispatch({
     type: actionType.ADD_TO_WISHLIST,

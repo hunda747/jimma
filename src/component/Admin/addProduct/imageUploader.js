@@ -14,7 +14,7 @@
 //     // references
 //     const sotrageRef = ref(storage, `files/${file.name}`);
 //     const uploadTask = uploadBytesResumable(sotrageRef, file);
-    
+
 //     uploadTask.put(file).on(
 //       "state_changed", (snapshot) => {
 //         const prog = Math.round(
@@ -27,9 +27,9 @@
 //           setUrl(downloadURL);
 //         });
 //       }
-//     );  
+//     );
 //   }, [file]);
-//   console.log(url);
+//   // console.log(url);
 //   return { progress, url, error };
 // }
 

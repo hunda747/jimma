@@ -10,7 +10,7 @@ import { ShoppingCart } from "@material-ui/icons";
 import { Badge } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useState } from "react";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -27,10 +27,12 @@ export default function CartShow(props) {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
-  const [cartCount, setCartCount] = useState(cartItems.reduce(
-    (qtyCounter, item) => Number(item.qtyCounter) + qtyCounter,
-    0
-  ))
+  const [cartCount, setCartCount] = useState(
+    cartItems.reduce(
+      (qtyCounter, item) => Number(item.qtyCounter) + qtyCounter,
+      0
+    )
+  );
 
   const getCartCount = () => {
     return cartItems.reduce(
@@ -57,27 +59,30 @@ export default function CartShow(props) {
             <StyledBadge
               badgeContent={getCartCount()}
               className="icon"
-              // anchorOrigin={{
-              //   vertical: "bottom",
-              //   horizontal: "right",
-              // }}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
               // color="secondary"
             >
               <ShoppingCart />
             </StyledBadge>
           </IconButton> */}
-          <Badge badgeContent={cartCount}
+          <Badge
+            badgeContent={getCartCount()}
             // overlap='circular'
             anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
+              vertical: "top",
+              horizontal: "right",
             }}
-            sx={{ color: 'black' }}
+            sx={{ color: "black" }}
             // color='warning'
             // overlap="circular"
             showZero={true}
           >
-            <ShoppingCartIcon fontSize='large'></ShoppingCartIcon>
+            <ShoppingCartIcon fontSize="large">
+              {/* {getCartCount()} */}
+            </ShoppingCartIcon>
           </Badge>
 
           {/* <span className="icon bold">{getCartCount()}</span> */}

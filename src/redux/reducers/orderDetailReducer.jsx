@@ -8,7 +8,7 @@ export const getOrderDetailReducer = (state = { orderDetail: [] }, action) => {
         orderDetail: [],
       };
     case actionTypes.GET_ORDERS_DETAILS_SUCCESS: {
-      console.log("ind detail success");
+      // console.log("ind detail success");
       return {
         loading: false,
         orderDetail: action.payload,

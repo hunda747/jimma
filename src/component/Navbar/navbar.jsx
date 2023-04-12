@@ -61,12 +61,12 @@ export default function Navbar() {
   const [anchorEl, setAnchorEl] = useState(false);
   const [open, setOpen] = useState(false);
   const handleClick = (event) => {
-    console.log("inside handle click");
+    // console.log("inside handle click");
     setAnchorEl(event.currentTarget);
     setOpen(true);
   };
   const handleClose = () => {
-    console.log("set menu close");
+    // console.log("set menu close");
     setOpen(false);
     setAnchorEl(null);
   };

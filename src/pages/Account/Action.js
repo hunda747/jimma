@@ -22,7 +22,7 @@ export const logout = () => {
 //       }
 //     }, 500);
 //   } catch (error) {
-//     console.log(error);
+//     // console.log(error);
 //   }
 // };
 
@@ -35,13 +35,13 @@ export const logout = () => {
 //     let responseData = await getOrderByUser(userId);
 //     setTimeout(() => {
 //       if (responseData && responseData.Order) {
-//         console.log(responseData);
+//         // console.log(responseData);
 //         dispatch({ type: "OrderByUser", payload: responseData.Order });
 //         dispatch({ type: "loading", payload: false });
 //       }
 //     }, 500);
 //   } catch (error) {
-//     console.log(error);
+//     // console.log(error);
 //   }
 // };
 
@@ -61,7 +61,7 @@ export const logout = () => {
 //       }
 //     }, 500);
 //   } catch (error) {
-//     console.log(error);
+//     // console.log(error);
 //   }
 // };
 
@@ -105,7 +105,7 @@ export const handleChangePassword = async (fData, setFdata, phone) => {
         });
       }
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (!err?.response) {
         setFdata({ ...fData, error: "No Server Response" });
       } else if (err.response?.status === 400) {

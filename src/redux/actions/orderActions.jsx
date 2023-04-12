@@ -37,7 +37,7 @@ export const createOrders =
     address
   ) =>
   async (dispatch) => {
-    console.log("action : " + total);
+    // console.log("action : " + total);
     try {
       dispatch({
         type: actionType.CREATE_ORDERS_REQUEST,
@@ -136,7 +136,7 @@ export const getOrdersPending = () => async (dispatch) => {
 
 export const getOrdersComplete = (token) => async (dispatch) => {
   // const [cookies, setCookie, removeCookie] = useCookies(["user"]);
-  // console.log(cookies.ADaccess_token);
+  // // console.log(cookies.ADaccess_token);
   try {
     dispatch({
       type: actionType.GET_ORDERS_PENDING_REQUEST,

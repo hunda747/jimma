@@ -86,11 +86,11 @@ export default function Row(props) {
   };
 
   const orders = useSelector((state) => state.orderDetail.orderDetail);
-  // console.log("this are the props");
-  // console.log(orders);
+  // // console.log("this are the props");
+  // // console.log(orders);
 
   const handleCancelOrder = () => {
-    console.log(props.id);
+    // console.log(props.id);
     // dispatch(changeOrderStatus(props.id, "cancel"));
     axios
       .post(`${localhost}/api/order/changeStatus`, {
@@ -98,18 +98,18 @@ export default function Row(props) {
         status: "cancel",
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         fetchPending(dispatch, props.setLoader);
         // props.changeTab(0);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
     // props.pending();
   };
 
   const handleAcceptOrder = () => {
-    console.log(props.id);
+    // console.log(props.id);
     // dispatch(changeOrderStatus(props.id, "inProgress"));
     // dispatch(getOrdersPending());
     axios
@@ -118,20 +118,20 @@ export default function Row(props) {
         status: "inProgress",
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         fetchPending(dispatch, props.setLoader);
         // fetchInprogress(dispatch, props.setLoader);
         // props.changeTab(1);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
     // props.inprogress();
     // window.location.reload(true);
   };
 
   const handleReverseOrder = () => {
-    console.log(props.id);
+    // console.log(props.id);
     // dispatch(changeOrderStatus(props.id, "pending"));
     // dispatch(getOrdersPending());
     axios
@@ -140,13 +140,13 @@ export default function Row(props) {
         status: "pending",
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         fetchInprogress(dispatch, props.setLoader);
         // fetchPending(dispatch, props.setLoader);
         // props.changeTab(0);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
     // props.pending();
 
@@ -154,7 +154,7 @@ export default function Row(props) {
   };
 
   const handleCompleteOrder = () => {
-    console.log(props.id);
+    // console.log(props.id);
     // dispatch(changeOrderStatus(props.id, "complete"));
     // dispatch(getOrdersInprogress());
     axios
@@ -163,13 +163,13 @@ export default function Row(props) {
         status: "complete",
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         fetchInprogress(dispatch, props.setLoader);
         // fetchComplete(dispatch, props.setLoader);
         // props.changeTab(2);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
     // dispatch(getOrdersComplete());
     // window.location.reload(true);
@@ -182,8 +182,8 @@ export default function Row(props) {
     navigator("/cart");
   };
 
-  console.log(props.orders);
-  // console.log("inside row");
+  // console.log(props.orders);
+  // // console.log("inside row");
   return (
     <React.Fragment>
       <TableRow

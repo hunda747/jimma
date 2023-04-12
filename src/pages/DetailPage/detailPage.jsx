@@ -17,6 +17,16 @@ import firfirIcon from "../../assets/svg/firfir.jpg";
 import shiroIcon from "../../assets/svg/shiro.png";
 import riceIcon from "../../assets/svg/rice.png";
 
+import extraIcon from "../../assets/svg/extra.png";
+import friedIcon from "../../assets/svg/fried.png";
+import sandwichIcon from "../../assets/svg/sandwich.png";
+import snackIcon from "../../assets/svg/snack.png";
+
+import breakfastIcon from "../../assets/svg/bbreakfast.png";
+import shawaIcon from "../../assets/svg/shawa.png";
+import shakeIcon from "../../assets/svg/shake.png";
+import iftarIcon from "../../assets/svg/iftar.png";
+
 import { Favorite, SearchIcon } from "@material-ui/icons";
 import { ShoppingCart, Delete } from "@material-ui/icons";
 import { Link } from "react-router-dom";
@@ -73,7 +83,7 @@ export default function DetailView() {
 
   const findTypes = () => {
     if (food) {
-      console.log(types);
+      // console.log(types);
       let typeItems = [];
       food?.map((fo) => {
         if (!typeItems?.includes(fo.type)) {
@@ -83,21 +93,21 @@ export default function DetailView() {
       });
       setTypes(typeItems);
 
-      console.log(types);
+      // console.log(types);
     }
   };
 
-  // console.log(restaurants);
+  // // console.log(restaurants);
   let restaurant = {};
   restaurants?.map((rest) => {
     restaurant = rest;
   });
 
   const handleDelete = (e) => {
-    console.log(e);
+    // console.log(e);
     // dispatch(removeFromCart(_id))
   };
-  // console.log(foods);
+  // // console.log(foods);
 
   return (
     <>
@@ -251,7 +261,7 @@ export default function DetailView() {
                           (food) => food.type === type
                         );
                         const pan0el = "panel" + console.log(filter);
-                        // console.log(key);
+                        // // console.log(key);
                         return (
                           <Accordion
                             expanded={expanded === `panel${key + 1}`}
@@ -272,30 +282,56 @@ export default function DetailView() {
                                 className="foodType"
                               >
                                 <div className="icon">
-                                  {type === "pizza" ? (
+                                  {type.toLowerCase() === "pizza" ? (
                                     <img src={pizzaIcon} alt="" />
-                                  ) : type === "burger" ? (
+                                  ) : type.toLowerCase() === "burger" ? (
                                     <img src={burgerIcon} alt="" />
-                                  ) : type === "chicken" ? (
+                                  ) : type.toLowerCase() === "chicken" ? (
                                     <img src={chickenIcon} alt="" />
-                                  ) : type === "drinkIcon" ? (
+                                  ) : type.toLowerCase() === "drink" ? (
                                     <img src={drinkIcon} alt="" />
-                                  ) : type === "fish" ? (
+                                  ) : type.toLowerCase() === "fish" ? (
                                     <img src={fishIcon} alt="" />
-                                  ) : type === "lunch" ? (
+                                  ) : type.toLowerCase() === "lunch" ? (
                                     <img src={lunchIcon} alt="" />
-                                  ) : type === "steak" ? (
+                                  ) : type.toLowerCase() === "steak" ? (
                                     <img src={steakIcon} alt="" />
-                                  ) : type === "salad" ? (
+                                  ) : type.toLowerCase() === "beef" ? (
+                                    <img src={steakIcon} alt="" />
+                                  ) : type.toLowerCase() === "salad" ? (
                                     <img src={saladIcon} alt="" />
-                                  ) : type === "soup" ? (
+                                  ) : type.toLowerCase() === "soup" ? (
                                     <img src={soupIcon} alt="" />
-                                  ) : type === "shiro" ? (
+                                  ) : type.toLowerCase() === "shake" ? (
+                                    <img src={shakeIcon} alt="" />
+                                  ) : type.toLowerCase() === "iftar" ? (
+                                    <img src={iftarIcon} alt="" />
+                                  ) : type.toLowerCase() === "fasting" ? (
+                                    <img src={iftarIcon} alt="" />
+                                  ) : type.toLowerCase() === "juice" ? (
+                                    <img src={shakeIcon} alt="" />
+                                  ) : type.toLowerCase() === "bottled water" ? (
+                                    <img src={drinkIcon} alt="" />
+                                  ) : type.toLowerCase() === "beverages" ? (
+                                    <img src={drinkIcon} alt="" />
+                                  ) : type.toLowerCase() === "shiro" ? (
                                     <img src={shiroIcon} alt="" />
-                                  ) : type === "firfir" ? (
+                                  ) : type.toLowerCase() === "firfir" ? (
                                     <img src={firfirIcon} alt="" />
-                                  ) : type === "rice" ? (
+                                  ) : type.toLowerCase() === "rice" ? (
                                     <img src={riceIcon} alt="" />
+                                  ) : type.toLowerCase() === "extra" ? (
+                                    <img src={extraIcon} alt="" />
+                                  ) : type.toLowerCase() === "fried" ? (
+                                    <img src={friedIcon} alt="" />
+                                  ) : type.toLowerCase() === "sandwich" ? (
+                                    <img src={sandwichIcon} alt="" />
+                                  ) : type.toLowerCase() === "breakfast" ? (
+                                    <img src={breakfastIcon} alt="" />
+                                  ) : type.toLowerCase() === "shawa" ? (
+                                    <img src={shawaIcon} alt="" />
+                                  ) : type.toLowerCase() === "snack" ? (
+                                    <img src={snackIcon} alt="" />
                                   ) : (
                                     <img src={lunchIcon} alt="" />
                                   )}
@@ -308,7 +344,7 @@ export default function DetailView() {
                                 <>
                                   <div className="displayMenu">
                                     {filter?.map((food, index) => {
-                                      // console.log(food);
+                                      // // console.log(food);
                                       return (
                                         <div className="menuItem">
                                           <FoodCard
@@ -370,7 +406,7 @@ export default function DetailView() {
                                 <>
                                   <div className="displayMenu">
                                     {filter?.map((food, index) => {
-                                      console.log(food);
+                                      // console.log(food);
                                       return (
                                         <div className="menuItem">
                                           <FoodCard

@@ -78,7 +78,7 @@ export default function ProductList({ onMorePage }) {
   const [cookies, setCookie] = useCookies(["user"]);
   const [loader, setLoader] = useState(false);
   const restId = localStorage.getItem("restId");
-  console.log(restId);
+  // console.log(restId);
 
   const [addValues, setAddValues] = useState({
     id: "",
@@ -98,22 +98,21 @@ export default function ProductList({ onMorePage }) {
   // rowSelection objects indicates the need for row selection
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
-      console.log(
-        `selectedRowKeys: ${selectedRowKeys}`,
-        "selectedRows: ",
-        selectedRows
-      );
+      // console.log(
+      //   `selectedRowKeys: ${selectedRowKeys}`,
+      //   "selectedRows: ",
+      //   selectedRows
+      // );
     },
     onSelect: (record, selected, selectedRows) => {
-      console.log(record, selected, selectedRows);
-
-      console.log(selectedRows[0].id);
+      // console.log(record, selected, selectedRows);
+      // console.log(selectedRows[0].id);
     },
     onSelectAll: (selected, selectedRows, changeRows) => {
-      console.log(selected, selectedRows, changeRows);
+      // console.log(selected, selectedRows, changeRows);
     },
     getCheckboxProps: (record) => {
-      //console.log(record)
+      //// console.log(record)
     },
     selections: true,
     hideSelectAll: true,
@@ -135,14 +134,14 @@ export default function ProductList({ onMorePage }) {
         restaurant: restId,
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         dispatch({
           type: "fetchFoodAndChangeState",
           payload: res.data,
         });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       })
       .finally(() => {
         changeLoader(false);
@@ -151,11 +150,11 @@ export default function ProductList({ onMorePage }) {
 
   const food = useSelector((state) => state.food.food);
   const foodLoad = useSelector((state) => state.food.loading);
-  console.log(foodLoad);
+  // console.log(foodLoad);
 
   const [form] = Form.useForm();
   // const [data, setData] = useState(food);
-  console.log(data);
+  // console.log(data);
   const [editingKey, setEditingKey] = useState("");
 
   // useEffect(() => {
@@ -184,11 +183,10 @@ export default function ProductList({ onMorePage }) {
 
   const save = async (key) => {
     try {
-      console.log(key);
+      // console.log(key);
       // const row = await form.validateFields();
       // const newData = [...data];
       // const index = newData.findIndex((item) => key === item.key);
-
       // if (index > -1) {
       //   const item = newData[index];
       //   newData.splice(index, 1, { ...item, ...row });
@@ -200,7 +198,7 @@ export default function ProductList({ onMorePage }) {
       //   setEditingKey('');
       // }
     } catch (errInfo) {
-      console.log("Validate Failed:", errInfo);
+      // console.log("Validate Failed:", errInfo);
     }
   };
 
@@ -322,12 +320,12 @@ export default function ProductList({ onMorePage }) {
 
   const showDrawer = () => {
     setVisible(!visible);
-    console.log("this is the status of the product " + editValues.status);
+    // console.log("this is the status of the product " + editValues.status);
   };
 
   const showAddDrawer = () => {
     setVisible(!visibleAdd);
-    console.log("this is the status of the product " + addValues.status);
+    // console.log("this is the status of the product " + addValues.status);
   };
 
   const onClose = () => {
@@ -360,7 +358,7 @@ export default function ProductList({ onMorePage }) {
 
   // state for product list search bar
   const EditProduct = (record) => {
-    console.log(record);
+    // console.log(record);
     setEditValues({
       id: record.id,
       food_name: record.food_name,
@@ -369,13 +367,13 @@ export default function ProductList({ onMorePage }) {
       price: record.price,
       status: record.status,
     });
-    console.log(editValues);
+    // console.log(editValues);
   };
 
   const handleAddFood = () => {
-    console.log("handling add values");
-    console.log(addValues);
-    console.log(restId);
+    // console.log("handling add values");
+    // console.log(addValues);
+    // console.log(restId);
     setLoader(true);
 
     axios
@@ -387,7 +385,7 @@ export default function ProductList({ onMorePage }) {
         price: addValues.price,
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setVisibleAdd(false);
         fetchFoodByRestaurant();
         setAddValues({
@@ -403,7 +401,7 @@ export default function ProductList({ onMorePage }) {
         message.success("Product Updated");
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         message.error({
           content:
             err?.response?.data ||
@@ -441,8 +439,8 @@ export default function ProductList({ onMorePage }) {
   };
 
   const handleEditChanges = () => {
-    console.log("handling edit changes");
-    console.log(editValues);
+    // console.log("handling edit changes");
+    // console.log(editValues);
     setLoader(true);
     axios
       .post(`${localhost}/api/food/updateFood`, {
@@ -454,7 +452,7 @@ export default function ProductList({ onMorePage }) {
         status: editValues.status,
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.status === 200) {
           fetchFoodByRestaurant();
           setVisible(false);
@@ -483,10 +481,10 @@ export default function ProductList({ onMorePage }) {
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       })
       .finally(() => {
-        console.log(false);
+        // console.log(false);
         setLoader(false);
       });
     // window.location.reload(0)
@@ -498,7 +496,7 @@ export default function ProductList({ onMorePage }) {
     // dispatch(getAllProducts());
   };
 
-  console.log(searchInput);
+  // console.log(searchInput);
   return (
     <>
       <div className="productListPageHolder">
@@ -556,7 +554,7 @@ export default function ProductList({ onMorePage }) {
           onClick={() => {
             setVisibleAdd(true);
             setAddValues({ ...addValues, restaurant: food[0]?.restaurantsId });
-            console.log(food[0]?.restaurantsId);
+            // console.log(food[0]?.restaurantsId);
           }}
         >
           <IconButton>
@@ -833,7 +831,7 @@ export default function ProductList({ onMorePage }) {
 
 //  //handle delete
 //  const DeleteProduct = (record) =>{
-//   console.log(record.id)
+//   // console.log(record.id)
 //   if(record.statusValue === 0){
 //     message.error("Product Already Deleted")
 //   }
