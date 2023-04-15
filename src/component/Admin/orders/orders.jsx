@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useRef } from "react";
 import "./orders.css";
 import {
   Box,
@@ -42,6 +42,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 // import { AdapterDayjs } from "@mui/x-date-pickers/";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { OrderContext } from "./index";
+import { getRestaurants } from "../../../redux/actions/restaurantAction";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -93,6 +94,14 @@ export default function Orders() {
   // // console.log(cookies.ADaccess_token);
   const nowData = new Date();
   const [dateValue, setDateValue] = React.useState(new Date());
+  const dispatchRn = useDispatch();
+
+  useEffect(() => {
+    dispatchRn(getRestaurants());
+  }, []);
+
+  const restaurants = useSelector((state) => state.restaurant.restaurant);
+  // console.log(restaurants);
 
   const handleDateChange = (e) => {
     // setValue(newValue);
@@ -192,10 +201,16 @@ export default function Orders() {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
-    // fetchAllOrders();
-    // console.log(value);
     if (value === 0) {
       fetchPending();
+    }
+  }, []);
+
+  // const ref = useRef(null);
+  useEffect(() => {
+    if (value === 0) {
+      setInterval(() => fetchPending(), 1 * 60 * 1000);
+      // return () => clearInterval(interval);
     } else if (value === 1) {
       fetchInprogress();
     } else {
@@ -321,6 +336,7 @@ export default function Orders() {
                               inprogress={fetchInprogress}
                               changeTab={setValue}
                               setLoader={setLoader}
+                              restaurant={restaurants}
                             />
                           );
                         })
@@ -378,6 +394,7 @@ export default function Orders() {
                               inprogress={fetchInprogress}
                               changeTab={setValue}
                               setLoader={setLoader}
+                              restaurant={restaurants}
                             />
                           );
                         })
@@ -443,6 +460,7 @@ export default function Orders() {
                               inprogress={fetchInprogress}
                               changeTab={setValue}
                               setLoader={setLoader}
+                              restaurant={restaurants}
                             />
                           );
                         })

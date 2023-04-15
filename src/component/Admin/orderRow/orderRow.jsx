@@ -182,6 +182,11 @@ export default function Row(props) {
     navigator("/cart");
   };
 
+  const resname = props.restaurant.filter(
+    (res) => res.id === props?.orders[0].foodRestaurantId
+  );
+  // console.log(resname);
+
   // console.log(props.orders);
   // // console.log("inside row");
   return (
@@ -350,9 +355,14 @@ export default function Row(props) {
                     />
                   </ReactMapGL>
                 </div>
-
+                <div>
+                  {/* {props?.restaurant.fillt} */}
+                  <h3>Restarant: {resname[0]?.name}</h3>
+                  {/* {console.log(props?.orders[0].foodRestaurantId)} */}
+                  {/* {console.log(props?.restaurant)} */}
+                </div>
                 <div className="itemsInfo">
-                  <p>Items</p>
+                  {/* <p>Food</p> */}
                   <Table size="small" aria-label="purchases">
                     <TableHead>
                       <TableRow>
